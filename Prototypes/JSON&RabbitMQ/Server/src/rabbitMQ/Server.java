@@ -58,7 +58,6 @@ public class Server {
 			//channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 			//consumer = new QueueingConsumer(channel);
 			//channel.basicConsume(QUEUE_NAME, true, consumer);
-			System.out.println(channelFanout+"dd");
 		}
 		catch(IOException e){
 			e.printStackTrace();

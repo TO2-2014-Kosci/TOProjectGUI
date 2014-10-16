@@ -17,9 +17,9 @@ public class Server {
 	private QueueingConsumer normalConsumer;
 	private QueueingConsumer fanoutConsumer;
 	private QueueingConsumer topicConsumer;
-	private final static String QUEUE_NAME = "testNormal";
-	private final static String EXCHANGE_NAME = "testFanout";
-	private final static String EXCHANGE_NAME_TOPIC= "testTopic";
+	private final static String NORMAL_NAME = "testNormal";
+	private final static String FANOUT_NAME = "testFanout";
+	private final static String TOPIC_NAME= "testTopic";
 	
 	public void connectToServerCreateChannelAndConsume() {
 		connect();
@@ -41,7 +41,7 @@ public class Server {
 	private void createNormalChannel() {
 		try {
 			normalChannel = connection.createChannel();
-			normalChannel.queueDeclare(QUEUE_NAME, false, false, false, null);
+			normalChannel.queueDeclare(NORMAL_NAME, false, false, false, null);
 		} catch (IOException exception){
 			// TODO Auto-generated catch block
 			exception.printStackTrace();
@@ -51,7 +51,7 @@ public class Server {
 	private QueueingConsumer createConsumerForChannel(Channel channel) {
 		try {
 			QueueingConsumer consumer = new QueueingConsumer(channel);
-			channel.basicConsume(QUEUE_NAME, true, consumer);
+			channel.basicConsume(channel.queueDeclare().getQueue(), true, consumer);
 			return consumer;
 		} catch (IOException exception) {
 			// TODO Auto-generated catch block
@@ -68,9 +68,9 @@ public class Server {
 	private void createFanoutChannel() {
 		try {
 			fanoutChannel = connection.createChannel();
-			fanoutChannel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+			fanoutChannel.exchangeDeclare(FANOUT_NAME, "fanout");
 			String queueName = fanoutChannel.queueDeclare().getQueue();
-			fanoutChannel.queueBind(queueName, EXCHANGE_NAME, "");
+			fanoutChannel.queueBind(queueName, FANOUT_NAME, "");
 		} catch (IOException exception) {
 			// TODO Auto-generated catch block
 			exception.printStackTrace();
@@ -84,10 +84,10 @@ public class Server {
 	
 	private void createTopicChannel(String topic) {
 		try {
-			Channel topicChannel = connection.createChannel();
-			topicChannel.exchangeDeclare(EXCHANGE_NAME_TOPIC, "topic");
+			topicChannel = connection.createChannel();
+			topicChannel.exchangeDeclare(TOPIC_NAME, "topic");
 			String queueName = topicChannel.queueDeclare().getQueue();
-			topicChannel.queueBind(queueName, EXCHANGE_NAME_TOPIC, topic);
+			topicChannel.queueBind(queueName, TOPIC_NAME, topic);
 		} catch (IOException exception) {
 			exception.printStackTrace();
 		}
@@ -113,13 +113,14 @@ public class Server {
 	
 	public void sendStringToNormal(String message) {
 		try {
-			normalChannel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+			normalChannel.basicPublish("", NORMAL_NAME, null, message.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public String receiveStringFromNormal() {
+		System.out.println("dupa");
 		return receiveStringFromConsumer(normalConsumer);
 	}
 	
@@ -133,7 +134,8 @@ public class Server {
 	
 	private String receiveStringFromConsumer(QueueingConsumer consumer) {
 		try {
-			QueueingConsumer.Delivery delivery = normalConsumer.nextDelivery();
+			System.out.println("dupa");
+			QueueingConsumer.Delivery delivery = consumer.nextDelivery();// <= tu nie działa
 			return new String(delivery.getBody());
 		} catch (ShutdownSignalException e) {
 			// TODO Auto-generated catch block
