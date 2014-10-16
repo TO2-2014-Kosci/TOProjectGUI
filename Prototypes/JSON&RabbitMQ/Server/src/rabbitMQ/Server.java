@@ -18,7 +18,6 @@ public class Server {
 	public void connect() {
 		try {
 			ConnectionFactory factory = new ConnectionFactory();
-			factory.setHost("localhost");
 			connection = factory.newConnection();
 			channel = connection.createChannel();
 			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
