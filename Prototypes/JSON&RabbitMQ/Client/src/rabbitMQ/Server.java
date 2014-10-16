@@ -17,6 +17,7 @@ public class Server {
 	private QueueingConsumer gameConsumer;
 	private final static String QUEUE_NAME = "testNormal";
 	private final static String EXCHANGE_NAME = "testFanout";
+	private final static String QUEUE_NAME = "queue";
 	
 	public void connectToServerCreateChannelAndConsume() {
 		connect();
@@ -29,6 +30,10 @@ public class Server {
 			ConnectionFactory factory = new ConnectionFactory();
 			factory.setHost("localhost");
 			connection = factory.newConnection();
+			channel = connection.createChannel();
+			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+			consumer = new QueueingConsumer(channel);
+			channel.basicConsume(QUEUE_NAME, true, consumer);
 		} catch (IOException exception){
 			// TODO Auto-generated catch block
 			exception.printStackTrace();
@@ -71,6 +76,9 @@ public class Server {
 		} catch (IOException exception) {
 			// TODO Auto-generated catch block
 			exception.printStackTrace();
+=======
+			
+>>>>>>> branch 'master' of https://github.com/Materix/TOProjectGUI.git
 		}
 	}
 	
