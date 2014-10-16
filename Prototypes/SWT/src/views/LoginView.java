@@ -1,9 +1,7 @@
 package views;
 
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.layout.RowLayout;
 
 public class LoginView extends Composite {
