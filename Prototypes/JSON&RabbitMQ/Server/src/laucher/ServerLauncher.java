@@ -2,7 +2,7 @@ package laucher;
 
 import rabbitMQ.Server;
 
-public class Laucher {
+public class ServerLauncher {
 
 	public static void main(String[] args) throws InterruptedException {
 		Server server = new Server();
