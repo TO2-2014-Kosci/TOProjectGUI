@@ -11,13 +11,14 @@ import com.rabbitmq.client.ShutdownSignalException;
 
 public class Server {
 	private Connection connection;
+	private Channel channel;
+	private QueueingConsumer consumer;
 	private Channel mainChannel;
 	private Channel gameChannel;
 	private QueueingConsumer mainConsumer;
 	private QueueingConsumer gameConsumer;
 	private final static String QUEUE_NAME = "testNormal";
 	private final static String EXCHANGE_NAME = "testFanout";
-	private final static String QUEUE_NAME = "queue";
 	
 	public void connectToServerCreateChannelAndConsume() {
 		connect();
@@ -34,6 +35,7 @@ public class Server {
 			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 			consumer = new QueueingConsumer(channel);
 			channel.basicConsume(QUEUE_NAME, true, consumer);
+			System.out.println(channel+"dd");
 		} catch (IOException exception){
 			// TODO Auto-generated catch block
 			exception.printStackTrace();
@@ -59,7 +61,7 @@ public class Server {
 			// TODO Auto-generated catch block
 			exception.printStackTrace();
 		}
-		return new QueueingConsumer(channel); //to jest Ÿle
+		return new QueueingConsumer(channel); //to jest ï¿½le
 	}
 	
 	public void createChannelForGameAndConsume() {
@@ -76,19 +78,16 @@ public class Server {
 		} catch (IOException exception) {
 			// TODO Auto-generated catch block
 			exception.printStackTrace();
-=======
-			
->>>>>>> branch 'master' of https://github.com/Materix/TOProjectGUI.git
 		}
 	}
 	
 	public void disconnect() {
 		try {
+			channel.close();
 			mainChannel.close();
 			connection.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	
@@ -103,6 +102,7 @@ public class Server {
 	
 	public void sendStringToServer(String message) {
 		try {
+			channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
 			mainChannel.basicPublish("", QUEUE_NAME, null, message.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
