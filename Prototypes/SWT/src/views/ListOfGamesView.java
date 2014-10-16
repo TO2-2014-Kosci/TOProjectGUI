@@ -1,4 +1,4 @@
-package view;
+package views;
 
 import org.eclipse.swt.widgets.Composite;
 

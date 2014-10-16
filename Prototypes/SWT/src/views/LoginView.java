@@ -1,4 +1,4 @@
-package view;
+package views;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Button;
@@ -16,11 +16,6 @@ public class LoginView extends Composite {
 	public LoginView(Composite parent, int style) {
 		super(parent, style);
 		setLayout(new RowLayout(SWT.HORIZONTAL));
-		
-		Text text = new Text(this, SWT.BORDER);
-		
-		Button btnLogin = new Button(this, SWT.NONE);
-		btnLogin.setText("Login");
 
 	}
 

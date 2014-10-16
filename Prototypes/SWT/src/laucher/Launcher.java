@@ -5,7 +5,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import swing2swt.layout.BorderLayout;
-import view.LoginView;
+import views.LoginView;
 
 
 public class Launcher {
