@@ -11,29 +11,75 @@ import com.rabbitmq.client.ShutdownSignalException;
 
 public class Server {
 	private Connection connection;
-	private Channel channel;
+	private Channel channelNormal;
+	private Channel channelFanout;
+	private Channel channelTopic;
 	private QueueingConsumer consumer;
-	private final static String QUEUE_NAME = "queue";
+	private ConnectionFactory factory;
+	private final static String QUEUE_NAME = "testNormals";
+	private final static String EXCHANGE_NAME_FANOUT= "testFanout";
+	private final static String EXCHANGE_NAME_TOPIC= "testTopic";
+
 	
-	public void connect() {
+	private void connectInit(){
 		try {
-			ConnectionFactory factory = new ConnectionFactory();
+			factory = new ConnectionFactory();
 			factory.setHost("localhost");
-			connection = factory.newConnection();
-			channel = connection.createChannel();
-			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-			consumer = new QueueingConsumer(channel);
-			channel.basicConsume(QUEUE_NAME, true, consumer);
-			System.out.println(channel+"dd");
+			connection = factory.newConnection();			
 		} catch (IOException exception){
 			// TODO Auto-generated catch block
 			exception.printStackTrace();
 		}
 	}
-	
+	public void connectNormal() {
+		try {
+			if(factory == null){
+				connectInit();
+			}
+			
+			channelNormal = connection.createChannel();
+			channelNormal.queueDeclare(QUEUE_NAME, false, false, false, null);
+			consumer = new QueueingConsumer(channelNormal);
+			channelNormal.basicConsume(QUEUE_NAME, true, consumer);
+			System.out.println(channelNormal+"dd");
+		} catch (IOException exception){
+			// TODO Auto-generated catch block
+			exception.printStackTrace();
+		}
+	}
+	public void connectFanout(){
+			if(factory == null){
+				connectInit();
+			}
+		try{	
+			channelFanout = connection.createChannel();
+	        channelFanout.exchangeDeclare(EXCHANGE_NAME_FANOUT, "fanout");
+			
+			//channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+			//consumer = new QueueingConsumer(channel);
+			//channel.basicConsume(QUEUE_NAME, true, consumer);
+			System.out.println(channelFanout+"dd");
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	public void connectTopic(){
+		if(factory==null){
+			connectInit();
+		}
+		try{	
+			channelTopic = connection.createChannel();
+			channelTopic.exchangeDeclare(EXCHANGE_NAME_TOPIC, "topic");
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 	public void disconnect() {
 		try {
-			channel.close();
+			channelNormal.close();
+			channelFanout.close();
 			connection.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -43,12 +89,32 @@ public class Server {
 	
 	public void sendString(String message) {
 		try {
-			channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+			channelNormal.basicPublish("", QUEUE_NAME, null, message.getBytes());
+	        System.out.println(" [x] Sent normal message'" + message + "'");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	public void sendStringFanout(String message){
+		try {
+	        channelFanout.basicPublish(EXCHANGE_NAME_FANOUT, "", null, message.getBytes());
+	        System.out.println(" [x] Sent fanout message '" + message + "'");
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	public void sendStringTopic(String message,String topic){
+		try{
+	        channelTopic.basicPublish(EXCHANGE_NAME_TOPIC, topic, null, message.getBytes());
+	        System.out.println(" [x] Sent topic message '" + message + "'");
+
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+	}
 	public String receiveString() {
 		QueueingConsumer.Delivery delivery;
 		try {
