@@ -10,9 +10,9 @@ import com.rabbitmq.client.QueueingConsumer;
 import com.rabbitmq.client.ShutdownSignalException;
 
 public class Server {
-	Connection connection;
-	Channel channel;
-	QueueingConsumer consumer;
+	private Connection connection;
+	private Channel channel;
+	private QueueingConsumer consumer;
 	private final static String QUEUE_NAME = "queue";
 	
 	public void connect() {
@@ -24,8 +24,10 @@ public class Server {
 			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 			consumer = new QueueingConsumer(channel);
 			channel.basicConsume(QUEUE_NAME, true, consumer);
+			System.out.println(channel+"dd");
 		} catch (IOException exception){
-			
+			// TODO Auto-generated catch block
+			exception.printStackTrace();
 		}
 	}
 	

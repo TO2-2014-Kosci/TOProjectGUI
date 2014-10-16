@@ -24,7 +24,6 @@ public class Server {
 			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 			consumer = new QueueingConsumer(channel);
 			channel.basicConsume(QUEUE_NAME, true, consumer);
-			System.out.println(channel+"dd");
 		} catch (IOException exception){
 			// TODO Auto-generated catch block
 			exception.printStackTrace();
