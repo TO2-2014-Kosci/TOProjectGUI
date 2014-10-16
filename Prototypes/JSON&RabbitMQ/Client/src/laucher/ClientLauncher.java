@@ -6,9 +6,10 @@ public class ClientLauncher {
 
 	public static void main(String[] args) {
 		Server server = new Server();
-		server.connect();
-		String msg = server.receiveString();
-		System.out.println(msg);
+		server.connectToServerCreateChannelAndConsume();
+		server.createChannelForGameAndConsume();
+		
+		System.out.println();
 		server.disconnect();
 	}
 
