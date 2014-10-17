@@ -2,17 +2,22 @@ package message;
 
 import org.json.*;
 
-public class LoginMessage implements Message {
+public class LoginMessage{
 	private String login;
 	
 	public LoginMessage(String login) {
 		this.login = login;
 	}
 	
-	@Override
 	public byte[] getBytes() {
-		JSONObject obj; 
-		return null;
+		return this.toString().getBytes();
+	}
+	
+	@Override
+	public String toString() {
+		JSONObject object = new JSONObject();
+		object.put("login", login);
+		return object.toString();
 	}
 
 }
