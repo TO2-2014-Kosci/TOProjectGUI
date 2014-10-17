@@ -16,7 +16,7 @@ public class Server {
 	private Channel channelTopic;
 	private QueueingConsumer consumer;
 	private ConnectionFactory factory;
-	private final static String QUEUE_NAME = "testNormals";
+	private final static String QUEUE_NAME = "testNormal";
 	private final static String EXCHANGE_NAME_FANOUT= "testFanout";
 	private final static String EXCHANGE_NAME_TOPIC= "testTopic";
 
@@ -39,9 +39,8 @@ public class Server {
 			}
 			channelNormal = connection.createChannel();
 			channelNormal.queueDeclare(QUEUE_NAME, false, false, false, null);
-			consumer = new QueueingConsumer(channelNormal);
-			channelNormal.basicConsume(QUEUE_NAME, true, consumer);
-			System.out.println(channelNormal+"dd");
+			//consumer = new QueueingConsumer(channelNormal);
+			//channelNormal.basicConsume(QUEUE_NAME, true, consumer);
 		} catch (IOException exception){
 			// TODO Auto-generated catch block
 			exception.printStackTrace();

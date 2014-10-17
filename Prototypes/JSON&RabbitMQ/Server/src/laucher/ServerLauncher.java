@@ -24,6 +24,7 @@ public class ServerLauncher {
 			}			switch(temp){	
 			case 1:
 				server.sendString(message);
+				//System.out.println(server.receiveString());
 			break;
 			case 2:
 				server.sendStringFanout(message);		

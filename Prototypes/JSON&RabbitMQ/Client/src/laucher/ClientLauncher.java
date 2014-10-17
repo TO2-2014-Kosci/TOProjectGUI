@@ -11,10 +11,9 @@ public class ClientLauncher {
 		server.createTopicChannelAndConsume("ala.ma.kota");
 		Thread.sleep(10000);
 		System.out.println("Nie œpie, czekam");
-		System.out.println(server.receiveStringFromNormal() + "dupa1");
-		System.out.println(server.receiveStringFromFanout() + "dupa2");
-		System.out.println(server.receiveStringFromTopic() + "dupa3");
-		System.out.println("Nie œpie, czekam");
+		System.out.println(server.receiveStringFromNormal());
+		System.out.println(server.receiveStringFromFanout());
+		System.out.println(server.receiveStringFromTopic());
 	}
 
 }
