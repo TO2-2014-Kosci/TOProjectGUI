@@ -1,9 +1,6 @@
 package laucher;
 
 import java.util.Scanner;
-
-import org.json.JSONObject;
-
 import message.LoginMessage;
 import rabbitMQ.Server;
 
