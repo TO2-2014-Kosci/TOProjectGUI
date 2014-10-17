@@ -7,5 +7,6 @@
 			<attribute name="javadoc_location" value="jar:file:/F:/Studia/Sem5/TOProjectGUI/Prototypes/JSON&amp;RabbitMQ/Server/lib/rabbitmq-client-javadoc.zip!/rabbitmq-java-client-javadoc-3.3.5"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/json-20140107.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

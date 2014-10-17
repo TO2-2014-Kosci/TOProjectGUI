@@ -1,5 +1,8 @@
 package laucher;
 
+import org.json.JSONObject;
+
+import message.LoginMessage;
 import rabbitMQ.Server;
 
 public class ClientLauncher {
@@ -8,12 +11,11 @@ public class ClientLauncher {
 		Server server = new Server();
 		server.connectToServerCreateChannelAndConsume();
 		server.createFanoutChannelAndConsume();
-		server.createTopicChannelAndConsume("ala.ma.kota");
-		Thread.sleep(10000);
-		System.out.println("Nie œpie, czekam");
-		System.out.println(server.receiveStringFromNormal());
-		System.out.println(server.receiveStringFromFanout());
-		System.out.println(server.receiveStringFromTopic());
+		server.createTopicChannelAndConsume("ala.*.*");
+		while (true) {
+		//System.out.println(new LoginMessage(new JSONObject(server.receiveStringFromNormal())).getLogin());
+		//System.out.println(new LoginMessage(new JSONObject(server.receiveStringFromFanout())).getLogin());
+		System.out.println(new LoginMessage(new JSONObject(server.receiveStringFromTopic())).getLogin());
+		}
 	}
-
 }

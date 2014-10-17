@@ -10,17 +10,12 @@ import rabbitMQ.Server;
 public class ServerLauncher {
 
 	public static void main(String[] args) throws InterruptedException {
-		LoginMessage loginMessage= new LoginMessage("alaMaKota");
-		System.out.println(loginMessage);
-		LoginMessage loginMessageFromString = new LoginMessage(new JSONObject(loginMessage));
-		System.out.println(loginMessageFromString.getLogin());
-		/*
 		Server server = new Server();
 		server.connectNormal();
 		server.connectFanout();
 		server.connectTopic();
 		Scanner sc= new Scanner(System.in);
-		String message= "Ala ma kota";
+		String message = new LoginMessage("Ala ma kota").toString();
 		String topic;
 		while(true){
 			System.out.println("Wybierz typ wiadomosci,0-koniec 1- normal, 2- fanout, 3-topic");
@@ -49,7 +44,7 @@ public class ServerLauncher {
 				System.exit(0);
 				sc.close();
 			}
-		}*/
+		}
 	}
 
 }
