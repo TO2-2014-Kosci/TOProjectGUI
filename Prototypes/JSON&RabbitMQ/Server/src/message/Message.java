@@ -2,25 +2,20 @@ package message;
 
 import org.json.*;
 
-public abstract class Message {
+public class Message {
 	private String type;
-	private Message message;
 	
-	public Message(String type, Message message) {
+	public Message(String type) {
 		this.type = type;
-		this.message = message;
 	}
 	
 	public byte[] getBytes() {
 		return this.toString().getBytes();
 	}
 	
-	@Override
-	public String toString() {
+	public JSONObject toJSONObject() {
 		JSONObject object = new JSONObject();
 		object.put("type", type);
-		object.put("message", message.toString());
-		System.out.println(object);
-		return object.toString();
+		return object;
 	}
 }

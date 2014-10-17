@@ -2,11 +2,19 @@ package laucher;
 
 import java.util.Scanner;
 
+import org.json.JSONObject;
+
+import message.LoginMessage;
 import rabbitMQ.Server;
 
 public class ServerLauncher {
 
 	public static void main(String[] args) throws InterruptedException {
+		LoginMessage loginMessage= new LoginMessage("alaMaKota");
+		System.out.println(loginMessage);
+		LoginMessage loginMessageFromString = new LoginMessage(new JSONObject(loginMessage));
+		System.out.println(loginMessageFromString.getLogin());
+		/*
 		Server server = new Server();
 		server.connectNormal();
 		server.connectFanout();
@@ -41,7 +49,7 @@ public class ServerLauncher {
 				System.exit(0);
 				sc.close();
 			}
-		}
+		}*/
 	}
 
 }
