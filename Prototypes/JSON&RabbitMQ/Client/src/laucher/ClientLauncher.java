@@ -3,12 +3,12 @@ package laucher;
 import org.json.JSONObject;
 
 import message.LoginMessage;
-import rabbitMQ.Server;
+import rabbitMQ.ClientServer;
 
 public class ClientLauncher {
 
 	public static void main(String[] args) throws Exception{
-		Server server = new Server();
+		ClientServer server = new ClientServer();
 		server.connectToServerCreateChannelAndConsume();
 		server.createFanoutChannelAndConsume();
 		server.createTopicChannelAndConsume("ala.*.*");

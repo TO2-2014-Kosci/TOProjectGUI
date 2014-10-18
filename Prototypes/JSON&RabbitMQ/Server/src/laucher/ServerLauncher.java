@@ -2,12 +2,12 @@ package laucher;
 
 import java.util.Scanner;
 import message.LoginMessage;
-import rabbitMQ.Server;
+import rabbitMQ.ServerServer;
 
 public class ServerLauncher {
 
 	public static void main(String[] args) throws InterruptedException {
-		Server server = new Server();
+		ServerServer server = new ServerServer();
 		server.connectNormal();
 		server.connectFanout();
 		server.connectTopic();

@@ -9,7 +9,7 @@ import com.rabbitmq.client.ConsumerCancelledException;
 import com.rabbitmq.client.QueueingConsumer;
 import com.rabbitmq.client.ShutdownSignalException;
 
-public class Server {
+public class ClientServer {
 	private Connection connection;
 	private Channel normalChannel;
 	private Channel fanoutChannel;
