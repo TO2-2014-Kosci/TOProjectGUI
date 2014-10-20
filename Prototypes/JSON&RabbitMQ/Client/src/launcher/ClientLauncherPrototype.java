@@ -1,12 +1,12 @@
 package launcher;
 
-import rabbitMQ.ClientServer;
+import rabbitMQ.ClientServerPrototype;
 
 public class ClientLauncherPrototype {
 
 	public static void main(String[] args) {
-		ClientServer server = new ClientServer();
-		server.connectToServerCreateChannelAndConsume();
+		ClientServerPrototype server = new ClientServerPrototype();
+		server.connectToServerCreateChannelsAndConsume();
 	}
 
 }
