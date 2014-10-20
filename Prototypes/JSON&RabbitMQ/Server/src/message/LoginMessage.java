@@ -16,10 +16,6 @@ public class LoginMessage extends Message {
 		this.login = object.getString("login");
 	}
 	
-	public String getLogin() {
-		return login;
-	}
-	
 	@Override
 	public String toString() {
 		JSONObject object = super.toJSONObject();
@@ -27,4 +23,7 @@ public class LoginMessage extends Message {
 		return object.toString();
 	}
 
+	public String getLogin() {
+		return login;
+	}
 }

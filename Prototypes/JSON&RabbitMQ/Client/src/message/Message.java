@@ -9,6 +9,10 @@ public abstract class Message {
 		this.type = type;
 	}
 	
+	public Message(JSONObject object) {
+		this.type = object.getString("type");
+	}
+	
 	@Override
 	public abstract String toString();
 	
@@ -16,7 +20,7 @@ public abstract class Message {
 		return this.toString().getBytes();
 	}
 	
-	public JSONObject toJSONObject() {
+	public final JSONObject toJSONObject() {
 		JSONObject object = new JSONObject();
 		object.put("type", type);
 		return object;
