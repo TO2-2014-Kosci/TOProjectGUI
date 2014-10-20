@@ -62,8 +62,8 @@ public class ClientServerPrototype {
 	private void handshake() {
 		try {
 			Channel handShakeChannel = connection.createChannel();
-			handShakeChannel.queueDeclare("handShakeChannel", false, false, false, null);
-			handShakeChannel.basicPublish("", "handShakeChannel", null, new HandshakingMessage(directQueueName).getBytes());
+			handShakeChannel.queueDeclare("handshakeChannel", false, false, false, null);
+			handShakeChannel.basicPublish("", "handshakeChannel", null, new HandshakingMessage(directQueueName).getBytes());
 			handShakeChannel.close();
 		} catch (IOException exception){
 			exception.printStackTrace();
