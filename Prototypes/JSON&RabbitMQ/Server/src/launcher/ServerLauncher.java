@@ -1,4 +1,4 @@
-package laucher;
+package launcher;
 
 import java.util.Scanner;
 import message.LoginMessage;

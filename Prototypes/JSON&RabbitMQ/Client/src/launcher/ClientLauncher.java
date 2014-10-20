@@ -1,4 +1,4 @@
-package laucher;
+package launcher;
 
 import org.json.JSONObject;
 
