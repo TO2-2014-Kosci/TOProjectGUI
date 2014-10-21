@@ -24,7 +24,7 @@ public class ClientServerPrototype {
 	public void connectToServerCreateChannelsAndConsume() {
 		connect();
 		createDirectChannelAndConsumeAndQueue();
-		createGameChannelAndConsume();
+		createGameChannel();
 		handshake();
 	}
 
@@ -49,11 +49,10 @@ public class ClientServerPrototype {
 		}
 	}
 	
-	private void createGameChannelAndConsume() {
+	private void createGameChannel() {
 		try {
 			gameChannel = connection.createChannel();
 			gameConsumer = new QueueingConsumer(gameChannel);
-			gameChannel.basicConsume(gameQueueName, true, gameConsumer);
 		} catch (IOException exception){
 			exception.printStackTrace();
 		}
@@ -62,7 +61,8 @@ public class ClientServerPrototype {
 	private void handshake() {
 		try {
 			Channel handShakeChannel = connection.createChannel();
-			handShakeChannel.queueDeclare("handshakeChannel", false, false, false, null);
+			//handShakeChannel.queueDeclare("handshakeChannel", false, false, false, null);
+			System.out.println("Send by handshake " + new HandshakingMessage(directQueueName));
 			handShakeChannel.basicPublish("", "handshakeChannel", null, new HandshakingMessage(directQueueName).getBytes());
 			handShakeChannel.close();
 		} catch (IOException exception){
@@ -70,10 +70,11 @@ public class ClientServerPrototype {
 		}
 	}
 	
-	public void connectToGameChannelByName(String name) {
+	public void connectToGameChannelByNameAndConsume(String name) {
 		try {
 			gameChannel.exchangeDeclare(name, "fanout");
 			gameQueueName = gameChannel.queueDeclare().getQueue();
+			gameChannel.basicConsume(gameQueueName, true, gameConsumer);
 			gameChannel.queueBind(gameQueueName, name, "");
 		} catch (IOException exception) {
 			exception.printStackTrace();
@@ -92,6 +93,7 @@ public class ClientServerPrototype {
 	
 	public void sendMessage(Message message) {
 		try {
+			System.out.println("Send by direct " + message);
 			directChannel.basicPublish("", directQueueName, null, message.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -10,7 +10,7 @@ public class ClientLauncherPrototype {
 		server.connectToServerCreateChannelsAndConsume();
 		server.sendMessage(new JoinToGameMessage("MarekGame"));
 		if (server.receiveStringFromDirect().equalsIgnoreCase("OK")) {
-			server.connectToGameChannelByName("MarekGame");
+			server.connectToGameChannelByNameAndConsume("MarekGame");
 			System.out.println(server.receiveStringFromGame());
 		};
 	}
