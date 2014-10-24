@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>760</x>
+      <y>392</y>
+      <w>336</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Server
+--
+--
++connect(String queueName) : boolean
++disconnect() : void
+
++login(String Login) : boolean
+
++getListOfRooms() : List&lt;Room&gt;
++createRoom(RoomSettings settings) : boolean
++joinRoom(Room room) : boolean
++leaveRoom() : void
+
++rollDices(DicesToRoll dicesToRoll) : Dices
++leaveGame() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>624</y>
+      <w>168</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>/Message/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>48</x>
+      <y>672</y>
+      <w>88</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>LoginMessage
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>728</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>PositiveMessage
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>768</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>NegativeMessage
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>176</x>
+      <y>672</y>
+      <w>80</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>DiceMessage</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>128</x>
+      <y>720</y>
+      <w>128</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>JoinToRoomMessage</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>456</x>
+      <y>864</y>
+      <w>152</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>RoomSettings
+--
+int numberOfHumanPlayers
+int aiPlayers
+int maxPlayers
+String name
+TypeOfGame type
+int numberOfRounds
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>632</x>
+      <y>864</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt; 
+TypeOfGame
+--
+Poker
+SumOfN
+MultiplyOfN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>88</x>
+      <y>864</y>
+      <w>168</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+String name
+Dices dices
+int score
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>88</x>
+      <y>968</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Dices
+--
+int[5] dices
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>1024</y>
+      <w>152</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+Room room
+int currentRound
+Player currentPlayer
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>864</y>
+      <w>152</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>Room
+--
+RoomSettings settings
+List&lt;Player&gt; players
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>392</y>
+      <w>272</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Application
+--
+--
++playerJoinRoom(Player player) : void
++playerLeaveRoom(Player player) : void
++startGame() : void
+
++nextRound(Player winnerOfRound) : void
++currentPlayerRollDices(Dices rolledDices) : void
++nextTurn(Player currentPlayer) : void
++playerLeaveGame(Player player) : void
++endGame() : void
+
++kickFromGame() : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>776</x>
+      <y>736</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>DicesToRoll
+--
+boolean[5] dices
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>696</x>
+      <y>240</y>
+      <w>80</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+GameController</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
