@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>760</x>
-      <y>392</y>
+      <x>840</x>
+      <y>16</y>
       <w>336</w>
       <h>272</h>
     </coordinates>
@@ -23,7 +23,7 @@ Server
 +joinRoom(Room room) : boolean
 +leaveRoom() : void
 
-+rollDices(DicesToRoll dicesToRoll) : Dices
++rollDices(DicesToRoll dicesToRoll) : void
 +leaveGame() : void</panel_attributes>
     <additional_attributes/>
   </element>
@@ -31,7 +31,7 @@ Server
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>624</y>
+      <y>480</y>
       <w>168</w>
       <h>32</h>
     </coordinates>
@@ -43,7 +43,7 @@ Server
     <id>UMLClass</id>
     <coordinates>
       <x>48</x>
-      <y>672</y>
+      <y>528</y>
       <w>88</w>
       <h>32</h>
     </coordinates>
@@ -55,7 +55,7 @@ Server
     <id>UMLClass</id>
     <coordinates>
       <x>24</x>
-      <y>728</y>
+      <y>584</y>
       <w>96</w>
       <h>32</h>
     </coordinates>
@@ -67,7 +67,7 @@ Server
     <id>UMLClass</id>
     <coordinates>
       <x>120</x>
-      <y>768</y>
+      <y>624</y>
       <w>104</w>
       <h>32</h>
     </coordinates>
@@ -79,7 +79,7 @@ Server
     <id>UMLClass</id>
     <coordinates>
       <x>176</x>
-      <y>672</y>
+      <y>528</y>
       <w>80</w>
       <h>32</h>
     </coordinates>
@@ -90,7 +90,7 @@ Server
     <id>UMLClass</id>
     <coordinates>
       <x>128</x>
-      <y>720</y>
+      <y>576</y>
       <w>128</w>
       <h>32</h>
     </coordinates>
@@ -101,7 +101,7 @@ Server
     <id>UMLClass</id>
     <coordinates>
       <x>456</x>
-      <y>864</y>
+      <y>720</y>
       <w>152</w>
       <h>152</h>
     </coordinates>
@@ -121,7 +121,7 @@ int numberOfRounds
     <id>UMLClass</id>
     <coordinates>
       <x>632</x>
-      <y>864</y>
+      <y>720</y>
       <w>168</w>
       <h>80</h>
     </coordinates>
@@ -137,7 +137,7 @@ MultiplyOfN</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>88</x>
-      <y>864</y>
+      <y>720</y>
       <w>168</w>
       <h>88</h>
     </coordinates>
@@ -153,7 +153,7 @@ int score
     <id>UMLClass</id>
     <coordinates>
       <x>88</x>
-      <y>968</y>
+      <y>824</y>
       <w>168</w>
       <h>80</h>
     </coordinates>
@@ -167,7 +167,7 @@ int[5] dices
     <id>UMLClass</id>
     <coordinates>
       <x>280</x>
-      <y>1024</y>
+      <y>880</y>
       <w>152</w>
       <h>152</h>
     </coordinates>
@@ -184,7 +184,7 @@ Player currentPlayer
     <id>UMLClass</id>
     <coordinates>
       <x>280</x>
-      <y>864</y>
+      <y>720</y>
       <w>152</w>
       <h>152</h>
     </coordinates>
@@ -199,8 +199,8 @@ List&lt;Player&gt; players
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>408</x>
-      <y>392</y>
+      <x>296</x>
+      <y>16</y>
       <w>272</w>
       <h>272</h>
     </coordinates>
@@ -208,11 +208,13 @@ List&lt;Player&gt; players
 Application
 --
 --
-+playerJoinRoom(Player player) : void
-+playerLeaveRoom(Player player) : void
+//+playerJoinRoom(Player player) : void
+//+playerLeaveRoom(Player player) : void
++actualListOfPlayerInRoom(List&lt;Player&gt; listOfPlayers) : void
 +startGame() : void
 
-+nextRound(Player winnerOfRound) : void
++endRound(Player winnerOfRound) : void
++startRound(Dices[] dicesForPlayers) : void
 +currentPlayerRollDices(Dices rolledDices) : void
 +nextTurn(Player currentPlayer) : void
 +playerLeaveGame(Player player) : void
@@ -226,7 +228,7 @@ Application
     <id>UMLClass</id>
     <coordinates>
       <x>776</x>
-      <y>736</y>
+      <y>592</y>
       <w>168</w>
       <h>80</h>
     </coordinates>
@@ -239,13 +241,26 @@ boolean[5] dices
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>696</x>
-      <y>240</y>
-      <w>80</w>
-      <h>64</h>
+      <x>576</x>
+      <y>96</y>
+      <w>232</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
-GameController</panel_attributes>
+Game
+--
+--
+//Co my
++rollDices(DicesToRool dicesToRoll) : Dices
++leaveGame() : void
+
+//Co dla servera
++nextRound(Player winnerOfRound) : void
++currnetPlayerRollDices(Dices rolledDices) : void
++nextTurn(Player currentPlayer) : void
++playerLeaveGame(Player player) : void
+
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
