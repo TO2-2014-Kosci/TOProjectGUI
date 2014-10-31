@@ -1,0 +1,1442 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.0">
+  <zoom_level>15</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3015</x>
+      <y>1485</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>/Message/
+--
+-MessageType type
+--
++toByte() :Byte[]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1860</x>
+      <y>1890</y>
+      <w>285</w>
+      <h>255</h>
+    </coordinates>
+    <panel_attributes>RoomSettings
+--
++String name
++String ID
++int numberOfHumanPlayers
++int aiPlayersLow
++int aiPlayersHigh
++int maxPlayers
+//+TypeOfGame type
++int roundToWin
++boolean onlyAI
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1470</x>
+      <y>1890</y>
+      <w>315</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt; 
+TypeOfGame
+--
+Poker
+SumOfN
+MultiplyOfN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3990</x>
+      <y>1965</y>
+      <w>300</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+String name
+//Dices dices
+int score
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3990</x>
+      <y>2400</y>
+      <w>300</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Dices
+--
+int[5] dices
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1845</x>
+      <y>2550</y>
+      <w>285</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>DicesToRoll
+--
+boolean[5] dices
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1290</x>
+      <y>765</y>
+      <w>525</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Game
+--
+--
+//Co my
++rollDices(DicesToRool dicesToRoll) : void
++leaveGame() : void
+
+//Co dla servera
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1290</x>
+      <y>285</y>
+      <w>525</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Room
+--
+--
++leaveRoom() : void
++joinRoom() : boolean
++getRoomSettings() : RoomSettings</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1290</x>
+      <y>600</y>
+      <w>525</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+RoomManager
+--
+--
++createRoom(RoomSettings settings) : RoomSettings
++getRooms() : List&lt;RoomSettings&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1290</x>
+      <y>465</y>
+      <w>525</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+PlayerManager
+--
+--
++login(String nick) : boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2040</x>
+      <y>765</y>
+      <w>255</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>GameImplementation
+--
+-Room room
+-int currentRound
+-Player currentPlayer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2040</x>
+      <y>285</y>
+      <w>435</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>RoomImplementation
+--
+-FanoutChannel fanoutChannel
+-RoomSettings settings
+-List&lt;Player&gt; players
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1800</x>
+      <y>375</y>
+      <w>270</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1800</x>
+      <y>840</y>
+      <w>270</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1290</x>
+      <y>975</y>
+      <w>525</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Connection
+--
+--
++connect() : void
++disconnect() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>600</y>
+      <w>375</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>ListOfRoomsView
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>465</y>
+      <w>375</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>LoginView
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>585</y>
+      <w>375</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+View
+--
+--
++show() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2835</x>
+      <y>285</y>
+      <w>390</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+RoomServer
+--
+--
++startGame() : Game
++setPlayers(List&lt;Player&gt; players) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2460</x>
+      <y>375</y>
+      <w>405</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>250.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2835</x>
+      <y>765</y>
+      <w>585</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+GameServer
+--
+--
++startRound(List&lt;Player&gt; playersWithDicesAndScore) : void
++nextTurn(Player currentPlayer) : void
++currentPlayerRollDices(Dices rolledDices) : void
+//+endRound(Player winnerOfRound) : void
++endGame() : void
++playerLeaveGame(Player player) : void
++kickFromGame(Player player) : void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2280</x>
+      <y>840</y>
+      <w>585</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>370.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2835</x>
+      <y>1110</y>
+      <w>600</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>MessageFactory
+--
+RoomServer
+GameServer
+--
++createFromDelivery(Delivery delivery) : Message
++createByType(TypeMessage type, Object object) : Message</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2040</x>
+      <y>600</y>
+      <w>315</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>RoomManagerImplementation
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1800</x>
+      <y>660</y>
+      <w>270</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2040</x>
+      <y>465</y>
+      <w>375</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>PlayerManagerImplementation
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1800</x>
+      <y>510</y>
+      <w>270</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2055</x>
+      <y>0</y>
+      <w>495</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>FanoutChannel
+--
+-Thread listener
+--
++connectToExchangeByName(String name) : void
++disconnect() : void
+-run() : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2040</x>
+      <y>975</y>
+      <w>435</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Communication
+--
+--
++sendMessage(Message message) : void
++receiveMessage() : message</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1710</x>
+      <y>1185</y>
+      <w>600</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Singleton&gt;&gt;
+ConnectionCommunicationImplementation
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1740</x>
+      <y>1095</y>
+      <w>45</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2205</x>
+      <y>1095</y>
+      <w>45</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2430</x>
+      <y>420</y>
+      <w>45</w>
+      <h>585</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;370.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2310</x>
+      <y>720</y>
+      <w>45</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2370</x>
+      <y>555</y>
+      <w>45</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;280.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2250</x>
+      <y>900</y>
+      <w>45</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2205</x>
+      <y>1680</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>HandshakeMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2205</x>
+      <y>2550</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>DicesToRollMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2115</x>
+      <y>2580</y>
+      <w>120</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2205</x>
+      <y>1890</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>CreateRoomMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2130</x>
+      <y>1920</y>
+      <w>105</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2205</x>
+      <y>2130</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>GetRoomsMesage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3015</x>
+      <y>2115</y>
+      <w>210</w>
+      <h>600</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt; 
+MessageType
+--
+//do serwera
+Login
+Handshake
+GetRooms
+CreateRoom
+JoinRoom
+LeaveRoom
+LeaveGame
+DicesToRoll
+
+//od serwera &lt;- odpowiedzi
+Positive
+Negative
+Rooms
+CreatedRoom
+
+//od serwera &lt;- rozkazy
+StartGame
+PlayersInRoom
+StartRound
+NextTurn
+RolledDices
+//EndRound
+EndGame
+PlayerLeaves
+KickPlayer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3315</x>
+      <y>1485</y>
+      <w>240</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>/OrderMessage/
+--
++make()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3210</x>
+      <y>1515</y>
+      <w>135</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2205</x>
+      <y>2235</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>JoinRoomMessage
+--
+String ID 
+// czy co tam bedzie identyfikatorem
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2205</x>
+      <y>2340</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>LeaveRoomMessage
+--
+String name
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2205</x>
+      <y>2445</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>LeaveGameMessage
+--
+String name
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2490</x>
+      <y>1485</y>
+      <w>240</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>/PrivateMessage/
+--
+-String queue
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2205</x>
+      <y>1785</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>LoginMessage
+--
+-String nick
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2775</x>
+      <y>1680</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>PositiveMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2775</x>
+      <y>1785</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>NegativeMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2775</x>
+      <y>1995</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>CreatedRoomMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2130</x>
+      <y>2040</y>
+      <w>675</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>430.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2715</x>
+      <y>1515</y>
+      <w>330</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2775</x>
+      <y>1890</y>
+      <w>225</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>RoomsMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2130</x>
+      <y>1920</y>
+      <w>675</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>430.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3165</x>
+      <y>1620</y>
+      <w>45</w>
+      <h>525</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;330.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3570</x>
+      <y>1680</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>StartGameMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3570</x>
+      <y>1785</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>PlayersInRoomsMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3825</x>
+      <y>1815</y>
+      <w>195</w>
+      <h>255</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1770</x>
+      <y>1965</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;60.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3570</x>
+      <y>1890</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>StartRoundMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3825</x>
+      <y>1935</y>
+      <w>195</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3570</x>
+      <y>1995</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>NextTurnMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3825</x>
+      <y>2025</y>
+      <w>195</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3570</x>
+      <y>2415</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>RolledDicesMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3825</x>
+      <y>2430</y>
+      <w>195</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4125</x>
+      <y>2265</y>
+      <w>45</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3570</x>
+      <y>2100</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>EndGameMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3570</x>
+      <y>2205</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>PlayerLeavesMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3570</x>
+      <y>2310</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>KickPlayerMessage
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3825</x>
+      <y>2130</y>
+      <w>195</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;80.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3825</x>
+      <y>2190</y>
+      <w>195</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;100.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2250</x>
+      <y>135</y>
+      <w>45</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>495</y>
+      <w>150</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>615</y>
+      <w>150</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;80.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>945</y>
+      <w>375</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>GameView
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>765</y>
+      <w>375</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>CreateGameView
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>675</y>
+      <w>150</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;110.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>840</y>
+      <w>150</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;120.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>285</y>
+      <w>375</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>RoomView
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>345</y>
+      <w>150</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>585</y>
+      <w>255</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Application
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>675</y>
+      <w>150</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2415</x>
+      <y>1590</y>
+      <w>120</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2415</x>
+      <y>1590</y>
+      <w>150</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2415</x>
+      <y>1590</y>
+      <w>180</w>
+      <h>375</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2415</x>
+      <y>1590</y>
+      <w>210</w>
+      <h>615</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;390.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2415</x>
+      <y>1590</y>
+      <w>240</w>
+      <h>720</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;460.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2415</x>
+      <y>1590</y>
+      <w>270</w>
+      <h>825</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;10.0;530.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2415</x>
+      <y>1590</y>
+      <w>300</w>
+      <h>915</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;590.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2415</x>
+      <y>1590</y>
+      <w>330</w>
+      <h>1050</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;680.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2985</x>
+      <y>1620</y>
+      <w>105</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2985</x>
+      <y>1620</y>
+      <w>150</w>
+      <h>255</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2985</x>
+      <y>1620</y>
+      <w>180</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2985</x>
+      <y>1620</y>
+      <w>210</w>
+      <h>465</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>120.0;10.0;10.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3315</x>
+      <y>1575</y>
+      <w>285</w>
+      <h>930</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;600.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3345</x>
+      <y>1575</y>
+      <w>255</w>
+      <h>810</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;520.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3375</x>
+      <y>1575</y>
+      <w>225</w>
+      <h>705</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;450.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3405</x>
+      <y>1575</y>
+      <w>195</w>
+      <h>600</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;380.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3435</x>
+      <y>1575</y>
+      <w>165</w>
+      <h>495</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3465</x>
+      <y>1575</y>
+      <w>135</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3495</x>
+      <y>1575</y>
+      <w>105</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3525</x>
+      <y>1575</y>
+      <w>75</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>360</y>
+      <w>120</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;160.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>510</y>
+      <w>120</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>705</y>
+      <w>120</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>675</y>
+      <w>120</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>645</y>
+      <w>120</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+</diagram>
