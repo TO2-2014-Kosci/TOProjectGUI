@@ -57,7 +57,7 @@ public class RoomView extends JPanel {
 		playersTable.setRowHeight(20);
 		
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer)playersTable.getDefaultRenderer(Object.class);
-		renderer.setHorizontalAlignment( JLabel.CENTER );
+		renderer.setHorizontalAlignment(JLabel.CENTER);
 		//playersTable.setPreferredScrollableViewportSize(new Dimension(500,300));
 		
 		
@@ -68,7 +68,7 @@ public class RoomView extends JPanel {
 		add(new JLabel("4/9"),"w 50!,gapright push,pushx");
 		add(new JButton("Rozpocznij"),"w 100!,gapleft push,pushx");
 		
-		setMinimumSize(new Dimension(400,400));
+		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 
 }
