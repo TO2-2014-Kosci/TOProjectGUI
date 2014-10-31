@@ -18,27 +18,18 @@ import javax.swing.table.DefaultTableCellRenderer;
 import net.miginfocom.swing.MigLayout;
 public class GameList extends JPanel {
 	
-	private static final int DEFAULT_WIDTH = 400;
-	private static final int DEFAULT_HEIGHT= 400;
+	private static final int DEFAULT_WIDTH = 500;
+	private static final int DEFAULT_HEIGHT= 500;
 	
-	private static final
-	String[] columnNames={"Name","Type", "Rounds"};
+	private static final String[] columnNames={
+		"Nazwa",
+		"Typ",
+		"Graczy",
+		"Max graczy",
+		"Graczy AI"
+		};
 	Object[][] rowData={
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 1","N+",3},
-			{"Gra 2","N*",4}
+			{"Gra 1", "Poker", 3 , 4, 10},
 	};
 	public GameList(){
 		JButton joinButton= new JButton("Do³¹cz");
@@ -64,11 +55,13 @@ public class GameList extends JPanel {
 		    public boolean isCellEditable(int row, int col) {
 		    	return false;
 		    }
-			
-		}
-				);		
+		});	
+		gamesTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+		gamesTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+		gamesTable.getColumnModel().getColumn(3).setPreferredWidth(200);
+		gamesTable.getColumnModel().getColumn(4).setPreferredWidth(200);
 		gamesTable.setFillsViewportHeight(true);
-		gamesTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		gamesTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		gamesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		gamesTable.setShowVerticalLines(false);
 		gamesTable.setRowHeight(20);
@@ -79,7 +72,6 @@ public class GameList extends JPanel {
 		setLayout(new BorderLayout());
 		JScrollPane gamesScrollTable= new JScrollPane(gamesTable);
 		add(gamesScrollTable,BorderLayout.CENTER);
-		
 		JPanel buttonPanel= new JPanel();
 		buttonPanel.setLayout(new MigLayout(
 				"",
