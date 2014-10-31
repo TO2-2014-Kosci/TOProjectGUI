@@ -33,9 +33,13 @@ public class MainFrame extends JFrame {
 		//add(roomView,BorderLayout.CENTER);
 		//setMinimumSize(roomView.getMinimumSize());
 		
-		GameView gameView= new GameView();
-		add(gameView,BorderLayout.CENTER);
-		setMinimumSize(gameView.getMinimumSize());
+//		GameView gameView= new GameView();
+//		add(gameView,BorderLayout.CENTER);
+//		setMinimumSize(gameView.getMinimumSize());
+		
+		CreateGameView createGameView= new CreateGameView();
+		add(createGameView,BorderLayout.CENTER);
+		setMinimumSize(createGameView.getMinimumSize());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
