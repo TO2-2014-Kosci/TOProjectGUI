@@ -24,15 +24,18 @@ public class MainFrame extends JFrame {
 		//add(loginPanel,BorderLayout.CENTER);
 		//setMinimumSize(loginPanel.getMinimumSize());
 
-		GameList gameList= new GameList();
-		add(gameList,BorderLayout.CENTER);
-		setMinimumSize(gameList.getMinimumSize());
+//		GameList gameList= new GameList();
+//		add(gameList,BorderLayout.CENTER);
+//		setMinimumSize(gameList.getMinimumSize());
 
 		
 		//RoomView roomView= new RoomView();
 		//add(roomView,BorderLayout.CENTER);
 		//setMinimumSize(roomView.getMinimumSize());
 		
+		GameView gameView= new GameView();
+		add(gameView,BorderLayout.CENTER);
+		setMinimumSize(gameView.getMinimumSize());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
