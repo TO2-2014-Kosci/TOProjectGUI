@@ -20,12 +20,13 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.awt.Component;
 
 
 public class GameView extends JPanel{
 
-	private static final int DEFAULT_WIDTH = 700;
-	private static final int DEFAULT_HEIGHT= 500;
+	private static final int DEFAULT_WIDTH = 750;
+	private static final int DEFAULT_HEIGHT= 520;
 	private static final long serialVersionUID = -4185624294656844410L;
 	private static final String[] columnNames = {
 			"Gracz",
@@ -39,7 +40,8 @@ public class GameView extends JPanel{
 	private ImageIcon playerDices = new ImageIcon("kosciTabela.png");
 	
 	public GameView(JFrame mainFrame) {
-		setBackground(new Color(70, 155, 30));
+//		setBackground(new Color(70, 155, 30));
+		setBackground(new Color(64, 0, 0));
 		setLayout(new MigLayout("", "[][grow][]", "[][grow][][]"));
 		JTable playerTable = new JTable(new AbstractTableModel(){
 
@@ -89,8 +91,9 @@ public class GameView extends JPanel{
 		label.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		add(label, "cell 2 0,alignx right");
 		
-		JPanel dices = new JPanel();
-		dices.setBackground(Color.BLUE);
+		JLabel dices = new JLabel(new ImageIcon("kosciEkran2.png"));
+		dices.setBackground(new Color(70, 155, 30));
+		dices.setOpaque(true);
 		add(dices, "cell 1 0 2 2,grow");
 		JButton button = new JButton("Wyjdü");
 		button.addActionListener(new ActionListener() {
@@ -105,9 +108,10 @@ public class GameView extends JPanel{
 			}
 		});
 		add(button, "cell 2 3,alignx right,aligny bottom");
-		JPanel test = new JPanel();
-		test.setBackground(Color.CYAN);
-		add(test, "cell 1 2 2 2,grow, height 120px!");
+		JLabel test = new JLabel(new ImageIcon("kosciGracz.png"));
+		test.setBackground(new Color(70, 155, 30));
+		test.setOpaque(true);
+		add(test, "cell 1 2 2 2,grow, height 140px!");
 		
 		
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));

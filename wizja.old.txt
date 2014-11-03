@@ -1,0 +1,83 @@
+= Gra w koœci - Wizja =
+
+== GUI ==
+=== GUI ===
+
+== Wizja ==
+
+
+Opis zmian (tzw. baseline, kto modyfikowa³ co i kiedy):
+||'''Data'''||'''Wersja'''||'''Opis'''||'''Autor'''||
+|| 09.10.2014 || 1.0 || Utworzenie strony ||Micha³ Suder||
+|| 09.10.2014 || 1.1 || Uzupe³nienie brakuj¹cych informacji ||Janusz Wêgrzyn||
+|| 14.10.2014 || 1.2 || Dodanie odnoœnika || Micha³ Suder ||
+|| 15.10.2014 || 1.5 || Edycja opisu problemu, u¿ytkownika i zewnêtrznych podsystemów i produktu || Micha³ Suder ||
+
+Autorzy
+ * Micha³ Suder
+ * Janusz Wêgrzyn
+
+ 1. '''Wstêp'''
+
+Celem niniejszego dokumentu jest ogólne nakreœlenie i scharakteryzowanie wymagañ stawianych systemowi ze wzglêdu na jego przeznaczenie i sposób u¿ycia, a tak¿e okreœlenie najwa¿niejszych za³o¿eñ jego realizacji. Wszelkie decyzje implementacyjne nie s¹ tu podejmowane i opisane zostan¹ w nastêpnych dokumentach.
+
+  1.1. '''S³ownik'''
+
+|| '''Pojêcie''' || '''Definicja''' ||
+|| Gracz || Osoba bior¹ca udzia³ w rozgrywce ||
+|| Aktualny gracz || Gracz, który w danej chwili podejmuje decyzjê zwi¹zan¹ z przerzuceniem koœci ||
+|| Oczekuj¹cy gracz || Gracz, który zapisa³ siê do nierozpoczêtej rozgrywki ||
+|| U¿ytkownik || Osoba maj¹ca uruchomion¹ aplikacje desktopow¹ lub webow¹ ||
+|| Gra || Pojedyncza rozgrywka w koœci ||
+|| Poczekalnia || Miejsce, w którym znajduj¹ siê oczekuj¹cy gracze przed rozpoczêciem gry ||
+|| Runda || Sk³ada siê z wyrzucenia koœci i dwóch tur dla ka¿dego gracza ||
+|| Tura || Pojedyncze przerzucenie koœci ||
+
+
+  1.2. '''Odnoœniki'''
+
+http://docs.oracle.com/javase/tutorial/networking/
+
+ 2. '''Opis problemu'''
+
+'''Problem:''' Zapotrzebowanie na graficzny interfejs u¿ytkownika[[BR]]
+'''Rozwi¹zanie:''' Dostarczenie graficznego interfejsu u¿ytkownika w postaci aplikacji desktopowej
+
+ 3. '''Opis u¿ytkownika i zewnêtrznych podsystemów'''
+
+U¿ytkownicy
+ * [wiki:kosci/serwer Serwer]
+ * U¿ytkownik
+
+Aplikacja ³¹czy siê z [wiki:kosci/serwer serwerem], który zarz¹dza rozgrywk¹ i dostarcza naszej aplikacji danych koniecznych do uaktualniania wyœwietlanych u¿ytkownikowi informacji. Z aplikacji bezpoœrednio korzysta u¿ytkownik, który poprzez ni¹ wydaje polecenia serwerowi zarz¹dzaj¹cemu gr¹.
+
+ 4. '''Opis produktu'''
+
+Aplikacja desktopowa dzia³aj¹ca na komputerze u¿ytkownika i komunikuj¹ca siê przez sieæ lokaln¹ z serwerem
+
+ 5. '''Wymagania funkcjonalne i ich priorytety'''
+
+ * Logowanie siê do systemu przy u¿yciu wprowadzonej nazwy gracza.
+ * Tworzenie gry - wybór trybu gry, iloœci graczy i graczy komputerowych wraz z poziomami trudnoœci
+ * Wyœwietlanie listy gier, do których mo¿na do³¹czyæ.
+ * Do³¹czenie do gry.
+ * Wyœwietlanie koœci aktualnego gracza oraz koœci u¿ytkownika.
+ * Wybieranie koœci do przerzucenia spoœród koœci u¿ytkownika i przerzucenie.
+ * Przes³anie serwerowi danych o wybranych do przerzucenia koœciach
+ * Przes³anie serwerowi danych o utworzonej grze
+ * Przes³anie serwerowi danych o do³¹czeniu do gry
+ * Wyœwietlanie czasu pozosta³ego na podjêcie decyzji o przerzuceniu koœci
+ * Wyœwietlanie listy graczy bior¹cych udzia³ w grze wraz z wyrzuconymi koœæmi i punktacj¹
+
+ 6. '''Inne wymagania dotycz¹ce produktu'''
+ * Rozszerzalnoœæ na nowe tryby rozgrywki
+ * Pe³ne skalowanie rozmiaru okna aplikacji
+ * Standard RUP
+ * Java SE 1.8
+
+ 7. '''Wstêpna analiza ryzyka'''
+
+Zagro¿enia, prawdopodobieñstwo ich wyst¹pienia oraz szacowanie skutków z ich ocen¹ iloœciow¹ w formie wyliczenia lub stabelaryzowanej np.:
+   1. Nieznajomoœæ tworzenia zaawansowanych interfejsów graficznych. Prawdopodobieñstwo: (3) Skutki: Trudnoœæ w realizacji powierzonego zadania. (4)
+   2. Brak znajomoœci mechanizmów i rozwi¹zañ komunikacji sieciowej. Prawdopodobieñstwo: (3) Skutki: Trudnoœæ w realizacji powierzonego zadania. (7)
+   3. Zmiana wymagañ w zakresie t³umaczenia interfejsu na inne jêzyki. Prawdopodobieñstwo: (2)  Skutki: Koniecznoœæ dodania obs³ugi kolejnego jêzyka. (3)
