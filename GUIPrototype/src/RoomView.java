@@ -1,7 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -21,10 +24,10 @@ public class RoomView extends JPanel {
 	};
 	private static final long serialVersionUID = 1L;
 	
-	private static final int DEFAULT_WIDTH = 400;
-	private static final int DEFAULT_HEIGHT= 400;
+	private final int DEFAULT_WIDTH = 400;
+	private final int DEFAULT_HEIGHT= 400;
 	
-	public RoomView(){
+	public RoomView(JFrame mainFrame){
 		setLayout(new MigLayout());
 		
 		JTable playersTable = new JTable(new AbstractTableModel(){
@@ -54,19 +57,42 @@ public class RoomView extends JPanel {
 		playersTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		playersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		playersTable.setShowVerticalLines(false);
-		playersTable.setRowHeight(20);
+		playersTable.setRowHeight(19);
 		
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer)playersTable.getDefaultRenderer(Object.class);
 		renderer.setHorizontalAlignment(JLabel.CENTER);
-		//playersTable.setPreferredScrollableViewportSize(new Dimension(500,300));
 		
 		
 		JScrollPane playersScrollTable= new JScrollPane(playersTable);
 		add(playersScrollTable,"push,grow,wrap");
-		add(new JButton("Opuœæ"),"w 100!,split 4,gapright push,pushx");	
+		JButton opusc = new JButton("Opuœæ");
+		opusc.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameList gameList = new GameList(mainFrame);
+				mainFrame.setContentPane(gameList);
+				mainFrame.setMinimumSize(gameList.getMinimumSize());
+				mainFrame.setLocationRelativeTo(null);
+				mainFrame.revalidate();
+			}
+		});
+		add(opusc,"w 100!,split 4,gapright push,pushx");	
 		add(new JLabel("Iloœæ graczy:"),"w 100!,gapleft push,pushx");
-		add(new JLabel("4/9"),"w 50!,gapright push,pushx");
-		add(new JButton("Rozpocznij"),"w 100!,gapleft push,pushx");
+		add(new JLabel("2/9"),"w 50!,gapright push,pushx");
+		JButton start = new JButton("Rozpocznij");
+		start.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameView gameView= new GameView(mainFrame);
+				mainFrame.setContentPane(gameView);
+				mainFrame.setMinimumSize(gameView.getMinimumSize());
+				mainFrame.setLocationRelativeTo(null);
+				mainFrame.revalidate();
+			}
+		});
+		add(start,"w 100!,gapleft push,pushx");
 		
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}

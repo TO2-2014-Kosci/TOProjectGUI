@@ -1,11 +1,15 @@
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
+
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -18,7 +22,7 @@ public class CreateGameView extends JPanel {
 	private static final int DEFAULT_WIDTH = 300;
 	private static final int DEFAULT_HEIGHT= 300;
 
-	public CreateGameView() {
+	public CreateGameView(JFrame mainFrame) {
 		super();
 		this.setLayout(new MigLayout("", "[grow][100:100:250]", ""));
 		this.add(new JLabel("Tworzenie gry"), "cell 0 0 2 1,alignx center");
@@ -47,8 +51,32 @@ public class CreateGameView extends JPanel {
 		
 		JCheckBox tylkoAIcheckButton = new JCheckBox("");
 		add(tylkoAIcheckButton, "cell 1 6,alignx center,aligny center");
-		this.add(new JButton("Stwórz grê"), "cell 1 10, left, w 100!");
-		this.add(new JButton("WyjdŸ"), "cell 0 10, right, w 100!");
+		JButton create = new JButton("Stwórz grê");
+		create.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RoomView roomView = new RoomView(mainFrame);
+				mainFrame.setContentPane(roomView);
+				mainFrame.setMinimumSize(roomView.getMinimumSize());
+				mainFrame.setLocationRelativeTo(null);
+				roomView.revalidate();
+			}
+		});
+		this.add(create, "cell 1 10, left, w 100!");
+		JButton back = new JButton("WyjdŸ");
+		back.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameList gameList = new GameList(mainFrame);
+				mainFrame.setContentPane(gameList);
+				mainFrame.setMinimumSize(gameList.getMinimumSize());
+				mainFrame.setLocationRelativeTo(null);
+				mainFrame.revalidate();
+			}
+		});
+		this.add(back, "cell 0 10, right, w 100!");
 		
 		
 		

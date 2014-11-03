@@ -3,10 +3,13 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -31,10 +34,7 @@ public class GameList extends JPanel {
 	Object[][] rowData={
 			{"Gra 1", "Poker", 3 , 4, 10},
 	};
-	public GameList(){
-		JButton joinButton= new JButton("Do³¹cz");
-		JButton refreshButton= new JButton("Odœwie¿");
-		JButton createButton= new JButton("Stwórz grê");
+	public GameList(JFrame mainFrame){
 		JTable gamesTable = new JTable(new AbstractTableModel(){
 
 			private static final long serialVersionUID = 1L;
@@ -56,10 +56,22 @@ public class GameList extends JPanel {
 		    	return false;
 		    }
 		});	
-		gamesTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-		gamesTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-		gamesTable.getColumnModel().getColumn(3).setPreferredWidth(200);
-		gamesTable.getColumnModel().getColumn(4).setPreferredWidth(200);
+		gamesTable.getColumnModel().getColumn(1).setPreferredWidth(50);
+		gamesTable.getColumnModel().getColumn(1).setMaxWidth(50);
+		gamesTable.getColumnModel().getColumn(1).setMinWidth(50);
+		
+		gamesTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+		gamesTable.getColumnModel().getColumn(2).setMaxWidth(50);
+		gamesTable.getColumnModel().getColumn(2).setMinWidth(50);
+		
+		gamesTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+		gamesTable.getColumnModel().getColumn(3).setMaxWidth(70);
+		gamesTable.getColumnModel().getColumn(3).setMinWidth(70);
+		
+		gamesTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+		gamesTable.getColumnModel().getColumn(4).setMaxWidth(70);
+		gamesTable.getColumnModel().getColumn(4).setMinWidth(70);
+		
 		gamesTable.setFillsViewportHeight(true);
 		gamesTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		gamesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -76,24 +88,38 @@ public class GameList extends JPanel {
 		buttonPanel.setLayout(new MigLayout(
 				"",
 				"",
-				"[grow, bottom][][]"));
-		buttonPanel.add(joinButton, "wrap 5px, w 100!");
-		buttonPanel.add(createButton, "wrap 5px, w 100!");
-		buttonPanel.add(refreshButton, "wrap 20px, w 100!");
-		
-//		
-//		joinButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		createButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		refreshButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		
-//		buttonPanel.add(Box.createVerticalGlue());
-//		buttonPanel.add(joinButton);
-//		buttonPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-//		buttonPanel.add(createButton);
-//		buttonPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-//		buttonPanel.add(refreshButton);
-//		
+				"[][grow, bottom][][]"));		
 		add(buttonPanel,BorderLayout.EAST);
+		String witaj = "Witaj NICK";  
+		JLabel lblWitaj = new JLabel(witaj);
+		buttonPanel.add(lblWitaj, "cell 0 0,alignx center,aligny center");
+		JButton joinButton= new JButton("Do³¹cz");
+		joinButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RoomView roomView = new RoomView(mainFrame);
+				mainFrame.setContentPane(roomView);
+				mainFrame.setMinimumSize(roomView.getMinimumSize());
+				mainFrame.setLocationRelativeTo(null);
+				roomView.revalidate();
+			}
+		});
+		buttonPanel.add(joinButton, "cell 0 1,width 100!");
+		JButton createButton= new JButton("Stwórz grê");
+		createButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CreateGameView createGameView = new CreateGameView(mainFrame);
+				mainFrame.setContentPane(createGameView);
+				mainFrame.setMinimumSize(createGameView.getMinimumSize());
+				createGameView.revalidate();
+			}
+		});
+		buttonPanel.add(createButton, "cell 0 2,width 100!");
+		JButton refreshButton= new JButton("Odœwie¿");
+		buttonPanel.add(refreshButton, "cell 0 3,width 100!");
 		setMinimumSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
 	}
 }

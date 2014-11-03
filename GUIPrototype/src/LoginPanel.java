@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,16 +15,23 @@ import javax.swing.JTextField;
 public class LoginPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	public LoginPanel(){
+	
+	public LoginPanel(JFrame mainFrame){
 		JTextField loginField= new JTextField();
 		JLabel loginLabel= new JLabel("Podaj login");
 		JButton loginButton= new JButton("Zaloguj");
 		loginButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//System.out.println(loginField.getText());
-				JOptionPane.showMessageDialog(loginField,"Nick zajêty lub niepoprawny","B³¹d logowania",JOptionPane.ERROR_MESSAGE);
-				loginField.setText("");
-				loginField.transferFocusDownCycle();
+				if (loginField.getText().equals("")) {
+					JOptionPane.showMessageDialog(loginField,"Nick zajêty lub niepoprawny","B³¹d logowania",JOptionPane.ERROR_MESSAGE);
+					loginField.setText("");
+					loginField.transferFocusDownCycle();
+				} else {
+					GameList gameList = new GameList(mainFrame);
+					mainFrame.setContentPane(gameList);
+					mainFrame.setMinimumSize(gameList.getMinimumSize());
+					mainFrame.setLocationRelativeTo(null);
+				}
 			}
 		});
 		

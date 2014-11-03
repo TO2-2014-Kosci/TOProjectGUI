@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,6 +17,8 @@ import net.miginfocom.swing.MigLayout;
 
 import java.awt.Canvas;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 
@@ -35,7 +38,7 @@ public class GameView extends JPanel{
 	
 	private ImageIcon playerDices = new ImageIcon("kosciTabela.png");
 	
-	public GameView() {
+	public GameView(JFrame mainFrame) {
 		setBackground(new Color(70, 155, 30));
 		setLayout(new MigLayout("", "[][grow][]", "[][grow][][]"));
 		JTable playerTable = new JTable(new AbstractTableModel(){
@@ -90,6 +93,17 @@ public class GameView extends JPanel{
 		dices.setBackground(Color.BLUE);
 		add(dices, "cell 1 0 2 2,grow");
 		JButton button = new JButton("Wyjdü");
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameList gameList = new GameList(mainFrame);
+				mainFrame.setContentPane(gameList);
+				mainFrame.setMinimumSize(gameList.getMinimumSize());
+				mainFrame.setLocationRelativeTo(null);
+				mainFrame.revalidate();
+			}
+		});
 		add(button, "cell 2 3,alignx right,aligny bottom");
 		JPanel test = new JPanel();
 		test.setBackground(Color.CYAN);
