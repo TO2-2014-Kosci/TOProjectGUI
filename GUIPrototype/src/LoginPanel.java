@@ -61,6 +61,8 @@ public class LoginPanel extends JPanel {
 		loginLabelConstraints.gridheight=1;
 		add(loginLabel,loginLabelConstraints);
 
+		setMinimumSize(new Dimension(250, 120));
+		
 		
 		//add(loginField, BorderLayout.CENTER);
 		//add(loginLabel,BorderLayout.NORTH);

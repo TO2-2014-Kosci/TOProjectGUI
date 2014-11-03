@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +13,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 
 import net.miginfocom.swing.MigLayout;
+
+import java.awt.Canvas;
+import java.awt.Font;
+import java.awt.image.BufferedImage;
 
 
 public class GameView extends JPanel{
@@ -32,10 +37,7 @@ public class GameView extends JPanel{
 	
 	public GameView() {
 		setBackground(new Color(70, 155, 30));
-		setLayout(new MigLayout(
-				"",
-				"[][grow][]",
-				"[grow][]"));
+		setLayout(new MigLayout("", "[][grow][]", "[][grow][][]"));
 		JTable playerTable = new JTable(new AbstractTableModel(){
 
 			private static final long serialVersionUID = 1L;
@@ -78,14 +80,20 @@ public class GameView extends JPanel{
 		playerTable.getColumnModel().getColumn(2).setPreferredWidth(45);
 		JScrollPane playerScrollTable= new JScrollPane(playerTable);
 		
-		add(playerScrollTable, "cell 0 0 1 2, w 30%!, growy");
+		add(playerScrollTable, "cell 0 0 1 4,width 30%!,growy");
+		
+		JLabel label = new JLabel("59");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		add(label, "cell 2 0,alignx right");
+		
 		JPanel dices = new JPanel();
-		dices.setBackground(new Color(70, 155, 30));
-		add(dices, "cell 1 0 2 1, grow");
-		add(new JLabel(playerDices), "cell 1 1");
-		add(new JButton("Wyjdü"), "cell 2 1, grow");
-		
-		
+		dices.setBackground(Color.BLUE);
+		add(dices, "cell 1 0 2 2,grow");
+		JButton button = new JButton("Wyjdü");
+		add(button, "cell 2 3,alignx right,aligny bottom");
+		JPanel test = new JPanel();
+		test.setBackground(Color.CYAN);
+		add(test, "cell 1 2 2 2,grow, height 120px!");
 		
 		
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));

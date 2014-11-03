@@ -1,10 +1,8 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Image;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class MainFrame extends JFrame {
 
@@ -15,31 +13,37 @@ public class MainFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	public MainFrame(){
-		setLayout(new BorderLayout());
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//setSize(600, 600);
 		//setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		
 		
-		//LoginPanel loginPanel= new LoginPanel();
-		//add(loginPanel,BorderLayout.CENTER);
-		//setMinimumSize(loginPanel.getMinimumSize());
+		LoginPanel loginPanel= new LoginPanel();
+		setContentPane(loginPanel);
+		setMinimumSize(loginPanel.getMinimumSize());
 
 //		GameList gameList= new GameList();
-//		add(gameList,BorderLayout.CENTER);
+//		setContentPane(gameList);
 //		setMinimumSize(gameList.getMinimumSize());
 
 		
 		//RoomView roomView= new RoomView();
-		//add(roomView,BorderLayout.CENTER);
+		//setContentPane(roomView);
 		//setMinimumSize(roomView.getMinimumSize());
 		
 //		GameView gameView= new GameView();
-//		add(gameView,BorderLayout.CENTER);
+//		setContentPane(gameView);
 //		setMinimumSize(gameView.getMinimumSize());
 		
-		CreateGameView createGameView= new CreateGameView();
-		add(createGameView,BorderLayout.CENTER);
-		setMinimumSize(createGameView.getMinimumSize());
+//		CreateGameView createGameView= new CreateGameView();
+//		setContentPane(createGameView);
+//		setMinimumSize(createGameView.getMinimumSize());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
