@@ -21,6 +21,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 import net.miginfocom.swing.MigLayout;
 public class GameList extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int DEFAULT_WIDTH = 500;
 	private static final int DEFAULT_HEIGHT= 500;
 	
@@ -90,9 +94,6 @@ public class GameList extends JPanel {
 				"",
 				"[][grow, bottom][][]"));		
 		add(buttonPanel,BorderLayout.EAST);
-		String witaj = "Witaj NICK";  
-		JLabel lblWitaj = new JLabel(witaj);
-		buttonPanel.add(lblWitaj, "cell 0 0,alignx center,aligny center");
 		JButton joinButton= new JButton("Do³¹cz");
 		joinButton.addActionListener(new ActionListener() {
 			
