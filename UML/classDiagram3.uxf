@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>315</y>
+      <w>231</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+GameStateListener
+--
++onChanged(GameState gameState): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>336</x>
+      <y>315</y>
+      <w>322</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+Connection
+--
++connect(String host): boolean
++addGameStateListener(GameStateListener listener): void
++login(String nick): Response
++getRoomList(): List&lt;GameInfo&gt;
++createRoom(settings: GameSettings): Response
++joinRoom(roomName: String): Response
++leaveRoom(): Response
++sitDown(): Response
++standUp(): Response
++reroll(Dices dices): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>532</x>
+      <y>0</y>
+      <w>119</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Dices
+--
+--
++number: int
++dices: int[]
++markedDices: boolean[] </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>105</y>
+      <w>126</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>GameSettings
+--
+--
++type: GameType
++name: String
++maxHumanPlayers: int
+
++ilosc botów
+
++roundTime: int
++roundToWin: int
++maxInactivity: int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>126</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+GameType
+--
++POKER
++SUM
++MULTIPLY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>182</x>
+      <y>105</y>
+      <w>119</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>GameInfo
+--
+--
++settings: GameSettings
++started: boolean
++players: int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>357</x>
+      <y>105</y>
+      <w>119</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>GameState
+--
+--
++info: GameInfo
++players: List&lt;Player&gt;
++currentRound: int
++currentPlayer: Player</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>532</x>
+      <y>105</y>
+      <w>119</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+--
++nick: String
++dices: Dices
++wins: int
+//tymczasowo
++hand: String 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>119</x>
+      <y>140</y>
+      <w>77</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>294</x>
+      <y>140</y>
+      <w>77</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>469</x>
+      <y>140</y>
+      <w>77</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>56</x>
+      <y>63</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>63</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>532</x>
+      <y>224</y>
+      <w>119</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Response
+--
+--
++value: boolean
++message: String</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
