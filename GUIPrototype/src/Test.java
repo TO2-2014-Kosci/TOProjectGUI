@@ -14,12 +14,10 @@ import com.jme3.scene.shape.Box;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
  
-/** Sample 1 - how to get started with the most simple JME 3 application.
- * Display a blue 3D cube and view from all sides by
- * moving the mouse and pressing the WASD keys. */
 public class Test extends SimpleApplication {
  
 	public Test() {
@@ -35,9 +33,9 @@ public class Test extends SimpleApplication {
 	@Override
 	public void simpleInitApp() {
 		this.setDisplayStatView(false);
+		rootNode.rotate(0, FastMath.PI, 0);
 		this.setDisplayFps(false);
 		this.settings.setBitsPerPixel(32);
-		this.inputManager.setCursorVisible(true);
 		//this.flyCam.setEnabled(false);
 		this.cam.setLocation(new Vector3f(0, 0, 7));
 		this.cam.lookAt(new Vector3f(6, 0, 0), Vector3f.UNIT_Z);
@@ -51,10 +49,11 @@ public class Test extends SimpleApplication {
 			rootNode.attachChild(dices[i]);
 		}
 		Spatial box = this.assetManager.loadModel("Model/scene.j3o");
-		box.setLocalTranslation(0, 0, 0);
+		box.setLocalTranslation(6, 0, -1);
 		rootNode.attachChild(box);
 		DirectionalLight sun = new DirectionalLight();
 		sun.setDirection(new Vector3f(6f, 0f, -7f).normalizeLocal());
+		sun.setColor(ColorRGBA.White.mult(0.9f));
 		rootNode.addLight(sun);
 	}
 }
