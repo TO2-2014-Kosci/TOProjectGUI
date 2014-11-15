@@ -91,10 +91,10 @@ public class GameView extends JPanel{
 		label.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		add(label, "cell 2 0,alignx right");
 		
-		JLabel dices = new JLabel(new ImageIcon("kosciEkran2.png"));
-		dices.setBackground(new Color(70, 155, 30));
-		dices.setOpaque(true);
-		add(dices, "cell 1 0 2 2,grow");
+//		JLabel dices = new JLabel(new ImageIcon("kosciEkran2.png"));
+//		dices.setBackground(new Color(70, 155, 30));
+//		dices.setOpaque(true);
+//		add(dices, "cell 1 0 2 2,grow");
 		JButton button = new JButton("Wyjdü");
 		button.addActionListener(new ActionListener() {
 			
@@ -112,7 +112,8 @@ public class GameView extends JPanel{
 		test.setBackground(new Color(70, 155, 30));
 		test.setOpaque(true);
 		add(test, "cell 1 2 2 2,grow, height 140px!");
-		
+		Test test2 = new Test();
+		add(test2.getCanvas(), "cell 1 0 2 2,grow");
 		
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}

@@ -18,21 +18,12 @@ public class MainFrame extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//setSize(600, 600);
-		//setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-		
-		
-		LoginPanel loginPanel= new LoginPanel(this);
-		setContentPane(loginPanel);
-		setMinimumSize(loginPanel.getMinimumSize());
-
-//		GameList gameList= new GameList();
-//		setContentPane(gameList);
-//		setMinimumSize(gameList.getMinimumSize());
-		
-//		GameView gameView= new GameView();
-//		setContentPane(gameView);
-//		setMinimumSize(gameView.getMinimumSize());
+//		LoginPanel loginPanel= new LoginPanel(this);
+//		setContentPane(loginPanel);
+//		setMinimumSize(loginPanel.getMinimumSize());
+		GameView gameView= new GameView(this);
+		setContentPane(gameView);
+		setMinimumSize(gameView.getMinimumSize());
 		
 
 		
