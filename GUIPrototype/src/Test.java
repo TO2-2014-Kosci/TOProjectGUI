@@ -33,10 +33,10 @@ public class Test extends SimpleApplication {
 	@Override
 	public void simpleInitApp() {
 		this.setDisplayStatView(false);
-		rootNode.rotate(0, FastMath.PI, 0);
+//		rootNode.rotate(0, FastMath.PI, 0);
 		this.setDisplayFps(false);
 		this.settings.setBitsPerPixel(32);
-		//this.flyCam.setEnabled(false);
+		this.flyCam.setEnabled(false);
 		this.cam.setLocation(new Vector3f(0, 0, 7));
 		this.cam.lookAt(new Vector3f(6, 0, 0), Vector3f.UNIT_Z);
 		Spatial[] dices = new Spatial[5];
@@ -50,6 +50,7 @@ public class Test extends SimpleApplication {
 		}
 		Spatial box = this.assetManager.loadModel("Model/scene.j3o");
 		box.setLocalTranslation(6, 0, -1);
+		box.rotate(FastMath.PI / 2.0f, 0, 0);
 		rootNode.attachChild(box);
 		DirectionalLight sun = new DirectionalLight();
 		sun.setDirection(new Vector3f(6f, 0f, -7f).normalizeLocal());

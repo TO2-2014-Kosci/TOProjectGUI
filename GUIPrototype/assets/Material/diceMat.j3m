@@ -1,8 +1,0 @@
-Material diceMat : Common/MatDefs/Light/Lighting.j3md {
-     MaterialParameters {
-	NormalMap: /Texture/pearl.jpg
-    	Ambient  : 0.5 0.5 0.5 1.0
-     	Diffuse  : 1.0 1.0 1.0 1.0
-         	Specular : 1.0 1.0 1.0 1.0
-     }
-}
