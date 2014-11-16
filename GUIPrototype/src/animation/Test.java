@@ -1,3 +1,4 @@
+package animation;
 import java.awt.Canvas;
 import java.util.Random;
 
@@ -12,6 +13,10 @@ import com.jme3.bullet.collision.shapes.HullCollisionShape;
 import com.jme3.bullet.collision.shapes.MeshCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
+import com.jme3.input.KeyInput;
+import com.jme3.input.controls.ActionListener;
+import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.Trigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.light.PointLight;
@@ -41,21 +46,24 @@ public class Test extends SimpleApplication {
 	public Canvas getCanvas() {
 		return ((JmeCanvasContext)this.getContext()).getCanvas();
 	}
+	
+	Spatial[] dices;
  
 	@Override
 	public void simpleInitApp() {
-		//this.setDisplayStatView(false);
-//		this.setDisplayFps(false);
+		// TODO wykorzystaæ guiNode aby dodaæ tabele i koœci gracza
+		this.setDisplayStatView(false);
+		this.setDisplayFps(false);
 		BulletAppState bulletAppState = new BulletAppState();
 		stateManager.attach(bulletAppState);
 //		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 		bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, 0, -10));
 		this.settings.setBitsPerPixel(32);
-		//this.flyCam.setEnabled(false);
+		this.flyCam.setEnabled(false);
 		this.settings.setFrameRate(60);
 		this.cam.setLocation(new Vector3f(0, 0, 7));
 		this.cam.lookAt(new Vector3f(6, 0, 0), Vector3f.UNIT_Z);
-		Spatial[] dices = new Spatial[5];
+		dices = new Spatial[5];
 		this.assetManager.registerLocator("./assets", FileLocator.class);
 		
 		Random rand=  new Random();
@@ -71,7 +79,7 @@ public class Test extends SimpleApplication {
 			bulletAppState.getPhysicsSpace().add(diceBody);
 		}
 		Spatial box = this.assetManager.loadModel("Model/Box/box.j3o");
-		box.setLocalTranslation(6, 0, -1);
+		box.setLocalTranslation(7, 0, -1);
 		RigidBodyControl landscape = new RigidBodyControl(CollisionShapeFactory.createMeshShape((Node) box), 0);
 		box.addControl(landscape);
 		bulletAppState.getPhysicsSpace().add(landscape);
@@ -98,8 +106,17 @@ public class Test extends SimpleApplication {
 		rootNode.addLight(pointBack);
 		rootNode.addLight(pointRight);
 		rootNode.addLight(pointLeft);
-		rootNode.addLight(sun);
-
+		rootNode.addLight(sun); 
 		rootNode.addLight(ambient);
+		inputManager.addMapping("Pause Game", (Trigger)new KeyTrigger(KeyInput.KEY_P));
+		inputManager.addListener(actionListener, new String[]{"Pause Game"});
 	}
+	
+	private ActionListener actionListener = new ActionListener() {
+		public void onAction(String name, boolean keyPressed, float tpf) {
+			for (int i = 0; i < 5; i++) {
+				dices[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(6, 0, 2 * i)); // TODO prawie dzia³a
+			}
+		}
+	};
 }
