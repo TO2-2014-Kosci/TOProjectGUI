@@ -187,3 +187,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/JavaApplication3/nbproject/private/

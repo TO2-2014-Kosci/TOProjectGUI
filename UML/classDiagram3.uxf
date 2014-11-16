@@ -12,7 +12,7 @@
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 GameStateListener
 --
-+onChanged(GameState gameState): void</panel_attributes>
++onChange(GameState gameState): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
