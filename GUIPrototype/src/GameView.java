@@ -113,12 +113,12 @@ public class GameView extends JPanel{
 			}
 		});
 		add(button, "cell 2 3,alignx right,aligny bottom");
-		JLabel test = new JLabel(new ImageIcon("kosciGracz.png"));
-		test.setBackground(new Color(70, 155, 30));
-		test.setOpaque(true);
-		add(test, "cell 1 2 2 2,grow, height 140px!");
+//		JLabel test = new JLabel(new ImageIcon("kosciGracz.png"));
+//		test.setBackground(new Color(70, 155, 30));
+//		test.setOpaque(true);
+//		add(test, "cell 1 2 2 2,grow, height 140px!");
 		Test test2 = new Test();
-		add(test2.getCanvas(), "cell 1 0 2 2,grow");
+		add(test2.getCanvas(), "cell 1 0 2 4,grow");
 		
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
