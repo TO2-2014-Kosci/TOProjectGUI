@@ -84,9 +84,9 @@ public class Test extends SimpleApplication {
 		for (int i = 0; i < 5; i++) {
 			dices[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
 			//dices[i].rotate(rand.nextFloat() * 3.14f, rand.nextFloat() * 3.14f, rand.nextFloat() * 3.14f);
-			//dices[i].setLocalTranslation(0, 0, 2 * i);
+			dices[i].setLocalTranslation(0, 0, 2 * i);
 			CollisionShape diceShape = CollisionShapeFactory.createDynamicMeshShape((Node) dices[i]); //u¿ywamy Dynamic bo maj¹ byæ kolizje
-			RigidBodyControl diceBody = new RigidBodyControl(diceShape, 1);
+			RigidBodyControl diceBody = new RigidBodyControl(diceShape, 0.1f);
 			dices[i].addControl(diceBody);
 			rootNode.attachChild(dices[i]);
 			bulletAppState.getPhysicsSpace().add(diceBody);
@@ -131,13 +131,14 @@ public class Test extends SimpleApplication {
 		public void onAction(String name, boolean keyPressed, float tpf) {
 			if (name.equals("Shake")) {
 				for (int i = 0; i < 5; i++) {
-					dices[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(0, 0, 2 * i));
+					dices[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
+					dices[i].getControl(RigidBodyControl.class).setLinearVelocity(new Vector3f(14, 0, 0));
 					dices[i].getControl(RigidBodyControl.class).activate();
 				}
 			} else if (name.equals("Put")) {
 				for (int i = 0; i < 5; i++) {
 					dices[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, -4 + 2 * i, -1.5f));
-					dices[i].getControl(RigidBodyControl.class).activate();
+//					dices[i].getControl(RigidBodyControl.class).activate();
 				}
 			} else if (name.equals("Select") && !keyPressed) {
 				// Reset results list.
