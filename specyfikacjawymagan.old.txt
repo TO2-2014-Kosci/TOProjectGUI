@@ -1,0 +1,322 @@
+= GUI - Specyfikacja wymagañ systemu oraz testów akceptacyjnych =
+
+
+== GUI==
+
+== Specyfikacja wymagañ systemu oraz testów akceptacyjnych ==
+
+
+Opis zmian:
+||'''Data'''||'''Wersja'''||'''Opis'''||'''Autor'''||
+|| 17.10.2014 || 0.5 || Przypadki u¿ycia. || Janusz Wêgrzyn i Micha³ Suder ||
+|| 18.10.2014 || 0.7 || Przypadki u¿ycia. Diagram UC  || Micha³ Suder i Janusz Wêgrzyn ||
+|| 19.10.2014 || 0.8 || Testy akceptacyjne || Janusz Wêgrzyn i Micha³ Suder ||
+|| 20.10.2014 || 0.85 || Testy akceptacyjne || Micha³ Suder i Janusz Wêgrzyn ||
+|| 24.10.2014 || 1.0 || Przemodelowanie diagramu przypadków u¿ycia || Micha³ Suder i Janusz Wêgrzyn ||
+|| 27.10.2014 || 1.5 || Dodanie diagramu klas || Micha³ Suder i Janusz Wêgrzyn ||
+|| 03.10.2014 || 2.0 || Zmiana podzia³u zadañ miêdzy grupy || Micha³ Suder i Janusz Wêgrzyn ||
+
+== 1. Wstêp ==
+
+Celem niniejszego dokumentu jest szczegó³owe scharakteryzowanie wymagañ stawianych systemowi ze wzglêdu na jego przeznaczenie i sposób u¿ycia, jak równie¿ opis weryfikuj¹cych je testów akceptacyjnych.
+
+  1.1. '''S³ownik'''
+
+|| '''Pojêcie''' || '''Definicja''' ||
+|| Gracz || Osoba bior¹ca udzia³ w rozgrywce ||
+|| Aktualny gracz || Gracz, który w danej chwili podejmuje decyzjê zwi¹zan¹ z przerzuceniem koœci ||
+|| Oczekuj¹cy gracz || Gracz, który zapisa³ siê do nierozpoczêtej rozgrywki ||
+|| U¿ytkownik || Osoba maj¹ca uruchomion¹ aplikacje desktopow¹ lub webow¹ ||
+|| Gra || Pojedyncza rozgrywka w koœci ||
+|| Pokój || Miejsce, w którym znajduj¹ siê oczekuj¹cy gracze przed rozpoczêciem gry ||
+|| Runda || Sk³ada siê z wyrzucenia koœci i dwóch tur dla ka¿dego gracza ||
+|| Tura || Pojedyncze przerzucenie koœci ||
+
+  1.2. '''Odnoœniki'''
+
+
+== 2. Specyfikacja wymagañ funkcjonalnych ==
+
+=== Aktorzy ===
+ * U¿ytkownik
+ * Serwer
+
+=== Przypadki u¿ycia ===
+ '''1. Zaloguj siê'''
+Wyzwalacz: Uruchomienie aplikacji[[BR]]
+Aktor: U¿ytkownik
+ 1. Nawi¹zanie po³¹czenia z serwerem
+ 2. Wyœwietlenie okna logowania, z polem tekstowym i przyciskiem zatwierdzenia
+ 3. U¿ytkownik wpisa³ swoj¹ nazwê i zatwierdzi³ j¹.
+ 4. Wys³anie wybranej nazwy u¿ytkownika do serwera, oczekiwanie na odpowiedŸ.
+ 5. Odebranie wiadomoœci o poprawnej nazwie. PrzejdŸ do przypadku 2. Przegl¹daj listê poczekalni[[BR]]
+ ''Alternatywy''[[BR]]
+ 5.a Odebranie wiadomoœci o niepoprawnej nazwie. Wyœwietl komunikat i przejdŸ do punktu 1.[[BR]]
+
+ '''2. Przegl¹daj listê poczekalni'''
+Wyzwalacz: Pozytywne zalogowanie, opuszczenie poczekalni, opuszczenie gry, wyjœcie z tablicy wyników, wyrzucenie z gry[[BR]]
+Aktor: U¿ytkownik
+ 1. Pobieranie danych o poczekalniach z serwera.
+ 2. Wyœwietlenie listy poczekalni wraz z atrybutami. Wyœwietlenie przycisków "Stwórz grê", "Do³¹cz" oraz "Odœwie¿"[[BR]]
+ ''Rozszerzenia[[BR]]''
+    2.a U¿ytkownik klikn¹³ przycisk "Stwórz grê". Przejœcie do przypadku 3. Utwórz poczekalnie[[BR]]
+    2.b U¿ytkownik klikn¹³ przycisk "Do³¹cz". Przejœcie do przypadku 4. Do³¹cz do poczekalni.[[BR]]
+    2.c U¿ytkownik klikn¹³ przycisk "Odœwie¿". Przejœcie do punktu 1.[[BR]]
+
+ '''3. Utwórz poczekalnie'''
+Wyzwalacz: Przycisk "Stwórz grê" [[BR]]
+Aktor: U¿ytkownik
+ 1. Wyœwietlenie okna z mo¿liwoœci¹ wyboru trybu gry, maksymaln¹ iloœci¹ graczy oraz konfiguracj¹ graczy komputerowych, przyciskiem "Utwórz" i polem zaznaczenia "Obserwuj"
+ 2. U¿ytkownik wybra³ ustawienia i klikn¹³ przycisk "Utwórz"
+ 3. Wys³anie wiadomoœci do serwera z ustawieniami stworzonej gry
+ 4. Odebranie wiadomoœci o pomyœlnym utworzeniu poczekalni (wraz z t¹ poczekalni¹), przejœcie do przypadku 4. Do³¹cz do poczekalni[[BR]]
+
+ '''4. Do³¹cz do poczekalni'''
+Wyzwalacz: Przycisk "Do³¹cz", pomyœlne utworzenie poczekalni[[BR]]
+Aktor: U¿ytkownik
+ 1. Wys³anie do serwera wiadomoœci z proœb¹ o do³¹czenie do poczekalni
+ 2. Oczekiwanie na odpowiedŸ
+ 3. Odebranie wiadomoœci o pozytywnym do³¹czeniu do poczekalni
+ 4. Wyœwietlenie okna poczekalni[[BR]]
+ ''Alternatywy'' [[BR]]
+ 3.a Odebranie wiadomoœci o odrzuceniu proœby. Wyœwietlenie komunikatu i przejœcie do przypadku 2. Przegl¹daj listê poczekalni[[BR]]
+
+ '''5. Opuœæ grê'''
+Wyzwalacz: Przycisk "WyjdŸ" w UC Rozgrywanie gry[[BR]]
+Aktor: U¿ytkownik
+ 1. Wys³anie wiadomoœci do serwera o opuszczeniu gry
+ 2. Przejœcie do przypadku 2. Przegl¹danie listy gier
+
+ '''6. Przerzuæ koœci'''
+Wyzwalacz: Tura u¿ytkownika[[BR]]
+Aktor: U¿ytkownik
+ 1. Oznaczenie koœci jako aktywnych do wyboru i wyœwietlenie przycisku "Przerzuæ"
+ 2. U¿ytkownik wybiera koœci do przerzucenia i klika "Przerzuæ"
+ 3. Wys³anie wiadomoœci do serwera o przerzuceniu koœci
+
+ '''7. Opuœæ poczekalnie'''
+Wyzwalacz: Przycisk "Opuœæ" w widoku poczekalni[[BR]]
+Aktor: U¿ytkownik
+ 1. Wys³anie wiadomoœci do serwera o opuszczeniu poczekalni
+ 2. Przejœcie do przypadku 2. Przegl¹danie listy gier
+
+ '''8. Zakoñcz grê'''
+Wyzwalacz: Odebranie wiadomoœci od serwera o zakoñczeniu gry[[BR]]
+Aktor: U¿ytkownik, Serwer
+ 1. Wyœwietlenie tablicy wyników wraz z przyciskiem "WyjdŸ"
+ 2. U¿ytkownik klika przycisk "WyjdŸ". Przejœcie do przypadku 2. Przegl¹danie listy gier
+
+ '''9. Powiadom o wyjœciu innego gracza z gry'''
+Wyzwalacz: Odebranie wiadomoœci o wyjœciu gracza z gry[[BR]]
+Aktor: Serwer
+ 1. Usuniêcie gracza z listy graczy
+ 2. Odœwie¿enie okna poczekalni z nowymi danymi
+
+ '''10. Wyrzuæ u¿ytkownika z gry z powodu nieaktywnoœci'''
+Wyzwalacz: Zbyt d³uga nieaktywnoœæ u¿ytkownika[[BR]]
+Aktor: Serwer
+ 1. Odebranie wiadomoœci od serwera o wyrzuceniu z gry
+ 2. Wyœwietlenie odpowiedniego komunikatu u¿ytkownikowi
+ 3. Przejœcie do przypadku u¿ycia 2. Przegl¹danie listy u¿ytkownika
+
+ '''11. Rozpocznij grê'''
+Wyzwalacz: Odebranie wiadomoœci od serwera o rozpoczêciu gry[[BR]]
+Aktor: Serwer
+ 1. Rozpoczêcie gry
+ 2. Wyœwietlenie okna gry
+
+ '''12. Rozpocznij rundê'''
+Wyzwalacz: Odebranie wiadomoœci od serwera o nowej turze wraz z zestawem koœci dla ka¿dego gracza[[BR]]
+Aktor: Serwer
+ 1. Zapisanie zestawu nowych koœci dla ka¿dego gracza
+ 2. Odœwie¿enie okna gry z nowymi danymi
+
+ '''13. Przeka¿ turê kolejnemu graczowi'''
+Wyzwalacz: Odebranie wiadomoœci o nowym aktualnym graczu[[BR]]
+Aktor: Serwer
+ 1. Zapisanie gracza jako aktualnego gracza
+ 2. Odœwie¿enie okna gry z nowymi danymi[[BR]]
+ ''Rozszerzenia''[[BR]]
+ 3.a Je¿eli nowym aktywnym graczem jest u¿ytkownik, przejdŸ do przypadku 6. Przerzuæ koœci
+
+ '''14. Przeœlij wynik przerzucenia koœci'''
+Wyzwalacz: Odebranie wiadomoœci o wyniku przerzucenia[[BR]]
+Aktor: Serwer
+ 1. Zapisanie wyniku przerzucenia aktywnemu graczowi
+ 2. Odœwie¿enie okna gry z nowymi danymi
+
+ '''15. Przeœlij nowy sk³ad poczekalni'''
+Wyzwalacz: Odebranie wiadomoœci o nowym sk³adzie graczy przebywaj¹cych w poczekalni[[BR]]
+Aktor: Serwer
+ 1. Zapisanie nowego sk³adu poczekalni
+ 2. Odœwie¿enie okna poczekalni z nowymi danymi
+
+[[Image(https://raw.githubusercontent.com/Materix/TOProject/master/UML/UC.png)]]
+             Rys. 1. Model przypadków u¿ycia (Diagram Use Case UML)
+
+== 3. Wymagania jakoœciowe i technologiczne ==
+ * Zainstalowana Java SE
+ * Po³¹czenie do sieci lokalnej
+
+== 4. Specyfikacja interfejsów ==
+[[Image(https://raw.githubusercontent.com/Materix/TOProject/master/UML/classDiagram.jpg)]]
+== 5. Opis testów akceptacyjnych ==
+|| '''1''' || '''Zaloguj siê''' ||
+|| '''1.1''' || '''Pozytywny''' ||
+|| Opis || Zalogowanie siê do aplikacji przy u¿yciu unikalnej, niezajêtej nazwy gracza ||
+|| Warunki wstêpne ||  ||
+|| Procedura testowa || 1. Uruchomienie aplikacji[[BR]] 2. Wpisanie unikalnej, niezajêtej nazwy gracza[[BR]] 3. Klikniêcie przycisku zatwierdzenia ||
+|| Oczekiwane rezultaty || Wyœwietlenie listy poczekalni ||
+|| '''1.2''' || '''Wpisanie zajêtej nazwy''' ||
+|| Opis || Niezalogowanie siê do aplikacji z powodu wpisania zajêtej nazwy u¿ytkownika ||
+|| Warunki wstêpne || ||
+|| Procedura testowa || 1. Uruchomienie aplikacji[[BR]] 2. Wpisanie zajêtej nazwy u¿ytkownika[[BR]] 3. Klikniêcie przycisku zatwierdzenia[[BR]] ||
+|| Oczekiwane rezultaty || Wyœwietlenie komunikatu o wprowadzeniu zajêtej nazwy u¿ytkownika ||
+|| '''1.3''' || '''Niewpisanie nazwy''' ||
+|| Opis || Niezalogowanie siê do aplikacji z powodu niewpisania nazwy u¿ytkownika ||
+|| Warunki wstêpne || ||
+|| Procedura testowa || 1. Uruchomienie aplikacji[[BR]] 2. Klikniêcie przycisku zatwierdzenia[[BR]] ||
+|| Oczekiwane rezultaty || Wyœwietlenie komunikatu o wymaganiu wprowadzenia nazwy u¿ytkownika ||
+|| '''1.4''' || '''Brak po³¹czenia z sieci¹''' ||
+|| Opis || Niezalogowanie siê do aplikacji z powodu braku po³¹czenia siê z sieci¹ ||
+|| Warunki wstêpne || ||
+|| Procedura testowa || 1. Uruchomienie aplikacji[[BR]] ||
+|| Oczekiwane rezultaty || Wyœwietlenie komunikatu o braku po³¹czenia z serwerem ||
+[[BR]]
+|| '''2''' || '''Przegl¹daj listê poczekalni''' ||
+|| '''2.1''' || '''Przycisk "Odœwie¿"''' ||
+|| Opis || Odœwie¿enie listy poczekalni ||
+|| Warunki wstêpne || U¿ytkownik przegl¹da listê poczekalni ||
+|| Procedura testowa || 1. U¿ytkownik wcisn¹³ przycisk "Odœwie¿"[[BR]] ||
+|| Oczekiwane rezultaty || Wyœwietlona zosta³a aktualna lista poczekalni ||
+[[BR]]
+|| '''3''' || '''Utwórz poczekalniê''' ||
+|| '''3.1''' || '''Przycisk "Stwórz grê" poprawny,zwyk³y''' ||
+|| Opis || Tworzenie zwyk³ej poczekalni z poprawnymi danymi ||
+|| Warunki wstêpne || U¿ytkownik przegl¹da listê poczekalni ||
+|| Procedura testowa || 1. U¿ytkownik wcisn¹³ przycisk "Stwórz grê"[[BR]]2. Wybranie poprawnych parametrów rozgrywki [[BR]] 3. Zatwierdzenie wybranych parametrów ||
+|| Oczekiwane rezultaty || Stworzenie poczekalni ||
+|| '''3.2''' || '''Przycisk "Stwórz grê" niepoprawny,zwyk³y''' ||
+|| Opis || Tworzenie zwyk³ej poczekalni z niepoprawnymi danymi ||
+|| Warunki wstêpne || U¿ytkownik przegl¹da listê poczekalni ||
+|| Procedura testowa || 1. Wciœniêcie przycisku "Stwórz grê"[[BR]]2. Wybranie b³êdnych parametrów rozgrywki [[BR]] 3. Zatwierdzenie wybranych parametrów ||
+|| Oczekiwane rezultaty || Wyœwietlenie komunikatu o b³êdnie wprowadzonych parametrach ||
+|| '''3.3''' || '''Przycisk "Stwórz grê" poprawny, "Obserwuj"''' ||
+|| Opis || Tworzenie poczekalni "Obserwuj" z poprawnymi danymi ||
+|| Warunki wstêpne || U¿ytkownik przegl¹da listê poczekalni ||
+|| Procedura testowa || 1. U¿ytkownik wcisn¹³ przycisk "Stwórz grê"[[BR]]2. Zaznaczenie pola "Obserwuj" [[BR]] 3. Wybranie poprawnych parametrów rozgrywki [[BR]] 4. Zatwierdzenie wybranych parametrów ||
+|| Oczekiwane rezultaty || Stworzenie poczekalni do obserwacji botów ||
+[[BR]]
+|| '''3.4''' || '''Przycisk "Stwórz grê" niepoprawny, "Obserwuj"''' ||
+|| Opis || Tworzenie poczekalni "Obserwuj" z niepoprawnymi danymi ||
+|| Warunki wstêpne || U¿ytkownik przegl¹da listê poczekalni ||
+|| Procedura testowa || 1. U¿ytkownik wcisn¹³ przycisk "Stwórz grê"[[BR]]2. Zaznaczenie pola "Obserwuj" [[BR]] 3.Wybranie b³êdnych parametrów rozgrywki [[BR]] 4. Zatwierdzenie wybranych parametrów ||
+|| Oczekiwane rezultaty || Wyœwietlenie komunikatu o b³êdnie wprowadzonych parametrach ||
+[[BR]]
+|| '''4''' || '''Do³¹cz do poczekalni''' ||
+|| '''4.1''' || '''Przycisk "Do³¹cz" poprawny z listy poczekalni''' ||
+|| Opis || Procedura testuje skuteczne do³¹czanie do istniej¹cej poczekalni z listy poczekalni ||
+|| Warunki wstêpne || U¿ytkownik przegl¹da listê poczekalni ||
+|| Procedura testowa || 1. U¿ytkownik wybiera istniej¹ca poczekalnie[[BR]] 2. U¿ytkownik klika przycisk "Do³¹cz" [[BR]] ||
+|| Oczekiwane rezultaty || U¿ytkownikowi wyœwietla siê okno poczekalni do której do³¹czy³  ||
+|| '''4.2''' || '''Przycisk "Do³¹cz" niepoprawny z listy poczekalni''' ||
+|| Opis || Procedura testuje do³¹czanie do nieistniej¹cej poczekalni z listy poczekalni  ||
+|| Warunki wstêpne ||U¿ytkownik przegl¹da listê poczekalni ||
+|| Procedura testowa || 1. U¿ytkownik wybiera nieistniej¹ca poczekalnie[[BR]] 2. U¿ytkownik klika przycisk "Do³¹cz"[[BR]] ||
+|| Oczekiwane rezultaty || U¿ytkownikowi wyœwietla siê informacja o nieistniej¹cej poczekalni oraz uaktualniona lista poczekalni ||
+|| '''4.3''' || '''Przycisk "Do³¹cz" z tworzenia poczekalni''' ||
+|| Opis || Procedura testuje do³¹czanie do stworzonej przez u¿ytkownika poczekalni ||
+|| Warunki wstêpne || U¿ytkownik tworzy poczekalnie ||
+|| Procedura testowa || 1. U¿ytkownik stworzy³ poczekalnie ||
+|| Oczekiwane rezultaty || U¿ytkownikowi wyœwietla siê okno poczekalni, któr¹ stworzy³ ||
+[[BR]]
+|| '''5''' || '''Opuœæ grê''' ||
+|| '''5.1''' || '''Przycisk "Opuœæ" - u¿ytkownik''' ||
+|| Opis || U¿ytkownik opuszcza grê ||
+|| Warunku wstêpne || U¿ytkownik jest graczem ||
+|| Procedura testowa || 1. Klikniêcie przycisku "Opuœæ" ||
+|| Oczekiwane rezultaty || U¿ytkownik opuszcza grê, wyœwietla siê mu okno listy poczekalni ||
+[[BR]]
+|| '''6''' || '''Przerzuæ koœci''' ||
+|| '''6.1''' || '''Pozytywny''' ||
+|| Opis || U¿ytkownik przerzuca koœci ||
+|| Warunki wstêpne || Otrzymanie wiadomoœci o aktywnym graczu równym u¿ytkownikowi ||
+|| Procedura testowa || 1. Wybranie koœci do przerzucenia[[BR]] 2. Klikniêcie przycisku "Przerzuæ" ||
+|| Oczekiwane rezultaty || Wys³anie wiadomoœci do serwera o wybranych koœciach ||
+|| '''6.2''' || '''Brak akcji''' ||
+|| Opis || U¿ytkownik nie wykonuje ¿adnej akcji ||
+|| Warunki wstêpne || Otrzymanie wiadomoœci o aktywnym graczu równym u¿ytkownikowi ||
+|| Procedura testowa || ||
+|| Oczekiwane rezultaty || Koniec tury u¿ytkownika
+[[BR]]
+|| '''7''' || '''Opuœæ poczekalniê''' ||
+|| Opis || U¿ytkownik  opuszcza poczekalniê ||
+|| Warunki wstêpne || U¿ytkownik jest w poczekalni ||
+|| Procedura testowa || 1. Klikniêcie przycisku "Opuœæ" ||
+|| Oczekiwane rezultaty || Opuszczenie poczekalni, wyœwietlenie okna listy poczekalni
+[[BR]]
+|| '''8''' || '''Zakoñcz grê''' ||
+|| Opis || Zakoñczenie gry z powodu osi¹gniêcia odpowiedniej iloœci rund ||
+|| Warunki wstêpne || Ostatni gracz w ostatniej rundzie wykonuje ostatni¹ turê ||
+|| Procedura testowa || 1. Ostatni gracz przerzuca koœci ||
+|| Oczekiwane rezultaty || Wyœwietlenie listy wyników ||
+[[BR]]
+|| '''9''' || '''Powiadom o wyjœciu innego gracza z gry''' ||
+|| Opis || Inny gracz opuszcza grê ||
+|| Warunki wstêpne || Gra trwa ||
+|| Procedura testowa || Inny gracz klika przycisk "Opuœæ" ||
+|| Oczekiwane rezultaty || U wszystkich pozosta³ych gracz usuniêcie tego gracza z tabeli wyników ||
+[[BR]] 
+|| '''10''' || '''Wyrzuæ u¿ytkownika z gry z powodu nieaktywnoœci ''' ||
+|| Opis || U¿ytkownik przez d³u¿szy czas nie wykona³ ¿adnej akcji bêd¹c w grze ||
+|| Warunki wstêpne || U¿ytkownik jest graczem ||
+|| Procedura testowa || ||
+|| Oczekiwane rezultaty || Otrzymanie wiadomoœci o wyrzuceniu u¿ytkownika z gry, wyœwietlenie komunikatu i okna listy poczekalni ||
+[[BR]] 
+|| '''11''' || '''Rozpocznij grê''' ||
+|| Opis || Serwer rozpoczyna grê ||
+|| Warunki wstêpne || Graczy oczekuj¹cych jest MAX-1 ||
+|| Procedura testowa || 1. Dowolny u¿ytkownik do³¹cza do poczekalni ||
+|| Oczekiwane rezultaty || Rozpoczêcie gry ||
+[[BR]]
+|| '''12''' || '''Rozpocznij rundê''' ||
+|| '''12.1''' || '''Runda pierwsza''' ||
+|| Opis || Serwer wysy³a wiadomoœæ o rozpoczêciu rundy ||
+|| Warunki wstêpne || Dopiero co rozpoczêta gra ||
+|| Procedura testowa || ||
+|| Oczekiwane rezultaty || Wyœwietlenie wylosowanych koœci dla ka¿dego z graczy na liœcie graczy oraz wyœwietlenie koœci u¿ytkownika w odpowiednim polu ||
+|| '''12.2''' || '''Runda kolejna''' ||
+|| Opis || Serwer wysy³a wiadomoœæ o rozpoczêciu rundy ||
+|| Warunki wstêpne || Gra w trakcie ||
+|| Procedura testowa || Gracze graj¹ dopóki jednemu z nich nie uda siê wygraæ rundy ||
+|| Oczekiwane rezultaty || Zwiêkszenie punktacji dla zwyciêzcy. Wyœwietlenie wylosowanych koœci dla ka¿dego z graczy na liœcie graczy oraz wyœwietlenie koœci u¿ytkownika w odpowiednim polu ||
+[[BR]]
+|| '''13''' || '''Przeka¿ turê kolejnemu graczowi''' ||
+|| '''13.1''' || '''Pierwsza tura w rundzie'''
+|| Opis || Nastêpuje pierwsza tura w nowej rundzie ||
+|| Warunki wstêpne || Zakoñczy³a siê poprzednia runda ||
+|| Procedura testowa || ||
+|| Oczekiwane rezultaty || Pierwszy gracz jest graczem aktualnym ||
+|| '''13.2''' || '''Kolejna tura''' ||
+|| Opis || Nastêpuje kolejna tura w rundzie ||
+|| Warunki wstêpne || Tura poprzedniego gracza ||
+|| Procedura testowa || Poprzedni gracz przerzuca koœci ||
+|| Oczekiwane rezultaty || Nastêpny gracz staje siê graczem aktywnym ||
+[[BR]]
+|| '''14''' || '''Przeœlij wynik przerzucenia koœci''' ||
+|| Opis || Dowolny gracz przerzuci³ koœci, wszyscy gracze otrzymuj¹ wynik ||
+|| Warunki wstêpne || Trwa tura u¿ytkownika ||
+|| Procedura testowa || 1. Przerzucenie koœci ||
+|| Oczekiwane rezultaty || Wszyscy gracze wyœwietlaj¹ nowe koœci dla aktualnego gracza ||
+[[BR]]
+|| '''15''' || '''Przeœlij nowy sk³ad poczekalni''' ||
+|| '''15.1''' || '''Do³¹czenie''' ||
+|| Opis || Inny u¿ytkownik do³¹cza do poczekalni ||
+|| Warunki wstêpne || Poczekalnia nie jest pe³na ||
+|| Procedura testowa || 1. Inny u¿ytkownik do³¹cza do poczekalni ||
+|| Oczekiwane rezultaty || U wszystkich graczy oczekuj¹cych w poczekalni pojawia siê zaktualizowana lista ||
+|| '''15.2''' || '''Opuszczenie''' ||
+|| Opis || Inny gracz oczekuj¹cy opuszcza poczekalniê ||
+|| Warunki wstêpne || Poczekalnia nie jest pe³na i jest wiêcej ni¿ jeden gracz oczekuj¹cy ||
+|| Procedura testowa || 1. Jeden z graczy klika przycisk "Opuœæ" ||
+|| Oczekiwane rezultaty || U wszystkich graczy oczekuj¹cych w poczekalni pojawia siê zaktualizowana lista ||

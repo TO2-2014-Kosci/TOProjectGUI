@@ -15,8 +15,15 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import net.miginfocom.swing.MigLayout;
 
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class RoomView extends JPanel {
+	//do przeniesienia
+	boolean sittingFlag = false;
+	int maxPlayers = 1;
+	int actualPlayers =0;
+	
 	String[] columnNames={"Name"};
 	Object[][] rowData={
 			{"Gracz 1"},
@@ -65,8 +72,8 @@ public class RoomView extends JPanel {
 		
 		JScrollPane playersScrollTable= new JScrollPane(playersTable);
 		add(playersScrollTable,"push,grow,wrap");
-		JButton opusc = new JButton("Opuœæ");
-		opusc.addActionListener(new ActionListener() {
+		JButton leaveButton = new JButton("Opuœæ");
+		leaveButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -77,22 +84,36 @@ public class RoomView extends JPanel {
 				mainFrame.revalidate();
 			}
 		});
-		add(opusc,"w 100!,split 4,gapright push,pushx");	
+		add(leaveButton,"w 100!,split 4,gapright push,pushx");	
 		add(new JLabel("Iloœæ graczy:"),"w 100!,gapleft push,pushx");
-		add(new JLabel("2/9"),"w 50!,gapright push,pushx");
-		JButton start = new JButton("Rozpocznij");
-		start.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				GameView gameView= new GameView(mainFrame);
-				mainFrame.setContentPane(gameView);
-				mainFrame.setMinimumSize(gameView.getMinimumSize());
-				mainFrame.setLocationRelativeTo(null);
-				mainFrame.revalidate();
+		JLabel playersLabel = new JLabel(actualPlayers+"/"+maxPlayers);
+		add(playersLabel,"w 50!,gapright push,pushx");
+
+		JButton sitStandButton = new JButton("Usi¹dŸ");
+		sitStandButton.addActionListener(new ActionListener() {		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(!sittingFlag){
+				sitStandButton.setText("Wstañ");
+				sittingFlag=true;
+				actualPlayers++;
 			}
-		});
-		add(start,"w 100!,gapleft push,pushx");
+			else{
+				sitStandButton.setText("Usi¹dŸ");
+				sittingFlag=false;
+				actualPlayers--;
+			}
+			playersLabel.setText(actualPlayers+"/"+maxPlayers);
+			if(actualPlayers==maxPlayers){
+						  		GameView gameView= new GameView(mainFrame);
+						  		mainFrame.setContentPane(gameView);
+						  		mainFrame.setMinimumSize(gameView.getMinimumSize());
+						  		mainFrame.setLocationRelativeTo(null);
+						  		mainFrame.revalidate();
+			}
+		}
+	});
+		add(sitStandButton,"w 100!,gapleft push,pushx");
 		
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}

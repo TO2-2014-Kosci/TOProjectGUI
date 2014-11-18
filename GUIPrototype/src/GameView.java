@@ -13,12 +13,17 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 
+import animation.Test;
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.Canvas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.Component;
 
@@ -91,10 +96,10 @@ public class GameView extends JPanel{
 		label.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		add(label, "cell 2 0,alignx right");
 		
-		JLabel dices = new JLabel(new ImageIcon("kosciEkran2.png"));
-		dices.setBackground(new Color(70, 155, 30));
-		dices.setOpaque(true);
-		add(dices, "cell 1 0 2 2,grow");
+//		JLabel dices = new JLabel(new ImageIcon("kosciEkran2.png"));
+//		dices.setBackground(new Color(70, 155, 30));
+//		dices.setOpaque(true);
+//		add(dices, "cell 1 0 2 2,grow");
 		JButton button = new JButton("Wyjdü");
 		button.addActionListener(new ActionListener() {
 			
@@ -108,11 +113,12 @@ public class GameView extends JPanel{
 			}
 		});
 		add(button, "cell 2 3,alignx right,aligny bottom");
-		JLabel test = new JLabel(new ImageIcon("kosciGracz.png"));
-		test.setBackground(new Color(70, 155, 30));
-		test.setOpaque(true);
-		add(test, "cell 1 2 2 2,grow, height 140px!");
-		
+//		JLabel test = new JLabel(new ImageIcon("kosciGracz.png"));
+//		test.setBackground(new Color(70, 155, 30));
+//		test.setOpaque(true);
+//		add(test, "cell 1 2 2 2,grow, height 140px!");
+		Test test2 = new Test();
+		add(test2.getCanvas(), "cell 1 0 2 4,grow");
 		
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
