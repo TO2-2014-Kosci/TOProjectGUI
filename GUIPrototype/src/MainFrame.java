@@ -18,12 +18,12 @@ public class MainFrame extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		LoginPanel loginPanel= new LoginPanel(this);
-//		setContentPane(loginPanel);
-//		setMinimumSize(loginPanel.getMinimumSize());
-		GameView gameView= new GameView(this);
-		setContentPane(gameView);
-		setMinimumSize(gameView.getMinimumSize());
+		LoginPanel loginPanel= new LoginPanel(this);
+		setContentPane(loginPanel);
+		setMinimumSize(loginPanel.getMinimumSize());
+//		GameView gameView= new GameView(this);
+//		setContentPane(gameView);
+//		setMinimumSize(gameView.getMinimumSize());
 		
 
 		

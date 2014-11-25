@@ -39,16 +39,17 @@ public class GameView extends JPanel{
 			"Punkty"
 	};
 	private Object[][] rowData={
-			{"Gracz 1", new ImageIcon("kosciTabela.png"), "11"},
+			{"Gracz 1", new ImageIcon("kosciTabela.png"), true},
 	};
 	
 	private ImageIcon playerDices = new ImageIcon("kosciTabela.png");
+	JTable playerTable;
 	
 	public GameView(JFrame mainFrame) {
 //		setBackground(new Color(70, 155, 30));
 		setBackground(new Color(64, 0, 0));
 		setLayout(new MigLayout("", "[][grow][]", "[][grow][][]"));
-		JTable playerTable = new JTable(new AbstractTableModel(){
+		playerTable = new JTable(new AbstractTableModel(){
 
 			private static final long serialVersionUID = 1L;
 
@@ -57,11 +58,7 @@ public class GameView extends JPanel{
 			}
 			
 			public Class<?> getColumnClass(int columnCount) {
-				if (columnCount == 1) {
-					return ImageIcon.class;
-				} else {
-					return String.class;
-				}
+				return getValueAt(0, columnCount).getClass();
 			}
 	        public String getColumnName(int col) {
 	            return columnNames[col];
@@ -105,11 +102,14 @@ public class GameView extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GameList gameList = new GameList(mainFrame);
-				mainFrame.setContentPane(gameList);
-				mainFrame.setMinimumSize(gameList.getMinimumSize());
-				mainFrame.setLocationRelativeTo(null);
-				mainFrame.revalidate();
+				rowData[0][0] = "alal";
+				((AbstractTableModel)playerTable.getModel()).fireTableDataChanged();
+				System.out.println("dd");
+//				GameList gameList = new GameList(mainFrame);
+//				mainFrame.setContentPane(gameList);
+//				mainFrame.setMinimumSize(gameList.getMinimumSize());
+//				mainFrame.setLocationRelativeTo(null);
+//				mainFrame.revalidate();
 			}
 		});
 		add(button, "cell 2 3,alignx right,aligny bottom");
@@ -119,7 +119,6 @@ public class GameView extends JPanel{
 //		add(test, "cell 1 2 2 2,grow, height 140px!");
 		Test test2 = new Test();
 		add(test2.getCanvas(), "cell 1 0 2 4,grow");
-		
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 }
