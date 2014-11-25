@@ -6,11 +6,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.text.PlainDocument;
+import javax.swing.text.Position;
+import javax.swing.text.Segment;
 
 public class LoginPanel extends JPanel {
 
@@ -18,6 +29,43 @@ public class LoginPanel extends JPanel {
 	
 	public LoginPanel(JFrame mainFrame){
 		JTextField loginField= new JTextField();
+//		Document doc = new PlainDocument();
+//		doc.addDocumentListener(new DocumentListener() {
+//			
+//			@Override
+//			public void removeUpdate(DocumentEvent e) {
+//				try {
+//					System.out.println(e.getDocument().getText(0, e.getDocument().getLength()));
+//				} catch (BadLocationException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//				
+//			}
+//			
+//			@Override
+//			public void insertUpdate(DocumentEvent e) {
+//				try {
+//					System.out.println(e.getDocument().getText(0, e.getDocument().getLength()));
+//				} catch (BadLocationException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//				
+//			}
+//			
+//			@Override
+//			public void changedUpdate(DocumentEvent e) {
+//				try {
+//					System.out.println(e.getDocument().getText(0, e.getDocument().getLength()));
+//				} catch (BadLocationException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//				
+//			}
+//		});
+//		JTextField loginField= new JTextField(doc, "", 1);
 		JLabel loginLabel= new JLabel("Podaj login");
 		JButton loginButton= new JButton("Zaloguj");
 		loginButton.addActionListener(new ActionListener(){
