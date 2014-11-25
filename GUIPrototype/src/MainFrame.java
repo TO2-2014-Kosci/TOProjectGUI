@@ -9,6 +9,7 @@ public class MainFrame extends JFrame {
 	private static final int DEFAULT_WIDTH = 200;
 	private static final int DEFAULT_HEIGHT= 200;
 	private static final long serialVersionUID = 1L;
+	private int dupa;
 	
 	public MainFrame(){
 		try {
