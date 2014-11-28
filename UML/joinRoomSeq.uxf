@@ -4,7 +4,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>64</x>
+      <x>16</x>
       <y>136</y>
       <w>16</w>
       <h>584</h>
@@ -15,7 +15,7 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>48</x>
+      <x>0</x>
       <y>40</y>
       <w>48</w>
       <h>80</h>
@@ -26,7 +26,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>64</x>
+      <x>16</x>
       <y>80</y>
       <w>24</w>
       <h>72</h>
@@ -37,7 +37,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>280</x>
+      <x>232</x>
       <y>56</y>
       <w>120</w>
       <h>24</h>
@@ -48,7 +48,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>104</x>
+      <x>56</x>
       <y>56</y>
       <w>144</w>
       <h>24</h>
@@ -59,7 +59,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>168</x>
+      <x>120</x>
       <y>136</y>
       <w>16</w>
       <h>568</h>
@@ -70,7 +70,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>168</x>
+      <x>120</x>
       <y>72</y>
       <w>24</w>
       <h>80</h>
@@ -81,7 +81,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>72</x>
+      <x>24</x>
       <y>128</y>
       <w>112</w>
       <h>32</h>
@@ -93,7 +93,7 @@ Clicked</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>176</x>
+      <x>128</x>
       <y>136</y>
       <w>168</w>
       <h>32</h>
@@ -105,7 +105,7 @@ clickedJoinGameButton()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>328</x>
+      <x>280</x>
       <y>72</y>
       <w>24</w>
       <h>88</h>
@@ -116,7 +116,7 @@ clickedJoinGameButton()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>328</x>
+      <x>280</x>
       <y>144</y>
       <w>16</w>
       <h>544</h>
@@ -127,7 +127,7 @@ clickedJoinGameButton()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>712</x>
+      <x>664</x>
       <y>56</y>
       <w>128</w>
       <h>24</h>
@@ -138,7 +138,7 @@ clickedJoinGameButton()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>760</x>
+      <x>712</x>
       <y>384</y>
       <w>16</w>
       <h>296</h>
@@ -149,7 +149,7 @@ clickedJoinGameButton()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
+      <x>712</x>
       <y>72</y>
       <w>24</w>
       <h>328</h>
@@ -160,7 +160,7 @@ clickedJoinGameButton()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
+      <x>288</x>
       <y>376</y>
       <w>440</w>
       <h>32</h>
@@ -172,7 +172,7 @@ changeContext(Context context)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>848</x>
+      <x>800</x>
       <y>400</y>
       <w>136</w>
       <h>24</h>
@@ -183,7 +183,7 @@ changeContext(Context context)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>968</x>
+      <x>920</x>
       <y>432</y>
       <w>112</w>
       <h>24</h>
@@ -194,7 +194,7 @@ changeContext(Context context)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1040</x>
+      <x>992</x>
       <y>464</y>
       <w>112</w>
       <h>24</h>
@@ -205,7 +205,7 @@ changeContext(Context context)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
+      <x>720</x>
       <y>456</y>
       <w>288</w>
       <h>32</h>
@@ -217,7 +217,7 @@ changeContext(Context context)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
+      <x>720</x>
       <y>424</y>
       <w>216</w>
       <h>32</h>
@@ -229,7 +229,7 @@ changeContext(Context context)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
+      <x>720</x>
       <y>392</y>
       <w>96</w>
       <h>32</h>
@@ -241,7 +241,7 @@ changeContext(Context context)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1168</x>
+      <x>1120</x>
       <y>472</y>
       <w>16</w>
       <h>64</h>
@@ -252,7 +252,7 @@ changeContext(Context context)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1112</x>
+      <x>1064</x>
       <y>56</y>
       <w>128</w>
       <h>24</h>
@@ -263,7 +263,7 @@ changeContext(Context context)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1248</x>
+      <x>1200</x>
       <y>56</y>
       <w>128</w>
       <h>24</h>
@@ -274,7 +274,7 @@ changeContext(Context context)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
+      <x>720</x>
       <y>488</y>
       <w>416</w>
       <h>32</h>
@@ -286,7 +286,7 @@ setModel(Model model)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
+      <x>720</x>
       <y>512</y>
       <w>416</w>
       <h>24</h>
@@ -297,7 +297,7 @@ setModel(Model model)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
+      <x>720</x>
       <y>600</y>
       <w>552</w>
       <h>32</h>
@@ -309,7 +309,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1304</x>
+      <x>1256</x>
       <y>600</y>
       <w>16</w>
       <h>64</h>
@@ -320,7 +320,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>744</x>
+      <x>696</x>
       <y>576</y>
       <w>184</w>
       <h>40</h>
@@ -332,7 +332,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1168</x>
+      <x>1120</x>
       <y>72</y>
       <w>24</w>
       <h>416</h>
@@ -343,7 +343,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1304</x>
+      <x>1256</x>
       <y>72</y>
       <w>24</w>
       <h>544</h>
@@ -354,7 +354,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
+      <x>720</x>
       <y>648</y>
       <w>552</w>
       <h>24</h>
@@ -365,7 +365,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
+      <x>288</x>
       <y>656</y>
       <w>440</w>
       <h>24</h>
@@ -376,7 +376,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>176</x>
+      <x>128</x>
       <y>672</y>
       <w>168</w>
       <h>24</h>
@@ -387,7 +387,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>72</x>
+      <x>24</x>
       <y>688</y>
       <w>112</w>
       <h>24</h>
@@ -398,7 +398,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>584</x>
+      <x>536</x>
       <y>56</y>
       <w>104</w>
       <h>24</h>
@@ -409,7 +409,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
+      <x>576</x>
       <y>72</y>
       <w>24</w>
       <h>240</h>
@@ -420,7 +420,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>624</x>
+      <x>576</x>
       <y>296</y>
       <w>16</w>
       <h>56</h>
@@ -431,7 +431,7 @@ setView(View view)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
+      <x>288</x>
       <y>288</y>
       <w>304</w>
       <h>32</h>
@@ -443,7 +443,7 @@ joinRoom(String roomName, String login)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>416</x>
+      <x>368</x>
       <y>56</y>
       <w>152</w>
       <h>24</h>
@@ -454,7 +454,7 @@ joinRoom(String roomName, String login)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>488</x>
+      <x>440</x>
       <y>192</y>
       <w>16</w>
       <h>56</h>
@@ -465,7 +465,7 @@ joinRoom(String roomName, String login)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>488</x>
+      <x>440</x>
       <y>72</y>
       <w>24</w>
       <h>136</h>
@@ -476,7 +476,7 @@ joinRoom(String roomName, String login)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
+      <x>288</x>
       <y>184</y>
       <w>168</w>
       <h>32</h>
@@ -488,7 +488,7 @@ getSelectedGame()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
+      <x>288</x>
       <y>208</y>
       <w>168</w>
       <h>32</h>
@@ -500,7 +500,7 @@ String</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
+      <x>288</x>
       <y>304</y>
       <w>304</w>
       <h>32</h>
@@ -512,7 +512,7 @@ Response</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1464</x>
+      <x>1416</x>
       <y>72</y>
       <w>24</w>
       <h>480</h>
@@ -523,7 +523,7 @@ Response</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1464</x>
+      <x>1416</x>
       <y>536</y>
       <w>16</w>
       <h>48</h>
@@ -534,7 +534,7 @@ Response</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1392</x>
+      <x>1344</x>
       <y>56</y>
       <w>168</w>
       <h>24</h>
@@ -545,7 +545,7 @@ Response</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
+      <x>720</x>
       <y>536</y>
       <w>712</w>
       <h>32</h>
@@ -557,7 +557,7 @@ changeServerMessageListener(ServerMessageListener serverMessageListener)</panel_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
+      <x>720</x>
       <y>560</y>
       <w>712</w>
       <h>24</h>
