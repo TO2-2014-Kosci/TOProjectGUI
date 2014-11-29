@@ -23,12 +23,13 @@ public class LoginView extends View {
 	//
 	public LoginView(Model model) {
 		super(model);
+		LoginController lc = (LoginController) controller;
 		
 		loginLabel= new JLabel("Podaj login");
 		loginButton = new JButton("Zaloguj");
 		loginButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				((LoginController) controller ).clickedLoginButton();
+				lc.clickedLoginButton();
 			}
 		});
 		
@@ -69,5 +70,9 @@ public class LoginView extends View {
 
 	public String getLogin(){
 		return loginField.getText();
+	}
+	
+	public void eraseLogin(){
+		loginField.setText("");
 	}
 }
