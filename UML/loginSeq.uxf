@@ -75,7 +75,7 @@
       <x>18</x>
       <y>108</y>
       <w>18</w>
-      <h>666</h>
+      <h>828</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -153,7 +153,7 @@ Entered login</panel_attributes>
       <x>297</x>
       <y>180</y>
       <w>18</w>
-      <h>585</h>
+      <h>720</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -176,7 +176,7 @@ Pressed</panel_attributes>
       <x>450</x>
       <y>189</y>
       <w>18</w>
-      <h>567</h>
+      <h>702</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -301,7 +301,7 @@ Response</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>828</x>
-      <y>360</y>
+      <y>387</y>
       <w>153</w>
       <h>27</h>
     </coordinates>
@@ -312,7 +312,7 @@ Response</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>972</x>
-      <y>405</y>
+      <y>432</y>
       <w>207</w>
       <h>27</h>
     </coordinates>
@@ -336,16 +336,16 @@ Response</panel_attributes>
       <x>1179</x>
       <y>27</y>
       <w>27</w>
-      <h>468</h>
+      <h>495</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;500.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;530.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1179</x>
-      <y>477</y>
+      <y>504</y>
       <w>18</w>
       <h>90</h>
     </coordinates>
@@ -356,7 +356,7 @@ Response</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>459</x>
-      <y>477</y>
+      <y>504</y>
       <w>738</w>
       <h>36</h>
     </coordinates>
@@ -368,7 +368,7 @@ setView(newView)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1188</x>
-      <y>495</y>
+      <y>522</y>
       <w>135</w>
       <h>45</h>
     </coordinates>
@@ -380,7 +380,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>459</x>
-      <y>549</y>
+      <y>576</y>
       <w>738</w>
       <h>27</h>
     </coordinates>
@@ -391,7 +391,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>306</x>
-      <y>738</y>
+      <y>873</y>
       <w>162</w>
       <h>27</h>
     </coordinates>
@@ -402,7 +402,7 @@ refresh()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>774</x>
-      <y>603</y>
+      <y>630</y>
       <w>18</w>
       <h>36</h>
     </coordinates>
@@ -413,7 +413,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>783</x>
-      <y>594</y>
+      <y>621</y>
       <w>297</w>
       <h>36</h>
     </coordinates>
@@ -425,7 +425,7 @@ getRoomList()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>783</x>
-      <y>612</y>
+      <y>639</y>
       <w>297</w>
       <h>36</h>
     </coordinates>
@@ -437,7 +437,7 @@ list</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1062</x>
-      <y>585</y>
+      <y>612</y>
       <w>18</w>
       <h>162</h>
     </coordinates>
@@ -448,7 +448,7 @@ list</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>459</x>
-      <y>576</y>
+      <y>603</y>
       <w>621</w>
       <h>36</h>
     </coordinates>
@@ -460,7 +460,7 @@ refreshGameList()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>909</x>
-      <y>675</y>
+      <y>702</y>
       <w>171</w>
       <h>36</h>
     </coordinates>
@@ -471,19 +471,8 @@ refresh()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1179</x>
-      <y>558</y>
-      <w>27</w>
-      <h>126</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>909</x>
-      <y>702</y>
+      <y>729</y>
       <w>171</w>
       <h>27</h>
     </coordinates>
@@ -494,7 +483,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>459</x>
-      <y>729</y>
+      <y>756</y>
       <w>621</w>
       <h>27</h>
     </coordinates>
@@ -505,7 +494,7 @@ refresh()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>900</x>
-      <y>684</y>
+      <y>711</y>
       <w>18</w>
       <h>36</h>
     </coordinates>
@@ -516,7 +505,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>27</x>
-      <y>747</y>
+      <y>882</y>
       <w>288</w>
       <h>27</h>
     </coordinates>
@@ -527,7 +516,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>459</x>
-      <y>396</y>
+      <y>423</y>
       <w>531</w>
       <h>36</h>
     </coordinates>
@@ -539,7 +528,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>459</x>
-      <y>351</y>
+      <y>378</y>
       <w>387</w>
       <h>36</h>
     </coordinates>
@@ -553,16 +542,16 @@ refresh()</panel_attributes>
       <x>774</x>
       <y>342</y>
       <w>27</w>
-      <h>279</h>
+      <h>306</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;290.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;320.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1062</x>
-      <y>423</y>
+      <y>450</y>
       <w>27</w>
       <h>180</h>
     </coordinates>
@@ -573,7 +562,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>900</x>
-      <y>378</y>
+      <y>405</y>
       <w>27</w>
       <h>72</h>
     </coordinates>
@@ -595,7 +584,7 @@ refresh()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>900</x>
-      <y>432</y>
+      <y>459</y>
       <w>18</w>
       <h>36</h>
     </coordinates>
@@ -606,7 +595,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>459</x>
-      <y>423</y>
+      <y>450</y>
       <w>459</w>
       <h>36</h>
     </coordinates>
@@ -618,7 +607,7 @@ setController(newController)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>459</x>
-      <y>450</y>
+      <y>477</y>
       <w>459</w>
       <h>27</h>
     </coordinates>
@@ -629,7 +618,7 @@ setController(newController)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1071</x>
-      <y>639</y>
+      <y>666</y>
       <w>144</w>
       <h>45</h>
     </coordinates>
@@ -641,7 +630,7 @@ model.roomList = list</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>900</x>
-      <y>522</y>
+      <y>549</y>
       <w>18</w>
       <h>27</h>
     </coordinates>
@@ -652,7 +641,7 @@ model.roomList = list</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>900</x>
-      <y>459</y>
+      <y>486</y>
       <w>27</w>
       <h>81</h>
     </coordinates>
@@ -663,7 +652,7 @@ model.roomList = list</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>909</x>
-      <y>513</y>
+      <y>540</y>
       <w>288</w>
       <h>36</h>
     </coordinates>
@@ -675,7 +664,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>909</x>
-      <y>522</y>
+      <y>549</y>
       <w>288</w>
       <h>36</h>
     </coordinates>
@@ -687,7 +676,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>900</x>
-      <y>540</y>
+      <y>567</y>
       <w>27</w>
       <h>162</h>
     </coordinates>
@@ -750,5 +739,41 @@ getLogin()</panel_attributes>
     <panel_attributes>lt=&lt;.
 String login</panel_attributes>
     <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>405</x>
+      <y>360</y>
+      <w>963</w>
+      <h>423</h>
+    </coordinates>
+    <panel_attributes>if Response.Type is Success
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>405</x>
+      <y>792</y>
+      <w>963</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>else
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>459</x>
+      <y>801</y>
+      <w>144</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+show failure JDialog</panel_attributes>
+    <additional_attributes>10.0;50.0;80.0;50.0;80.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
