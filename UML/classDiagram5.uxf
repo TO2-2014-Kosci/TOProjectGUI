@@ -11,8 +11,8 @@
     </coordinates>
     <panel_attributes>/View/
 --
--model: Model
--controller: Controller
+#model: Model
+#controller: Controller
 --
 +View(Model model)
 +refresh(): void
@@ -136,8 +136,8 @@
     </coordinates>
     <panel_attributes>/Controller/
 --
--model: Model
--View: view
+#model: Model
+#View: view
 --
 +Controller(Model model, View view)</panel_attributes>
     <additional_attributes/>
@@ -719,7 +719,7 @@ ServerMessageListener
 +login: String
 +connectionProxy: ConnectionProxy
 +serverMessageContainer: ServerMessageContainer
-+DiceApplication diceApplication
++diceApplication: DiceApplication
 +roomList: List&lt;GameInfo&gt;
 +gameInfo: GameInfo
 +gameSettings: GameSettings

@@ -6,6 +6,7 @@ import to2.dice.GUI.views.View;
 
 
 public class DiceApplication extends JFrame {
+	private static final long serialVersionUID = 4487043914138417716L;
 	private View view;
 	
 	
