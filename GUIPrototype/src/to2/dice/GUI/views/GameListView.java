@@ -4,7 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 
 import to2.dice.GUI.model.Model;
-import to2.dice.common.GameInfo;
+import to2.dice.game.GameInfo;
 
 public class GameListView extends View {
 	private JButton refreshButton;

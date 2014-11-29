@@ -6,7 +6,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 import to2.dice.GUI.model.Model;
-import to2.dice.common.GameSettings;
+import to2.dice.game.GameSettings;
 
 public class CreateGameView extends View {
 	private JButton createGameButton;

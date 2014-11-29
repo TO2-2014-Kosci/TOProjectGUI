@@ -1,6 +1,6 @@
 package to2.dice.GUI.model;
 
-import to2.dice.common.GameState;
+import to2.dice.game.GameState;
 import to2.dice.server.ServerMessageListener;
 
 public class ServerMessageContainer implements ServerMessageListener {
