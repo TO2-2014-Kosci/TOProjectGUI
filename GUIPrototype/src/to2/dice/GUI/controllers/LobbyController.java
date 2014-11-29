@@ -14,4 +14,12 @@ public class LobbyController extends Controller implements ServerMessageListener
 	public void onGameStateChange(GameState gameState){
 		
 	}
+	
+	public void clickedLeaveButton() {
+		
+	}
+	
+	public void clickedSitDownStandUpButton() {
+		
+	}
 }

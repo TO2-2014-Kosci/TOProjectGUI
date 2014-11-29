@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.0">
-  <zoom_level>15</zoom_level>
+  <zoom_level>12</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
       <x>0</x>
-      <y>0</y>
-      <w>90</w>
-      <h>150</h>
+      <y>168</y>
+      <w>72</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>User</panel_attributes>
     <additional_attributes/>
@@ -15,10 +15,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>30</x>
-      <y>180</y>
-      <w>30</w>
-      <h>360</h>
+      <x>24</x>
+      <y>312</y>
+      <w>24</w>
+      <h>288</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -26,10 +26,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>30</x>
-      <y>120</y>
-      <w>45</w>
-      <h>90</h>
+      <x>24</x>
+      <y>264</y>
+      <w>36</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
@@ -37,10 +37,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>150</x>
-      <y>30</y>
-      <w>225</w>
-      <h>45</h>
+      <x>120</x>
+      <y>192</y>
+      <w>180</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>_refreshButton:JButton_</panel_attributes>
     <additional_attributes/>
@@ -48,10 +48,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>240</x>
-      <y>180</y>
-      <w>30</w>
-      <h>345</h>
+      <x>192</x>
+      <y>312</y>
+      <w>24</w>
+      <h>276</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -59,10 +59,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>60</y>
-      <w>45</w>
-      <h>150</h>
+      <x>192</x>
+      <y>216</y>
+      <w>36</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
@@ -70,10 +70,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>45</x>
-      <y>165</y>
-      <w>225</w>
-      <h>60</h>
+      <x>36</x>
+      <y>300</y>
+      <w>180</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 Clicked</panel_attributes>
@@ -82,21 +82,21 @@ Clicked</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>390</x>
-      <y>30</y>
-      <w>225</w>
-      <h>45</h>
+      <x>312</x>
+      <y>192</y>
+      <w>180</w>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>_:GameViewController_</panel_attributes>
+    <panel_attributes>_:GameListController_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>480</x>
-      <y>210</y>
-      <w>30</w>
-      <h>300</h>
+      <x>384</x>
+      <y>336</y>
+      <w>24</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -104,10 +104,10 @@ Clicked</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>60</y>
-      <w>45</w>
-      <h>180</h>
+      <x>384</x>
+      <y>216</y>
+      <w>36</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
@@ -115,10 +115,10 @@ Clicked</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>255</x>
-      <y>195</y>
-      <w>255</w>
-      <h>60</h>
+      <x>204</x>
+      <y>324</y>
+      <w>204</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 refreshGameList()</panel_attributes>
@@ -127,10 +127,10 @@ refreshGameList()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>645</x>
-      <y>30</y>
-      <w>225</w>
-      <h>45</h>
+      <x>516</x>
+      <y>192</y>
+      <w>180</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>_:ConnectionProxy_</panel_attributes>
     <additional_attributes/>
@@ -138,10 +138,10 @@ refreshGameList()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>735</x>
-      <y>225</y>
-      <w>30</w>
-      <h>60</h>
+      <x>588</x>
+      <y>348</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -149,10 +149,10 @@ refreshGameList()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>735</x>
-      <y>60</y>
-      <w>45</w>
-      <h>195</h>
+      <x>588</x>
+      <y>216</y>
+      <w>36</w>
+      <h>156</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
@@ -160,10 +160,10 @@ refreshGameList()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>495</x>
-      <y>210</y>
-      <w>270</w>
-      <h>60</h>
+      <x>396</x>
+      <y>336</y>
+      <w>216</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 getRoomList()</panel_attributes>
@@ -172,10 +172,10 @@ getRoomList()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>495</x>
-      <y>240</y>
-      <w>270</w>
-      <h>60</h>
+      <x>396</x>
+      <y>360</y>
+      <w>216</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 list</panel_attributes>
@@ -184,10 +184,10 @@ list</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>495</x>
-      <y>390</y>
-      <w>510</w>
-      <h>60</h>
+      <x>396</x>
+      <y>480</y>
+      <w>408</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 refresh()</panel_attributes>
@@ -196,10 +196,10 @@ refresh()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>495</x>
-      <y>420</y>
-      <w>510</w>
-      <h>45</h>
+      <x>396</x>
+      <y>504</y>
+      <w>408</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;320.0;10.0</additional_attributes>
@@ -207,10 +207,10 @@ refresh()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>885</x>
-      <y>30</y>
-      <w>195</w>
-      <h>45</h>
+      <x>708</x>
+      <y>192</y>
+      <w>156</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>_:GameListView_</panel_attributes>
     <additional_attributes/>
@@ -218,10 +218,10 @@ refresh()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>975</x>
-      <y>405</y>
-      <w>30</w>
-      <h>60</h>
+      <x>780</x>
+      <y>492</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
@@ -233,10 +233,10 @@ refresh()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>975</x>
-      <y>60</y>
-      <w>45</w>
-      <h>375</h>
+      <x>780</x>
+      <y>216</y>
+      <w>36</w>
+      <h>300</h>
     </coordinates>
     <panel_attributes>
 lt=.</panel_attributes>
@@ -245,10 +245,10 @@ lt=.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>255</x>
-      <y>480</y>
-      <w>255</w>
-      <h>45</h>
+      <x>204</x>
+      <y>552</y>
+      <w>204</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
@@ -256,10 +256,10 @@ lt=.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>45</x>
-      <y>495</y>
-      <w>225</w>
-      <h>45</h>
+      <x>36</x>
+      <y>564</y>
+      <w>180</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
@@ -267,10 +267,10 @@ lt=.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>495</x>
-      <y>345</y>
-      <w>240</w>
-      <h>75</h>
+      <x>396</x>
+      <y>444</y>
+      <w>192</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 model.roomList = list</panel_attributes>

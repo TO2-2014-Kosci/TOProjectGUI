@@ -13,9 +13,7 @@ public class GameAnimController {
 	}
 	
 	//TODO
-	/*
-	 * public boolean[] getSelectedDice(){
-	 * 
-	 * }
-	 */
+	 public boolean[] getSelectedDice(){
+		return null;
+	 }
 }

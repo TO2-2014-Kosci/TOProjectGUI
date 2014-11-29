@@ -42,7 +42,7 @@
       <w>120</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>_:ListGameController_</panel_attributes>
+    <panel_attributes>_:GameListController_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

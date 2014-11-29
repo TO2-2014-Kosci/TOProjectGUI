@@ -15,9 +15,8 @@ public class GameListView extends View {
 		super(model);
 	}
 	//TODO
-	/*public GameInfo getSelectedGame(){
-		
-		return new GameInfo(new GameSettings(),new GameInfo());
-	}*/
+	public GameInfo getSelectedGame(){
+		return null;
+	}
 
 }

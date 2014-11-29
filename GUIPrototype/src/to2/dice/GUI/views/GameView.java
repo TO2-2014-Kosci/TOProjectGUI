@@ -7,7 +7,9 @@ import to2.dice.GUI.model.Model;
 public class GameView extends View {
 	private GameAnimation gameAnimation;
 	private JButton rerollButton;
-	public GameView(Model model,GameAnimation gameAnimation){
+	private JButton standUpLeaveButton;
+	
+	public GameView(Model model, GameAnimation gameAnimation){
 		super(model);
 		this.gameAnimation = gameAnimation;
 	}

@@ -22,4 +22,9 @@ public class GameController extends Controller implements ServerMessageListener 
 	public void onGameStateChange(GameState gameState){
 		
 	}
+	
+	//TODO
+	private void showEndDialog() {
+		
+	}
 }

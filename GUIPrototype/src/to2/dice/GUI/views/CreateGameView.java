@@ -6,9 +6,11 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 import to2.dice.GUI.model.Model;
+import to2.dice.common.GameSettings;
 
 public class CreateGameView extends View {
 	private JButton createGameButton;
+	private JButton returnButton;
 	private JTextField nameField;
 	//TODO
 	private JComboBox gameTypeComboBox;
@@ -24,9 +26,7 @@ public class CreateGameView extends View {
 		super(model);
 	}
 	//TODO
-	/*
 	public GameSettings getGameSettings(){
-		
+		return null;
 	}
-	*/
 }
