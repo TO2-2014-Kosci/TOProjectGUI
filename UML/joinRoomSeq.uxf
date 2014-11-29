@@ -483,7 +483,7 @@ setController(newController)</panel_attributes>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
-changeServerMessageListener(newController)</panel_attributes>
+setServerMessageListener(newController)</panel_attributes>
     <additional_attributes>10.0;20.0;1210.0;20.0</additional_attributes>
   </element>
   <element>

@@ -7,7 +7,7 @@ public class GameAnimController {
 	private GameAnimation gameAnimation;
 	private Model model;
 	
-	public GameAnimController(GameAnimation gameAnimation,Model model){
+	public GameAnimController(Model model, GameAnimation gameAnimation) {
 		this.gameAnimation = gameAnimation;
 		this.model = model ;
 	}
