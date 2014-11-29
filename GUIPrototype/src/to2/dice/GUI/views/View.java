@@ -6,7 +6,7 @@ import to2.dice.GUI.controllers.Controller;
 import to2.dice.GUI.model.Model;
 
 public abstract class View extends JPanel {
-	private Controller controller;
+	public Controller controller;
 	private Model model;
 	
 	public View(Model model){
@@ -18,5 +18,8 @@ public abstract class View extends JPanel {
 	}
 	public void setController(Controller controller){
 		this.controller = controller;
+	}
+	public Controller getController(){
+		return controller;
 	}
 }

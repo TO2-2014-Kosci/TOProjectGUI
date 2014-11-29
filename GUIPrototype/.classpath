@@ -12,6 +12,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/GUIPrototype/lib/JME/javadoc.zip!/javadoc"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/Interface/Interfaces.jar"/>
+	<classpathentry kind="lib" path="lib/Interface/Interfaces.jar" sourcepath="lib/Interface/Interfaces.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

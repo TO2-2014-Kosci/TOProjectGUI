@@ -10,4 +10,10 @@ public abstract class Controller {
 		this.model=model;
 		this.view=view;
 	}
+	public View getView(){
+		return view;
+	}
+	public Model getModel(){
+		return model;
+	}
 }
