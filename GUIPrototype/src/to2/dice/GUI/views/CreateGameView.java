@@ -50,8 +50,8 @@ public class CreateGameView extends View {
 
 		this.add(new JLabel("Nazwa gry"), "cell 0 1,alignx left");
 		nameField = new JTextField();
+		nameField.setHorizontalAlignment(JTextField.RIGHT);
 		add(nameField, "cell 1 1 2 1,growx");
-		nameField.setColumns(10);
 
 		this.add(new JLabel("Typ gry"), "cell 0 2,alignx left");
 		gameTypeComboBox = new JComboBox<>();
@@ -68,7 +68,7 @@ public class CreateGameView extends View {
 		add(timeForMoveSpinner, "cell 2 4,growx,aligny center");
 		this.add(new JLabel("Czas tury"), "cell 0 4,alignx left");
 
-		maxInactiveTurnsSpinner = new JSpinner();
+		maxInactiveTurnsSpinner = new JSpinner(new SpinnerNumberModel(3, 1, null, 1));
 		((DefaultEditor) maxInactiveTurnsSpinner.getEditor()).getTextField().setEditable(false);
 		add(maxInactiveTurnsSpinner, "cell 2 5,growx,aligny center");
 		this.add(new JLabel("Max. nieaktywnoœci"), "cell 0 5,alignx left");
@@ -133,12 +133,18 @@ public class CreateGameView extends View {
 			i++;
 		}
 		int diceNumber = 5;
+		int maxInactiveTime = 0;
+		if ((int)timeForMoveSpinner.getValue() < 0) {
+			maxInactiveTime = -1;
+		} else {
+			maxInactiveTime = (int)timeForMoveSpinner.getValue();
+		}
 		return new GameSettings(
 				(GameType)gameTypeComboBox.getSelectedItem(), 
 				diceNumber, 
 				nameField.getText(), 
 				(int)maxHumanPlayersSpinner.getValue(), 
-				(int)timeForMoveSpinner.getValue(), 
+				(int)timeForMoveSpinner.getValue(),
 				(int)maxInactiveTurnsSpinner.getValue(), 
 				(int)roundsToWinSpinner.getValue(), 
 				botsNumber);

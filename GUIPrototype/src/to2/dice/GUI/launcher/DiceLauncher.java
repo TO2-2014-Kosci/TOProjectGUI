@@ -73,16 +73,18 @@ public class DiceLauncher {
 			@Override
 			public List<GameInfo> getRoomList() {
 				// TODO Auto-generated method stub
+				System.out.println("Chce listê pokoi");
 				List<GameInfo> list = new ArrayList<>();
-				Map<BotLevel, Integer> botsNumber = new HashMap<>();
-				botsNumber.put(BotLevel.HIGH, r.nextInt() % 15);
-				botsNumber.put(BotLevel.LOW, r.nextInt() % 15);
 				GameState gameState = new GameState();
 				gameState.setGameStarted(false);
 				gameState.setPlayers(new ArrayList<>());
-				int k = ((r.nextInt() % 15) + 5);
+				int k = ((r.nextInt(15)) + 5);
 				for (int i = 0; i < k; i++) {
-					list.add(new GameInfo(new GameSettings(GameType.POKER, 5, "gra" + i, r.nextInt() % 15, r.nextInt() % 15, r.nextInt() % 15, r.nextInt() % 15, botsNumber), gameState));
+					Map<BotLevel, Integer> botsNumber = new HashMap<>();
+					gameState.setGameStarted((r.nextInt() % 2)==0);
+					botsNumber.put(BotLevel.HIGH, r.nextInt(15));
+					botsNumber.put(BotLevel.LOW, r.nextInt(15));
+					list.add(new GameInfo(new GameSettings(GameType.POKER, 5, "gra" + i, r.nextInt(15), r.nextInt(15), r.nextInt(15), r.nextInt(15), botsNumber), gameState));
 				}
 				return list;
 			}
