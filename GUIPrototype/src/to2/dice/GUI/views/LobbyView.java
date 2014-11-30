@@ -29,7 +29,8 @@ public class LobbyView extends View {
 	
 	public LobbyView(Model model, LobbyController controller) {
 		super(model, controller);
-		setLayout(new MigLayout());
+		setLayout(new MigLayout("", "[grow][][]", "[][][][][][][][][][grow][]")
+		);
 		
 		playersTable = new JTable(new AbstractTableModel(){
 
@@ -71,21 +72,7 @@ public class LobbyView extends View {
 		
 		
 		JScrollPane playersScrollTable= new JScrollPane(playersTable);
-		add(playersScrollTable,"push,grow,wrap");
-		JButton leaveButton = new JButton("Opuœæ");
-		leaveButton.addActionListener(new ActionListener() {		
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.clickedLeaveButton();
-			}
-		});
-		add(leaveButton,"w 100!,split 4,gapright push,pushx");	
-		add(new JLabel("Iloœæ graczy:"),"w 100!,gapleft push,pushx");
-		
-		JLabel playersLabel = new JLabel("Gracze:");
-		
-		add(playersLabel,"w 50!,gapright push,pushx");
-
+		add(playersScrollTable,"cell 0 0 1 10, push, grow");
 		JButton sitStandButton = new JButton("Usi¹dŸ");
 		sitStandButton.addActionListener(new ActionListener() {		
 		@Override
@@ -93,9 +80,31 @@ public class LobbyView extends View {
 				controller.clickedSitDownStandUpButton();
 			}
 		});
-		add(sitStandButton,"w 100!,gapleft push,pushx");
+		add(sitStandButton,"cell 1 9 2 1,growx,aligny bottom");
+		
+		
+		add(new JLabel("Typ gry:"), "cell 1 0, right");
+		add(new JLabel("Czas na ruch:"), "cell 1 1, right");
+		add(new JLabel("Cel:"), "cell 1 2, right");
+		add(new JLabel(model.gameSettings.getGameType().toString()), "cell 2 0, right");
+		add(new JLabel(Integer.toString(model.gameSettings.getTimeForMove())), "cell 2 1, right");
+		add(new JLabel(Integer.toString(model.gameSettings.getRoundsToWin())), "cell 2 2, right");
+		playersCountLabel = new JLabel("Iloœæ graczy: " + Integer.toString(model.gameState.getPlayersNumber()) + "/" + Integer.toString(model.gameSettings.getMaxPlayers())); //NULL
+		add(playersCountLabel,"cell 0 10,alignx center");
+
+
 		
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+		
+		
+		leaveButton = new JButton("Opuœæ");
+		leaveButton.addActionListener(new ActionListener() {		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.clickedLeaveButton();
+			}
+		});
+		add(leaveButton,"cell 1 10 2 1,grow");	
 	}
 
 }

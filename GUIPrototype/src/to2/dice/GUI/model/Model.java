@@ -19,7 +19,7 @@ public class Model {
 	public GameSettings gameSettings = null;
 	public boolean sitting = false;
 	public boolean[] selectedDice = new boolean[numberOfDice];
-	public GameState gameState;
+	public GameState gameState = new GameState();
 	
 	public Model(ConnectionProxy cp, ServerMessageContainer smc, DiceApplication da) {
 		this.connectionProxy = cp;

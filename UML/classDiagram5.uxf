@@ -104,6 +104,7 @@
 -sitDownStandUpButton: JButton
 -leaveButton: JButton
 -playersCountLabel: JLabel
+-playersTable: JTable
 --</panel_attributes>
     <additional_attributes/>
   </element>
@@ -727,6 +728,7 @@ ServerMessageListener
 //dla przycisku
 +sitting: boolean
 +selectedDice: boolean[]
++gameState: GameState
 --
 +Model(String login, ConnectionProxy connectionProxy, ServerMessageContainer serverMessageContainer, DiceApplicatiion diceApplication)
 </panel_attributes>

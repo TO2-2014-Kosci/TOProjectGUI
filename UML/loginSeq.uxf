@@ -75,7 +75,7 @@
       <x>18</x>
       <y>108</y>
       <w>18</w>
-      <h>828</h>
+      <h>963</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -153,7 +153,7 @@ Entered login</panel_attributes>
       <x>297</x>
       <y>180</y>
       <w>18</w>
-      <h>720</h>
+      <h>864</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -176,7 +176,7 @@ Pressed</panel_attributes>
       <x>450</x>
       <y>189</y>
       <w>18</w>
-      <h>702</h>
+      <h>837</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -391,7 +391,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>306</x>
-      <y>873</y>
+      <y>1008</y>
       <w>162</w>
       <h>27</h>
     </coordinates>
@@ -505,7 +505,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>27</x>
-      <y>882</y>
+      <y>1026</y>
       <w>288</w>
       <h>27</h>
     </coordinates>
