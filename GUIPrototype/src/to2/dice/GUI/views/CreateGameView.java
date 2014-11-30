@@ -5,6 +5,7 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
+import to2.dice.GUI.controllers.CreateGameController;
 import to2.dice.GUI.model.Model;
 import to2.dice.game.GameSettings;
 
@@ -22,8 +23,8 @@ public class CreateGameView extends View {
 	
 	
 	
-	public CreateGameView(Model model) {
-		super(model);
+	public CreateGameView(Model model, CreateGameController controller) {
+		super(model, controller);
 	}
 	//TODO
 	public GameSettings getGameSettings(){

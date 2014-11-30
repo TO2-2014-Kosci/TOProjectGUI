@@ -5,13 +5,12 @@ import javax.swing.JOptionPane;
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameListView;
 import to2.dice.GUI.views.LoginView;
-import to2.dice.GUI.views.View;
 import to2.dice.messaging.Response;
 
 public class LoginController extends Controller {
 
-	public LoginController(Model mode, View view) {
-		super(mode, view);
+	public LoginController(Model model) {
+		super(model);
 	}
 	//TODO
 	public void clickedLoginButton(){
@@ -21,12 +20,13 @@ public class LoginController extends Controller {
 			try{
 				Response response = model.getConnectionProxy().login(login);
 				if(response.isSuccess()){
-					
 					//TODO setter
 					model.login = login;
 					
-					GameListView newView = new GameListView(model);
-					newView.setController(new GameListController(model, newView));
+					GameListController newController = new GameListController(model);
+					GameListView newView = new GameListView(model, newController);
+					newController.setView(newView);
+					model.diceApplication.setView(newView);
 				}
 				else{
 					lv.eraseLogin();

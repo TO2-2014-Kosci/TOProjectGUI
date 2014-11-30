@@ -233,11 +233,11 @@ String text</panel_attributes>
     <coordinates>
       <x>459</x>
       <y>270</y>
-      <w>108</w>
+      <w>126</w>
       <h>54</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
-Validate</panel_attributes>
+isProper(login)</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;10.0;80.0;40.0;10.0;40.0</additional_attributes>
   </element>
   <element>

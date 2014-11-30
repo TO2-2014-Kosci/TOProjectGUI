@@ -7,13 +7,16 @@ public class GameAnimController {
 	private GameAnimation gameAnimation;
 	private Model model;
 	
-	public GameAnimController(Model model, GameAnimation gameAnimation) {
-		this.gameAnimation = gameAnimation;
+	public GameAnimController(Model model) {
 		this.model = model ;
 	}
 	
 	//TODO
 	 public boolean[] getSelectedDice(){
 		return null;
+	 }
+	 
+	 public void setGameAnimation(GameAnimation gameAnimation) {
+		 this.gameAnimation = gameAnimation;
 	 }
 }

@@ -7,8 +7,12 @@ public abstract class Controller {
 	protected Model model;
 	protected View view;
 	
-	public Controller(Model model,View view){
+	public Controller(Model model){
 		this.model=model;
-		this.view=view;
+	}
+	
+	public void setView(View view) {
+		this.view = view;
+		
 	}
 }

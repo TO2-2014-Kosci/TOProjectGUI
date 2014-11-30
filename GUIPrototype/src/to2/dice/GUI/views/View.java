@@ -9,14 +9,12 @@ public abstract class View extends JPanel {
 	protected Controller controller;
 	protected Model model;
 	
-	public View(Model model){
+	public View(Model model, Controller controller){
 		this.model = model;
+		this.controller = controller;
 	}
 	//TODO
 	public void refresh(){
 		
-	}
-	public void setController(Controller controller){
-		this.controller = controller;
 	}
 }

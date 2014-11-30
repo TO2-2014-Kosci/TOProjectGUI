@@ -14,9 +14,8 @@
 #model: Model
 #controller: Controller
 --
-+View(Model model)
++View(Model model, Controller controller)
 +refresh(): void
-+setController(Controller controller): void
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -26,7 +25,7 @@
       <x>0</x>
       <y>749</y>
       <w>133</w>
-      <h>63</h>
+      <h>77</h>
     </coordinates>
     <panel_attributes>LoginView
 --
@@ -34,6 +33,7 @@
 -loginField: JTextField
 --
 +getLogin(): String
++eraseLogin(): void
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -121,7 +121,7 @@
 -rerollButton: JButton
 -standUpLeaveButton: JButton
 --
-+GameView(Model model, GameAnimation gameAnimation)
++GameView(Model model, Controller controller, GameAnimation gameAnimation)
 
 </panel_attributes>
     <additional_attributes/>
@@ -139,7 +139,8 @@
 #model: Model
 #View: view
 --
-+Controller(Model model, View view)</panel_attributes>
++Controller(Model model): void
++setView(View view): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -154,6 +155,7 @@
 --
 --
 +clickedLoginButton(): void
+-isProper(login): boolean
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -755,8 +757,7 @@ ServerMessageListener
 --
 -gameAnimController: GameAnimController
 --
-+GameAnimation()
-+setController(GameAnimController gameAnimController): void
++GameAnimation(GameAnimController gameAnimController)
 +getCanvas(): Canvas
 </panel_attributes>
     <additional_attributes/>
@@ -774,7 +775,8 @@ ServerMessageListener
 -gameAnimation: GameAnimation
 -model: Model
 --
-+GameAnimController(Model model, GameAnimation gameAnimation)
++GameAnimController(Model model)
++setGameAnimation(GameAnimation gameAnimation): void
 +getSelectedDice(): boolean[]
 </panel_attributes>
     <additional_attributes/>

@@ -10,10 +10,7 @@ import to2.dice.GUI.controllers.GameAnimController;
 public class GameAnimation extends SimpleApplication{
 	private GameAnimController gameAnimController;
 	
-	public GameAnimation() {
-	}
-	
-	public void setController(GameAnimController gameAnimController) {
+	public GameAnimation(GameAnimController gameAnimController) {
 		this.gameAnimController = gameAnimController;
 	}
 

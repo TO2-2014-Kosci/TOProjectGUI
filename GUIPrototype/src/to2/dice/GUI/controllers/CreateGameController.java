@@ -5,8 +5,8 @@ import to2.dice.GUI.views.View;
 
 public class CreateGameController extends Controller {
 
-	public CreateGameController(Model model, View view) {
-		super(model, view);
+	public CreateGameController(Model model) {
+		super(model);
 	}
 	//TODO
 	public void clickedCreateGameButton(){

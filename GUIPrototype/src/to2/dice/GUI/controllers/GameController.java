@@ -9,8 +9,9 @@ import to2.dice.server.ServerMessageListener;
 public class GameController extends Controller implements ServerMessageListener {
 	private GameAnimController gameAnimController;
 
-	public GameController(Model mode, View view) {
-		super(mode, view);
+	public GameController(Model model, GameAnimController gameAnimController) {
+		super(model);
+		this.gameAnimController = gameAnimController;
 	}
 
 	//TODO
