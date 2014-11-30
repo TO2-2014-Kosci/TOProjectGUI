@@ -3,6 +3,8 @@ package to2.dice.GUI.views;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -19,6 +21,7 @@ import javax.swing.event.ChangeListener;
 import net.miginfocom.swing.MigLayout;
 import to2.dice.GUI.controllers.CreateGameController;
 import to2.dice.GUI.model.Model;
+import to2.dice.game.BotLevel;
 import to2.dice.game.GameSettings;
 import to2.dice.game.GameType;
 
@@ -30,119 +33,120 @@ public class CreateGameView extends View {
 	private JButton createGameButton;
 	private JButton returnButton;
 	private JTextField nameField;
-	//TODO
-	private JComboBox gameTypeComboBox;
+	private JComboBox<GameType> gameTypeComboBox;
 	private JSpinner maxHumanPlayersSpinner;
 	private JSpinner timeForMoveSpinner;
 	private JSpinner maxInactiveTurnsSpinner;
 	private JSpinner roundsToWinSpinner;
 	private JSpinner[] botsNumberSpinner;
-	
-	private static final int DEFAULT_WIDTH = 300;
-	private static final int DEFAULT_HEIGHT= 300;
 
-	
+	private static final int DEFAULT_WIDTH = 400;
+	private static final int DEFAULT_HEIGHT = 310;
+
 	public CreateGameView(Model model, CreateGameController controller) {
 		super(model, controller);
-		this.setLayout(new MigLayout("", "[grow][100:100:250]", ""));
-		this.add(new JLabel("Tworzenie gry"), "cell 0 0 2 1,alignx center");
-		
-		this.add(new JLabel("Typ gry"), "cell 0 1,alignx left");	
-		gameTypeComboBox = new JComboBox();
-		gameTypeComboBox.setModel(new DefaultComboBoxModel(GameType.values()));
-		add(gameTypeComboBox, "cell 1 1,growx");
-		
-		this.add(new JLabel("Iloœæ ¿ywych graczy"), "cell 0 2, left");			
-		maxHumanPlayersSpinner = new JSpinner(new SpinnerNumberModel(1,0,null,1));
-		((DefaultEditor) maxHumanPlayersSpinner.getEditor()).getTextField().setEditable(false);
-		add(maxHumanPlayersSpinner, "cell 1 2,growx,aligny center");
-		
-		this.add(new JLabel("Iloœæ s³abych botów"), "cell 0 3, left");		
-		JSpinner spinner_2 = new JSpinner(new SpinnerNumberModel(0,0,null,1));
-		((DefaultEditor) spinner_2.getEditor()).getTextField().setEditable(false);
-		add(spinner_2, "cell 1 3,growx,aligny center");
-		
-		this.add(new JLabel("Iloœæ silnych botów"), "cell 0 4, left");		
-		JSpinner spinner_1 = new JSpinner(new SpinnerNumberModel(0,0,null,1));
-		((DefaultEditor) spinner_1.getEditor()).getTextField().setEditable(false);
-		add(spinner_1, "cell 1 4,growx,aligny center");
-		
-		this.add(new JLabel("Iloœæ wygranych rund"), "cell 0 5, left");		
-		JSpinner spinner = new JSpinner(new SpinnerNumberModel(3,1,null,1));
-		((DefaultEditor) spinner.getEditor()).getTextField().setEditable(false);
-		add(spinner, "cell 1 5,growx,aligny center");
-		
-		//init value, minimum,maximum,step
-		JSpinner spinner_4 = new JSpinner(new SpinnerNumberModel(30,1,null,1));
-		((DefaultEditor) spinner_4.getEditor()).getTextField().setEditable(false);
-		add(spinner_4, "cell 1 6,growx,aligny center");
-		this.add(new JLabel("Czas tury"), "cell 0 6, left");	
-				
-		JSpinner spinner_5 = new JSpinner();
-		((DefaultEditor) spinner_5.getEditor()).getTextField().setEditable(false);
-		add(spinner_5, "cell 1 7,growx,aligny center");
-		this.add(new JLabel("Max. nieaktywnoœci"), "cell 0 7, left");
-		
+		this.setLayout(new MigLayout("", "[][grow][100:100:250]", "[][][][][][][][][][][][]"));
+		this.add(new JLabel("Tworzenie gry"), "cell 0 0 3 1,alignx center");
+
+		this.add(new JLabel("Nazwa gry"), "cell 0 1,alignx left");
+		nameField = new JTextField();
+		add(nameField, "cell 1 1 2 1,growx");
+		nameField.setColumns(10);
+
+		this.add(new JLabel("Typ gry"), "cell 0 2,alignx left");
+		gameTypeComboBox = new JComboBox<>();
+		gameTypeComboBox.setModel(new DefaultComboBoxModel<>(GameType.values()));
+		add(gameTypeComboBox, "cell 2 2,growx");
+
+		this.add(new JLabel("Iloœæ wygranych rund"), "cell 0 3,alignx left");
+		roundsToWinSpinner = new JSpinner(new SpinnerNumberModel(3, 1, null, 1));
+		((DefaultEditor) roundsToWinSpinner.getEditor()).getTextField().setEditable(false);
+		add(roundsToWinSpinner, "cell 2 3,growx,aligny center");
+
+		timeForMoveSpinner = new JSpinner(new SpinnerNumberModel(30, 1, null, 1));
+		((DefaultEditor) timeForMoveSpinner.getEditor()).getTextField().setEditable(false);
+		add(timeForMoveSpinner, "cell 2 4,growx,aligny center");
+		this.add(new JLabel("Czas tury"), "cell 0 4,alignx left");
+
+		maxInactiveTurnsSpinner = new JSpinner();
+		((DefaultEditor) maxInactiveTurnsSpinner.getEditor()).getTextField().setEditable(false);
+		add(maxInactiveTurnsSpinner, "cell 2 5,growx,aligny center");
+		this.add(new JLabel("Max. nieaktywnoœci"), "cell 0 5,alignx left");
 		JCheckBox ActivityRestrictionBox = new JCheckBox("");
-		add(ActivityRestrictionBox, "cell 1 7,alignx center,aligny center");
+		add(ActivityRestrictionBox, "cell 2 5,alignx center,aligny center");
 		ActivityRestrictionBox.setSelected(true);
-		ActivityRestrictionBox.addChangeListener(new ChangeListener(){
+		ActivityRestrictionBox.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				if(ActivityRestrictionBox.isSelected()){
-					spinner_5.setEnabled(true);
+				if (ActivityRestrictionBox.isSelected()) {
+					maxInactiveTurnsSpinner.setEnabled(true);
+				} else {
+					maxInactiveTurnsSpinner.setEnabled(false);
 				}
-				else{
-					spinner_5.setEnabled(false);
-				}
-				
 			}
-			
-			
 		});
-		
-		
-		
+
+		this.add(new JLabel("Iloœæ ¿ywych graczy"), "cell 0 6,alignx left");
+		maxHumanPlayersSpinner = new JSpinner(new SpinnerNumberModel(1, 0, null, 1));
+		((DefaultEditor) maxHumanPlayersSpinner.getEditor()).getTextField().setEditable(false);
+		add(maxHumanPlayersSpinner, "cell 2 6,growx,aligny center");
+
+		this.add(new JLabel("Liczba botów"), "cell 0 7 3 1,alignx center");
+		int i = 0;
+		botsNumberSpinner = new JSpinner[BotLevel.values().length];
+		for (BotLevel level: BotLevel.values()) {
+			this.add(new JLabel(level.toString()), "cell 0 "+ (i + 8) +",alignx left");
+			botsNumberSpinner[i] = new JSpinner(new SpinnerNumberModel(0, 0, null, 1));
+			((DefaultEditor) botsNumberSpinner[i].getEditor()).getTextField().setEditable(false);
+			add(botsNumberSpinner[i], "cell 2 " + (i + 8) + ",growx,aligny center");
+			i++;
+		}
+
 		JButton create = new JButton("Stwórz grê");
 		create.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RoomView roomView = new RoomView(mainFrame);
-				mainFrame.setContentPane(roomView);
-				mainFrame.setMinimumSize(roomView.getMinimumSize());
-				mainFrame.setLocationRelativeTo(null);
-				roomView.revalidate();
+				controller.clickedCreateGameButton();
 			}
 		});
-		this.add(create, "cell 1 10, left, w 100!");
 		JButton back = new JButton("WyjdŸ");
 		back.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GameList gameList = new GameList(mainFrame);
-				mainFrame.setContentPane(gameList);
-				mainFrame.setMinimumSize(gameList.getMinimumSize());
-				mainFrame.setLocationRelativeTo(null);
-				mainFrame.revalidate();
+				// controller.clickedReturnButton();
 			}
 		});
-		this.add(back, "cell 0 10, right, w 100!");
-		
-		
-		
+		this.add(back, "newline push, skip 1, width 100!,alignx right");
+		this.add(create, "width 100!,alignx left");
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-		
-		
+
 	}
-	//TODO
-	public GameSettings getGameSettings(){
-		return null;
+
+	// TODO
+	public GameSettings getGameSettings() {
+		Map<BotLevel, Integer> botsNumber = new HashMap<BotLevel, Integer>();
+		int i = 0;
+		for (BotLevel level: BotLevel.values()) {
+			botsNumber.put(level, (int)botsNumberSpinner[i].getValue());
+			i++;
+		}
+		int diceNumber = 5;
+		return new GameSettings(
+				(GameType)gameTypeComboBox.getSelectedItem(), 
+				diceNumber, 
+				nameField.getText(), 
+				(int)maxHumanPlayersSpinner.getValue(), 
+				(int)timeForMoveSpinner.getValue(), 
+				(int)maxInactiveTurnsSpinner.getValue(), 
+				(int)roundsToWinSpinner.getValue(), 
+				botsNumber);
 	}
+
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
