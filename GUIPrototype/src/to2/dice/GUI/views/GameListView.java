@@ -156,7 +156,12 @@ public class GameListView extends View {
 	//starting from 0 or 1?
 	public GameInfo getSelectedGame(){		
 		int rowNumber = gameListTable.getSelectedRow();
-		return model.roomList.get(rowNumber);
+		if(rowNumber==-1){
+			return null;
+		}
+		else{
+			return model.roomList.get(rowNumber);
+		}
 	}
 
 }
