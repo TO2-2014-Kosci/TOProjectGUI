@@ -26,6 +26,7 @@ public class CreateGameController extends Controller {
 				LobbyView newView = new LobbyView(model, newController);
 				newController.setView(newView);
 				model.diceApplication.setView(newView);
+				model.sitting = false;
 			}
 			else{
 				view.showErrorDialog("Nie uda³o siê utworzyæ gry", "B³¹d tworzenia gry", false);

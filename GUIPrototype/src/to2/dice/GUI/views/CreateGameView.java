@@ -115,7 +115,7 @@ public class CreateGameView extends View {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// controller.clickedReturnButton();
+				controller.clickedReturnButton();
 			}
 		});
 		this.add(back, "newline push, skip 1, width 100!,alignx right");
