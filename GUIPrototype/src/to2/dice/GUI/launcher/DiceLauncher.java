@@ -36,7 +36,6 @@ public class DiceLauncher {
 			
 			@Override
 			public Response sitDown(String login) {
-				// TODO Auto-generated method stub
 				return new Response(Response.Type.SUCCESS);
 			}
 			

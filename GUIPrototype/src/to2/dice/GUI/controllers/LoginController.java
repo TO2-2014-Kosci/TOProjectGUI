@@ -34,6 +34,7 @@ public class LoginController extends Controller {
 				}
 			}
 			catch(Exception e){
+				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 				//TODO Handling with connection error
 			}

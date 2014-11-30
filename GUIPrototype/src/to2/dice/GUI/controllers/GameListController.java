@@ -23,7 +23,9 @@ public class GameListController extends Controller {
 			view.refresh();
 		}
 		catch(Exception e){
+			e.printStackTrace();
 			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
+			
 		}
 	}
 	
@@ -67,6 +69,7 @@ public class GameListController extends Controller {
 				}
 			}
 			catch(Exception e){
+				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
 		}

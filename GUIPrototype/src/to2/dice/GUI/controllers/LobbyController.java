@@ -29,6 +29,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 			}
 		}
 		catch(Exception e){
+			e.printStackTrace();
 			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 		}
 
@@ -48,6 +49,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 				}
 			}
 			catch(Exception e){
+				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
 		}
@@ -63,6 +65,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 				}
 			}
 			catch(Exception e){
+				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
 		}

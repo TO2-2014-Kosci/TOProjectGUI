@@ -74,14 +74,14 @@ public class LobbyView extends View {
 		
 		JScrollPane playersScrollTable= new JScrollPane(playersTable);
 		add(playersScrollTable,"cell 0 0 1 10, push, grow");
-		JButton sitStandButton = new JButton("Usiπdü");
-		sitStandButton.addActionListener(new ActionListener() {		
+		sitDownStandUpButton = new JButton("Usiπdü");
+		sitDownStandUpButton.addActionListener(new ActionListener() {		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 				controller.clickedSitDownStandUpButton();
 			}
 		});
-		add(sitStandButton,"cell 1 9 2 1,growx,aligny bottom");
+		add(sitDownStandUpButton,"cell 1 9 2 1,growx,aligny bottom");
 		
 		
 		add(new JLabel("Typ gry:"), "cell 1 0, right");
