@@ -21,8 +21,7 @@ public class LoginController extends Controller {
 				Response response = model.getConnectionProxy().login(login);
 				if(response.isSuccess()){
 					//TODO setter
-					model.login = login;
-					
+					model.login = login;					
 					GameListController newController = new GameListController(model);
 					GameListView newView = new GameListView(model, newController);
 					newController.setView(newView);
@@ -41,6 +40,7 @@ public class LoginController extends Controller {
 		else{
 			lv.eraseLogin();
 			JOptionPane.showMessageDialog(null,"Nick niepoprawny","B³¹d nicku",JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
 		}
 	}
 	private boolean isProper(String login){
