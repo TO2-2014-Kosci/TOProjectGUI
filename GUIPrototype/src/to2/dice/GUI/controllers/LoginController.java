@@ -29,18 +29,17 @@ public class LoginController extends Controller {
 				}
 				else{
 					lv.eraseLogin();
-					JOptionPane.showMessageDialog(null,"Nick zajêty lub niepoprawny","B³¹d nicku",JOptionPane.ERROR_MESSAGE);
+					view.showErrorDialog("Nick zajêty lub niepoprawny", "B³¹d nicku", false);
 				}
 			}
 			catch(Exception e){
-				JOptionPane.showMessageDialog(null,"Brak odpowiedzi serwera","B³¹d logowania",JOptionPane.ERROR_MESSAGE);
+				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 				//TODO Handling with connection error
 			}
 		}
 		else{
 			lv.eraseLogin();
-			JOptionPane.showMessageDialog(null,"Nick niepoprawny","B³¹d nicku",JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
+			view.showErrorDialog("Nick zajêty lub niepoprawny", "B³¹d nicku", false);
 		}
 	}
 	private boolean isProper(String login){

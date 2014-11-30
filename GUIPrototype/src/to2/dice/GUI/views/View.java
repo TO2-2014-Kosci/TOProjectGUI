@@ -1,5 +1,6 @@
 package to2.dice.GUI.views;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import to2.dice.GUI.controllers.Controller;
@@ -13,8 +14,12 @@ public abstract class View extends JPanel {
 		this.model = model;
 		this.controller = controller;
 	}
-	//TODO
-	public void refresh(){
-		
+	public void refresh(){};
+
+	public void showErrorDialog(String message,String title,Boolean closeApp){
+		JOptionPane.showMessageDialog(null,message,title,JOptionPane.ERROR_MESSAGE);
+		if(closeApp){
+			System.exit(0);
+		}
 	}
 }

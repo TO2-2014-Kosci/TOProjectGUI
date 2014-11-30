@@ -19,6 +19,7 @@ import to2.dice.GUI.controllers.Controller;
 import to2.dice.GUI.controllers.GameListController;
 import to2.dice.GUI.model.Model;
 import to2.dice.game.GameInfo;
+import to2.dice.game.GameSettings;
 
 public class GameListView extends View {
 	private JButton refreshButton;
@@ -95,6 +96,7 @@ public class GameListView extends View {
 		//TODO Is it supposed to be right aligned?:>
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer)gameListTable.getDefaultRenderer(Object.class);
 		renderer.setHorizontalAlignment(JLabel.CENTER);
+		//renderer.setHorizontalTextPosition(JLabel.CENTER);
         //gamesTable.setPreferredScrollableViewportSize(new Dimension(500,300));
 		
 		setLayout(new BorderLayout());
@@ -132,13 +134,13 @@ public class GameListView extends View {
 		});
 		buttonPanel.add(refreshButton, "cell 0 3,width 100!");
 		setMinimumSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
-	}		
+	}
+	
 	//TODO Controller or view method?
 	//starting from 0 or 1?
-	public GameInfo getSelectedGame(){
-		
+	public GameSettings getSelectedGame(){		
 		int rowNumber = gameListTable.getSelectedRow();
-		return model.roomList.get(rowNumber);
+		return model.roomList.get(rowNumber).getSettings();
 	}
 
 }
