@@ -10,6 +10,10 @@ import to2.dice.GUI.model.Model;
 import to2.dice.game.GameSettings;
 
 public class CreateGameView extends View {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6601683176423998974L;
 	private JButton createGameButton;
 	private JButton returnButton;
 	private JTextField nameField;
@@ -29,5 +33,10 @@ public class CreateGameView extends View {
 	//TODO
 	public GameSettings getGameSettings(){
 		return null;
+	}
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
 	}
 }

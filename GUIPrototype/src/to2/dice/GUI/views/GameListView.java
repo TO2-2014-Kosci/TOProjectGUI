@@ -23,6 +23,7 @@ import to2.dice.game.GameInfo;
 import to2.dice.game.GameSettings;
 
 public class GameListView extends View {
+	private static final long serialVersionUID = 1571599297606706487L;
 	private JButton refreshButton;
 	private JButton createGameButton;
 	private JButton joinGameButton;
@@ -162,6 +163,12 @@ public class GameListView extends View {
 		else{
 			return model.roomList.get(rowNumber);
 		}
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

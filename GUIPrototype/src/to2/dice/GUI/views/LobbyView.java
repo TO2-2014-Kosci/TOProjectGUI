@@ -17,6 +17,7 @@ import to2.dice.GUI.controllers.LobbyController;
 import to2.dice.GUI.model.Model;
 
 public class LobbyView extends View {
+	private static final long serialVersionUID = -3735508074042553963L;
 	private JButton sitDownStandUpButton;
 	private JButton leaveButton;
 	private JLabel playersCountLabel;
@@ -89,7 +90,7 @@ public class LobbyView extends View {
 		add(new JLabel(model.gameSettings.getGameType().toString()), "cell 2 0, right");
 		add(new JLabel(Integer.toString(model.gameSettings.getTimeForMove())), "cell 2 1, right");
 		add(new JLabel(Integer.toString(model.gameSettings.getRoundsToWin())), "cell 2 2, right");
-		playersCountLabel = new JLabel("Iloœæ graczy: " + Integer.toString(model.gameState.getPlayersNumber()) + "/" + Integer.toString(model.gameSettings.getMaxPlayers())); //NULL
+		playersCountLabel = new JLabel("Iloœæ graczy: " + Integer.toString(model.gameState.getPlayersNumber()) + "/" + Integer.toString(model.gameSettings.getMaxPlayers()));
 		add(playersCountLabel,"cell 0 10,alignx center");
 
 
@@ -105,6 +106,17 @@ public class LobbyView extends View {
 			}
 		});
 		add(leaveButton,"cell 1 10 2 1,grow");	
+	}
+
+	@Override
+	public void refresh() {
+		playersTable.repaint();
+		if (model.sitting) {
+			sitDownStandUpButton.setText("Wstañ");
+		} else {
+			sitDownStandUpButton.setText("Usi¹dŸ");
+		}
+		playersCountLabel.setText("Iloœæ graczy: " + Integer.toString(model.gameState.getPlayersNumber()) + "/" + Integer.toString(model.gameSettings.getMaxPlayers()));
 	}
 
 }

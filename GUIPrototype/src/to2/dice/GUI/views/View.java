@@ -14,7 +14,7 @@ public abstract class View extends JPanel {
 		this.model = model;
 		this.controller = controller;
 	}
-	public void refresh(){};
+	public abstract void refresh();
 
 	public void showErrorDialog(String message,String title,Boolean closeApp){
 		JOptionPane.showMessageDialog(null,message,title,JOptionPane.ERROR_MESSAGE);

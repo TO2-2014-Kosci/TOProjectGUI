@@ -51,4 +51,10 @@ public class LoginView extends View {
 	public void eraseLogin(){
 		loginField.setText("");
 	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
 }
