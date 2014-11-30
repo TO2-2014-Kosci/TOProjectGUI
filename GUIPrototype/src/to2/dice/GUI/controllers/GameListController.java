@@ -12,7 +12,14 @@ public class GameListController extends Controller {
 
 	//TODO
 	public void refreshGameList(){
-		
+		try{
+			model.roomList = model.getConnectionProxy().getRoomList();
+			model.diceApplication.refresh();
+			//or maybe only refresh gamelist?:>
+		}
+		catch(Exception e){
+			//TODO error with connection
+		}
 	}
 	
 	//TODO Needs to be checked
