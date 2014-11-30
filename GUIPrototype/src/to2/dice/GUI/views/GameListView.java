@@ -37,11 +37,6 @@ public class GameListView extends View {
 		"Rozpoczêta"
 		};
 	
-	//TODO change model
-	Object[][] rowData={
-			{"Gra 1", "Poker", 3 , 4, 10, true},
-	};
-	
 	private static final int DEFAULT_WIDTH = 500;
 	private static final int DEFAULT_HEIGHT= 500;
 	
@@ -86,8 +81,7 @@ public class GameListView extends View {
 						return new Object();
 						
 				}
-			}
-			
+			}		
 		    public boolean isCellEditable(int row, int col) {
 		    	return false;
 		    }

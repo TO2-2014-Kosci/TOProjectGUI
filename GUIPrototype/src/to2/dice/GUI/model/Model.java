@@ -5,6 +5,7 @@ import java.util.List;
 
 import to2.dice.game.GameInfo;
 import to2.dice.game.GameSettings;
+import to2.dice.game.GameState;
 import to2.dice.server.ConnectionProxy;
 
 public class Model {
@@ -18,6 +19,7 @@ public class Model {
 	public GameSettings gameSettings = null;
 	public boolean sitting = false;
 	public boolean[] selectedDice = new boolean[numberOfDice];
+	public GameState gameState;
 	
 	public Model(ConnectionProxy cp, ServerMessageContainer smc, DiceApplication da) {
 		this.connectionProxy = cp;

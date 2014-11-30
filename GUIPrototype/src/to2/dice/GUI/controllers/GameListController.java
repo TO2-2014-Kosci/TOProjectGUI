@@ -67,9 +67,6 @@ public class GameListController extends Controller {
 		}
 		catch(Exception e){
 			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
-		}
-		
-		
-		
+		}		
 	}
 }
