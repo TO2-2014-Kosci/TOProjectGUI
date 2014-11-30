@@ -4,7 +4,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>32</x>
+      <x>64</x>
       <y>184</y>
       <w>16</w>
       <h>304</h>
@@ -15,7 +15,7 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>16</x>
+      <x>48</x>
       <y>88</y>
       <w>48</w>
       <h>80</h>
@@ -26,7 +26,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>32</x>
+      <x>64</x>
       <y>120</y>
       <w>24</w>
       <h>80</h>
@@ -37,7 +37,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>248</x>
+      <x>280</x>
       <y>104</y>
       <w>120</w>
       <h>24</h>
@@ -48,7 +48,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>72</x>
+      <x>104</x>
       <y>104</y>
       <w>144</w>
       <h>24</h>
@@ -59,7 +59,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>136</x>
+      <x>168</x>
       <y>184</y>
       <w>16</w>
       <h>288</h>
@@ -70,7 +70,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>136</x>
+      <x>168</x>
       <y>120</y>
       <w>24</w>
       <h>80</h>
@@ -81,7 +81,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>40</x>
+      <x>72</x>
       <y>176</y>
       <w>112</w>
       <h>32</h>
@@ -93,7 +93,7 @@ Clicked</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>128</x>
+      <x>160</x>
       <y>184</y>
       <w>184</w>
       <h>32</h>
@@ -105,7 +105,7 @@ clickedCreateGameButton()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>296</x>
+      <x>328</x>
       <y>120</y>
       <w>24</w>
       <h>88</h>
@@ -116,7 +116,7 @@ clickedCreateGameButton()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>296</x>
+      <x>328</x>
       <y>192</y>
       <w>16</w>
       <h>264</h>
@@ -127,7 +127,7 @@ clickedCreateGameButton()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>144</x>
+      <x>176</x>
       <y>440</y>
       <w>168</w>
       <h>24</h>
@@ -138,7 +138,7 @@ clickedCreateGameButton()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>40</x>
+      <x>72</x>
       <y>448</y>
       <w>112</w>
       <h>24</h>
@@ -149,19 +149,8 @@ clickedCreateGameButton()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>424</x>
+      <x>456</x>
       <y>224</y>
-      <w>136</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>_newView:GameListView_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>552</x>
-      <y>264</y>
       <w>184</w>
       <h>24</h>
     </coordinates>
@@ -169,9 +158,20 @@ clickedCreateGameButton()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>584</x>
+      <y>264</y>
+      <w>184</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>_newView:GameListView_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
+      <x>336</x>
       <y>328</y>
       <w>464</w>
       <h>32</h>
@@ -183,7 +183,7 @@ setView(newView)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
+      <x>336</x>
       <y>392</y>
       <w>464</w>
       <h>24</h>
@@ -194,7 +194,7 @@ setView(newView)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
+      <x>336</x>
       <y>256</y>
       <w>264</w>
       <h>32</h>
@@ -206,7 +206,7 @@ setView(newView)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>488</x>
+      <x>520</x>
       <y>240</y>
       <w>24</w>
       <h>64</h>
@@ -217,7 +217,7 @@ setView(newView)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>488</x>
+      <x>520</x>
       <y>288</y>
       <w>16</w>
       <h>32</h>
@@ -228,19 +228,19 @@ setView(newView)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
+      <x>336</x>
       <y>280</y>
       <w>200</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-setController(newController)</panel_attributes>
+setView(newView)</panel_attributes>
     <additional_attributes>230.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
+      <x>336</x>
       <y>304</y>
       <w>200</w>
       <h>24</h>
@@ -251,7 +251,7 @@ setController(newController)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>488</x>
+      <x>520</x>
       <y>368</y>
       <w>16</w>
       <h>24</h>
@@ -262,7 +262,7 @@ setController(newController)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>488</x>
+      <x>520</x>
       <y>312</y>
       <w>24</w>
       <h>72</h>
@@ -273,7 +273,7 @@ setController(newController)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>496</x>
+      <x>528</x>
       <y>360</y>
       <w>272</w>
       <h>32</h>
@@ -285,7 +285,7 @@ refresh()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>496</x>
+      <x>528</x>
       <y>368</y>
       <w>272</w>
       <h>32</h>
@@ -297,7 +297,7 @@ refresh()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
+      <x>336</x>
       <y>216</y>
       <w>136</w>
       <h>32</h>
@@ -309,7 +309,7 @@ refresh()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>696</x>
+      <x>728</x>
       <y>104</y>
       <w>128</w>
       <h>24</h>
@@ -320,7 +320,7 @@ refresh()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>752</x>
+      <x>784</x>
       <y>120</y>
       <w>24</w>
       <h>224</h>
@@ -331,7 +331,7 @@ refresh()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>752</x>
+      <x>784</x>
       <y>328</y>
       <w>16</w>
       <h>80</h>
@@ -342,7 +342,7 @@ refresh()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
+      <x>792</x>
       <y>344</y>
       <w>120</w>
       <h>40</h>

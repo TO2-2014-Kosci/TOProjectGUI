@@ -178,7 +178,7 @@ model.gameState = gameState</panel_attributes>
       <w>168</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>_newController:GameController_</panel_attributes>
+    <panel_attributes>_newView:GameView_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -186,10 +186,10 @@ model.gameState = gameState</panel_attributes>
     <coordinates>
       <x>368</x>
       <y>248</y>
-      <w>120</w>
+      <w>176</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>_newView:GameView_</panel_attributes>
+    <panel_attributes>_newController:GameController_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -201,20 +201,20 @@ model.gameState = gameState</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-&lt;&lt;create&gt;&gt; (model, newView)</panel_attributes>
+&lt;&lt;create&gt;&gt; (model, newController, anim)</panel_attributes>
     <additional_attributes>10.0;20.0;590.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
+      <x>536</x>
       <y>240</y>
-      <w>656</w>
+      <w>600</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-&lt;&lt;create&gt;&gt; (model, anim)</panel_attributes>
-    <additional_attributes>10.0;20.0;800.0;20.0</additional_attributes>
+&lt;&lt;create&gt;&gt; (model)</panel_attributes>
+    <additional_attributes>10.0;20.0;730.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -236,7 +236,7 @@ model.gameState = gameState</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-setController(newController)</panel_attributes>
+setView(newView)</panel_attributes>
     <additional_attributes>10.0;20.0;870.0;20.0</additional_attributes>
   </element>
   <element>
@@ -546,12 +546,12 @@ refresh()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>880</x>
+      <x>800</x>
       <y>160</y>
-      <w>128</w>
+      <w>208</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>_anim:GameAnimation_</panel_attributes>
+    <panel_attributes>_animController:GameAnimController_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -574,7 +574,7 @@ refresh()</panel_attributes>
       <w>192</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>_animController:GameAnimController_</panel_attributes>
+    <panel_attributes>_anim:GameAnimation_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -586,7 +586,7 @@ refresh()</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-&lt;&lt;create&gt;&gt; (model, anim)</panel_attributes>
+&lt;&lt;create&gt;&gt; (model, animControlles)</panel_attributes>
     <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
   </element>
   <element>
@@ -620,7 +620,7 @@ refresh()</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-setController(animController)</panel_attributes>
+setAnimation(anim)</panel_attributes>
     <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
   </element>
   <element>

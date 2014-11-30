@@ -302,10 +302,10 @@ Response</panel_attributes>
     <coordinates>
       <x>828</x>
       <y>387</y>
-      <w>153</w>
+      <w>198</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>_newView:GameListView_</panel_attributes>
+    <panel_attributes>_newController:GameListController_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -316,7 +316,7 @@ Response</panel_attributes>
       <w>207</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>_newController:GameListController_</panel_attributes>
+    <panel_attributes>_newView:GameListView_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -521,7 +521,7 @@ refresh()</panel_attributes>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-&lt;&lt;create&gt;&gt; (model, newView)</panel_attributes>
+&lt;&lt;create&gt;&gt; (model, newController)</panel_attributes>
     <additional_attributes>570.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -600,7 +600,7 @@ refresh()</panel_attributes>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-setController(newController)</panel_attributes>
+setView(newView)</panel_attributes>
     <additional_attributes>490.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>

@@ -334,10 +334,10 @@ model.gameSettings = gameSettings</panel_attributes>
     <coordinates>
       <x>632</x>
       <y>312</y>
-      <w>136</w>
+      <w>160</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>_newView:LobbyView_</panel_attributes>
+    <panel_attributes>_newController:LobbyController_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -348,7 +348,7 @@ model.gameSettings = gameSettings</panel_attributes>
       <w>184</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>_newController:LobbyController_</panel_attributes>
+    <panel_attributes>_newView:LobbyView_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -372,7 +372,7 @@ model.gameSettings = gameSettings</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-&lt;&lt;create&gt;&gt; (model, newView)</panel_attributes>
+&lt;&lt;create&gt;&gt; (model, newController)</panel_attributes>
     <additional_attributes>530.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -384,7 +384,7 @@ model.gameSettings = gameSettings</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-setController(newController)</panel_attributes>
+setView(newView)</panel_attributes>
     <additional_attributes>490.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>

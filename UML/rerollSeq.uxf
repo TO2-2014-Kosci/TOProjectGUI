@@ -5,7 +5,7 @@
     <id>UMLActor</id>
     <coordinates>
       <x>0</x>
-      <y>0</y>
+      <y>11</y>
       <w>66</w>
       <h>110</h>
     </coordinates>
@@ -16,50 +16,6 @@
     <id>Relation</id>
     <coordinates>
       <x>22</x>
-      <y>44</y>
-      <w>33</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>22</x>
-      <y>132</y>
-      <w>22</w>
-      <h>616</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>121</x>
-      <y>33</y>
-      <w>132</w>
-      <h>33</h>
-    </coordinates>
-    <panel_attributes>_:GameAnimation_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>275</x>
-      <y>33</y>
-      <w>187</w>
-      <h>33</h>
-    </coordinates>
-    <panel_attributes>_:GameAnimController_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>176</x>
       <y>55</y>
       <w>33</w>
       <h>110</h>
@@ -70,8 +26,52 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>176</x>
+      <x>22</x>
       <y>143</y>
+      <w>22</w>
+      <h>616</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>121</x>
+      <y>44</y>
+      <w>132</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>_:GameAnimation_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>275</x>
+      <y>44</y>
+      <w>187</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>_:GameAnimController_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>176</x>
+      <y>66</y>
+      <w>33</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>176</x>
+      <y>154</y>
       <w>22</w>
       <h>264</h>
     </coordinates>
@@ -82,7 +82,7 @@
     <id>Relation</id>
     <coordinates>
       <x>33</x>
-      <y>121</y>
+      <y>132</y>
       <w>165</w>
       <h>55</h>
     </coordinates>
@@ -95,7 +95,7 @@ screen</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>363</x>
-      <y>154</y>
+      <y>165</y>
       <w>165</w>
       <h>55</h>
     </coordinates>
@@ -107,7 +107,7 @@ setClickedDice()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>187</x>
-      <y>132</y>
+      <y>143</y>
       <w>187</w>
       <h>44</h>
     </coordinates>
@@ -119,7 +119,7 @@ Clicked()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>352</x>
-      <y>55</y>
+      <y>66</y>
       <w>33</w>
       <h>121</h>
     </coordinates>
@@ -130,7 +130,7 @@ Clicked()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>352</x>
-      <y>154</y>
+      <y>165</y>
       <w>22</w>
       <h>242</h>
     </coordinates>
@@ -141,7 +141,7 @@ Clicked()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>187</x>
-      <y>374</y>
+      <y>385</y>
       <w>187</w>
       <h>33</h>
     </coordinates>
@@ -152,7 +152,7 @@ Clicked()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>33</x>
-      <y>385</y>
+      <y>396</y>
       <w>165</w>
       <h>33</h>
     </coordinates>
@@ -163,7 +163,7 @@ Clicked()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>473</x>
-      <y>33</y>
+      <y>44</y>
       <w>165</w>
       <h>33</h>
     </coordinates>
@@ -174,7 +174,7 @@ Clicked()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>33</x>
-      <y>517</y>
+      <y>528</y>
       <w>528</w>
       <h>44</h>
     </coordinates>
@@ -186,7 +186,7 @@ Clicked</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>539</x>
-      <y>528</y>
+      <y>539</y>
       <w>22</w>
       <h>154</h>
     </coordinates>
@@ -197,7 +197,7 @@ Clicked</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>539</x>
-      <y>55</y>
+      <y>66</y>
       <w>33</w>
       <h>495</h>
     </coordinates>
@@ -208,7 +208,7 @@ Clicked</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>550</x>
-      <y>528</y>
+      <y>539</y>
       <w>187</w>
       <h>44</h>
     </coordinates>
@@ -220,7 +220,7 @@ rerollDice()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>660</x>
-      <y>33</y>
+      <y>44</y>
       <w>132</w>
       <h>33</h>
     </coordinates>
@@ -231,7 +231,7 @@ rerollDice()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>715</x>
-      <y>55</y>
+      <y>66</y>
       <w>33</w>
       <h>506</h>
     </coordinates>
@@ -242,7 +242,7 @@ rerollDice()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>715</x>
-      <y>539</y>
+      <y>550</y>
       <w>22</w>
       <h>132</h>
     </coordinates>
@@ -253,7 +253,7 @@ rerollDice()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1001</x>
-      <y>33</y>
+      <y>44</y>
       <w>143</w>
       <h>33</h>
     </coordinates>
@@ -264,7 +264,7 @@ rerollDice()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1056</x>
-      <y>55</y>
+      <y>66</y>
       <w>33</w>
       <h>561</h>
     </coordinates>
@@ -275,7 +275,7 @@ rerollDice()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1056</x>
-      <y>594</y>
+      <y>605</y>
       <w>22</w>
       <h>66</h>
     </coordinates>
@@ -286,7 +286,7 @@ rerollDice()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>726</x>
-      <y>583</y>
+      <y>594</y>
       <w>352</w>
       <h>44</h>
     </coordinates>
@@ -298,7 +298,7 @@ rerollDice(model.selectedDice, login)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>550</x>
-      <y>638</y>
+      <y>649</y>
       <w>187</w>
       <h>44</h>
     </coordinates>
@@ -310,7 +310,7 @@ rerollDice(model.selectedDice, login)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>33</x>
-      <y>649</y>
+      <y>660</y>
       <w>528</w>
       <h>44</h>
     </coordinates>
@@ -322,7 +322,7 @@ rerollDice(model.selectedDice, login)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>726</x>
-      <y>627</y>
+      <y>638</y>
       <w>352</w>
       <h>44</h>
     </coordinates>
@@ -334,7 +334,7 @@ rerollDice(model.selectedDice, login)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>352</x>
-      <y>220</y>
+      <y>231</y>
       <w>209</w>
       <h>55</h>
     </coordinates>
@@ -346,7 +346,7 @@ model.selectedDice[i] = false</panel_attributes>
     <id>UMLFrame</id>
     <coordinates>
       <x>220</x>
-      <y>198</y>
+      <y>209</y>
       <w>396</w>
       <h>77</h>
     </coordinates>
@@ -358,7 +358,7 @@ bg=green</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>352</x>
-      <y>308</y>
+      <y>319</y>
       <w>209</w>
       <h>55</h>
     </coordinates>
@@ -370,7 +370,7 @@ model.selectedDice[i] = true</panel_attributes>
     <id>UMLFrame</id>
     <coordinates>
       <x>220</x>
-      <y>286</y>
+      <y>297</y>
       <w>396</w>
       <h>77</h>
     </coordinates>

@@ -61,10 +61,10 @@
     <coordinates>
       <x>264</x>
       <y>176</y>
-      <w>136</w>
+      <w>160</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>_newView:YYYView_</panel_attributes>
+    <panel_attributes>_newCotroller:YYYController_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -75,7 +75,7 @@
       <w>184</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>_newController:YYYController_</panel_attributes>
+    <panel_attributes>_newView:YYYView_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -99,7 +99,7 @@
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-&lt;&lt;create&gt;&gt; (model, newView)</panel_attributes>
+&lt;&lt;create&gt;&gt; (model, newCotroller)</panel_attributes>
     <additional_attributes>290.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -111,7 +111,7 @@
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-setController(newController)</panel_attributes>
+setView(newView)</panel_attributes>
     <additional_attributes>250.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
