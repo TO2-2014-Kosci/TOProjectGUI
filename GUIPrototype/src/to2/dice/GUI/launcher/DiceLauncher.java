@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import to2.dice.GUI.controllers.Controller;
 import to2.dice.GUI.controllers.LoginController;
@@ -27,39 +28,45 @@ public class DiceLauncher {
 	public static void main(String[] args) {
 		ServerMessageContainer smc = new ServerMessageContainer();
 		ConnectionProxy cp = new ConnectionProxy(null, null) {
-			
+			Random r = new Random();
 			@Override
 			public Response standUp(String login) {
 				// TODO Auto-generated method stub
+				System.out.println("Wstaje");
 				return new Response(Response.Type.SUCCESS);
 			}
 			
 			@Override
 			public Response sitDown(String login) {
+				System.out.println("Siada");
 				return new Response(Response.Type.SUCCESS);
 			}
 			
 			@Override
 			public Response reroll(Dice dice) {
 				// TODO Auto-generated method stub
+				System.out.println("Przerzuca");
 				return new Response(Response.Type.SUCCESS);
 			}
 			
 			@Override
 			public Response login(String login) {
 				// TODO Auto-generated method stub
+				System.out.println("Loguje " + login);
 				return new Response(Response.Type.SUCCESS);
 			}
 			
 			@Override
 			public Response leaveRoom(String login) {
 				// TODO Auto-generated method stub
+				System.out.println("Wychodzi");
 				return new Response(Response.Type.SUCCESS);
 			}
 			
 			@Override
 			public Response joinRoom(String roomName, String login) {
 				// TODO Auto-generated method stub
+				System.out.println("Wbija "+roomName + " " + login);
 				return new Response(Response.Type.SUCCESS);
 			}
 			
@@ -68,14 +75,15 @@ public class DiceLauncher {
 				// TODO Auto-generated method stub
 				List<GameInfo> list = new ArrayList<>();
 				Map<BotLevel, Integer> botsNumber = new HashMap<>();
-				botsNumber.put(BotLevel.HIGH, 10);
-				botsNumber.put(BotLevel.LOW, 10);
+				botsNumber.put(BotLevel.HIGH, r.nextInt() % 15);
+				botsNumber.put(BotLevel.LOW, r.nextInt() % 15);
 				GameState gameState = new GameState();
 				gameState.setGameStarted(false);
 				gameState.setPlayers(new ArrayList<>());
-				list.add(new GameInfo(new GameSettings(GameType.POKER, 5, "dupa", 10, 10, 10, 10, botsNumber), gameState));
-				list.add(new GameInfo(new GameSettings(GameType.NMUL, 5, "dupa1", 40, 10, 10, 10, botsNumber), gameState));
-				list.add(new GameInfo(new GameSettings(GameType.NPLUS, 5, "dupa2", 20, 10, 10, 10, botsNumber), gameState));
+				int k = ((r.nextInt() % 15) + 5);
+				for (int i = 0; i < k; i++) {
+					list.add(new GameInfo(new GameSettings(GameType.POKER, 5, "gra" + i, r.nextInt() % 15, r.nextInt() % 15, r.nextInt() % 15, r.nextInt() % 15, botsNumber), gameState));
+				}
 				return list;
 			}
 			

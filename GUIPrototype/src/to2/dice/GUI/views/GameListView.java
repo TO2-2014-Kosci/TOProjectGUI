@@ -167,7 +167,7 @@ public class GameListView extends View {
 
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
+		gameListTable.repaint();
 		
 	}
 
