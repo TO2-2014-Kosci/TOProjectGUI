@@ -141,10 +141,10 @@ clickedJoinGameButton()</panel_attributes>
       <x>1096</x>
       <y>32</y>
       <w>24</w>
-      <h>528</h>
+      <h>592</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;640.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;720.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -185,16 +185,16 @@ clickedJoinGameButton()</panel_attributes>
       <x>720</x>
       <y>32</y>
       <w>24</w>
-      <h>200</h>
+      <h>552</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;670.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>720</x>
-      <y>216</y>
+      <y>568</y>
       <w>16</w>
       <h>32</h>
     </coordinates>
@@ -205,7 +205,7 @@ clickedJoinGameButton()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>208</y>
+      <y>560</y>
       <w>448</w>
       <h>32</h>
     </coordinates>
@@ -274,7 +274,7 @@ game: GameInfo</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>224</y>
+      <y>576</y>
       <w>448</w>
       <h>32</h>
     </coordinates>
@@ -501,7 +501,7 @@ setServerMessageListener(newController)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>544</y>
+      <y>608</y>
       <w>824</w>
       <h>32</h>
     </coordinates>
@@ -515,10 +515,10 @@ setView(newView)</panel_attributes>
       <x>840</x>
       <y>472</y>
       <w>24</w>
-      <h>128</h>
+      <h>192</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
@@ -639,7 +639,7 @@ bg=orange</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>608</y>
+      <y>672</y>
       <w>824</w>
       <h>24</h>
     </coordinates>
@@ -650,7 +650,7 @@ bg=orange</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>840</x>
-      <y>584</y>
+      <y>648</y>
       <w>16</w>
       <h>24</h>
     </coordinates>
@@ -661,7 +661,7 @@ bg=orange</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>848</x>
-      <y>576</y>
+      <y>640</y>
       <w>264</w>
       <h>32</h>
     </coordinates>
@@ -673,7 +673,7 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>848</x>
-      <y>584</y>
+      <y>648</y>
       <w>264</w>
       <h>32</h>
     </coordinates>
@@ -685,7 +685,7 @@ refresh()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1096</x>
-      <y>544</y>
+      <y>608</y>
       <w>16</w>
       <h>80</h>
     </coordinates>
@@ -696,12 +696,24 @@ refresh()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1104</x>
-      <y>560</y>
+      <y>624</y>
       <w>120</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 refresh()</panel_attributes>
     <additional_attributes>10.0;10.0;110.0;10.0;110.0;30.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>192</x>
+      <y>608</y>
+      <w>1224</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>if Response is success
+bg=green</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

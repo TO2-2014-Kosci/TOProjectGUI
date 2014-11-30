@@ -414,29 +414,29 @@ refresh()</panel_attributes>
     <coordinates>
       <x>783</x>
       <y>621</y>
-      <w>297</w>
+      <w>135</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 getRoomList()</panel_attributes>
-    <additional_attributes>310.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>783</x>
       <y>639</y>
-      <w>297</w>
+      <w>135</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 list</panel_attributes>
-    <additional_attributes>310.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1062</x>
+      <x>900</x>
       <y>612</y>
       <w>18</w>
       <h>162</h>
@@ -449,52 +449,52 @@ list</panel_attributes>
     <coordinates>
       <x>459</x>
       <y>603</y>
-      <w>621</w>
+      <w>459</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 refreshGameList()</panel_attributes>
-    <additional_attributes>10.0;20.0;670.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;490.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>909</x>
-      <y>702</y>
+      <y>693</y>
       <w>171</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 refresh()</panel_attributes>
-    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>909</x>
-      <y>729</y>
+      <y>720</y>
       <w>171</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>459</x>
       <y>756</y>
-      <w>621</w>
+      <w>459</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;670.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;490.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>900</x>
-      <y>711</y>
+      <x>1062</x>
+      <y>702</y>
       <w>18</w>
       <h>36</h>
     </coordinates>
@@ -553,10 +553,10 @@ refresh()</panel_attributes>
       <x>1062</x>
       <y>450</y>
       <w>27</w>
-      <h>180</h>
+      <h>270</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -617,14 +617,14 @@ setView(newView)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1071</x>
+      <x>909</x>
       <y>666</y>
-      <w>144</w>
+      <w>153</w>
       <h>45</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 model.roomList = list</panel_attributes>
-    <additional_attributes>10.0;10.0;80.0;10.0;80.0;30.0;10.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0;90.0;30.0;10.0;30.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -678,10 +678,10 @@ refresh()</panel_attributes>
       <x>900</x>
       <y>567</y>
       <w>27</w>
-      <h>162</h>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>

@@ -82,6 +82,7 @@ public class GameList extends JPanel {
 		gamesTable.setRowHeight(20);
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer)gamesTable.getDefaultRenderer(Object.class);
 		renderer.setHorizontalAlignment(JLabel.CENTER);
+		renderer.setHorizontalTextPosition(JLabel.CENTER);
         //gamesTable.setPreferredScrollableViewportSize(new Dimension(500,300));
 		
 		setLayout(new BorderLayout());

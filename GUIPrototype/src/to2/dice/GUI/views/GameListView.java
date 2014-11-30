@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.ProcessBuilder.Redirect;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -56,14 +57,35 @@ public class GameListView extends View {
 	            return columnNames[col];
 	        }
 			public int getRowCount() {
-				return rowData.length;
+				return model.roomList.size();
 			}
 			public Class<?> getColumnClass(int columnIndex) {
 				return getValueAt(0, columnIndex).getClass();
 			}
 			
 			public Object getValueAt(int arg0, int arg1) {
-				return rowData[arg0][arg1];
+				GameInfo gameInfo = model.roomList.get(arg0);
+				switch (arg1){
+					case 0:
+						return gameInfo.getSettings().getName();
+					case 1:
+						return gameInfo.getSettings().getGameType();
+					case 2:
+						return gameInfo.getPlayersNumber();
+					case 3:
+						return gameInfo.getSettings().getMaxPlayers();
+					case 4:
+						int number = 0;
+						for (int i: gameInfo.getSettings().getBotsNumbers().values()) {
+							number += i;
+						}
+						return number;
+					case 5:
+						return gameInfo.isGameStarted();
+					default:
+						return new Object();
+						
+				}
 			}
 			
 		    public boolean isCellEditable(int row, int col) {
@@ -138,9 +160,9 @@ public class GameListView extends View {
 	
 	//TODO Controller or view method?
 	//starting from 0 or 1?
-	public GameSettings getSelectedGame(){		
+	public GameInfo getSelectedGame(){		
 		int rowNumber = gameListTable.getSelectedRow();
-		return model.roomList.get(rowNumber).getSettings();
+		return model.roomList.get(rowNumber);
 	}
 
 }

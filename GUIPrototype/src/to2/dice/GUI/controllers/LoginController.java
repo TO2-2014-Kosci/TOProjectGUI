@@ -26,6 +26,7 @@ public class LoginController extends Controller {
 					GameListView newView = new GameListView(model, newController);
 					newController.setView(newView);
 					model.diceApplication.setView(newView);
+					newController.refreshGameList();
 				}
 				else{
 					lv.eraseLogin();

@@ -723,7 +723,6 @@ ServerMessageListener
 +serverMessageContainer: ServerMessageContainer
 +diceApplication: DiceApplication
 +roomList: List&lt;GameInfo&gt;
-+gameInfo: GameInfo
 +gameSettings: GameSettings
 //dla przycisku
 +sitting: boolean

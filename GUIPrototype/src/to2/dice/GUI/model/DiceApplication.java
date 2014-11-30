@@ -21,7 +21,6 @@ public class DiceApplication extends JFrame {
 			e.printStackTrace();
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
 		setTitle("Koœci");
 		setIconImage((new ImageIcon("kosc.png")).getImage());
 	}
@@ -36,6 +35,7 @@ public class DiceApplication extends JFrame {
 		this.view = view;
 		this.setContentPane(view);
 		this.setMinimumSize(view.getMinimumSize());
+		setLocationRelativeTo(null);
 		//dopisaæ ustawianie wielkoœci
 		//Niby dlaczego dwa?
 		this.refresh();

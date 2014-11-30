@@ -15,7 +15,6 @@ public class Model {
 	public DiceApplication diceApplication;
 	public String login = "";
 	public List<GameInfo> roomList = new ArrayList<GameInfo>();
-	public GameInfo gameInfo = null;
 	public GameSettings gameSettings = null;
 	public boolean sitting = false;
 	public boolean[] selectedDice = new boolean[numberOfDice];

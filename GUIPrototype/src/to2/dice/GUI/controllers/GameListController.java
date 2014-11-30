@@ -2,8 +2,14 @@ package to2.dice.GUI.controllers;
 
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.CreateGameView;
+import to2.dice.GUI.views.GameAnimation;
 import to2.dice.GUI.views.GameListView;
+import to2.dice.GUI.views.GameView;
+import to2.dice.GUI.views.LobbyView;
+import to2.dice.GUI.views.View;
+import to2.dice.game.GameInfo;
 import to2.dice.messaging.Response;
+import to2.dice.server.ServerMessageListener;
 
 public class GameListController extends Controller {
 
@@ -32,14 +38,30 @@ public class GameListController extends Controller {
 	//TODO
 	public void clickedJoinGameButton(){
 		GameListView glv = (GameListView) view;
-		model.gameSettings = glv.getSelectedGame();
-		Game
+		GameInfo selectedGame = glv.getSelectedGame();
+		model.gameSettings = selectedGame.getSettings();
+		Controller newController;
+		View newView;
+		if (selectedGame.isGameStarted()) {
+			GameAnimController gameAnimController = new GameAnimController(model);
+			GameAnimation gameAnimation = new GameAnimation(gameAnimController);
+			gameAnimController.setGameAnimation(gameAnimation);
+			newController = new GameController(model, gameAnimController);
+			newView = new GameView(model, (GameController) newController, gameAnimation);
+			newController.setView(newView);
+		} else {
+			newController = new LobbyController(model);
+			newView = new LobbyView(model, (LobbyController) newController);
+			newController.setView(newView);
+		}
+		model.serverMessageContainer.setServerMessageListener((ServerMessageListener) newController);
 		try{
-			Response response = model.getConnectionProxy().joinRoom(glv.getSelectedGame().getName(), model.login);
+			Response response = model.getConnectionProxy().joinRoom(model.gameSettings.getName(), model.login);
 			if(response.isSuccess()){
-				
+				model.diceApplication.setView(newView);
 			}
 			else{
+				model.serverMessageContainer.removeServerMessageListener();
 				view.showErrorDialog("Nie uda³o siê do³¹czyæ do gry","B³¹d do³¹czania",false);
 			}
 		}
