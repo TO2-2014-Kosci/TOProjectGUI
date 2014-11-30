@@ -35,6 +35,36 @@ public class LobbyController extends Controller implements ServerMessageListener
 	}
 	
 	public void clickedSitDownStandUpButton() {
-		
+		if(model.sitting==true){
+			try{
+				Response response = model.getConnectionProxy().standUp(model.login);
+				if(response.isSuccess()){
+					model.sitting=false;
+					view.refresh();
+				}
+				else{
+					//TODO Could it happen?
+					view.showErrorDialog("Nie uda³o siê wstaæ","B³¹d wstawania", false);
+				}
+			}
+			catch(Exception e){
+				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
+			}
+		}
+		else{
+			try{
+				Response response = model.getConnectionProxy().sitDown(model.login);
+				if(response.isSuccess()){
+					model.sitting=true;
+					view.refresh();
+				}
+				else{
+					view.showErrorDialog("Nie uda³o siê usi¹œæ","B³¹d siadania", false);
+				}
+			}
+			catch(Exception e){
+				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
+			}
+		}
 	}
 }
