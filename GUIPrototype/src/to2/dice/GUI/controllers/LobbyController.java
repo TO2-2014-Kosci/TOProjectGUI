@@ -21,6 +21,8 @@ public class LobbyController extends Controller implements ServerMessageListener
 			Response response = model.getConnectionProxy().leaveRoom(model.login);
 			if(response.isSuccess()){
 				GameListController newController = new GameListController(model);
+				model.serverMessageContainer.removeServerMessageListener();
+				model.gameSettings = null;
 				GameListView newView = new GameListView(model, newController);
 				newController.setView(newView);
 				model.diceApplication.setView(newView);

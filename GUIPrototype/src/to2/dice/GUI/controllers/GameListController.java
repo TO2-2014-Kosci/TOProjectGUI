@@ -64,7 +64,7 @@ public class GameListController extends Controller {
 					model.diceApplication.setView(newView);
 				}
 				else{
-					model.serverMessageContainer.setServerMessageListener((ServerMessageListener) newController);
+					model.serverMessageContainer.removeServerMessageListener();
 					view.showErrorDialog("Nie uda³o siê do³¹czyæ do gry","B³¹d do³¹czania",false);
 				}
 			}

@@ -167,7 +167,7 @@ public class GameListView extends View {
 
 	@Override
 	public void refresh() {
-		gameListTable.repaint();
+		((AbstractTableModel)gameListTable.getModel()).fireTableDataChanged();
 		
 	}
 

@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.jme3.system.AppSettings;
+import com.jme3.system.JmeSystem;
+
 import to2.dice.GUI.controllers.Controller;
 import to2.dice.GUI.controllers.LoginController;
 import to2.dice.GUI.model.DiceApplication;
@@ -20,13 +23,18 @@ import to2.dice.game.GameInfo;
 import to2.dice.game.GameSettings;
 import to2.dice.game.GameState;
 import to2.dice.game.GameType;
+import to2.dice.game.Player;
 import to2.dice.messaging.Response;
 import to2.dice.server.ConnectionProxy;
 import to2.dice.server.ServerMessageListener;
 
 public class DiceLauncher {
 	public static void main(String[] args) {
+		AppSettings settings = new AppSettings(true);
+		settings.setAudioRenderer(null);
+		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
+		
 		ConnectionProxy cp = new ConnectionProxy(null, null) {
 			Random r = new Random();
 			@Override
@@ -112,6 +120,12 @@ public class DiceLauncher {
 		LoginController appController = new LoginController(appModel);
 		View appView = new LoginView(appModel, appController);
 		appController.setView(appView);
+		//TODO to remove
+		for (int i = 0; i < 10; i++) {
+			appModel.gameState.addPlayer(new Player("Kot" + i, (i%2)==0, 5));
+		}
+		
+		
 		EventQueue.invokeLater(new Runnable(){
 			
 			public void run(){

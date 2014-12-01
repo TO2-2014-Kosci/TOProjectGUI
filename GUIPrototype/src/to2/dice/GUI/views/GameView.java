@@ -24,6 +24,7 @@ public class GameView extends View {
 	private JButton rerollButton;
 	private JButton standUpLeaveButton;
 	private JTable playerTable;
+	private JLabel timer;
 	private static final String[] columnNames = {
 		"Gracz",
 		"Koœci",
@@ -58,13 +59,19 @@ public class GameView extends View {
 			}
 			
 			public Object getValueAt(int arg0, int arg1) {
-				switch (arg0) {
+				switch (arg1) {
 					case 0:
-						return model.gameState.getPlayers().get(arg1).getName();
+						return model.gameState.getPlayers().get(arg0).getName();
 					case 1:
-						return model.gameState.getPlayers().get(arg1).getDice();
+						//TODO change to image, maybe
+						int[] dice = model.gameState.getPlayers().get(arg0).getDice().getValue();
+						String result = "";
+						for (int i: dice) {
+							result += Integer.toString(i) + " "; 
+						}
+						return result;
 					case 2:
-						return model.gameState.getPlayers().get(arg1).getScore();
+						return model.gameState.getPlayers().get(arg0).getScore();
 					default:
 						return new Object();
 				}
@@ -88,33 +95,52 @@ public class GameView extends View {
 		
 		add(playerScrollTable, "cell 0 0 1 4,width 30%!,growy");
 		
-		JLabel label = new JLabel("59");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		add(label, "cell 2 0,alignx right");
+		timer = new JLabel("59");
+		timer.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		add(timer, "cell 2 0,alignx right");
 		
-//		JLabel dices = new JLabel(new ImageIcon("kosciEkran2.png"));
-//		dices.setBackground(new Color(70, 155, 30));
-//		dices.setOpaque(true);
-//		add(dices, "cell 1 0 2 2,grow");
-		JButton button = new JButton("WyjdŸ");
-		button.addActionListener(new ActionListener() {
+		standUpLeaveButton = new JButton();
+		String text;
+		if (model.gameState.isPlayerWithName(model.login)) {
+			text = "Wstañ";
+		} else {
+			text = "WyjdŸ";
+		}
+		standUpLeaveButton.setText(text);
+		standUpLeaveButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				rowData[0][0] = "alal";
-				((AbstractTableModel)playerTable.getModel()).fireTableDataChanged();
-				System.out.println("dd");
+				controller.clickedStandUpLeaveButton();
 			}
 		});
-		add(button, "cell 2 3,alignx right,aligny bottom");
-		Test test2 = new Test();
-		add(test2.getCanvas(), "cell 1 0 2 4,grow");
+		
+		add(standUpLeaveButton, "cell 1 3,alignx left,aligny bottom");
+		
+		
+		rerollButton = new JButton("Przerzuæ");
+		rerollButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.rerollDice();
+			}
+		});
+		add(rerollButton, "cell 2 3,alignx right,aligny bottom");
+		if (model.gameState.getCurrentPlayer() != null && model.gameState.getCurrentPlayer().getName().equals(model.login)) {
+			rerollButton.setVisible(true);
+		} else {
+			rerollButton.setVisible(false);
+		}
+		add(gameAnimation.getCanvas(), "cell 1 0 2 4,grow");
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
-		
+		if (model.gameState.getCurrentPlayer() != null && model.gameState.getCurrentPlayer().getName().equals(model.login)) {
+			rerollButton.setVisible(true);
+		} else {
+			rerollButton.setVisible(false);
+		}
 	}
 }

@@ -19,6 +19,11 @@ public class GameController extends Controller implements ServerMessageListener 
 	  
 	}
 	
+	//TODO
+	public void clickedStandUpLeaveButton() {
+		
+	}
+	
 	//TODO 
 	public void onGameStateChange(GameState gameState){
 		
@@ -28,4 +33,6 @@ public class GameController extends Controller implements ServerMessageListener 
 	private void showEndDialog() {
 		
 	}
+	
+	
 }
