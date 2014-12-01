@@ -19,7 +19,7 @@ public class GameListController extends Controller {
 
 	public void refreshGameList(){
 		try{
-			model.roomList = model.getConnectionProxy().getRoomList();
+			model.setRoomList(model.getConnectionProxy().getRoomList());
 			view.refresh();
 		}
 		catch(Exception e){
@@ -34,7 +34,7 @@ public class GameListController extends Controller {
 		CreateGameController newController = new CreateGameController(model);
 		CreateGameView newView = new CreateGameView(model, newController);
 		newController.setView(newView);
-		model.diceApplication.setView(newView);
+		model.getDiceApplication().setView(newView);
 	}
 	
 	//TODO
@@ -42,7 +42,7 @@ public class GameListController extends Controller {
 		GameListView glv = (GameListView) view;
 		GameInfo selectedGame = glv.getSelectedGame();
 		if(selectedGame!=null){
-			model.gameSettings = selectedGame.getSettings();
+			model.setGameSettings(selectedGame.getSettings());
 			Controller newController;
 			View newView;
 			if (selectedGame.isGameStarted()) {
@@ -57,14 +57,14 @@ public class GameListController extends Controller {
 				newView = new LobbyView(model, (LobbyController) newController);
 				newController.setView(newView);
 			}
-			model.serverMessageContainer.setServerMessageListener((ServerMessageListener) newController);
+			model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
 			try{
-				Response response = model.getConnectionProxy().joinRoom(model.gameSettings.getName(), model.login);
+				Response response = model.getConnectionProxy().joinRoom(model.getGameSettings().getName(), model.getLogin());
 				if(response.isSuccess()){
-					model.diceApplication.setView(newView);
+					model.getDiceApplication().setView(newView);
 				}
 				else{
-					model.serverMessageContainer.removeServerMessageListener();
+					model.getServerMessageContainer().removeServerMessageListener();
 					view.showErrorDialog("Nie uda³o siê do³¹czyæ do gry","B³¹d do³¹czania",false);
 				}
 			}

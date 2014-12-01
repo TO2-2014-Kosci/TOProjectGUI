@@ -21,11 +21,11 @@ public class LoginController extends Controller {
 				Response response = model.getConnectionProxy().login(login);
 				if(response.isSuccess()){
 					//TODO setter
-					model.login = login;					
+					model.setLogin(login);					
 					GameListController newController = new GameListController(model);
 					GameListView newView = new GameListView(model, newController);
 					newController.setView(newView);
-					model.diceApplication.setView(newView);
+					model.getDiceApplication().setView(newView);
 					newController.refreshGameList();
 				}
 				else{

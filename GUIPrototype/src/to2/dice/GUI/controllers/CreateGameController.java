@@ -22,21 +22,21 @@ public class CreateGameController extends Controller {
 		GameSettings gameSettings = cgv.getGameSettings();
 		//TODO validation?
 		if (isProper(gameSettings)) {
-			model.gameSettings = gameSettings;
+			model.setGameSettings(gameSettings);
 			Controller newController;
 			View newView;
 			newController = new LobbyController(model);
 			newView = new LobbyView(model, (LobbyController) newController);
 			newController.setView(newView);
-			model.serverMessageContainer.setServerMessageListener((ServerMessageListener) newController);
+			model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
 			try{
-				Response response = model.getConnectionProxy().createRoom(gameSettings, model.login);
+				Response response = model.getConnectionProxy().createRoom(gameSettings, model.getLogin());
 				if(response.isSuccess()){
-					model.sitting = false;
-					model.diceApplication.setView(newView);
+					model.setSitting(false);
+					model.getDiceApplication().setView(newView);
 				}
 				else{
-					model.serverMessageContainer.setServerMessageListener((ServerMessageListener) newController);
+					model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
 					view.showErrorDialog("Nie uda³o siê utworzyæ gry", "B³¹d tworzenia gry", false);
 				}
 			}
@@ -51,7 +51,7 @@ public class CreateGameController extends Controller {
 		GameListController newController = new GameListController(model);
 		GameListView newView = new GameListView(model,newController);
 		newController.setView(newView);
-		model.diceApplication.setView(newView);
+		model.getDiceApplication().setView(newView);
 	}
 	
 	private boolean isProper(GameSettings gameSettings) {

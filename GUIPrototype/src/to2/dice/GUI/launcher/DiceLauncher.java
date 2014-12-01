@@ -122,7 +122,7 @@ public class DiceLauncher {
 		appController.setView(appView);
 		//TODO to remove
 		for (int i = 0; i < 10; i++) {
-			appModel.gameState.addPlayer(new Player("Kot" + i, (i%2)==0, 5));
+			appModel.getGameState().addPlayer(new Player("Kot" + i, (i%2)==0, 5));
 		}
 		
 		
