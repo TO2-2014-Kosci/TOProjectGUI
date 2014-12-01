@@ -22,7 +22,7 @@ public class GameAnimController implements ActionListener {
 	
 	//TODO
 	 public boolean[] getSelectedDice(){
-		return null;
+		return model.getSelectedDice();
 	 }
 	 
 	 public void setGameAnimation(GameAnimation gameAnimation) {

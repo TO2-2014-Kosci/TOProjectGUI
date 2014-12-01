@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>350</x>
-      <y>539</y>
+      <y>623</y>
       <w>189</w>
       <h>126</h>
     </coordinates>
@@ -23,7 +23,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>749</y>
+      <y>833</y>
       <w>133</w>
       <h>77</h>
     </coordinates>
@@ -41,7 +41,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>210</x>
-      <y>588</y>
+      <y>672</y>
       <w>70</w>
       <h>28</h>
     </coordinates>
@@ -53,7 +53,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>350</x>
-      <y>749</y>
+      <y>833</y>
       <w>182</w>
       <h>98</h>
     </coordinates>
@@ -71,7 +71,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>161</x>
-      <y>749</y>
+      <y>833</y>
       <w>168</w>
       <h>140</h>
     </coordinates>
@@ -95,7 +95,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>560</x>
-      <y>749</y>
+      <y>833</y>
       <w>161</w>
       <h>84</h>
     </coordinates>
@@ -112,7 +112,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>735</x>
-      <y>749</y>
+      <y>833</y>
       <w>210</w>
       <h>91</h>
     </coordinates>
@@ -131,7 +131,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>693</x>
-      <y>252</y>
+      <y>336</y>
       <w>259</w>
       <h>140</h>
     </coordinates>
@@ -148,7 +148,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>392</x>
-      <y>133</y>
+      <y>217</y>
       <w>133</w>
       <h>49</h>
     </coordinates>
@@ -164,7 +164,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>742</x>
-      <y>133</y>
+      <y>217</y>
       <w>182</w>
       <h>63</h>
     </coordinates>
@@ -179,23 +179,24 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>553</x>
-      <y>133</y>
-      <w>161</w>
-      <h>49</h>
+      <x>532</x>
+      <y>217</y>
+      <w>203</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>CreateGameController
 --
 --
 +clickedCreateGameButton(): void
-+clickedReturnButton(): void</panel_attributes>
++clickedReturnButton(): void
+-isProper(GameSettings gameSettings): boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1190</x>
-      <y>133</y>
+      <y>217</y>
       <w>217</w>
       <h>70</h>
     </coordinates>
@@ -210,7 +211,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>945</x>
-      <y>133</y>
+      <y>217</y>
       <w>217</w>
       <h>70</h>
     </coordinates>
@@ -227,7 +228,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1505</x>
-      <y>693</y>
+      <y>777</y>
       <w>133</w>
       <h>70</h>
     </coordinates>
@@ -242,7 +243,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1456</x>
-      <y>798</y>
+      <y>882</y>
       <w>182</w>
       <h>154</h>
     </coordinates>
@@ -261,7 +262,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1316</x>
-      <y>798</y>
+      <y>882</y>
       <w>119</w>
       <h>56</h>
     </coordinates>
@@ -276,7 +277,7 @@ HIGH</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1253</x>
-      <y>875</y>
+      <y>959</y>
       <w>119</w>
       <h>77</h>
     </coordinates>
@@ -292,7 +293,7 @@ POKER</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1666</x>
-      <y>693</y>
+      <y>777</y>
       <w>161</w>
       <h>77</h>
     </coordinates>
@@ -309,7 +310,7 @@ POKER</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1666</x>
-      <y>798</y>
+      <y>882</y>
       <w>161</w>
       <h>42</h>
     </coordinates>
@@ -322,7 +323,7 @@ POKER</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1869</x>
-      <y>693</y>
+      <y>777</y>
       <w>126</w>
       <h>70</h>
     </coordinates>
@@ -338,7 +339,7 @@ POKER</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2023</x>
-      <y>693</y>
+      <y>777</y>
       <w>63</w>
       <h>70</h>
     </coordinates>
@@ -351,7 +352,7 @@ POKER</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2002</x>
-      <y>238</y>
+      <y>322</y>
       <w>259</w>
       <h>49</h>
     </coordinates>
@@ -365,7 +366,7 @@ ServerMessageListener
     <id>UMLClass</id>
     <coordinates>
       <x>1960</x>
-      <y>490</y>
+      <y>574</y>
       <w>322</w>
       <h>140</h>
     </coordinates>
@@ -387,7 +388,7 @@ ServerMessageListener
     <id>UMLClass</id>
     <coordinates>
       <x>1491</x>
-      <y>357</y>
+      <y>441</y>
       <w>392</w>
       <h>70</h>
     </coordinates>
@@ -403,7 +404,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1652</x>
-      <y>280</y>
+      <y>364</y>
       <w>455</w>
       <h>91</h>
     </coordinates>
@@ -414,7 +415,7 @@ ServerMessageListener
     <id>UMLClass</id>
     <coordinates>
       <x>1169</x>
-      <y>539</y>
+      <y>623</y>
       <w>189</w>
       <h>63</h>
     </coordinates>
@@ -430,7 +431,7 @@ ServerMessageListener
     <id>UMLClass</id>
     <coordinates>
       <x>1029</x>
-      <y>567</y>
+      <y>651</y>
       <w>70</w>
       <h>28</h>
     </coordinates>
@@ -442,7 +443,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1428</x>
-      <y>819</y>
+      <y>903</y>
       <w>42</w>
       <h>28</h>
     </coordinates>
@@ -454,7 +455,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1365</x>
-      <y>903</y>
+      <y>987</y>
       <w>105</w>
       <h>28</h>
     </coordinates>
@@ -466,7 +467,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1533</x>
-      <y>756</y>
+      <y>840</y>
       <w>21</w>
       <h>56</h>
     </coordinates>
@@ -478,7 +479,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1722</x>
-      <y>763</y>
+      <y>847</y>
       <w>21</w>
       <h>49</h>
     </coordinates>
@@ -490,7 +491,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1820</x>
-      <y>721</y>
+      <y>805</y>
       <w>63</w>
       <h>21</h>
     </coordinates>
@@ -501,7 +502,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1988</x>
-      <y>721</y>
+      <y>805</y>
       <w>49</w>
       <h>21</h>
     </coordinates>
@@ -512,7 +513,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1722</x>
-      <y>630</y>
+      <y>714</y>
       <w>21</w>
       <h>77</h>
     </coordinates>
@@ -523,7 +524,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1813</x>
-      <y>546</y>
+      <y>630</y>
       <w>161</w>
       <h>28</h>
     </coordinates>
@@ -535,7 +536,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>273</x>
-      <y>595</y>
+      <y>679</y>
       <w>91</w>
       <h>21</h>
     </coordinates>
@@ -546,7 +547,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1092</x>
-      <y>567</y>
+      <y>651</y>
       <w>91</w>
       <h>21</h>
     </coordinates>
@@ -557,7 +558,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>434</x>
-      <y>385</y>
+      <y>469</y>
       <w>294</w>
       <h>168</h>
     </coordinates>
@@ -569,7 +570,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1680</x>
-      <y>420</y>
+      <y>504</y>
       <w>462</w>
       <h>84</h>
     </coordinates>
@@ -581,7 +582,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1015</x>
-      <y>196</y>
+      <y>280</y>
       <w>1183</w>
       <h>56</h>
     </coordinates>
@@ -592,7 +593,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1295</x>
-      <y>196</y>
+      <y>280</y>
       <w>784</w>
       <h>56</h>
     </coordinates>
@@ -603,7 +604,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>826</x>
-      <y>189</y>
+      <y>273</y>
       <w>21</w>
       <h>77</h>
     </coordinates>
@@ -614,18 +615,18 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>609</x>
-      <y>175</y>
+      <y>273</y>
       <w>210</w>
-      <h>91</h>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>280.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>280.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>441</x>
-      <y>175</y>
+      <y>259</y>
       <w>336</w>
       <h>91</h>
     </coordinates>
@@ -636,7 +637,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>854</x>
-      <y>196</y>
+      <y>280</y>
       <w>133</w>
       <h>70</h>
     </coordinates>
@@ -647,7 +648,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>896</x>
-      <y>196</y>
+      <y>280</y>
       <w>364</w>
       <h>70</h>
     </coordinates>
@@ -658,7 +659,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>434</x>
-      <y>658</y>
+      <y>742</y>
       <w>21</w>
       <h>105</h>
     </coordinates>
@@ -669,7 +670,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>469</x>
-      <y>658</y>
+      <y>742</y>
       <w>175</w>
       <h>105</h>
     </coordinates>
@@ -680,7 +681,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>497</x>
-      <y>658</y>
+      <y>742</y>
       <w>336</w>
       <h>105</h>
     </coordinates>
@@ -691,7 +692,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>245</x>
-      <y>658</y>
+      <y>742</y>
       <w>182</w>
       <h>105</h>
     </coordinates>
@@ -702,7 +703,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>49</x>
-      <y>658</y>
+      <y>742</y>
       <w>343</w>
       <h>105</h>
     </coordinates>
@@ -713,22 +714,22 @@ ServerMessageListener
     <id>UMLClass</id>
     <coordinates>
       <x>1400</x>
-      <y>490</y>
+      <y>574</y>
       <w>420</w>
       <h>147</h>
     </coordinates>
     <panel_attributes>Model
 --
-+login: String
-+connectionProxy: ConnectionProxy
-+serverMessageContainer: ServerMessageContainer
-+diceApplication: DiceApplication
-+roomList: List&lt;GameInfo&gt;
-+gameSettings: GameSettings
+-login: String
+-connectionProxy: ConnectionProxy
+-serverMessageContainer: ServerMessageContainer
+-diceApplication: DiceApplication
+-roomList: List&lt;GameInfo&gt;
+-gameSettings: GameSettings
 //dla przycisku
-+sitting: boolean
-+selectedDice: boolean[]
-+gameState: GameState
+-sitting: boolean
+-selectedDice: boolean[]
+-gameState: GameState
 --
 +Model(String login, ConnectionProxy connectionProxy, ServerMessageContainer serverMessageContainer, DiceApplicatiion diceApplication)
 </panel_attributes>
@@ -738,7 +739,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1645</x>
-      <y>420</y>
+      <y>504</y>
       <w>21</w>
       <h>84</h>
     </coordinates>
@@ -750,7 +751,7 @@ ServerMessageListener
     <id>UMLClass</id>
     <coordinates>
       <x>966</x>
-      <y>749</y>
+      <y>833</y>
       <w>273</w>
       <h>84</h>
     </coordinates>
@@ -767,7 +768,7 @@ ServerMessageListener
     <id>UMLClass</id>
     <coordinates>
       <x>945</x>
-      <y>0</y>
+      <y>84</y>
       <w>322</w>
       <h>91</h>
     </coordinates>
@@ -786,7 +787,7 @@ ServerMessageListener
     <id>UMLClass</id>
     <coordinates>
       <x>994</x>
-      <y>847</y>
+      <y>931</y>
       <w>98</w>
       <h>21</h>
     </coordinates>
@@ -799,7 +800,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1036</x>
-      <y>826</y>
+      <y>910</y>
       <w>21</w>
       <h>35</h>
     </coordinates>
@@ -810,7 +811,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>938</x>
-      <y>770</y>
+      <y>854</y>
       <w>42</w>
       <h>21</h>
     </coordinates>
@@ -821,7 +822,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1351</x>
-      <y>560</y>
+      <y>644</y>
       <w>63</w>
       <h>28</h>
     </coordinates>
@@ -833,7 +834,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>854</x>
-      <y>385</y>
+      <y>469</y>
       <w>700</w>
       <h>119</h>
     </coordinates>
@@ -845,7 +846,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1050</x>
-      <y>84</y>
+      <y>168</y>
       <w>126</w>
       <h>63</h>
     </coordinates>
@@ -856,7 +857,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1533</x>
-      <y>630</y>
+      <y>714</y>
       <w>21</w>
       <h>77</h>
     </coordinates>
@@ -867,7 +868,7 @@ ServerMessageListener
     <id>Relation</id>
     <coordinates>
       <x>1477</x>
-      <y>630</y>
+      <y>714</y>
       <w>21</w>
       <h>182</h>
     </coordinates>
@@ -878,22 +879,8 @@ ServerMessageListener
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>357</x>
-      <y>889</y>
-      <w>161</w>
-      <h>49</h>
-    </coordinates>
-    <panel_attributes>GameListTableModel
---
---
-bg=orange</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
       <x>1246</x>
-      <y>665</y>
+      <y>749</y>
       <w>847</w>
       <h>343</h>
     </coordinates>
@@ -905,7 +892,7 @@ bg=cyan</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1918</x>
-      <y>203</y>
+      <y>287</y>
       <w>420</w>
       <h>441</h>
     </coordinates>

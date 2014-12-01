@@ -20,6 +20,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
+import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.system.AppSettings;
@@ -45,8 +46,8 @@ public class GameAnimation extends SimpleApplication{
 		FilterPostProcessor fpp=new FilterPostProcessor(assetManager);
 	    BloomFilter bloom = new BloomFilter(BloomFilter.GlowMode.Objects);        
 	    fpp.addFilter(bloom);
-	    System.out.println(getViewPort());
-	    getViewPort().addProcessor(fpp);
+	    viewPort = new ViewPort("Cam", this.cam);
+	    viewPort.addProcessor(fpp);
 		createCanvas();
 		startCanvas(true);
 		this.gameAnimController = gameAnimController;
