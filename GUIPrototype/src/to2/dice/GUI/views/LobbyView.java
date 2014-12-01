@@ -46,14 +46,14 @@ public class LobbyView extends View {
 	        
 	        //TODO possible null pointer 
 			public int getRowCount() {
-				if(model.gameState==null){
+				if(model.getGameState()==null){
 					return 0;
 				}
-				return model.gameState.getPlayersNumber();
+				return model.getGameState().getPlayersNumber();
 			}
 			
 			public Object getValueAt(int arg0, int arg1) {
-				return model.gameState.getPlayers().get(arg0).getName();
+				return model.getGameState().getPlayers().get(arg0).getName();
 			}
 		    public boolean isCellEditable(int row, int col) {
 		    	return false;
@@ -87,10 +87,10 @@ public class LobbyView extends View {
 		add(new JLabel("Typ gry:"), "cell 1 0, right");
 		add(new JLabel("Czas na ruch:"), "cell 1 1, right");
 		add(new JLabel("Cel:"), "cell 1 2, right");
-		add(new JLabel(model.gameSettings.getGameType().toString()), "cell 2 0, right");
-		add(new JLabel(Integer.toString(model.gameSettings.getTimeForMove())), "cell 2 1, right");
-		add(new JLabel(Integer.toString(model.gameSettings.getRoundsToWin())), "cell 2 2, right");
-		playersCountLabel = new JLabel("Iloœæ graczy: " + Integer.toString(model.gameState.getPlayersNumber()) + "/" + Integer.toString(model.gameSettings.getMaxPlayers()));
+		add(new JLabel(model.getGameSettings().getGameType().toString()), "cell 2 0, right");
+		add(new JLabel(Integer.toString(model.getGameSettings().getTimeForMove())), "cell 2 1, right");
+		add(new JLabel(Integer.toString(model.getGameSettings().getRoundsToWin())), "cell 2 2, right");
+		playersCountLabel = new JLabel("Iloœæ graczy: " + Integer.toString(model.getGameState().getPlayersNumber()) + "/" + Integer.toString(model.getGameSettings().getMaxPlayers()));
 		add(playersCountLabel,"cell 0 10,alignx center");
 
 
@@ -111,12 +111,12 @@ public class LobbyView extends View {
 	@Override
 	public void refresh() {
 		playersTable.repaint();
-		if (model.sitting) {
+		if (model.isSitting()) {
 			sitDownStandUpButton.setText("Wstañ");
 		} else {
 			sitDownStandUpButton.setText("Usi¹dŸ");
 		}
-		playersCountLabel.setText("Iloœæ graczy: " + Integer.toString(model.gameState.getPlayersNumber()) + "/" + Integer.toString(model.gameSettings.getMaxPlayers()));
+		playersCountLabel.setText("Iloœæ graczy: " + Integer.toString(model.getGameState().getPlayersNumber()) + "/" + Integer.toString(model.getGameSettings().getMaxPlayers()));
 	}
 
 }

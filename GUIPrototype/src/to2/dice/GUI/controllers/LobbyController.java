@@ -18,14 +18,14 @@ public class LobbyController extends Controller implements ServerMessageListener
 	
 	public void clickedLeaveButton() {
 		try{
-			Response response = model.getConnectionProxy().leaveRoom(model.login);
+			Response response = model.getConnectionProxy().leaveRoom(model.getLogin());
 			if(response.isSuccess()){
 				GameListController newController = new GameListController(model);
-				model.serverMessageContainer.removeServerMessageListener();
-				model.gameSettings = null;
+				model.getServerMessageContainer().removeServerMessageListener();
+				model.setGameSettings(null);
 				GameListView newView = new GameListView(model, newController);
 				newController.setView(newView);
-				model.diceApplication.setView(newView);
+				model.getDiceApplication().setView(newView);
 			}
 			else{
 				//TODO Could it happen?
@@ -39,11 +39,11 @@ public class LobbyController extends Controller implements ServerMessageListener
 	}
 	
 	public void clickedSitDownStandUpButton() {
-		if(model.sitting==true){
+		if(model.isSitting()==true){
 			try{
-				Response response = model.getConnectionProxy().standUp(model.login);
+				Response response = model.getConnectionProxy().standUp(model.getLogin());
 				if(response.isSuccess()){
-					model.sitting=false;
+					model.setSitting(false);
 					view.refresh();
 				}
 				else{
@@ -58,9 +58,9 @@ public class LobbyController extends Controller implements ServerMessageListener
 		}
 		else{
 			try{
-				Response response = model.getConnectionProxy().sitDown(model.login);
+				Response response = model.getConnectionProxy().sitDown(model.getLogin());
 				if(response.isSuccess()){
-					model.sitting=true;
+					model.setSitting(true);
 					view.refresh();
 				}
 				else{

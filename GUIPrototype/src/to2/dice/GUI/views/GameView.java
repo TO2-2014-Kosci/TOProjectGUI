@@ -55,23 +55,23 @@ public class GameView extends View {
 	            return columnNames[col];
 	        }
 			public int getRowCount() {
-				return model.gameState.getPlayersNumber();
+				return model.getGameState().getPlayersNumber();
 			}
 			
 			public Object getValueAt(int arg0, int arg1) {
 				switch (arg1) {
 					case 0:
-						return model.gameState.getPlayers().get(arg0).getName();
+						return model.getGameState().getPlayers().get(arg0).getName();
 					case 1:
 						//TODO change to image, maybe
-						int[] dice = model.gameState.getPlayers().get(arg0).getDice().getValue();
+						int[] dice = model.getGameState().getPlayers().get(arg0).getDice().getValue();
 						String result = "";
 						for (int i: dice) {
 							result += Integer.toString(i) + " "; 
 						}
 						return result;
 					case 2:
-						return model.gameState.getPlayers().get(arg0).getScore();
+						return model.getGameState().getPlayers().get(arg0).getScore();
 					default:
 						return new Object();
 				}
@@ -101,7 +101,7 @@ public class GameView extends View {
 		
 		standUpLeaveButton = new JButton();
 		String text;
-		if (model.gameState.isPlayerWithName(model.login)) {
+		if (model.getGameState().isPlayerWithName(model.getLogin())) {
 			text = "Wstañ";
 		} else {
 			text = "WyjdŸ";
@@ -125,7 +125,7 @@ public class GameView extends View {
 			}
 		});
 		add(rerollButton, "cell 2 3,alignx right,aligny bottom");
-		if (model.gameState.getCurrentPlayer() != null && model.gameState.getCurrentPlayer().getName().equals(model.login)) {
+		if (model.getGameState().getCurrentPlayer() != null && model.getGameState().getCurrentPlayer().getName().equals(model.getLogin())) {
 			rerollButton.setVisible(true);
 		} else {
 			rerollButton.setVisible(false);
@@ -137,7 +137,7 @@ public class GameView extends View {
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
-		if (model.gameState.getCurrentPlayer() != null && model.gameState.getCurrentPlayer().getName().equals(model.login)) {
+		if (model.getGameState().getCurrentPlayer() != null && model.getGameState().getCurrentPlayer().getName().equals(model.getLogin())) {
 			rerollButton.setVisible(true);
 		} else {
 			rerollButton.setVisible(false);

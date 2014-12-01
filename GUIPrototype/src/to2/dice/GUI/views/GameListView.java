@@ -53,14 +53,14 @@ public class GameListView extends View {
 	            return columnNames[col];
 	        }
 			public int getRowCount() {
-				return model.roomList.size();
+				return model.getRoomList().size();
 			}
 			public Class<?> getColumnClass(int columnIndex) {
 				return getValueAt(0, columnIndex).getClass();
 			}
 			
 			public Object getValueAt(int arg0, int arg1) {
-				GameInfo gameInfo = model.roomList.get(arg0);
+				GameInfo gameInfo = model.getRoomList().get(arg0);
 				switch (arg1){
 					case 0:
 						return gameInfo.getSettings().getName();
@@ -161,7 +161,7 @@ public class GameListView extends View {
 			return null;
 		}
 		else{
-			return model.roomList.get(rowNumber);
+			return model.getRoomList().get(rowNumber);
 		}
 	}
 
