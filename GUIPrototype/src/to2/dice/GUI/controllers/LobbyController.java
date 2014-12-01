@@ -1,7 +1,9 @@
 package to2.dice.GUI.controllers;
 
 import to2.dice.GUI.model.Model;
+import to2.dice.GUI.views.GameAnimation;
 import to2.dice.GUI.views.GameListView;
+import to2.dice.GUI.views.GameView;
 import to2.dice.game.GameState;
 import to2.dice.messaging.Response;
 import to2.dice.server.ServerMessageListener;
@@ -13,7 +15,19 @@ public class LobbyController extends Controller implements ServerMessageListener
 	
 	//TODO
 	public void onGameStateChange(GameState gameState){
-		
+		model.setGameState(gameState);
+		if(gameState.isGameStarted()){
+			GameAnimController animController = new GameAnimController(model);
+			GameAnimation anim = new GameAnimation(model, animController);
+			animController.setGameAnimation(anim);
+			GameController newController = new GameController(model,animController);
+			GameView newView = new GameView(model, newController, anim);
+			newController.setView(newView);
+			model.getServerMessageContainer().setServerMessageListener(newController);
+			model.getDiceApplication().setView(newView);
+			model.getDiceApplication().refresh();
+			newController.onGameStateChange(gameState);
+		}
 	}
 	
 	public void clickedLeaveButton() {
