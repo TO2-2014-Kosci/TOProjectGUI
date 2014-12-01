@@ -1,6 +1,8 @@
 package to2.dice.GUI.launcher;
 
 import java.awt.EventQueue;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -125,8 +127,8 @@ public class DiceLauncher {
 		for (int i = 0; i < 10; i++) {
 			model.getGameState().addPlayer(new Player("Kot" + i, (i%2)==0, 5));
 		}
-		
-		
+		//TODO koniec remove
+			
 		EventQueue.invokeLater(new Runnable(){
 			
 			public void run(){
@@ -135,5 +137,4 @@ public class DiceLauncher {
 			}
 		});
 	}
-
 }

@@ -11,6 +11,7 @@ import com.jme3.scene.Spatial;
 
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameAnimation;
+import to2.dice.game.GameState;
 
 public class GameAnimController implements ActionListener {
 	private GameAnimation gameAnimation;
