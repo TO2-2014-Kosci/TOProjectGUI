@@ -4,7 +4,7 @@ import to2.dice.game.GameState;
 import to2.dice.server.ServerMessageListener;
 
 public class ServerMessageContainer implements ServerMessageListener {
-	ServerMessageListener serverMessageListener;
+	private ServerMessageListener serverMessageListener;
 	
 	
 	@Override

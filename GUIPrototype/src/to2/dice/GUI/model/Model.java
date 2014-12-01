@@ -23,8 +23,8 @@ public class Model {
 	
 	public Model(ConnectionProxy cp, ServerMessageContainer smc, DiceApplication da) {
 		this.connectionProxy = cp;
-		this.setServerMessageContainer(smc);
-		this.setDiceApplication(da);
+		this.serverMessageContainer = smc;
+		this.diceApplication = da;
 	}
 	
 	
@@ -37,21 +37,9 @@ public class Model {
 		return serverMessageContainer;
 	}
 
-
-	public void setServerMessageContainer(ServerMessageContainer serverMessageContainer) {
-		this.serverMessageContainer = serverMessageContainer;
-	}
-
-
 	public DiceApplication getDiceApplication() {
 		return diceApplication;
 	}
-
-
-	public void setDiceApplication(DiceApplication diceApplication) {
-		this.diceApplication = diceApplication;
-	}
-
 
 	public String getLogin() {
 		return login;
