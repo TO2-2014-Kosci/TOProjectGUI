@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>288</y>
+      <w>216</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>/View/
+--
+#model: Model
+#controller: Controller
+--
++View(Model model, Controller controller)
++refresh(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>528</y>
+      <w>152</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>LoginView
+--
+-loginButton: JButton
+-loginField: JTextField
+--
++getLogin(): String
++eraseLogin(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>240</x>
+      <y>344</y>
+      <w>80</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>JPanel
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>528</y>
+      <w>208</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>GameListView
+--
+-refreshButton: JButton
+-createGameButton: JButton
+-joinGameButton: JButton
+-gameListTable: JTable
+--
++getSelectedGame(): GameInfo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>184</x>
+      <y>528</y>
+      <w>192</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>CreateGameView
+--
+-createGameButton: JButton
+-returnButton: JButton
+-gameTypeComboBox: JComboBox
+-nameField: JTextField
+-maxHumanPlayerSpinner: JSpinner
+-timeForMoveSpinner: JSpinner
+-maxInactiveTurnsSpinner: JSpinner
+-roundsToWinSpinner: JSpinner
+-botsNumberSpinners: JSpinner[]
+--
++getGameSettings(): GameSettings
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>528</y>
+      <w>184</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>LobbyView
+--
+-sitDownStandUpButton: JButton
+-leaveButton: JButton
+-playersCountLabel: JLabel
+-playersTable: JTable
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>840</x>
+      <y>528</y>
+      <w>240</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>GameView
+--
+-gameAnimation: GameAnimation
+-rerollButton: JButton
+-standUpLeaveButton: JButton
+-playerTable: JTable
+-timerLabel: JLabel
+--
++GameView(Model model, Controller controller, GameAnimation gameAnimation)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>352</y>
+      <w>104</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>424</y>
+      <w>24</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>536</x>
+      <y>424</y>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>568</x>
+      <y>424</y>
+      <w>384</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;460.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>424</y>
+      <w>208</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>240.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>56</x>
+      <y>424</y>
+      <w>392</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>470.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1104</x>
+      <y>528</y>
+      <w>312</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>GameAnimation
+--
+-gameAnimController: GameAnimController
+--
++GameAnimation(GameAnimController gameAnimController)
++getCanvas(): Canvas
++simpleInitApp(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1136</x>
+      <y>640</y>
+      <w>144</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>SimpleApplication
+--
++simpleInitApp(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1184</x>
+      <y>616</y>
+      <w>24</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1072</x>
+      <y>552</y>
+      <w>48</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>368</x>
+      <y>64</y>
+      <w>296</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>/Controller/
+--
+#model: Model
+#view: View
+--
++Controller(Model model): void
++setView(View view): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>216</y>
+      <w>24</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>608</x>
+      <y>352</y>
+      <w>208</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>240.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>264</y>
+      <w>480</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Model
+--
+-login: String
+-connectionProxy: ConnectionProxy
+-serverMessageContainer: ServerMessageContainer
+-diceApplication: DiceApplication
+-roomList: List&lt;GameInfo&gt;
+-gameSettings: GameSettings
+//dla przycisku
+-sitting: boolean
+-selectedDice: boolean[]
+-gameState: GameState
+--
++Model(String login, ConnectionProxy connectionProxy, ServerMessageContainer serverMessageContainer, DiceApplicatiion diceApplication)
+getters and setters
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

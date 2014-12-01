@@ -35,6 +35,7 @@ public class GameAnimController implements ActionListener {
 					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
 					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setLinearVelocity(new Vector3f(14, 0, 0));
 					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).activate();
+					model.setTimer(model.getGameSettings().getTimeForMove());
 				}
 			} else if (name.equals("Put")) {
 				for (int i = 0; i < 5; i++) {

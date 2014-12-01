@@ -23,6 +23,7 @@ public class CreateGameController extends Controller {
 		//TODO validation?
 		if (isProper(gameSettings)) {
 			model.setGameSettings(gameSettings);
+			model.setTimer(gameSettings.getTimeForMove());
 			Controller newController;
 			View newView;
 			newController = new LobbyController(model);

@@ -40,6 +40,7 @@ public class GameListController extends Controller {
 		GameInfo selectedGame = glv.getSelectedGame();
 		if(selectedGame!=null){
 			model.setGameSettings(selectedGame.getSettings());
+			model.setTimer(selectedGame.getSettings().getTimeForMove());
 			Controller newController;
 			View newView;
 			if (selectedGame.isGameStarted()) {

@@ -115,22 +115,23 @@ public class DiceLauncher {
 				
 			}
 		};
-		DiceApplication app = new DiceApplication();
-		Model appModel = new Model(cp, smc, app);
-		LoginController appController = new LoginController(appModel);
-		View appView = new LoginView(appModel, appController);
-		appController.setView(appView);
+		DiceApplication da = new DiceApplication();
+		Model model = new Model(cp, smc, da);
+		LoginController newController = new LoginController(model);
+		View newView = new LoginView(model, newController);
+		newController.setView(newView);
+		
 		//TODO to remove
 		for (int i = 0; i < 10; i++) {
-			appModel.getGameState().addPlayer(new Player("Kot" + i, (i%2)==0, 5));
+			model.getGameState().addPlayer(new Player("Kot" + i, (i%2)==0, 5));
 		}
 		
 		
 		EventQueue.invokeLater(new Runnable(){
 			
 			public void run(){
-				app.setView(appView);
-				app.setVisible(true);
+				da.setView(newView);
+				da.setVisible(true);
 			}
 		});
 	}

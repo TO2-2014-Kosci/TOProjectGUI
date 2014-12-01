@@ -4,8 +4,8 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>320</x>
-      <y>60</y>
+      <x>330</x>
+      <y>140</y>
       <w>60</w>
       <h>100</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>340</x>
-      <y>180</y>
+      <x>350</x>
+      <y>260</y>
       <w>20</w>
       <h>120</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>170</y>
+      <x>360</x>
+      <y>250</y>
       <w>140</w>
       <h>40</h>
     </coordinates>
@@ -38,8 +38,8 @@ Clicked</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>470</x>
-      <y>180</y>
+      <x>480</x>
+      <y>260</y>
       <w>20</w>
       <h>120</h>
     </coordinates>
@@ -49,8 +49,8 @@ Clicked</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>470</x>
-      <y>100</y>
+      <x>480</x>
+      <y>180</y>
       <w>30</w>
       <h>100</h>
     </coordinates>
@@ -60,8 +60,8 @@ Clicked</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>390</x>
-      <y>80</y>
+      <x>400</x>
+      <y>160</y>
       <w>180</w>
       <h>30</h>
     </coordinates>
@@ -71,8 +71,8 @@ Clicked</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
-      <y>110</y>
+      <x>350</x>
+      <y>190</y>
       <w>30</w>
       <h>90</h>
     </coordinates>
@@ -82,8 +82,8 @@ Clicked</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>280</y>
+      <x>360</x>
+      <y>360</y>
       <w>140</w>
       <h>30</h>
     </coordinates>
@@ -93,8 +93,8 @@ Clicked</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>600</x>
-      <y>80</y>
+      <x>610</x>
+      <y>160</y>
       <w>180</w>
       <h>30</h>
     </coordinates>
@@ -104,8 +104,8 @@ Clicked</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>680</x>
-      <y>180</y>
+      <x>690</x>
+      <y>260</y>
       <w>20</w>
       <h>110</h>
     </coordinates>
@@ -115,8 +115,8 @@ Clicked</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>100</y>
+      <x>690</x>
+      <y>180</y>
       <w>30</w>
       <h>100</h>
     </coordinates>
@@ -126,8 +126,8 @@ Clicked</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>190</y>
+      <x>490</x>
+      <y>270</y>
       <w>220</w>
       <h>40</h>
     </coordinates>
@@ -138,8 +138,8 @@ clickedStandUpButton()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>270</y>
+      <x>490</x>
+      <y>350</y>
       <w>220</w>
       <h>30</h>
     </coordinates>
@@ -149,8 +149,8 @@ clickedStandUpButton()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>810</x>
-      <y>80</y>
+      <x>820</x>
+      <y>160</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -160,8 +160,8 @@ clickedStandUpButton()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>860</x>
-      <y>100</y>
+      <x>870</x>
+      <y>180</y>
       <w>30</w>
       <h>140</h>
     </coordinates>
@@ -171,8 +171,8 @@ clickedStandUpButton()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>860</x>
-      <y>220</y>
+      <x>870</x>
+      <y>300</y>
       <w>20</w>
       <h>60</h>
     </coordinates>
@@ -182,8 +182,8 @@ clickedStandUpButton()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>690</x>
-      <y>210</y>
+      <x>700</x>
+      <y>290</y>
       <w>190</w>
       <h>40</h>
     </coordinates>
@@ -194,8 +194,8 @@ standUp(login)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>690</x>
-      <y>240</y>
+      <x>700</x>
+      <y>320</y>
       <w>190</w>
       <h>40</h>
     </coordinates>

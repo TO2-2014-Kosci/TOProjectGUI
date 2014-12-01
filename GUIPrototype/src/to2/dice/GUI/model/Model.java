@@ -20,6 +20,7 @@ public class Model {
 	private boolean sitting = false;
 	private boolean[] selectedDice = new boolean[numberOfDice];
 	private GameState gameState = new GameState();
+	private int timer = 60;
 	
 	public Model(ConnectionProxy cp, ServerMessageContainer smc, DiceApplication da) {
 		this.connectionProxy = cp;
@@ -98,5 +99,15 @@ public class Model {
 
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
+	}
+
+
+	public int getTimer() {
+		return timer;
+	}
+
+
+	public void setTimer(int timer) {
+		this.timer = timer;
 	}
 }

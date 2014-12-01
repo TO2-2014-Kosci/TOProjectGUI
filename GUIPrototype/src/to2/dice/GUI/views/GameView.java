@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,12 +26,7 @@ public class GameView extends View {
 	private JButton rerollButton;
 	private JButton standUpLeaveButton;
 	private JTable playerTable;
-	private JLabel timer;
-	private static final String[] columnNames = {
-		"Gracz",
-		"Koœci",
-		"Punkty"
-	};
+	private JLabel timerLabel;
 	
 	private static final int DEFAULT_WIDTH = 750;
 	private static final int DEFAULT_HEIGHT= 520;
@@ -37,11 +34,15 @@ public class GameView extends View {
 	public GameView(Model model, GameController controller, GameAnimation gameAnimation){
 		super(model, controller);
 		this.gameAnimation = gameAnimation;
-		
 		setBackground(new Color(64, 0, 0));
 		setLayout(new MigLayout("", "[][grow][]", "[][grow][][]"));
 		playerTable = new JTable(new AbstractTableModel(){
-
+			private final String[] columnNames = {
+				"Gracz",
+				"Koœci",
+				"Punkty"
+			};
+			
 			private static final long serialVersionUID = 1L;
 
 			public int getColumnCount() {
@@ -95,9 +96,10 @@ public class GameView extends View {
 		
 		add(playerScrollTable, "cell 0 0 1 4,width 30%!,growy");
 		
-		timer = new JLabel("59");
-		timer.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		add(timer, "cell 2 0,alignx right");
+		timerLabel = new JLabel();
+		timerLabel.setOpaque(true);
+		timerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		add(timerLabel, "cell 2 0,alignx right");
 		
 		standUpLeaveButton = new JButton();
 		String text;
@@ -131,6 +133,25 @@ public class GameView extends View {
 			rerollButton.setVisible(false);
 		}
 		add(gameAnimation.getCanvas(), "cell 1 0 2 4,grow");
+		Timer timer = (new Timer());
+		timer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				if (model.getTimer() > 5) {
+					timerLabel.setForeground(Color.BLACK);
+					timerLabel.setText(Integer.toString(model.getTimer()));
+					model.setTimer(model.getTimer()-1);
+				} else if (model.getTimer() >= 0){
+					timerLabel.setForeground(Color.RED);
+					timerLabel.setText(Integer.toString(model.getTimer()));
+					model.setTimer(model.getTimer()-1);
+				} else {
+					timerLabel.setText("0");
+					model.setTimer(0);
+				}
+			}
+		}, 0, 1000);
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 
