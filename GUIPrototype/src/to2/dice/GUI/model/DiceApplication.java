@@ -36,8 +36,6 @@ public class DiceApplication extends JFrame {
 		this.setContentPane(view);
 		this.setMinimumSize(view.getMinimumSize());
 		setLocationRelativeTo(null);
-		//dopisaæ ustawianie wielkoœci
-		//Niby dlaczego dwa?
 		this.refresh();
 		this.view.refresh();
 	}

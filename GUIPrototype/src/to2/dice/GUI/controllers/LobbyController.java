@@ -25,10 +25,11 @@ public class LobbyController extends Controller implements ServerMessageListener
 				model.setGameSettings(null);
 				GameListView newView = new GameListView(model, newController);
 				newController.setView(newView);
+				newController.refreshGameList();
 				model.getDiceApplication().setView(newView);
 			}
 			else{
-				//TODO Could it happen?
+				view.showErrorDialog(response.message, "B³¹d wychodzenia", false);
 			}
 		}
 		catch(Exception e){

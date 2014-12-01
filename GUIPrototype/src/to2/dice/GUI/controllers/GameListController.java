@@ -24,12 +24,10 @@ public class GameListController extends Controller {
 		}
 		catch(Exception e){
 			e.printStackTrace();
-			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
-			
+			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);			
 		}
 	}
 	
-	//TODO Needs to be checked
 	public void clickedCreateGameButton(){
 		CreateGameController newController = new CreateGameController(model);
 		CreateGameView newView = new CreateGameView(model, newController);
@@ -37,7 +35,6 @@ public class GameListController extends Controller {
 		model.getDiceApplication().setView(newView);
 	}
 	
-	//TODO
 	public void clickedJoinGameButton(){
 		GameListView glv = (GameListView) view;
 		GameInfo selectedGame = glv.getSelectedGame();
@@ -69,7 +66,6 @@ public class GameListController extends Controller {
 				}
 			}
 			catch(Exception e){
-				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
 		}
