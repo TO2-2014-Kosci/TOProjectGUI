@@ -54,7 +54,7 @@ public class GameAnimController implements ActionListener {
 					results.getClosestCollision().getGeometry().getMaterial().setColor("GlowColor", ColorRGBA.Green);
 					Spatial target = results.getClosestCollision().getGeometry().getParent().getParent();
 					if (target.getName().equals("Model/Dice/dice.blend")) {
-						for (int i = 0; i < model.gameSettings.getDiceNumber(); i++) {
+						for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
 							if (gameAnimation.getUserDice()[i].equals(target)) {
 								gameAnimation.selectDice(i);
 							}
