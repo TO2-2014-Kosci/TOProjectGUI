@@ -73,8 +73,8 @@ public class GameAnimation extends SimpleApplication{
 		this.settings.setFrameRate(60);
 		this.cam.setLocation(new Vector3f(-10, 0, 12));
 		this.cam.lookAt(new Vector3f(-3, 0, 0), Vector3f.UNIT_Z);
-		setUserDice(new Spatial[model.gameSettings.getDiceNumber()]);
-		setAnotherDice(new Spatial[model.gameSettings.getDiceNumber()]);
+		setUserDice(new Spatial[model.getGameSettings().getDiceNumber()]);
+		setAnotherDice(new Spatial[model.getGameSettings().getDiceNumber()]);
 		this.assetManager.registerLocator("./assets", FileLocator.class);
 		for (int i = 0; i < 5; i++) {
 			getUserDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
@@ -148,12 +148,12 @@ public class GameAnimation extends SimpleApplication{
 
 	public void refresh() {
 		// TODO Auto-generated method stub
-		Player currentPlayer = model.gameState.getCurrentPlayer();
+		Player currentPlayer = model.getGameState().getCurrentPlayer();
 		if (currentPlayer != null) {
-			if (currentPlayer.getName().equals(model.login)) {
+			if (currentPlayer.getName().equals(model.getLogin())) {
 				// u¿ytkownik
 			} else {
-				for(int i = 0; i < model.gameSettings.getDiceNumber(); i++) {
+				for(int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
 					getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, -1f));
 				}
 				// inny gracz
@@ -162,7 +162,7 @@ public class GameAnimation extends SimpleApplication{
 	}
 	
 	public void selectDice(int i) {
-		if (model.selectedDice[i]) {
+		if (model.getSelectedDice()[i]) {
 //			getUserDice()[i].setB
 			getUserDice()[i].addLight(new PointLight());
 		} else {
