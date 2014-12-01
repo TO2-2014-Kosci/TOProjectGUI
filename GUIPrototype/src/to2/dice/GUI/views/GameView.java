@@ -142,5 +142,7 @@ public class GameView extends View {
 		} else {
 			rerollButton.setVisible(false);
 		}
+		((AbstractTableModel)playerTable.getModel()).fireTableDataChanged();
+		gameAnimation.refresh();
 	}
 }

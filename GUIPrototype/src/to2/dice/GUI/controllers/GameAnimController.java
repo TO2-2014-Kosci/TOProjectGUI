@@ -3,6 +3,7 @@ package to2.dice.GUI.controllers;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.collision.CollisionResults;
 import com.jme3.input.controls.ActionListener;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
@@ -31,13 +32,13 @@ public class GameAnimController implements ActionListener {
 	 public void onAction(String name, boolean keyPressed, float tpf) {
 			if (name.equals("Shake")) {
 				for (int i = 0; i < 5; i++) {
-					gameAnimation.getDices()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
-					gameAnimation.getDices()[i].getControl(RigidBodyControl.class).setLinearVelocity(new Vector3f(14, 0, 0));
-					gameAnimation.getDices()[i].getControl(RigidBodyControl.class).activate();
+					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
+					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setLinearVelocity(new Vector3f(14, 0, 0));
+					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).activate();
 				}
 			} else if (name.equals("Put")) {
 				for (int i = 0; i < 5; i++) {
-					gameAnimation.getDices()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, -4 + 2 * i, -1.5f));
+					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, -4 + 2 * i, -1.5f));
 				}
 			} else if (name.equals("Select") && !keyPressed) {
 				// Reset results list.
@@ -50,10 +51,14 @@ public class GameAnimController implements ActionListener {
 				Ray ray = new Ray(click3d, dir);
 				gameAnimation.getRootNode().collideWith(ray, results);
 				if (results.size() > 0) {
+					results.getClosestCollision().getGeometry().getMaterial().setColor("GlowColor", ColorRGBA.Green);
 					Spatial target = results.getClosestCollision().getGeometry().getParent().getParent();
 					if (target.getName().equals("Model/Dice/dice.blend")) {
-						target.getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(0, 0, 6));
-						target.getControl(RigidBodyControl.class).activate();
+						for (int i = 0; i < model.gameSettings.getDiceNumber(); i++) {
+							if (gameAnimation.getUserDice()[i].equals(target)) {
+								gameAnimation.selectDice(i);
+							}
+						}
 					}
 				}
 			}
