@@ -20,6 +20,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.JSpinner.DefaultEditor;
 
 //TODO zabezpieczenie przed samymi zerami.
+//
 public class CreateGameView extends JPanel {
 
 	private static final long serialVersionUID = 6952287105002870473L;

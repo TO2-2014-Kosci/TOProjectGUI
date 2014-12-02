@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>400</y>
+      <w>200</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Laucher
+--
+--
+_+main(String[] args): void_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>290</y>
+      <w>190</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;create&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>160</x>
+      <y>440</y>
+      <w>280</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;create&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;50.0;260.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>240</y>
+      <w>160</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;create&gt;&gt;</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>390</y>
+      <w>770</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;create&gt;&gt;</panel_attributes>
+    <additional_attributes>750.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>440</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;create&gt;&gt;</panel_attributes>
+    <additional_attributes>120.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>730</x>
+      <y>430</y>
+      <w>600</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>Model
+--
+-login: String
+-connectionProxy: ConnectionProxy
+-serverMessageContainer: ServerMessageContainer
+-diceApplication: DiceApplication
+-roomList: List&lt;GameInfo&gt;
+-gameSettings: GameSettings
+//dla przycisku
+-sitting: boolean
+-selectedDice: boolean[]
+-gameState: GameState
+--
++Model(String login, ConnectionProxy connectionProxy, ServerMessageContainer serverMessageContainer, DiceApplicatiion diceApplication)
+getters and setters
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>500</y>
+      <w>270</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>DiceApplication
+--
+-view: View
+--
++DiceApplication()
++refresh(): void
++setView(View view): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>450</y>
+      <w>70</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;create&gt;&gt;</panel_attributes>
+    <additional_attributes>30.0;50.0;30.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>190</y>
+      <w>560</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>ServerMessageContainer
+--
+-serverMessageListener: ServerMessageListener
+--
++setServerMessageListener(ServerMessageListener serverMessageListener): void
++removeServerMessageListener(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1360</x>
+      <y>360</y>
+      <w>460</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>/ConnectionProxy/
+--
++ConnectionProxy(Object serverLink, ServerMessageListener listener)
++login(String login): Response
++getRoomList(): List&lt;GameInfo&gt;
++createRoom(GameSettings settings, String login): Response
++joinRoom(String roomName, String login): Response
++leaveRoom(String login): Response
++sitDown(String login): Response
++standUp(String login): Response
++reroll(boolean[] dice, String login): void
++addServerMessageListener(ServerMessageListener listener): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>130</x>
+      <y>490</y>
+      <w>190</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>LoginView
+--
+-loginButton: JButton
+-loginField: JTextField
+--
++getLogin(): String
++eraseLogin(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1210</x>
+      <y>250</y>
+      <w>410</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;10.0;390.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>880</x>
+      <y>280</y>
+      <w>30</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1320</x>
+      <y>450</y>
+      <w>60</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;80.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>530</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>230</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>LoginController
+--
+--
++clickedLoginButton(): void
+-isProper(String login): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

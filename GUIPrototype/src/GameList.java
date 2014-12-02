@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -40,7 +41,6 @@ public class GameList extends JPanel {
 	};
 	public GameList(JFrame mainFrame){
 		JTable gamesTable = new JTable(new AbstractTableModel(){
-
 			private static final long serialVersionUID = 1L;
 
 			public int getColumnCount() {
@@ -75,7 +75,6 @@ public class GameList extends JPanel {
 		gamesTable.getColumnModel().getColumn(4).setPreferredWidth(100);
 		gamesTable.getColumnModel().getColumn(4).setMaxWidth(70);
 		gamesTable.getColumnModel().getColumn(4).setMinWidth(70);
-		
 		gamesTable.setFillsViewportHeight(true);
 		gamesTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		gamesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -83,6 +82,7 @@ public class GameList extends JPanel {
 		gamesTable.setRowHeight(20);
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer)gamesTable.getDefaultRenderer(Object.class);
 		renderer.setHorizontalAlignment(JLabel.CENTER);
+		renderer.setHorizontalTextPosition(JLabel.CENTER);
         //gamesTable.setPreferredScrollableViewportSize(new Dimension(500,300));
 		
 		setLayout(new BorderLayout());

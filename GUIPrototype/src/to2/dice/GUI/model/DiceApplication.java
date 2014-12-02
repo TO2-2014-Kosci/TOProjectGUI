@@ -1,16 +1,18 @@
+package to2.dice.GUI.model;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class MainFrame extends JFrame {
+import to2.dice.GUI.views.View;
 
-	private static final int DEFAULT_WIDTH = 200;
-	private static final int DEFAULT_HEIGHT= 200;
-	private static final long serialVersionUID = 1L;
+
+public class DiceApplication extends JFrame {
+	private static final long serialVersionUID = 4487043914138417716L;
+	private View view;
 	
-	public MainFrame(){
+	public DiceApplication() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException
@@ -18,19 +20,23 @@ public class MainFrame extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		LoginPanel loginPanel= new LoginPanel(this);
-		setContentPane(loginPanel);
-		setMinimumSize(loginPanel.getMinimumSize());
-//		GameView gameView= new GameView(this);
-//		setContentPane(gameView);
-//		setMinimumSize(gameView.getMinimumSize());
-		
-
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
 		setTitle("Koœci");
 		setIconImage((new ImageIcon("kosc.png")).getImage());
-		//pack();
+	}
+	
+	
+	public void refresh() {
+		this.revalidate();
+		//TODO
+	}
+	
+	public void setView(View view) {
+		this.view = view;
+		this.setContentPane(view);
+		this.setMinimumSize(view.getMinimumSize());
+		setLocationRelativeTo(null);
+		this.refresh();
+		this.view.refresh();
 	}
 }
