@@ -6,24 +6,20 @@ import to2.dice.game.GameSettings;
 import to2.dice.game.GameType;
 import to2.dice.server.GameServer;
 
-public class GameControllerFactory {
-    public GameController createGameControler(GameServer server, GameSettings settings, String creator){
-        GameController gameController = null;
-        GameType type = settings.getGameType();
-        switch (type){
+public final class GameControllerFactory {
+    private GameControllerFactory() {
+    }
+
+    public static GameController createGameControler(GameServer server, GameSettings settings, String creator) {
+        switch (settings.getGameType()) {
             case NPLUS:
-                gameController = new NGameController(server, settings, creator, new PlusCountingStrategy());
-                break;
+                return new NGameController(server, settings, creator, new PlusCountingStrategy());
             case NMUL:
-                gameController = new NGameController(server, settings, creator, new MulCountingStrategy());
-                break;
+                return new NGameController(server, settings, creator, new MulCountingStrategy());
             case POKER:
-                gameController = new PokerGameController(server, settings, creator);
-                break;
+                return new PokerGameController(server, settings, creator);
             default:
-//THROW SOMETHING HERE
-                break;
+                return null;
         }
-        return gameController;
     }
 }

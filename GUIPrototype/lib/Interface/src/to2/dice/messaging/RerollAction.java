@@ -6,8 +6,8 @@ package to2.dice.messaging;
 public class RerollAction extends GameAction {
     private boolean[] chosenDice;
 
-    public RerollAction(GameActionType type, String sender, boolean[] chosenDice) {
-        super(type, sender);
+    public RerollAction(String sender, boolean[] chosenDice) {
+        super(GameActionType.REROLL, sender);
         this.chosenDice = chosenDice;
     }
 

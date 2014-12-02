@@ -1,5 +1,7 @@
 package to2.dice.GUI.controllers;
 
+import java.util.concurrent.TimeoutException;
+
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameListView;
 import to2.dice.GUI.views.View;
@@ -26,7 +28,7 @@ public class GameController extends Controller implements ServerMessageListener 
 				view.showErrorDialog(response.message, "B³¹d wychodzenia", false);
 			}
 		}
-		catch(Exception e){
+		catch(TimeoutException e){
 			e.printStackTrace();
 			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 		}
@@ -34,6 +36,24 @@ public class GameController extends Controller implements ServerMessageListener 
 	
 	//TODO
 	public void clickedStandUpLeaveButton() {
+		if (model.isSitting()) {
+			try{
+				Response response = model.getConnectionProxy().standUp(model.getLogin());
+				if(response.isSuccess()){
+					model.setSitting(false);
+					view.refresh();
+				}
+				else{
+					view.showErrorDialog("Nie uda³o siê wstaæ","B³¹d wstawania", false);
+				}
+			}
+			catch(TimeoutException e){
+				e.printStackTrace();
+				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
+			}
+		} else {
+			// wychodzi
+		}
 		
 	}
 	

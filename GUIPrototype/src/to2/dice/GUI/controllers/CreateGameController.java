@@ -1,5 +1,7 @@
 package to2.dice.GUI.controllers;
 
+import java.util.concurrent.TimeoutException;
+
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.CreateGameView;
 import to2.dice.GUI.views.GameAnimation;
@@ -41,7 +43,7 @@ public class CreateGameController extends Controller {
 					view.showErrorDialog("Nie uda³o siê utworzyæ gry", "B³¹d tworzenia gry", false);
 				}
 			}
-			catch(Exception e){
+			catch(TimeoutException e){
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
 		} else {

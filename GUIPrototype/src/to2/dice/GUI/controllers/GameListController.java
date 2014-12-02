@@ -1,5 +1,7 @@
 package to2.dice.GUI.controllers;
 
+import java.util.concurrent.TimeoutException;
+
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.CreateGameView;
 import to2.dice.GUI.views.GameAnimation;
@@ -22,7 +24,7 @@ public class GameListController extends Controller {
 			model.setRoomList(model.getConnectionProxy().getRoomList());
 			view.refresh();
 		}
-		catch(Exception e){
+		catch(TimeoutException e){
 			e.printStackTrace();
 			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);			
 		}
@@ -59,6 +61,7 @@ public class GameListController extends Controller {
 			try{
 				Response response = model.getConnectionProxy().joinRoom(model.getGameSettings().getName(), model.getLogin());
 				if(response.isSuccess()){
+					model.setSitting(false);
 					model.getDiceApplication().setView(newView);
 				}
 				else{
@@ -66,7 +69,7 @@ public class GameListController extends Controller {
 					view.showErrorDialog("Nie uda³o siê do³¹czyæ do gry","B³¹d do³¹czania",false);
 				}
 			}
-			catch(Exception e){
+			catch(TimeoutException e){
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
 		}

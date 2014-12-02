@@ -53,7 +53,7 @@ public class DiceLauncher {
 			}
 			
 			@Override
-			public Response reroll(Dice dice) {
+			public Response reroll(boolean[] dice) {
 				// TODO Auto-generated method stub
 				System.out.println("Przerzuca");
 				return new Response(Response.Type.SUCCESS);

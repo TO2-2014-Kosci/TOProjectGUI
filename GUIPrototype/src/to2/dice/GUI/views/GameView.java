@@ -65,7 +65,7 @@ public class GameView extends View {
 						return model.getGameState().getPlayers().get(arg0).getName();
 					case 1:
 						//TODO change to image, maybe
-						int[] dice = model.getGameState().getPlayers().get(arg0).getDice().getValue();
+						int[] dice = model.getGameState().getPlayers().get(arg0).getDice().getDice();
 						String result = "";
 						for (int i: dice) {
 							result += Integer.toString(i) + " "; 
@@ -100,10 +100,9 @@ public class GameView extends View {
 		timerLabel.setOpaque(true);
 		timerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		add(timerLabel, "cell 2 0,alignx right");
-		
 		standUpLeaveButton = new JButton();
 		String text;
-		if (model.getGameState().isPlayerWithName(model.getLogin())) {
+		if (model.isSitting()) {
 			text = "Wstañ";
 		} else {
 			text = "WyjdŸ";
