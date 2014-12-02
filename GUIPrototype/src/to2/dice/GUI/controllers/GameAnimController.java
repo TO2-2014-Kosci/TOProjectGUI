@@ -57,15 +57,17 @@ public class GameAnimController implements ActionListener {
 				Ray ray = new Ray(click3d, dir);
 				gameAnimation.getRootNode().collideWith(ray, results);
 				if (results.size() > 0) {
-					results.getClosestCollision().getGeometry().getMaterial().setColor("GlowColor", ColorRGBA.Green);
+					
 					Spatial target = results.getClosestCollision().getGeometry().getParent().getParent();
 					if (target.getName().equals("Model/Dice/dice.blend")) {
 						for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
 							if (gameAnimation.getUserDice()[i].equals(target)) {
 								if (model.getSelectedDice()[i]) {
 									model.getSelectedDice()[i] = false;
+									//results.getClosestCollision().getGeometry().getMaterial().setColor("Diffuse", ColorRGBA.White);
 								} else {
 									model.getSelectedDice()[i] = true;
+									//results.getClosestCollision().getGeometry().getMaterial().setColor("Diffuse", ColorRGBA.Green);
 								}
 								gameAnimation.selectDice(i);
 							}

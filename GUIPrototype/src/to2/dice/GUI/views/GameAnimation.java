@@ -66,7 +66,7 @@ public class GameAnimation extends SimpleApplication{
 		this.setDisplayFps(false);
 		BulletAppState bulletAppState = new BulletAppState();
 		stateManager.attach(bulletAppState);
-		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+//		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 		bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, 0, -10));
 		bulletAppState.getPhysicsSpace().setAccuracy(1/300f);
 		this.settings.setBitsPerPixel(32);

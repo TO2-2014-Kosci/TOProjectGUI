@@ -16,7 +16,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 
 import net.miginfocom.swing.MigLayout;
-import animation.Test;
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.controllers.GameController;
 
