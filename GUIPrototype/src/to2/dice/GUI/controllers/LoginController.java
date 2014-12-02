@@ -1,5 +1,7 @@
 package to2.dice.GUI.controllers;
 
+import java.util.concurrent.TimeoutException;
+
 import javax.swing.JOptionPane;
 
 import to2.dice.GUI.model.Model;
@@ -33,7 +35,7 @@ public class LoginController extends Controller {
 					view.showErrorDialog("Nick zajêty lub niepoprawny", "B³¹d nicku", false);
 				}
 			}
-			catch(Exception e){
+			catch(TimeoutException e){
 				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}

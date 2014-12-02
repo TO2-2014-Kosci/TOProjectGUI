@@ -164,7 +164,6 @@ public class GameAnimation extends SimpleApplication{
 	
 	public void selectDice(int i) {
 		if (model.getSelectedDice()[i]) {
-//			getUserDice()[i].setB
 			getUserDice()[i].addLight(new PointLight());
 		} else {
 			getUserDice()[i].removeLight(new PointLight());

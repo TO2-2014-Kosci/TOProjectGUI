@@ -42,20 +42,15 @@ public class GameState {
         this.currentRound = currentRound;
     }
 
-
     public int getPlayersNumber() {
         return players.size();
     }
 
-    public boolean isPlayerWithName(String playerName) {
-        for (Player player : players) {
-            if (player.getName().equals(playerName))
-                return true;
-        }
-        return false;
-    }
-
     public void addPlayer(Player player) {
         players.add(player);
+    }
+
+    public void removePlayer(Player player) {
+        players.remove(player);
     }
 }

@@ -7,7 +7,7 @@ public class MulCountingStrategy implements CountingStrategy {
     @Override
     public int countPoints(Dice dice) {
         int result = 0;
-        for(int i: dice.getValue()){
+        for(int i: dice.getDice()){
             result *= i;
         }
         return result;

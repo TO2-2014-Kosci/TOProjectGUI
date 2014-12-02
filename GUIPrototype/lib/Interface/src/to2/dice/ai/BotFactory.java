@@ -5,7 +5,7 @@ import to2.dice.game.BotLevel;
 import to2.dice.game.GameType;
 
 public class BotFactory {
-    public Bot createBot(BotLevel level, GameType gameType, int maxTime) {
+    public static Bot createBot(BotLevel level, GameType gameType, int maxTime) {
         throw new NotImplementedException();
     }
 }

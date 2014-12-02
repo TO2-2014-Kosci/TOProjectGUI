@@ -1,5 +1,7 @@
 package to2.dice.GUI.controllers;
 
+import java.util.concurrent.TimeoutException;
+
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameAnimation;
 import to2.dice.GUI.views.GameListView;
@@ -26,7 +28,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 			model.getDiceApplication().setView(newView);
 			model.getDiceApplication().refresh();
 			newController.onGameStateChange(gameState);
-		}
+		} //TODO
 	}
 	
 	public void clickedLeaveButton() {
@@ -45,7 +47,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 				view.showErrorDialog(response.message, "B³¹d wychodzenia", false);
 			}
 		}
-		catch(Exception e){
+		catch(TimeoutException e){
 			e.printStackTrace();
 			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 		}
@@ -64,7 +66,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 					view.showErrorDialog("Nie uda³o siê wstaæ","B³¹d wstawania", false);
 				}
 			}
-			catch(Exception e){
+			catch(TimeoutException e){
 				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
@@ -80,7 +82,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 					view.showErrorDialog("Nie uda³o siê usi¹œæ","B³¹d siadania", false);
 				}
 			}
-			catch(Exception e){
+			catch(TimeoutException e){
 				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
