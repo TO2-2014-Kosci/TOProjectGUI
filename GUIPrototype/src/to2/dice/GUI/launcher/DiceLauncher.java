@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeSystem;
@@ -34,6 +36,7 @@ public class DiceLauncher {
 	public static void main(String[] args) {
 		AppSettings settings = new AppSettings(true);
 		settings.setAudioRenderer(null);
+		Logger.getLogger("com.jme3").setLevel(Level.SEVERE);
 		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
 		

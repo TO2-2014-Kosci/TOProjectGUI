@@ -53,6 +53,7 @@ public class CreateGameController extends Controller {
 		GameListController newController = new GameListController(model);
 		GameListView newView = new GameListView(model,newController);
 		newController.setView(newView);
+		newController.refreshGameList();
 		model.getDiceApplication().setView(newView);
 	}
 	
