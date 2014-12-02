@@ -13,7 +13,6 @@ public class LobbyController extends Controller implements ServerMessageListener
 		super(model);
 	}
 	
-	//TODO
 	public void onGameStateChange(GameState gameState){
 		model.setGameState(gameState);
 		if(gameState.isGameStarted()){
@@ -62,7 +61,6 @@ public class LobbyController extends Controller implements ServerMessageListener
 					view.refresh();
 				}
 				else{
-					//TODO Could it happen?
 					view.showErrorDialog("Nie uda³o siê wstaæ","B³¹d wstawania", false);
 				}
 			}
