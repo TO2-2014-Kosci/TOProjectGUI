@@ -32,12 +32,16 @@ public class GameAnimController implements ActionListener {
 	 
 	 public void onAction(String name, boolean keyPressed, float tpf) {
 			if (name.equals("Shake")) {
-				for (int i = 0; i < 5; i++) {
-					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
-					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setLinearVelocity(new Vector3f(14, 0, 0));
-					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).activate();
-					model.setTimer(model.getGameSettings().getTimeForMove());
+				for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
+					if (model.getSelectedDice()[i]) {
+						gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
+						gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setLinearVelocity(new Vector3f(14, 0, 0));
+						gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).activate();
+						model.setTimer(model.getGameSettings().getTimeForMove());
+						model.getSelectedDice()[i] = false;
+					}
 				}
+				
 			} else if (name.equals("Put")) {
 				for (int i = 0; i < 5; i++) {
 					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, -4 + 2 * i, -1.5f));
@@ -58,6 +62,11 @@ public class GameAnimController implements ActionListener {
 					if (target.getName().equals("Model/Dice/dice.blend")) {
 						for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
 							if (gameAnimation.getUserDice()[i].equals(target)) {
+								if (model.getSelectedDice()[i]) {
+									model.getSelectedDice()[i] = false;
+								} else {
+									model.getSelectedDice()[i] = true;
+								}
 								gameAnimation.selectDice(i);
 							}
 						}

@@ -22,7 +22,6 @@ public class CreateGameController extends Controller {
 	public void clickedCreateGameButton(){
 		CreateGameView cgv = (CreateGameView) view;
 		GameSettings gameSettings = cgv.getGameSettings();
-		//TODO validation?
 		if (isProper(gameSettings)) {
 			model.setGameSettings(gameSettings);
 			model.setTimer(gameSettings.getTimeForMove());

@@ -52,7 +52,26 @@ public class GameController extends Controller implements ServerMessageListener 
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
 		} else {
-			// wychodzi
+			try{
+				Response response = model.getConnectionProxy().leaveRoom(model.getLogin());
+				if(response.isSuccess()){
+					model.setSitting(false);
+					GameListController newController = new GameListController(model);
+					model.getServerMessageContainer().removeServerMessageListener();
+					model.setGameSettings(null);
+					GameListView newView = new GameListView(model, newController);
+					newController.setView(newView);
+					newController.refreshGameList();
+					model.getDiceApplication().setView(newView);
+				}
+				else{
+					view.showErrorDialog("Nie uda³o siê wyjœæ","B³¹d wstawania", false);
+				}
+			}
+			catch(TimeoutException e){
+				e.printStackTrace();
+				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
+			}
 		}
 		
 	}
