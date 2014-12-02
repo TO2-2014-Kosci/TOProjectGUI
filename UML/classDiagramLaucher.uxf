@@ -9,7 +9,7 @@
       <w>200</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>Laucher
+    <panel_attributes>Launcher
 --
 --
 _+main(String[] args): void_</panel_attributes>
