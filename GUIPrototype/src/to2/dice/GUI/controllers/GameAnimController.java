@@ -1,9 +1,14 @@
 package to2.dice.GUI.controllers;
 
+import java.util.Random;
+
+import com.bulletphysics.linearmath.QuaternionUtil;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.collision.CollisionResults;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
@@ -16,6 +21,7 @@ import to2.dice.game.GameState;
 public class GameAnimController implements ActionListener {
 	private GameAnimation gameAnimation;
 	private Model model;
+	private Random r = new Random();
 	
 	public GameAnimController(Model model) {
 		this.model = model ;
@@ -32,19 +38,22 @@ public class GameAnimController implements ActionListener {
 	 
 	 public void onAction(String name, boolean keyPressed, float tpf) {
 			if (name.equals("Shake")) {
+				Random r = new Random();
 				for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-					if (model.getSelectedDice()[i]) {
+//					if (model.getSelectedDice()[i]) {
+//						gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.QUARTER_PI, new Vector3f(1,0,1)));
 						gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
-						gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setLinearVelocity(new Vector3f(14, 0, 0));
+						gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setLinearVelocity(new Vector3f(10, 0, 0));
+						gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setAngularVelocity(new Vector3f(r.nextInt(10), r.nextInt(10), r.nextInt(10)));
 						gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).activate();
 						model.setTimer(model.getGameSettings().getTimeForMove());
 						model.getSelectedDice()[i] = false;
-					}
+//					}
 				}
 				
 			} else if (name.equals("Put")) {
 				for (int i = 0; i < 5; i++) {
-					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, -4 + 2 * i, -1.5f));
+					gameAnimation.getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, -4 + 2 * i, 0f));
 				}
 			} else if (name.equals("Select") && !keyPressed) {
 				// Reset results list.
