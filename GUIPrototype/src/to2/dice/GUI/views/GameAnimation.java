@@ -77,14 +77,21 @@ public class GameAnimation extends SimpleApplication{
 		setUserDice(new Spatial[model.getGameSettings().getDiceNumber()]);
 		setAnotherDice(new Spatial[model.getGameSettings().getDiceNumber()]);
 		this.assetManager.registerLocator("./assets", FileLocator.class);
+		Spatial mug = this.assetManager.loadModel("Model/Mug/mug.j3o");
+		CollisionShape mugShape = CollisionShapeFactory.createDynamicMeshShape((Node) mug); //u¿ywamy Dynamic bo maj¹ byæ kolizje
+		RigidBodyControl mugBody = new RigidBodyControl(mugShape, 100f);
+		mug.addControl(mugBody);
+		bulletAppState.getPhysicsSpace().add(mugBody);
+		mug.getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-4, 0, 0f));
+		rootNode.attachChild(mug);
 		for (int i = 0; i < 5; i++) {
 			getUserDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
 			CollisionShape diceShape = CollisionShapeFactory.createDynamicMeshShape((Node) getUserDice()[i]); //u¿ywamy Dynamic bo maj¹ byæ kolizje
-			RigidBodyControl diceBody = new RigidBodyControl(diceShape, 0.0001f);
+			RigidBodyControl diceBody = new RigidBodyControl(diceShape, 10f);
 			getUserDice()[i].addControl(diceBody);
 			rootNode.attachChild(getUserDice()[i]);
 			bulletAppState.getPhysicsSpace().add(diceBody);
-			getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, -4 + 2 * i, -1.5f));
+			getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, -4 + 2 * i, 0f));
 			
 			
 			getAnotherDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
@@ -93,10 +100,10 @@ public class GameAnimation extends SimpleApplication{
 			getAnotherDice()[i].addControl(diceBodyA);
 			rootNode.attachChild(getAnotherDice()[i]);
 			bulletAppState.getPhysicsSpace().add(diceBodyA);
-			getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, -1f));
+			getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 0f));
 		}
 		Spatial box = this.assetManager.loadModel("Model/Box/box.j3o");
-		box.setLocalTranslation(0, 0, -1);
+		box.setLocalTranslation(0, 0, 0);
 		RigidBodyControl landscape = new RigidBodyControl(CollisionShapeFactory.createMeshShape((Node) box), 0);
 		box.addControl(landscape);
 		bulletAppState.getPhysicsSpace().add(landscape);
@@ -109,16 +116,16 @@ public class GameAnimation extends SimpleApplication{
 		
 		PointLight point = new PointLight();
 		point.setPosition(new Vector3f(0, 0, 15));
-		point.setColor(ColorRGBA.White.mult(0.6f));
+		point.setColor(ColorRGBA.White.mult(0.2f));
 		PointLight pointBack = new PointLight();
 		pointBack.setPosition(new Vector3f(15, 0, 15));
-		pointBack.setColor(ColorRGBA.White.mult(0.6f));
+		pointBack.setColor(ColorRGBA.White.mult(0.2f));
 		PointLight pointLeft = new PointLight();
 		pointLeft.setPosition(new Vector3f(15, 10, 15));
-		pointLeft.setColor(ColorRGBA.White.mult(0.6f));
+		pointLeft.setColor(ColorRGBA.White.mult(0.2f));
 		PointLight pointRight = new PointLight();
 		pointRight.setPosition(new Vector3f(15, 10, 15));
-		pointRight.setColor(ColorRGBA.White.mult(0.6f));
+		pointRight.setColor(ColorRGBA.White.mult(0.2f));
 		rootNode.addLight(point);
 		rootNode.addLight(pointBack);
 		rootNode.addLight(pointRight);
