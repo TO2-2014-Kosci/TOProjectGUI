@@ -2,8 +2,11 @@ package to2.dice.GUI.views;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.lang.ProcessBuilder.Redirect;
 
 import javax.swing.JButton;
@@ -87,6 +90,16 @@ public class GameListView extends View {
 		    	return false;
 		    }
 		});	
+		
+		gameListTable.addMouseListener(new MouseAdapter() {
+		    public void mousePressed(MouseEvent me) {
+		        if (me.getClickCount() == 2) {
+					controller.clickedJoinGameButton();
+		        }
+		    }
+		});
+		
+		
 		//TODO set width, new column - started
 		gameListTable.getColumnModel().getColumn(1).setPreferredWidth(50);
 		gameListTable.getColumnModel().getColumn(1).setMaxWidth(50);
