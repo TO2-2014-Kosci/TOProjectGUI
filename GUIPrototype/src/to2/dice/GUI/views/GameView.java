@@ -64,7 +64,7 @@ public class GameView extends View {
 						return model.getGameState().getPlayers().get(arg0).getName();
 					case 1:
 						//TODO change to image, maybe
-						int[] dice = model.getGameState().getPlayers().get(arg0).getDice().getDice();
+						int[] dice = model.getGameState().getPlayers().get(arg0).getDice().getDiceArray();
 						String result = "";
 						for (int i: dice) {
 							result += Integer.toString(i) + " "; 

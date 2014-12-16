@@ -33,7 +33,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 	
 	public void clickedLeaveButton() {
 		try{
-			Response response = model.getConnectionProxy().leaveRoom(model.getLogin());
+			Response response = model.getConnectionProxy().leaveRoom();
 			if(response.isSuccess()){
 				GameListController newController = new GameListController(model);
 				model.getServerMessageContainer().removeServerMessageListener();
@@ -57,7 +57,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 	public void clickedSitDownStandUpButton() {
 		if(model.isSitting()==true){
 			try{
-				Response response = model.getConnectionProxy().standUp(model.getLogin());
+				Response response = model.getConnectionProxy().standUp();
 				if(response.isSuccess()){
 					model.setSitting(false);
 					view.refresh();
@@ -73,7 +73,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 		}
 		else{
 			try{
-				Response response = model.getConnectionProxy().sitDown(model.getLogin());
+				Response response = model.getConnectionProxy().sitDown();
 				if(response.isSuccess()){
 					model.setSitting(true);
 					view.refresh();

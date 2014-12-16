@@ -38,7 +38,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	public void clickedStandUpLeaveButton() {
 		if (model.isSitting()) {
 			try{
-				Response response = model.getConnectionProxy().standUp(model.getLogin());
+				Response response = model.getConnectionProxy().standUp();
 				if(response.isSuccess()){
 					model.setSitting(false);
 					view.refresh();
@@ -53,7 +53,7 @@ public class GameController extends Controller implements ServerMessageListener 
 			}
 		} else {
 			try{
-				Response response = model.getConnectionProxy().leaveRoom(model.getLogin());
+				Response response = model.getConnectionProxy().leaveRoom();
 				if(response.isSuccess()){
 					model.setSitting(false);
 					GameListController newController = new GameListController(model);

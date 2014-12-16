@@ -53,4 +53,21 @@ public class GameState {
     public void removePlayer(Player player) {
         players.remove(player);
     }
+
+    public boolean isPlayerWithName(String playerName) {
+        for (Player player : players) {
+            if (player.getName() == playerName)
+                return true;
+        }
+        return false;
+    }
+
+    public void removePlayerWithName(String playerName) {
+        for (Player player : players) {
+            if (player.getName().equals(playerName)) {
+                players.remove(player);
+                return;
+            }
+        }
+    }
 }

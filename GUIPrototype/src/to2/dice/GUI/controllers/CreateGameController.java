@@ -32,7 +32,7 @@ public class CreateGameController extends Controller {
 			newController.setView(newView);
 			model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
 			try{
-				Response response = model.getConnectionProxy().createRoom(gameSettings, model.getLogin());
+				Response response = model.getConnectionProxy().createRoom(gameSettings);
 				if(response.isSuccess()){
 					model.setSitting(false);
 					model.getDiceApplication().setView(newView);

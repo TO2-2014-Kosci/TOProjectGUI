@@ -59,7 +59,7 @@ public class GameListController extends Controller {
 			}
 			model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
 			try{
-				Response response = model.getConnectionProxy().joinRoom(model.getGameSettings().getName(), model.getLogin());
+				Response response = model.getConnectionProxy().joinRoom(model.getGameSettings().getName());
 				if(response.isSuccess()){
 					model.setSitting(false);
 					model.getDiceApplication().setView(newView);

@@ -1,8 +1,6 @@
 package to2.dice.GUI.launcher;
 
 import java.awt.EventQueue;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +12,6 @@ import java.util.logging.Logger;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeSystem;
 
-import to2.dice.GUI.controllers.Controller;
 import to2.dice.GUI.controllers.LoginController;
 import to2.dice.GUI.model.DiceApplication;
 import to2.dice.GUI.model.Model;
@@ -22,7 +19,6 @@ import to2.dice.GUI.model.ServerMessageContainer;
 import to2.dice.GUI.views.LoginView;
 import to2.dice.GUI.views.View;
 import to2.dice.game.BotLevel;
-import to2.dice.game.Dice;
 import to2.dice.game.GameInfo;
 import to2.dice.game.GameSettings;
 import to2.dice.game.GameState;
@@ -40,17 +36,17 @@ public class DiceLauncher {
 		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
 		
-		ConnectionProxy cp = new ConnectionProxy(null, null) {
+		ConnectionProxy cp = new ConnectionProxy() {
 			Random r = new Random();
 			@Override
-			public Response standUp(String login) {
+			public Response standUp() {
 				// TODO Auto-generated method stub
 				System.out.println("Wstaje");
 				return new Response(Response.Type.SUCCESS);
 			}
 			
 			@Override
-			public Response sitDown(String login) {
+			public Response sitDown() {
 				System.out.println("Siada");
 				return new Response(Response.Type.SUCCESS);
 			}
@@ -70,16 +66,16 @@ public class DiceLauncher {
 			}
 			
 			@Override
-			public Response leaveRoom(String login) {
+			public Response leaveRoom() {
 				// TODO Auto-generated method stub
 				System.out.println("Wychodzi");
 				return new Response(Response.Type.SUCCESS);
 			}
 			
 			@Override
-			public Response joinRoom(String roomName, String login) {
+			public Response joinRoom(String roomName) {
 				// TODO Auto-generated method stub
-				System.out.println("Wbija "+roomName + " " + login);
+				System.out.println("Wbija "+roomName);
 				return new Response(Response.Type.SUCCESS);
 			}
 			
@@ -95,23 +91,17 @@ public class DiceLauncher {
 				for (int i = 0; i < k; i++) {
 					Map<BotLevel, Integer> botsNumber = new HashMap<>();
 					gameState.setGameStarted((r.nextInt() % 2)==0);
-					botsNumber.put(BotLevel.HIGH, r.nextInt(15));
-					botsNumber.put(BotLevel.LOW, r.nextInt(15));
+					botsNumber.put(BotLevel.HARD, r.nextInt(15));
+					botsNumber.put(BotLevel.EASY, r.nextInt(15));
 					list.add(new GameInfo(new GameSettings(GameType.POKER, 5, "gra" + i, r.nextInt(15), r.nextInt(15), r.nextInt(15), r.nextInt(15), botsNumber), gameState));
 				}
 				return list;
 			}
 			
 			@Override
-			public Response createRoom(GameSettings settings, String login) {
+			public Response createRoom(GameSettings settings) {
 				// TODO Auto-generated method stub
 				return new Response(Response.Type.SUCCESS);
-			}
-			
-			@Override
-			protected boolean connect(Object serverLink) {
-				// TODO Auto-generated method stub
-				return true;
 			}
 			
 			@Override
