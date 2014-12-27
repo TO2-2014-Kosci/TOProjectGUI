@@ -2,12 +2,10 @@ package to2.dice.GUI.views;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.lang.ProcessBuilder.Redirect;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,11 +17,9 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import net.miginfocom.swing.MigLayout;
-import to2.dice.GUI.controllers.Controller;
 import to2.dice.GUI.controllers.GameListController;
 import to2.dice.GUI.model.Model;
 import to2.dice.game.GameInfo;
-import to2.dice.game.GameSettings;
 
 public class GameListView extends View {
 	private static final long serialVersionUID = 1571599297606706487L;
@@ -72,7 +68,7 @@ public class GameListView extends View {
 					case 2:
 						return gameInfo.getPlayersNumber();
 					case 3:
-						return gameInfo.getSettings().getMaxPlayers();
+						return gameInfo.getSettings().getMaxHumanPlayers();
 					case 4:
 						int number = 0;
 						for (int i: gameInfo.getSettings().getBotsNumbers().values()) {

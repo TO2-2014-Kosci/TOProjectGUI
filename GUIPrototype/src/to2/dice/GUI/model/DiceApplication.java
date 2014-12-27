@@ -27,6 +27,7 @@ public class DiceApplication extends JFrame {
 	
 	
 	public void refresh() {
+		this.view.refresh();
 		this.revalidate();
 		//TODO
 	}

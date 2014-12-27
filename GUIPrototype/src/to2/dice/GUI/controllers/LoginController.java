@@ -2,7 +2,6 @@ package to2.dice.GUI.controllers;
 
 import java.util.concurrent.TimeoutException;
 
-import javax.swing.JOptionPane;
 
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameListView;

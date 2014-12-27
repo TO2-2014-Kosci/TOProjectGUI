@@ -28,7 +28,9 @@ public class LobbyController extends Controller implements ServerMessageListener
 			model.getDiceApplication().setView(newView);
 			model.getDiceApplication().refresh();
 			newController.onGameStateChange(gameState);
-		} //TODO
+		} else {
+			model.getDiceApplication().refresh();
+		}
 	}
 	
 	public void clickedLeaveButton() {

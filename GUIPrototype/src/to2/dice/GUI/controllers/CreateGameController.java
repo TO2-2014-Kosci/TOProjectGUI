@@ -4,9 +4,7 @@ import java.util.concurrent.TimeoutException;
 
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.CreateGameView;
-import to2.dice.GUI.views.GameAnimation;
 import to2.dice.GUI.views.GameListView;
-import to2.dice.GUI.views.GameView;
 import to2.dice.GUI.views.LobbyView;
 import to2.dice.GUI.views.View;
 import to2.dice.game.GameSettings;

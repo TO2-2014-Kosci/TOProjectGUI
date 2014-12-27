@@ -7,6 +7,7 @@ import to2.dice.GUI.controllers.Controller;
 import to2.dice.GUI.model.Model;
 
 public abstract class View extends JPanel {
+	private static final long serialVersionUID = 1538771314715293227L;
 	protected Controller controller;
 	protected Model model;
 	

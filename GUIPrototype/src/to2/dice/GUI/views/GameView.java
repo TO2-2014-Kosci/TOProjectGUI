@@ -156,6 +156,11 @@ public class GameView extends View {
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
+		if (model.isSitting()) {
+			standUpLeaveButton.setText("Wstañ");
+		} else {
+			standUpLeaveButton.setText("WyjdŸ");
+		}
 		if (model.getGameState().getCurrentPlayer() != null && model.getGameState().getCurrentPlayer().getName().equals(model.getLogin())) {
 			rerollButton.setVisible(true);
 		} else {

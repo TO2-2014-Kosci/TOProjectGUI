@@ -2,13 +2,9 @@ package to2.dice.GUI.controllers;
 
 import java.util.Random;
 
-import com.bulletphysics.linearmath.QuaternionUtil;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.collision.CollisionResults;
 import com.jme3.input.controls.ActionListener;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
@@ -16,7 +12,6 @@ import com.jme3.scene.Spatial;
 
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameAnimation;
-import to2.dice.game.GameState;
 
 public class GameAnimController implements ActionListener {
 	private GameAnimation gameAnimation;

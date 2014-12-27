@@ -102,24 +102,24 @@ public class CreateGameView extends View {
 			i++;
 		}
 
-		JButton create = new JButton("Stwórz grê");
-		create.addActionListener(new ActionListener() {
+		createGameButton = new JButton("Stwórz grê");
+		createGameButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.clickedCreateGameButton();
 			}
 		});
-		JButton back = new JButton("WyjdŸ");
-		back.addActionListener(new ActionListener() {
+		returnButton = new JButton("WyjdŸ");
+		returnButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.clickedReturnButton();
 			}
 		});
-		this.add(back, "newline push, skip 1, width 100!,alignx right");
-		this.add(create, "width 100!,alignx left");
+		this.add(returnButton, "newline push, skip 1, width 100!,alignx right");
+		this.add(createGameButton, "width 100!,alignx left");
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
 	}
@@ -145,7 +145,7 @@ public class CreateGameView extends View {
 				nameField.getText(), 
 				(int)maxHumanPlayersSpinner.getValue(), 
 				(int)timeForMoveSpinner.getValue(),
-				(int)maxInactiveTurnsSpinner.getValue(), 
+				maxInactiveTime, 
 				(int)roundsToWinSpinner.getValue(), 
 				botsNumber);
 	}
