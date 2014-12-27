@@ -9,7 +9,9 @@ import to2.dice.game.GameState;
 import to2.dice.messaging.Response;
 import to2.dice.server.ServerMessageListener;
 
-
+/*
+ * Dziala odswiezanie listy
+ */
 public class GameController extends Controller implements ServerMessageListener {
 	private GameAnimController gameAnimController;
 
@@ -78,7 +80,8 @@ public class GameController extends Controller implements ServerMessageListener 
 	
 	//TODO 
 	public void onGameStateChange(GameState gameState){
-		
+		model.setGameState(gameState);
+		model.getDiceApplication().refresh();
 	}
 	
 	//TODO

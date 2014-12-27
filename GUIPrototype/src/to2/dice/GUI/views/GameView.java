@@ -1,10 +1,12 @@
 package to2.dice.GUI.views;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.InvalidAlgorithmParameterException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 
 import net.miginfocom.swing.MigLayout;
 import to2.dice.GUI.model.Model;
@@ -48,14 +52,15 @@ public class GameView extends View {
 				return columnNames.length;
 			}
 			
-			public Class<?> getColumnClass(int columnCount) {
-				return getValueAt(0, columnCount).getClass();
-			}
 	        public String getColumnName(int col) {
 	            return columnNames[col];
 	        }
 			public int getRowCount() {
 				return model.getGameState().getPlayersNumber();
+			}
+			
+			public Class<?> getColumnClass(int columnIndex) {
+				return getValueAt(0, columnIndex).getClass();
 			}
 			
 			public Object getValueAt(int arg0, int arg1) {
@@ -79,7 +84,24 @@ public class GameView extends View {
 		    public boolean isCellEditable(int row, int col) {
 		    	return false;
 		    }
-		});
+		    
+		}) {
+			private static final long serialVersionUID = 1768548772080336158L;
+
+			@Override
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+                Component comp = super.prepareRenderer(renderer, row, column);
+                Color color = Color.WHITE;
+                if (model.getGameState().getPlayers().get(row).equals(model.getGameState().getCurrentPlayer())) {
+		    		color = Color.LIGHT_GRAY;
+		    	} else {
+		    		color = Color.WHITE;
+		    	}
+                comp.setBackground(color);
+                return comp;
+            }
+		};
+		playerTable.setEnabled(false);
 		playerTable.setFillsViewportHeight(true);
 		playerTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		playerTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

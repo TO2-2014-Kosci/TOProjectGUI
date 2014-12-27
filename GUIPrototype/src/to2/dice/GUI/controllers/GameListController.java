@@ -52,6 +52,7 @@ public class GameListController extends Controller {
 				newController = new GameController(model, gameAnimController);
 				newView = new GameView(model, (GameController) newController, gameAnimation);
 				newController.setView(newView);
+				
 			} else {
 				newController = new LobbyController(model);
 				newView = new LobbyView(model, (LobbyController) newController);

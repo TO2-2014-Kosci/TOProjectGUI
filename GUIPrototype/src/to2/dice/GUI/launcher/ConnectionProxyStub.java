@@ -63,6 +63,7 @@ public class ConnectionProxyStub implements ConnectionProxy {
 		System.out.println("Wychodzi");
 		
 		gameStateGenerator.generate = false;
+		gameStateGenerator.isStarted = false;
 		return new Response(Response.Type.SUCCESS);
 	}
 	
@@ -75,6 +76,9 @@ public class ConnectionProxyStub implements ConnectionProxy {
 				number += i;
 			}
 			if (gi.getSettings().getName().equals(roomName)) {
+				if (gi.isGameStarted()) {
+					number += gi.getSettings().getMaxHumanPlayers();
+				}
 				gameStateGenerator.currentGameState = new GameState();
 				for (int i = 0; i < gi.getPlayersNumber() + number; i++) {
 					gameStateGenerator.currentGameState.addPlayer(new Player("Bot Kot" + i, (i%2)==0, 5));

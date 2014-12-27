@@ -1,6 +1,5 @@
 package to2.dice.GUI.launcher;
 
-
 import java.util.Random;
 
 import to2.dice.game.Dice;
@@ -28,15 +27,25 @@ public class GameStateGenerator implements Runnable {
 		int i;
 		while(true) {
 			if (generate) {
-				if (currentGameState.getPlayers().size() == gameSettings.getMaxPlayers()) {
+				if (isStarted) {
+					for (int a = 0; a < currentGameState.getPlayersNumber(); a++) {
+						if (currentGameState.getCurrentPlayer().equals(currentGameState.getPlayers().get(a))) {
+							if (a+1 == currentGameState.getPlayersNumber()) {
+								currentGameState.setCurrentPlayer(currentGameState.getPlayers().get(0));
+							} else {
+								currentGameState.setCurrentPlayer(currentGameState.getPlayers().get(a+1));
+							}
+							break;
+						}
+					}
+				} else if (currentGameState.getPlayers().size() == gameSettings.getMaxPlayers()) {
 					isStarted = true;
 					currentGameState.setGameStarted(true);
 					for (Player p: currentGameState.getPlayers()) {
 						p.setDice(new Dice(new int[]{r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1}));
 					}
-				}
-				if (isStarted) {
-					
+					currentGameState.setCurrentRound(1);
+					currentGameState.setCurrentPlayer(currentGameState.getPlayers().get(0));
 				} else {
 					i = r.nextInt(gameSettings.getMaxPlayers());
 					if (r.nextBoolean()) {
@@ -49,7 +58,11 @@ public class GameStateGenerator implements Runnable {
 				System.out.println("Dzialam");
 			}
 			try {
-				Thread.sleep(500);
+				if (isStarted) {
+					Thread.sleep(5000);
+				} else {
+					Thread.sleep(500);
+				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

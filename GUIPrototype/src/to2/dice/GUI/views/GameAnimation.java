@@ -156,17 +156,17 @@ public class GameAnimation extends SimpleApplication{
 
 	public void refresh() {
 		// TODO Auto-generated method stub
-		Player currentPlayer = model.getGameState().getCurrentPlayer();
-		if (currentPlayer != null) {
-			if (currentPlayer.getName().equals(model.getLogin())) {
-				// u¿ytkownik
-			} else {
-				for(int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-					getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, -1f));
-				}
-				// inny gracz
-			}
-		}
+//		Player currentPlayer = model.getGameState().getCurrentPlayer();
+//		if (currentPlayer != null) {
+//			if (currentPlayer.getName().equals(model.getLogin())) {
+//				// u¿ytkownik
+//			} else {
+//				for(int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
+//					getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, -1f));
+//				}
+//				// inny gracz
+//			}
+//		}
 	}
 	
 	public void selectDice(int i) {
