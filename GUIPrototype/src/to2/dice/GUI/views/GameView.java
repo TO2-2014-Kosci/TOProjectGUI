@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.security.InvalidAlgorithmParameterException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -38,7 +40,7 @@ public class GameView extends View {
 	private JLabel targetLabel;
 	private Font labelFont = new Font("Tahoma", Font.PLAIN, 25);
 	
-	private Player lastPlayer;
+//	private Player lastPlayer;
 	
 	private static final int DEFAULT_WIDTH = 750;
 	private static final int DEFAULT_HEIGHT= 520;
@@ -197,6 +199,7 @@ public class GameView extends View {
 		}
 		nGoalLabel.setFont(labelFont);
 		add(nGoalLabel, "cell 2 0, alignx center");
+		
 	}
 
 	@Override
@@ -219,10 +222,10 @@ public class GameView extends View {
 		} else {
 			nGoalLabel.setText("dsa");
 		}
-		if (lastPlayer != null && !lastPlayer.equals(model.getGameState().getCurrentPlayer())) {
-			timerLabel.setText(Integer.toString(model.getGameSettings().getTimeForMove()));
-			lastPlayer = model.getGameState().getCurrentPlayer();
-		}
+//		if (lastPlayer != null && !lastPlayer.equals(model.getGameState().getCurrentPlayer())) {
+//			timerLabel.setText(Integer.toString(model.getGameSettings().getTimeForMove()));
+//			lastPlayer = model.getGameState().getCurrentPlayer();
+//		}
 		gameAnimation.refresh();
 	}
 }

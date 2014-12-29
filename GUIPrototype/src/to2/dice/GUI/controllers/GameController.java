@@ -6,14 +6,16 @@ import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameListView;
 import to2.dice.GUI.views.View;
 import to2.dice.game.GameState;
+import to2.dice.game.Player;
 import to2.dice.messaging.Response;
 import to2.dice.server.ServerMessageListener;
 
 /*
- * Dziala odswiezanie listy
+ * jak sie wychodzi z tego okna trzeba ubiæ animacje
  */
 public class GameController extends Controller implements ServerMessageListener {
 	private GameAnimController gameAnimController;
+	private Player lastPlayer;
 
 	public GameController(Model model, GameAnimController gameAnimController) {
 		super(model);
@@ -57,6 +59,7 @@ public class GameController extends Controller implements ServerMessageListener 
 			try{
 				Response response = model.getConnectionProxy().leaveRoom();
 				if(response.isSuccess()){
+					gameAnimController.destroy();
 					model.setSitting(false);
 					GameListController newController = new GameListController(model);
 					model.getServerMessageContainer().removeServerMessageListener();
@@ -67,7 +70,7 @@ public class GameController extends Controller implements ServerMessageListener 
 					model.getDiceApplication().setView(newView);
 				}
 				else{
-					view.showErrorDialog("Nie uda³o siê wyjœæ","B³¹d wstawania", false);
+					view.showErrorDialog("Nie uda³o siê wyjœæ", "B³¹d wstawania", false);
 				}
 			}
 			catch(TimeoutException e){
@@ -80,13 +83,30 @@ public class GameController extends Controller implements ServerMessageListener 
 	
 	//TODO koniec gry
 	public void onGameStateChange(GameState gameState){
-		model.setTimer(model.getGameSettings().getTimeForMove());
 		model.setGameState(gameState);
+		if (lastPlayer != null && !lastPlayer.equals(model.getGameState().getCurrentPlayer())) {
+			gameAnimController.refresh();
+			lastPlayer = model.getGameState().getCurrentPlayer();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			gameAnimController.putAnotherDice();
+		} else {
+			if (lastPlayer == null) {
+				lastPlayer = model.getGameState().getCurrentPlayer();
+			}
+		}
+		model.setTimer(model.getGameSettings().getTimeForMove());
 		model.getDiceApplication().refresh();
 	}
 	
 	//TODO
 	private void showEndDialog() {
+		// jak sie wychodzi z tego okna trzeba ubiæ animacje, za pomoc¹ tego
+//		gameAnimController.destroy();
 		
 	}
 	

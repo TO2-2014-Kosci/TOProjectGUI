@@ -1,7 +1,16 @@
 package to2.dice.GUI.views;
 
 import java.awt.Canvas;
+import java.awt.Dimension;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
+import javax.swing.JPanel;
+
+import org.lwjgl.opengl.Display;
+
+import com.bulletphysics.collision.shapes.BoxShape;
+import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.bullet.BulletAppState;
@@ -48,6 +57,7 @@ public class GameAnimation extends SimpleApplication{
 	    fpp.addFilter(bloom);
 	    viewPort = new ViewPort("Cam", this.cam);
 	    viewPort.addProcessor(fpp);
+	    
 		createCanvas();
 		startCanvas(true);
 		this.gameAnimController = gameAnimController;
@@ -55,13 +65,21 @@ public class GameAnimation extends SimpleApplication{
 	}
 
 	public Canvas getCanvas(){
-		return ((JmeCanvasContext)this.getContext()).getCanvas();
+		Canvas canvas = ((JmeCanvasContext)this.getContext()).getCanvas();
+		// HACK: Without this canvas doesn't shrink when window is reduced
+		canvas.setMinimumSize(new Dimension(16, 16));
+		return canvas;
 	}
 
 	@Override
 	public void simpleInitApp() {
-		// TODO Auto-generated method stub
-		// TODO wykorzystaæ guiNode aby dodaæ tabele i koœci gracza
+		int diceNumber = model.getGameSettings().getDiceNumber();
+		setUserDice(new Spatial[diceNumber]);
+		setAnotherDice(new Spatial[diceNumber]);
+		
+	    JmeCanvasContext ctx = (JmeCanvasContext) getContext();
+	    ctx.setSystemListener(this);
+	    
 		this.setDisplayStatView(false);
 		this.setDisplayFps(false);
 		BulletAppState bulletAppState = new BulletAppState();
@@ -74,24 +92,16 @@ public class GameAnimation extends SimpleApplication{
 		this.settings.setFrameRate(60);
 		this.cam.setLocation(new Vector3f(-10, 0, 12));
 		this.cam.lookAt(new Vector3f(-3, 0, 0), Vector3f.UNIT_Z);
-		setUserDice(new Spatial[model.getGameSettings().getDiceNumber()]);
-		setAnotherDice(new Spatial[model.getGameSettings().getDiceNumber()]);
+
 		this.assetManager.registerLocator("./assets", FileLocator.class);
-		Spatial mug = this.assetManager.loadModel("Model/Mug/mug.j3o");
-		CollisionShape mugShape = CollisionShapeFactory.createDynamicMeshShape((Node) mug); //u¿ywamy Dynamic bo maj¹ byæ kolizje
-		RigidBodyControl mugBody = new RigidBodyControl(mugShape, 100f);
-		mug.addControl(mugBody);
-		bulletAppState.getPhysicsSpace().add(mugBody);
-		mug.getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-4, 0, 0f));
-		rootNode.attachChild(mug);
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < diceNumber; i++) {
 			getUserDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
 			CollisionShape diceShape = CollisionShapeFactory.createDynamicMeshShape((Node) getUserDice()[i]); //u¿ywamy Dynamic bo maj¹ byæ kolizje
 			RigidBodyControl diceBody = new RigidBodyControl(diceShape, 10f);
 			getUserDice()[i].addControl(diceBody);
 			rootNode.attachChild(getUserDice()[i]);
 			bulletAppState.getPhysicsSpace().add(diceBody);
-			getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, -4 + 2 * i, 0f));
+			getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, - diceNumber / 2 + i, 0.3f));
 			
 			
 			getAnotherDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
@@ -102,12 +112,21 @@ public class GameAnimation extends SimpleApplication{
 			bulletAppState.getPhysicsSpace().add(diceBodyA);
 			getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 0f));
 		}
-		Spatial box = this.assetManager.loadModel("Model/Box/box.j3o");
-		box.setLocalTranslation(0, 0, 0);
-		RigidBodyControl landscape = new RigidBodyControl(CollisionShapeFactory.createMeshShape((Node) box), 0);
-		box.addControl(landscape);
+		Spatial table = this.assetManager.loadModel("Model/Table/table.j3o");
+		table.setLocalTranslation(0, 0, 0);
+		RigidBodyControl landscape = new RigidBodyControl(CollisionShapeFactory.createMeshShape((Node) table), 0);
+		table.addControl(landscape);
 		bulletAppState.getPhysicsSpace().add(landscape);
+		rootNode.attachChild(table);
+		
+		Spatial box = this.assetManager.loadModel("Model/Box/box.j3o");
+		box.setLocalScale(1, diceNumber, 1);
+		box.setLocalTranslation(new Vector3f(-7, 0, 0));
+		RigidBodyControl boxShape = new RigidBodyControl(CollisionShapeFactory.createMeshShape((Node) box), 0);
+		box.addControl(boxShape);
+		bulletAppState.getPhysicsSpace().add(boxShape);
 		rootNode.attachChild(box);
+		
 		AmbientLight ambient = new AmbientLight();
 		ambient.setColor(ColorRGBA.White);
 		DirectionalLight sun = new DirectionalLight();
@@ -177,4 +196,9 @@ public class GameAnimation extends SimpleApplication{
 		}
 		getUserDice()[i].getControl(RigidBodyControl.class).activate();
 	}
+	
+    @Override
+    public void update() {
+        super.update();
+    }
 }

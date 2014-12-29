@@ -19,7 +19,7 @@ public class DiceLauncher {
 	public static void main(String[] args) {
 		AppSettings settings = new AppSettings(true);
 		settings.setAudioRenderer(null);
-		Logger.getLogger("com.jme3").setLevel(Level.SEVERE);
+//		Logger.getLogger("com.jme3").setLevel(Level.SEVERE);
 		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
 		

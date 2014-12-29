@@ -110,4 +110,9 @@ public class Model {
 	public void setTimer(int timer) {
 		this.timer = timer;
 	}
+
+
+	public boolean isMyTurn() {
+		return gameState.getCurrentPlayer().getName().equals(login);
+	}
 }
