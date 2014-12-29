@@ -8,12 +8,14 @@ import to2.dice.game.GameState;
 import to2.dice.game.Player;
 import to2.dice.server.ServerMessageListener;
 
+
 public class GameStateGenerator implements Runnable {
 	public boolean generate;
 	public boolean isStarted;
 	public GameState currentGameState;
 	public GameSettings gameSettings;
 	public ServerMessageListener serverMessageListener;
+	public String login;
 	private Random r = new Random();
 	
 	public GameStateGenerator() {
@@ -28,6 +30,7 @@ public class GameStateGenerator implements Runnable {
 		while(true) {
 			if (generate) {
 				if (isStarted) {
+					currentGameState.getCurrentPlayer().setDice(new Dice(new int[]{r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1}));
 					for (int a = 0; a < currentGameState.getPlayersNumber(); a++) {
 						if (currentGameState.getCurrentPlayer().equals(currentGameState.getPlayers().get(a))) {
 							if (a+1 == currentGameState.getPlayersNumber()) {
@@ -37,6 +40,20 @@ public class GameStateGenerator implements Runnable {
 							}
 							break;
 						}
+					}
+					if (currentGameState.getCurrentPlayer().getName().equals(login)) {
+						generate = false;
+					}
+					if (r.nextInt() % 25 == 0) {
+						currentGameState.getCurrentPlayer().setScore(currentGameState.getCurrentPlayer().getScore() + 1);
+						for (Player p: currentGameState.getPlayers()) {
+							p.setDice(new Dice(new int[]{r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1}));
+						}
+						currentGameState.setCurrentRound(currentGameState.getCurrentRound() + 1);
+						currentGameState.setCurrentPlayer(currentGameState.getPlayers().get(0));
+					}
+					if (r.nextInt() % 50 == 0) {
+						// koniec gry
 					}
 				} else if (currentGameState.getPlayers().size() == gameSettings.getMaxPlayers()) {
 					isStarted = true;
@@ -59,12 +76,11 @@ public class GameStateGenerator implements Runnable {
 			}
 			try {
 				if (isStarted) {
-					Thread.sleep(5000);
+					Thread.sleep(4000);
 				} else {
 					Thread.sleep(500);
 				}
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

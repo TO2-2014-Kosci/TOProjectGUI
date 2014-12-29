@@ -47,6 +47,7 @@ public class ConnectionProxyStub implements ConnectionProxy {
 	@Override
 	public Response reroll(boolean[] dice) {
 		System.out.println("Przerzuca");
+		gameStateGenerator.generate = true;
 		return new Response(Response.Type.SUCCESS);
 	}
 	
@@ -54,6 +55,7 @@ public class ConnectionProxyStub implements ConnectionProxy {
 	public Response login(String login) {
 		this.login = login;
 		System.out.println("Loguje " + login);
+		gameStateGenerator.login = login;
 		return new Response(Response.Type.SUCCESS);
 	}
 	
