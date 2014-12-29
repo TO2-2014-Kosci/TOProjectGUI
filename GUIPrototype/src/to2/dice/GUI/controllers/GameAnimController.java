@@ -106,10 +106,9 @@ public class GameAnimController implements ActionListener {
 	public void putAnotherDice() {
 		Dice dice = model.getGameState().getCurrentPlayer().getDice();
 		for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-			gameAnimation.getAnotherDice()[i].setLocalRotation(new Quaternion().fromAngleAxis(FastMath.QUARTER_PI, new Vector3f(-1,0,0)));
-//			gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.QUARTER_PI, new Vector3f(-1,0,0)));
-			gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 1f));
-//			gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).activate();
+			gameAnimation.getAnotherDice()[i].setLocalRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1,0,0)));
+			gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1,0,0)));
+			gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 0.5f));
 		}
 	}
 }
