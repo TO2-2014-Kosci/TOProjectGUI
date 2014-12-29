@@ -53,7 +53,7 @@ public class GameStateGenerator implements Runnable {
 						currentGameState.setCurrentPlayer(currentGameState.getPlayers().get(0));
 					}
 					if (r.nextInt() % 50 == 0) {
-						// koniec gry
+						currentGameState.setGameStarted(false);
 					}
 				} else if (currentGameState.getPlayers().size() == gameSettings.getMaxPlayers()) {
 					isStarted = true;

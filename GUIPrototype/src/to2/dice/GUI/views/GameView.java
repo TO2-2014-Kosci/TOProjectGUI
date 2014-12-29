@@ -47,7 +47,7 @@ public class GameView extends View {
 	public GameView(Model model, GameController controller, GameAnimation gameAnimation){
 		super(model, controller);
 		this.gameAnimation = gameAnimation;
-		setBackground(new Color(6, 35, 0));
+//		setBackground(new Color(6, 35, 0));
 		setLayout(new MigLayout("", "[][][grow][]", "[][grow][][]"));
 		playerTable = new JTable(new AbstractTableModel(){
 			private final String[] columnNames = {
