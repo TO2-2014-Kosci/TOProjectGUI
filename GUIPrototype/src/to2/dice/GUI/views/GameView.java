@@ -221,7 +221,6 @@ public class GameView extends View {
 		}
 		if (lastPlayer != null && !lastPlayer.equals(model.getGameState().getCurrentPlayer())) {
 			timerLabel.setText(Integer.toString(model.getGameSettings().getTimeForMove()));
-			model.setTimer(model.getGameSettings().getTimeForMove());
 			lastPlayer = model.getGameState().getCurrentPlayer();
 		}
 		gameAnimation.refresh();

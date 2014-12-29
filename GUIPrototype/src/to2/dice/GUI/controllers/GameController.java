@@ -78,8 +78,9 @@ public class GameController extends Controller implements ServerMessageListener 
 		
 	}
 	
-	//TODO 
+	//TODO koniec gry
 	public void onGameStateChange(GameState gameState){
+		model.setTimer(model.getGameSettings().getTimeForMove());
 		model.setGameState(gameState);
 		model.getDiceApplication().refresh();
 	}
