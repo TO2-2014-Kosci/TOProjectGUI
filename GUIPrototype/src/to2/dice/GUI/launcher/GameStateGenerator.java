@@ -31,6 +31,11 @@ public class GameStateGenerator implements Runnable {
 			if (generate) {
 				if (isStarted) {
 					currentGameState.getCurrentPlayer().setDice(new Dice(new int[]{r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1, r.nextInt(6) + 1}));
+					System.out.print("Generuje ");
+					for (int k: currentGameState.getCurrentPlayer().getDice().getDiceArray()) {
+						System.out.print(k + " ");
+					}
+					System.out.println();
 					for (int a = 0; a < currentGameState.getPlayersNumber(); a++) {
 						if (currentGameState.getCurrentPlayer().equals(currentGameState.getPlayers().get(a))) {
 							if (a+1 == currentGameState.getPlayersNumber()) {
@@ -40,9 +45,6 @@ public class GameStateGenerator implements Runnable {
 							}
 							break;
 						}
-					}
-					if (currentGameState.getCurrentPlayer().getName().equals(login)) {
-						generate = false;
 					}
 					if (r.nextInt() % 25 == 0) {
 						currentGameState.getCurrentPlayer().setScore(currentGameState.getCurrentPlayer().getScore() + 1);
@@ -54,6 +56,9 @@ public class GameStateGenerator implements Runnable {
 					}
 					if (r.nextInt() % 50 == 0) {
 						currentGameState.setGameStarted(false);
+					}
+					if (currentGameState.getCurrentPlayer().getName().equals(login)) {
+						generate = false;
 					}
 				} else if (currentGameState.getPlayers().size() == gameSettings.getMaxPlayers()) {
 					isStarted = true;
@@ -71,12 +76,20 @@ public class GameStateGenerator implements Runnable {
 						currentGameState.removePlayerWithName("Kot" + i);
 					}
 				}
-				serverMessageListener.onGameStateChange(currentGameState);
-				System.out.println("Dzialam");
+				System.out.println("Generuje nowy gameState");
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						serverMessageListener.onGameStateChange(currentGameState);	
+						
+					}
+				}).start();
+//				serverMessageListener.onGameStateChange(currentGameState);				
 			}
 			try {
 				if (isStarted) {
-					Thread.sleep(4000);
+					Thread.sleep(6000);
 				} else {
 					Thread.sleep(500);
 				}

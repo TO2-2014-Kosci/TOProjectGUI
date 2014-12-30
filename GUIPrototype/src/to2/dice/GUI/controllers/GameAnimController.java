@@ -1,11 +1,13 @@
 package to2.dice.GUI.controllers;
 
+import java.util.Map;
 import java.util.Random;
 
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.collision.CollisionResults;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.math.FastMath;
+import com.jme3.math.Matrix3f;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector2f;
@@ -94,21 +96,216 @@ public class GameAnimController implements ActionListener {
 			// TODO moja tura
 		} else {
 			Random r = new Random();
+			Dice dice = model.getGameState().getCurrentPlayer().getDice();
+			for (int a: dice.getDiceArray()) {
+				System.out.println(a);
+			}
 			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-				gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
-				gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).setLinearVelocity(new Vector3f(10, 0, 0));
-				gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).setAngularVelocity(new Vector3f(r.nextInt(10), r.nextInt(10), r.nextInt(10)));
-				gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).activate();
+				RigidBodyControl diceControl = gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class);
+				switch (dice.getDiceArray()[i]) {
+					case 1:
+						diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1,0,0)));
+						break;
+					case 2:
+						diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(0,1,0)));
+						break;
+					case 3:
+						diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.ZERO_TOLERANCE, new Vector3f(1,0,0)));
+						break;
+					case 4:
+						diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.PI, new Vector3f(1,0,0)));
+						break;
+					case 5:
+						diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(0,1,0)));
+						break;
+					case 6:
+						diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(1,0,0)));
+						break;
+				}
+				diceControl.setEnabled(true);
+				diceControl.setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
+				diceControl.setLinearVelocity(new Vector3f(10, 0, 0));
+				diceControl.setAngularVelocity(new Vector3f(rndAngle(), rndAngle(), rndAngle()));
+				diceControl.activate();
 			}
 		}
 	}
 	
-	public void putAnotherDice() {
-		Dice dice = model.getGameState().getCurrentPlayer().getDice();
+	public void shakeAnotherDice(Dice dice) {
+		System.out.print("Dostaje ");
+		for (int k: dice.getDiceArray()) {
+			System.out.print(k + " ");
+		}
+		System.out.println();
+		Random r = new Random();
 		for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-			gameAnimation.getAnotherDice()[i].setLocalRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1,0,0)));
-			gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1,0,0)));
-			gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 0.5f));
+			RigidBodyControl diceControl = gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class);
+			diceControl.setEnabled(true);
+			switch (dice.getDiceArray()[i]) {
+				case 1:
+					System.out.println("1");
+					System.out.println(dice.getDiceArray()[i]);
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1,0,0)));
+					break;
+				case 2:
+					System.out.println("2");
+					System.out.println(dice.getDiceArray()[i]);
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(0,1,0)));
+					break;
+				case 3:
+					System.out.println("3");
+					System.out.println(dice.getDiceArray()[i]);
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.ZERO_TOLERANCE, new Vector3f(1,0,0)));
+					break;
+				case 4:
+					System.out.println("4");
+					System.out.println(dice.getDiceArray()[i]);
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.PI, new Vector3f(1,0,0)));
+					break;
+				case 5:
+					System.out.println("5");
+					System.out.println(dice.getDiceArray()[i]);
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(0,1,0)));
+					break;
+				case 6:
+					System.out.println("6");
+					System.out.println(dice.getDiceArray()[i]);
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(1,0,0)));
+					break;
+			}
+			System.out.println(diceControl.getPhysicsRotation());
+			diceControl.setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
+			diceControl.setLinearVelocity(new Vector3f(10, 0, 0));
+//			diceControl.setAngularVelocity(new Vector3f(rndAngle(), rndAngle(), rndAngle()));
+			
+			diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
+			diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
+			diceControl.setPhysicsLocation(new Vector3f(0, -i, 0.35f));
+			diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
+			diceControl.update(0);
+			diceControl.activate();
 		}
 	}
+	
+	public void putAnotherDice(Dice dice) {
+		for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
+			RigidBodyControl diceControl = gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class);
+			switch (dice.getDiceArray()[i]) {
+				case 1:
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1,0,0)));
+					break;
+				case 2:
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(0,1,0)));
+					break;
+				case 3:
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.ZERO_TOLERANCE, new Vector3f(1,0,0)));
+					break;
+				case 4:
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.PI, new Vector3f(1,0,0)));
+					break;
+				case 5:
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(0,1,0)));
+					break;
+				case 6:
+					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(1,0,0)));
+					break;
+			}
+			diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
+			diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
+			diceControl.setPhysicsLocation(new Vector3f(-i, -6, 0.35f));
+			diceControl.update(0);
+			diceControl.setEnabled(false);
+		}
+	}
+	
+//	public void fireDice(Vector3f from, Vector3f force, Vector3f left, DiceExpression dice, DiceSetDesign setDesign) { 
+//		
+//		left = left.normalize();
+//		from = from.clone();
+//		force.normalize();
+//		force.multLocal(10);
+//		
+//		
+//		InitialDiceData idd = new InitialDiceData();
+//		
+//		idd.left = left;
+//		idd.force = force;
+//		idd.from = from;
+//		idd.design = setDesign;
+//		
+//		int totalCount = dice.getTotalDice();
+//		
+//		idd.angular = new Vector3f[totalCount];
+//		idd.diceTypes = new DiceType[totalCount];
+//		idd.physicsRotation = new Matrix3f[totalCount];
+//		
+//		int counter =0;
+//		for ( Map.Entry<DiceType,Integer> entry : dice.getDice().entrySet() ) {
+//			DiceType t = entry.getKey();
+//			int count = entry.getValue();
+//			for ( int i =0; i < count ; i++ ) {
+//				idd.diceTypes[counter] = t;
+//				idd.angular[counter] = new Vector3f(rndAngle(), rndAngle(), rndAngle());
+//				idd.physicsRotation[counter] = randomQuaternion().toRotationMatrix();
+//				counter++;
+//			}
+//		}
+//		idd.expression = dice;
+//		
+//		if (netManager != null ) {
+//			netManager.sendRawUpdate(idd);
+//		}
+//		
+//		fireDice(idd,true);
+//		
+//		
+//	}
+//
+//	public void fireDice(InitialDiceData dd, boolean inControl) {
+//
+//		if (audioRenderer != null ) {
+//			audioRenderer.playSource(audioNode);
+//		}
+//		
+//		DiceThrowHandler handler = perPlayerDice.get(dd.player);
+//		
+//		if ( handler != null ) {
+//			handler.clear();
+//		} else {
+//			handler = new DiceThrowHandler(this);
+//			perPlayerDice.put(dd.player, handler);
+//		}
+//		
+//		handler.init(dd, inControl,dd.expression);
+//	}
+
+	private float rndAngle() {
+		return (float) (Math.random() * Math.PI * 2);
+	}
+	
+	private static Quaternion randomQuaternion() {
+		
+		double u1 = Math.random();
+		double u2 = Math.random();
+		double u3 = Math.random();
+		
+		
+		double u1sqrt = Math.sqrt(u1);
+		double u1m1sqrt = Math.sqrt(1-u1);
+		double x = u1m1sqrt *Math.sin(2*Math.PI*u2);
+		double y = u1m1sqrt *Math.cos(2*Math.PI*u2);
+		double z = u1sqrt *Math.sin(2*Math.PI*u3);
+		double w = u1sqrt *Math.cos(2*Math.PI*u3);
+		
+		return new Quaternion((float)x,(float)y,(float)w,(float)z);
+	}
+
+//	public void updateFlyingDice(FlyingDiceData fdd) {
+//		DiceThrowHandler handler = perPlayerDice.get(fdd.player);
+//		if (handler == null ) {
+//			log.warning("Got flying dice info for player " + fdd.player + " but without initial data");
+//			return;
+//		}
+//		handler.updateFlyingDice(fdd);
+//	}
 }

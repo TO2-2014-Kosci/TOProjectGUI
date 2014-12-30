@@ -4,8 +4,10 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JPanel;
+
 
 import org.lwjgl.opengl.Display;
 
@@ -15,6 +17,7 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
+import com.jme3.bullet.collision.shapes.HullCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.input.KeyInput;
@@ -25,17 +28,24 @@ import com.jme3.input.controls.Trigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.light.PointLight;
+import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
 import com.jme3.renderer.ViewPort;
+import com.jme3.renderer.queue.RenderQueue.ShadowMode;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
 import com.jme3.system.JmeSystem;
 
+import to2.dice.GUI.controllers.DiceControl;
 import to2.dice.GUI.controllers.GameAnimController;
 import to2.dice.GUI.model.Model;
 import to2.dice.game.Player;
@@ -84,7 +94,7 @@ public class GameAnimation extends SimpleApplication{
 		this.setDisplayFps(false);
 		BulletAppState bulletAppState = new BulletAppState();
 		stateManager.attach(bulletAppState);
-		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+//		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 		bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, 0, -10));
 		bulletAppState.getPhysicsSpace().setAccuracy(1/300f);
 		this.settings.setBitsPerPixel(32);
@@ -106,11 +116,11 @@ public class GameAnimation extends SimpleApplication{
 			
 			getAnotherDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
 			CollisionShape diceShapeA = CollisionShapeFactory.createDynamicMeshShape((Node) getAnotherDice()[i]); //u¿ywamy Dynamic bo maj¹ byæ kolizje
-			RigidBodyControl diceBodyA = new RigidBodyControl(diceShapeA, 0.0001f);
+			RigidBodyControl diceBodyA = new RigidBodyControl(diceShapeA, 10f);
 			getAnotherDice()[i].addControl(diceBodyA);
 			rootNode.attachChild(getAnotherDice()[i]);
 			bulletAppState.getPhysicsSpace().add(diceBodyA);
-			getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 0f));
+			getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 1f));
 		}
 		Spatial table = this.assetManager.loadModel("Model/Table/table.j3o");
 		table.setLocalTranslation(0, 0, 0);
