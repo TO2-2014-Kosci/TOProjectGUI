@@ -89,6 +89,7 @@ public class GameController extends Controller implements ServerMessageListener 
 			// pierwszy gamestate
 			// pocz¹tek gry lub wbiliœmy do trwaj¹cej gry
 			lastPlayer = gameState.getCurrentPlayer(); // potencjalnie moze to byæ nasza tura. Ale tym zajmuje siê ju¿ refresh od GameView
+			gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
 			lastRound = 0;
 		}
 		// kolejny gamestate

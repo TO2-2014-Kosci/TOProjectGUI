@@ -9,6 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JPanel;
 
 
+
+
 import org.lwjgl.opengl.Display;
 
 import com.bulletphysics.collision.shapes.BoxShape;
@@ -45,6 +47,8 @@ import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
 import com.jme3.system.JmeSystem;
 
+import to2.dice.GUI.animation.PutControl;
+import to2.dice.GUI.animation.RollControl;
 import to2.dice.GUI.controllers.DiceControl;
 import to2.dice.GUI.controllers.GameAnimController;
 import to2.dice.GUI.model.Model;
@@ -83,6 +87,7 @@ public class GameAnimation extends SimpleApplication{
 
 	@Override
 	public void simpleInitApp() {
+		setPauseOnLostFocus(false);
 		int diceNumber = model.getGameSettings().getDiceNumber();
 		setUserDice(new Spatial[diceNumber]);
 		setAnotherDice(new Spatial[diceNumber]);
@@ -96,12 +101,12 @@ public class GameAnimation extends SimpleApplication{
 		stateManager.attach(bulletAppState);
 //		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 		bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, 0, -10));
-		bulletAppState.getPhysicsSpace().setAccuracy(1/300f);
+		bulletAppState.getPhysicsSpace().setAccuracy(1/150f);
 		this.settings.setBitsPerPixel(32);
 		this.flyCam.setEnabled(false);
 		this.settings.setFrameRate(60);
-		this.cam.setLocation(new Vector3f(-10, 0, 12));
-		this.cam.lookAt(new Vector3f(-3, 0, 0), Vector3f.UNIT_Z);
+		this.cam.setLocation(new Vector3f(-10, -1, 12));
+		this.cam.lookAt(new Vector3f(-3, -1, 0), Vector3f.UNIT_Z);
 
 		this.assetManager.registerLocator("./assets", FileLocator.class);
 		for (int i = 0; i < diceNumber; i++) {
@@ -115,9 +120,12 @@ public class GameAnimation extends SimpleApplication{
 			
 			
 			getAnotherDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
+			getAnotherDice()[i].setName(Integer.toString(i));
 			CollisionShape diceShapeA = CollisionShapeFactory.createDynamicMeshShape((Node) getAnotherDice()[i]); //u¿ywamy Dynamic bo maj¹ byæ kolizje
 			RigidBodyControl diceBodyA = new RigidBodyControl(diceShapeA, 10f);
 			getAnotherDice()[i].addControl(diceBodyA);
+			getAnotherDice()[i].addControl(new RollControl());
+			getAnotherDice()[i].addControl(new PutControl());
 			rootNode.attachChild(getAnotherDice()[i]);
 			bulletAppState.getPhysicsSpace().add(diceBodyA);
 			getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 1f));

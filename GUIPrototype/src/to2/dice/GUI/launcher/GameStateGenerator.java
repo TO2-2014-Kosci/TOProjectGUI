@@ -89,7 +89,7 @@ public class GameStateGenerator implements Runnable {
 			}
 			try {
 				if (isStarted) {
-					Thread.sleep(6000);
+					Thread.sleep(7000);
 				} else {
 					Thread.sleep(500);
 				}

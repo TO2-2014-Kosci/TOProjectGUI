@@ -14,6 +14,8 @@ import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
 
+import to2.dice.GUI.animation.PutControl;
+import to2.dice.GUI.animation.RollControl;
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameAnimation;
 import to2.dice.game.Dice;
@@ -132,89 +134,16 @@ public class GameAnimController implements ActionListener {
 	}
 	
 	public void shakeAnotherDice(Dice dice) {
-		System.out.print("Dostaje ");
-		for (int k: dice.getDiceArray()) {
-			System.out.print(k + " ");
-		}
-		System.out.println();
-		Random r = new Random();
 		for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-			RigidBodyControl diceControl = gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class);
-			diceControl.setEnabled(true);
-			switch (dice.getDiceArray()[i]) {
-				case 1:
-					System.out.println("1");
-					System.out.println(dice.getDiceArray()[i]);
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1,0,0)));
-					break;
-				case 2:
-					System.out.println("2");
-					System.out.println(dice.getDiceArray()[i]);
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(0,1,0)));
-					break;
-				case 3:
-					System.out.println("3");
-					System.out.println(dice.getDiceArray()[i]);
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.ZERO_TOLERANCE, new Vector3f(1,0,0)));
-					break;
-				case 4:
-					System.out.println("4");
-					System.out.println(dice.getDiceArray()[i]);
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.PI, new Vector3f(1,0,0)));
-					break;
-				case 5:
-					System.out.println("5");
-					System.out.println(dice.getDiceArray()[i]);
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(0,1,0)));
-					break;
-				case 6:
-					System.out.println("6");
-					System.out.println(dice.getDiceArray()[i]);
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(1,0,0)));
-					break;
-			}
-			System.out.println(diceControl.getPhysicsRotation());
-			diceControl.setPhysicsLocation(new Vector3f(-16, -2 + i, 10));
-			diceControl.setLinearVelocity(new Vector3f(10, 0, 0));
-//			diceControl.setAngularVelocity(new Vector3f(rndAngle(), rndAngle(), rndAngle()));
-			
-			diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
-			diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
-			diceControl.setPhysicsLocation(new Vector3f(0, -i, 0.35f));
-			diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
-			diceControl.update(0);
-			diceControl.activate();
+			RollControl diceControl = gameAnimation.getAnotherDice()[i].getControl(RollControl.class);
+			diceControl.setNumberToRoll(dice.getDiceArray()[i]);
 		}
 	}
 	
 	public void putAnotherDice(Dice dice) {
 		for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-			RigidBodyControl diceControl = gameAnimation.getAnotherDice()[i].getControl(RigidBodyControl.class);
-			switch (dice.getDiceArray()[i]) {
-				case 1:
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1,0,0)));
-					break;
-				case 2:
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(0,1,0)));
-					break;
-				case 3:
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.ZERO_TOLERANCE, new Vector3f(1,0,0)));
-					break;
-				case 4:
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.PI, new Vector3f(1,0,0)));
-					break;
-				case 5:
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(0,1,0)));
-					break;
-				case 6:
-					diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(1,0,0)));
-					break;
-			}
-			diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
-			diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
-			diceControl.setPhysicsLocation(new Vector3f(-i, -6, 0.35f));
-			diceControl.update(0);
-			diceControl.setEnabled(false);
+			PutControl diceControl = gameAnimation.getAnotherDice()[i].getControl(PutControl.class);
+			diceControl.setNumberToPut(dice.getDiceArray()[i]);
 		}
 	}
 	
