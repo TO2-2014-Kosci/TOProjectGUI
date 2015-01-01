@@ -114,6 +114,7 @@ public class GameController extends Controller implements ServerMessageListener 
 			} else {
 				gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
 			}
+			model.setTimer(model.getGameSettings().getTimeForMove());
 		} else {
 			// TODO ¿adna zmiana <- chyba
 		}

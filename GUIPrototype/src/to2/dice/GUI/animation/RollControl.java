@@ -95,7 +95,6 @@ public class RollControl extends AbstractControl {
 			}
 		}
 		actualNumber += 1;
-		System.out.println(step);
 		
 		if (step < 5 && step != 0) {
 			Quaternion currentRotate = diceControl.getPhysicsRotation();
