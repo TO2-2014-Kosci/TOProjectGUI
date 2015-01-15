@@ -46,9 +46,8 @@ public class GameListController extends Controller {
 			Controller newController;
 			View newView;
 			if (selectedGame.isGameStarted()) {
-				GameAnimController gameAnimController = new GameAnimController(model);
-				GameAnimation gameAnimation = new GameAnimation(model, gameAnimController);
-				gameAnimController.setGameAnimation(gameAnimation);
+				GameAnimController gameAnimController = model.getGameAnimController();
+				GameAnimation gameAnimation = model.getGameAnimation();
 				newController = new GameController(model, gameAnimController);
 				newView = new GameView(model, (GameController) newController, gameAnimation);
 				newController.setView(newView);

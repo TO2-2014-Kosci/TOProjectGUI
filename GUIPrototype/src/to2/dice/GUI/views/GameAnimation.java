@@ -61,7 +61,7 @@ public class GameAnimation extends SimpleApplication{
 	private Spatial[] userDice;
 	private Spatial[] anotherDice;
 	
-	public GameAnimation(Model model, GameAnimController gameAnimController) {
+	public GameAnimation(Model model, GameAnimController animController) {
 		super();
 		AppSettings settings = new AppSettings(true);
 		settings.setAudioRenderer(null);
@@ -74,7 +74,7 @@ public class GameAnimation extends SimpleApplication{
 	    
 		createCanvas();
 		startCanvas(true);
-		this.gameAnimController = gameAnimController;
+		this.gameAnimController = animController;
 		this.model = model;
 	}
 
@@ -87,6 +87,56 @@ public class GameAnimation extends SimpleApplication{
 
 	@Override
 	public void simpleInitApp() {
+		//TODO dodaæ dodawanie 
+	}
+
+	public Spatial[] getUserDice() {
+		return userDice;
+	}
+
+	public void setUserDice(Spatial[] dice) {
+		this.userDice = dice;
+	}
+
+	public Spatial[] getAnotherDice() {
+		return anotherDice;
+	}
+
+	public void setAnotherDice(Spatial[] anotherDice) {
+		this.anotherDice = anotherDice;
+	}
+
+	public void refresh() {
+		// TODO Auto-generated method stub
+//		Player currentPlayer = model.getGameState().getCurrentPlayer();
+//		if (currentPlayer != null) {
+//			if (currentPlayer.getName().equals(model.getLogin())) {
+//				// u¿ytkownik
+//			} else {
+//				for(int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
+//					getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, -1f));
+//				}
+//				// inny gracz
+//			}
+//		}
+	}
+	
+	public void selectDice(int i) {
+		if (model.getSelectedDice()[i]) {
+			getUserDice()[i].addLight(new PointLight());
+		} else {
+			getUserDice()[i].removeLight(new PointLight());
+		}
+		getUserDice()[i].getControl(RigidBodyControl.class).activate();
+	}
+	
+    @Override
+    public void update() {
+        super.update();
+    }
+
+	public void reload() {
+		// TODO Auto-generated method stub
 		setPauseOnLostFocus(false);
 		int diceNumber = model.getGameSettings().getDiceNumber();
 		setUserDice(new Spatial[diceNumber]);
@@ -105,7 +155,7 @@ public class GameAnimation extends SimpleApplication{
 		this.settings.setBitsPerPixel(32);
 		this.flyCam.setEnabled(false);
 		this.settings.setFrameRate(60);
-		this.cam.setLocation(new Vector3f(-10, -1, 12));
+		this.cam.setLocation(new Vector3f(-10, -1, 15));
 		this.cam.lookAt(new Vector3f(-3, -1, 0), Vector3f.UNIT_Z);
 
 		this.assetManager.registerLocator("./assets", FileLocator.class);
@@ -174,49 +224,4 @@ public class GameAnimation extends SimpleApplication{
 		inputManager.addMapping("Select", (Trigger)new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
 		inputManager.addListener(gameAnimController, new String[]{"Shake", "Put", "Select"});
 	}
-
-	public Spatial[] getUserDice() {
-		return userDice;
-	}
-
-	public void setUserDice(Spatial[] dice) {
-		this.userDice = dice;
-	}
-
-	public Spatial[] getAnotherDice() {
-		return anotherDice;
-	}
-
-	public void setAnotherDice(Spatial[] anotherDice) {
-		this.anotherDice = anotherDice;
-	}
-
-	public void refresh() {
-		// TODO Auto-generated method stub
-//		Player currentPlayer = model.getGameState().getCurrentPlayer();
-//		if (currentPlayer != null) {
-//			if (currentPlayer.getName().equals(model.getLogin())) {
-//				// u¿ytkownik
-//			} else {
-//				for(int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-//					getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, -1f));
-//				}
-//				// inny gracz
-//			}
-//		}
-	}
-	
-	public void selectDice(int i) {
-		if (model.getSelectedDice()[i]) {
-			getUserDice()[i].addLight(new PointLight());
-		} else {
-			getUserDice()[i].removeLight(new PointLight());
-		}
-		getUserDice()[i].getControl(RigidBodyControl.class).activate();
-	}
-	
-    @Override
-    public void update() {
-        super.update();
-    }
 }

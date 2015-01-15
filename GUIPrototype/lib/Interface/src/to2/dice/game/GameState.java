@@ -56,7 +56,7 @@ public class GameState {
 
     public boolean isPlayerWithName(String playerName) {
         for (Player player : players) {
-            if (player.getName() == playerName)
+            if (player.getName().equals(playerName))
                 return true;
         }
         return false;

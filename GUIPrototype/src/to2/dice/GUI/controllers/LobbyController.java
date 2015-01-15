@@ -18,10 +18,8 @@ public class LobbyController extends Controller implements ServerMessageListener
 	public void onGameStateChange(GameState gameState){
 		model.setGameState(gameState);
 		if(gameState.isGameStarted()){
-			GameAnimController animController = new GameAnimController(model);
-			GameAnimation anim = new GameAnimation(model, animController);
-			animController.setGameAnimation(anim);
-			GameController newController = new GameController(model,animController);
+			GameAnimation anim = model.getGameAnimation();
+			GameController newController = new GameController(model,model.getGameAnimController());
 			GameView newView = new GameView(model, newController, anim);
 			newController.setView(newView);
 			model.getServerMessageContainer().setServerMessageListener(newController);

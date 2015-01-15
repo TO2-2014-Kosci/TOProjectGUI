@@ -39,7 +39,7 @@ public class GameController extends Controller implements ServerMessageListener 
 		}
 	}
 	
-	//TODO
+
 	public void clickedStandUpLeaveButton() {
 		if (model.isSitting()) {
 			try{
@@ -60,7 +60,6 @@ public class GameController extends Controller implements ServerMessageListener 
 			try{
 				Response response = model.getConnectionProxy().leaveRoom();
 				if(response.isSuccess()){
-					gameAnimController.destroy();
 					model.setSitting(false);
 					GameListController newController = new GameListController(model);
 					model.getServerMessageContainer().removeServerMessageListener();
@@ -143,10 +142,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	}
 	
 	//TODO
-	private void showEndDialog() {
-		// jak sie wychodzi z tego okna trzeba ubiæ animacje, za pomoc¹ tego
-//		gameAnimController.destroy();
-		
+	private void showEndDialog() {		
 	}
 	
 	
