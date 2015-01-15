@@ -43,6 +43,16 @@ public class DiceLauncher {
 			newController.setView(newView);
 			model.getGameAnimation();
 			
+			//TODO
+			Runtime.getRuntime().addShutdownHook(new Thread(new Runnable(){
+				   @Override
+				   public void run() {
+					   //model.getConnectionProxy().logout();
+					   System.out.println("Koniec");
+				   }
+				   
+			}));
+			
 			EventQueue.invokeLater(new Runnable(){
 				
 				public void run(){

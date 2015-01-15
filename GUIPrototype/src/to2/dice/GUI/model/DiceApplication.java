@@ -1,7 +1,11 @@
 package to2.dice.GUI.model;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -20,17 +24,31 @@ public class DiceApplication extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		addWindowListener( new WindowAdapter()
+		{
+		    public void windowClosing(WindowEvent e)
+		    {
+		        JFrame frame = (JFrame)e.getSource();
+		 
+		        int result = JOptionPane.showConfirmDialog(
+		            frame,
+		            "Czy napewno chcesz zamkn¹æ aplikacje?",
+		            "Zamykanie aplikacji",
+		            JOptionPane.YES_NO_OPTION);
+		 
+		        if (result == JOptionPane.YES_OPTION){
+		            //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        	System.exit(0);
+		        }
+		    }
+		});
+		
+		
 		setTitle("Koœci");
 		setIconImage((new ImageIcon("kosc.png")).getImage());
-		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable(){
-			   @Override
-			   public void run() {
-			    // TODO Auto-generated method stub
-			    
-			   }
-			   
-			  }));
+		
 	}
 	
 	
