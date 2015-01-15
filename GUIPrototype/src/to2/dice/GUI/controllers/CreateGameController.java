@@ -4,9 +4,7 @@ import java.util.concurrent.TimeoutException;
 
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.CreateGameView;
-import to2.dice.GUI.views.GameAnimation;
 import to2.dice.GUI.views.GameListView;
-import to2.dice.GUI.views.GameView;
 import to2.dice.GUI.views.LobbyView;
 import to2.dice.GUI.views.View;
 import to2.dice.game.GameSettings;
@@ -32,7 +30,7 @@ public class CreateGameController extends Controller {
 			newController.setView(newView);
 			model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
 			try{
-				Response response = model.getConnectionProxy().createRoom(gameSettings, model.getLogin());
+				Response response = model.getConnectionProxy().createRoom(gameSettings);
 				if(response.isSuccess()){
 					model.setSitting(false);
 					model.getDiceApplication().setView(newView);
@@ -53,6 +51,7 @@ public class CreateGameController extends Controller {
 		GameListController newController = new GameListController(model);
 		GameListView newView = new GameListView(model,newController);
 		newController.setView(newView);
+		newController.refreshGameList();
 		model.getDiceApplication().setView(newView);
 	}
 	

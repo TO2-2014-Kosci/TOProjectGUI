@@ -30,14 +30,17 @@ public class LoginView extends View {
 		this.setLayout(mig);
 		loginLabel= new JLabel("Podaj login");
 		loginButton = new JButton("Zaloguj");
-		loginButton.addActionListener(new ActionListener(){
+		
+		ActionListener loginListener = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				controller.clickedLoginButton();
 			}
-		});
+		};
+		
+		loginButton.addActionListener(loginListener);
 		loginField = new JTextField();
 		loginField.setPreferredSize(new Dimension(200,25));
-		
+		loginField.addActionListener(loginListener);	
 		add(loginField,"cell 0 1, center, growy");
 		add(loginButton,"cell 0 2, right");
 		add(loginLabel,"cell 0 0, left");

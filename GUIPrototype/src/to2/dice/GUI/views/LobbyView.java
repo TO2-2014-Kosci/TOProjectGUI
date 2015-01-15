@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import net.miginfocom.swing.MigLayout;
 import to2.dice.GUI.controllers.LobbyController;
 import to2.dice.GUI.model.Model;
+import to2.dice.game.GameType;
 
 public class LobbyView extends View {
 	private static final long serialVersionUID = -3735508074042553963L;
@@ -86,10 +87,18 @@ public class LobbyView extends View {
 		
 		add(new JLabel("Typ gry:"), "cell 1 0, right");
 		add(new JLabel("Czas na ruch:"), "cell 1 1, right");
-		add(new JLabel("Cel:"), "cell 1 2, right");
+		add(new JLabel("Cel zwyciêstwa:"), "cell 1 2, right");			
 		add(new JLabel(model.getGameSettings().getGameType().toString()), "cell 2 0, right");
 		add(new JLabel(Integer.toString(model.getGameSettings().getTimeForMove())), "cell 2 1, right");
-		add(new JLabel(Integer.toString(model.getGameSettings().getRoundsToWin())), "cell 2 2, right");
+		String target = Integer.toString(model.getGameSettings().getRoundsToWin());
+		if (model.getGameSettings().getRoundsToWin() == 1) {
+			target += " punkt";
+		} else if (model.getGameSettings().getRoundsToWin() < 5) {
+			target += " punkty";
+		} else {
+			target += " punktów";
+		}
+		add(new JLabel(target), "cell 2 2, right");
 		playersCountLabel = new JLabel("Iloœæ graczy: " + Integer.toString(model.getGameState().getPlayersNumber()) + "/" + Integer.toString(model.getGameSettings().getMaxPlayers()));
 		add(playersCountLabel,"cell 0 10,alignx center");
 

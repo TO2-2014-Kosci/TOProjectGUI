@@ -5,6 +5,12 @@ public class GameInfo {
     private boolean gameStarted;
     private int playersNumber;
 
+    public GameInfo(GameSettings settings, boolean gameStarted, int playersNumber) {
+        this.settings = settings;
+        this.gameStarted = gameStarted;
+        this.playersNumber = playersNumber;
+    }
+
     public GameInfo(GameSettings settings, GameState state) {
         this.settings = settings;
         this.gameStarted = state.isGameStarted();

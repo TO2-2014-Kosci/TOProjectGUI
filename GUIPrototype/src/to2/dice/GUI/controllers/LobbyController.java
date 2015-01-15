@@ -15,30 +15,30 @@ public class LobbyController extends Controller implements ServerMessageListener
 		super(model);
 	}
 	
-	//TODO
 	public void onGameStateChange(GameState gameState){
 		model.setGameState(gameState);
 		if(gameState.isGameStarted()){
-			GameAnimController animController = new GameAnimController(model);
-			GameAnimation anim = new GameAnimation(model, animController);
-			animController.setGameAnimation(anim);
-			GameController newController = new GameController(model,animController);
+			GameAnimation anim = model.getGameAnimation();
+			GameController newController = new GameController(model,model.getGameAnimController());
 			GameView newView = new GameView(model, newController, anim);
 			newController.setView(newView);
 			model.getServerMessageContainer().setServerMessageListener(newController);
 			model.getDiceApplication().setView(newView);
 			model.getDiceApplication().refresh();
 			newController.onGameStateChange(gameState);
-		} //TODO
+		} else {
+			model.getDiceApplication().refresh();
+		}
 	}
 	
 	public void clickedLeaveButton() {
 		try{
-			Response response = model.getConnectionProxy().leaveRoom(model.getLogin());
+			Response response = model.getConnectionProxy().leaveRoom();
 			if(response.isSuccess()){
 				GameListController newController = new GameListController(model);
 				model.getServerMessageContainer().removeServerMessageListener();
 				model.setGameSettings(null);
+				model.setGameState(new GameState());
 				GameListView newView = new GameListView(model, newController);
 				newController.setView(newView);
 				newController.refreshGameList();
@@ -58,7 +58,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 	public void clickedSitDownStandUpButton() {
 		if(model.isSitting()==true){
 			try{
-				Response response = model.getConnectionProxy().standUp(model.getLogin());
+				Response response = model.getConnectionProxy().standUp();
 				if(response.isSuccess()){
 					model.setSitting(false);
 					view.refresh();
@@ -74,13 +74,13 @@ public class LobbyController extends Controller implements ServerMessageListener
 		}
 		else{
 			try{
-				Response response = model.getConnectionProxy().sitDown(model.getLogin());
+				Response response = model.getConnectionProxy().sitDown();
 				if(response.isSuccess()){
 					model.setSitting(true);
 					view.refresh();
 				}
 				else{
-					view.showErrorDialog("Nie uda³o siê usi¹œæ","B³¹d siadania", false);
+					view.showErrorDialog(response.message,"B³¹d siadania", false);
 				}
 			}
 			catch(TimeoutException e){

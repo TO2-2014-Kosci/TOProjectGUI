@@ -3,9 +3,12 @@ package to2.dice.GUI.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import to2.dice.GUI.controllers.GameAnimController;
+import to2.dice.GUI.views.GameAnimation;
 import to2.dice.game.GameInfo;
 import to2.dice.game.GameSettings;
 import to2.dice.game.GameState;
+import to2.dice.game.NGameState;
 import to2.dice.server.ConnectionProxy;
 
 public class Model {
@@ -21,6 +24,9 @@ public class Model {
 	private boolean[] selectedDice = new boolean[numberOfDice];
 	private GameState gameState = new GameState();
 	private int timer = 60;
+	
+	private GameAnimController gameAnimController;
+	private GameAnimation gameAnimation;
 	
 	public Model(ConnectionProxy cp, ServerMessageContainer smc, DiceApplication da) {
 		this.connectionProxy = cp;
@@ -109,5 +115,28 @@ public class Model {
 
 	public void setTimer(int timer) {
 		this.timer = timer;
+	}
+
+
+	public boolean isMyTurn() {
+		return gameState.getCurrentPlayer().getName().equals(login);
+	}
+
+
+	public GameAnimation getGameAnimation() {
+		if (gameAnimation == null) {
+			if (this.gameAnimController == null ) {
+				this.gameAnimController = new GameAnimController(this);
+			}
+			gameAnimation = new GameAnimation(this, this.gameAnimController);
+			this.gameAnimController.setGameAnimation(gameAnimation);
+		} else {
+			this.gameAnimation.setReload();
+		}
+		return gameAnimation;
+	}
+	
+	public GameAnimController getGameAnimController() {
+		return this.gameAnimController;
 	}
 }

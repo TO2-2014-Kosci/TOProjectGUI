@@ -9,8 +9,12 @@ public class ServerMessageContainer implements ServerMessageListener {
 	
 	@Override
 	public void onGameStateChange(GameState arg0) {
+		try {
 		if (this.serverMessageListener != null) {
 			this.serverMessageListener.onGameStateChange(arg0);
+		}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 	}
 	

@@ -13,7 +13,7 @@ public interface GameServer {
      * @param state Game state to be received by players
      */
     public void sendToAll(GameController sender, GameState state);
-
+    
     /**
      * Sends information to server that the game has ended
      * @param sender Controller of recently finished game
