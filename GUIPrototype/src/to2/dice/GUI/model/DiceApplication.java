@@ -23,6 +23,14 @@ public class DiceApplication extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Koœci");
 		setIconImage((new ImageIcon("kosc.png")).getImage());
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable(){
+			   @Override
+			   public void run() {
+			    // TODO Auto-generated method stub
+			    
+			   }
+			   
+			  }));
 	}
 	
 	

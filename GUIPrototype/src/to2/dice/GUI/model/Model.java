@@ -8,6 +8,7 @@ import to2.dice.GUI.views.GameAnimation;
 import to2.dice.game.GameInfo;
 import to2.dice.game.GameSettings;
 import to2.dice.game.GameState;
+import to2.dice.game.NGameState;
 import to2.dice.server.ConnectionProxy;
 
 public class Model {

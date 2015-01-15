@@ -5,6 +5,10 @@ import java.net.ConnectException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.vecmath.GMatrix;
+
+import org.hamcrest.core.IsInstanceOf;
+
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeSystem;
 
@@ -15,6 +19,8 @@ import to2.dice.GUI.model.ServerMessageContainer;
 import to2.dice.GUI.views.GameAnimation;
 import to2.dice.GUI.views.LoginView;
 import to2.dice.GUI.views.View;
+import to2.dice.game.GameState;
+import to2.dice.game.NGameState;
 import to2.dice.messaging.RemoteConnectionProxy;
 import to2.dice.server.ConnectionProxy;
 
@@ -27,7 +33,6 @@ public class DiceLauncher {
 //		Logger.getLogger("com.jme3").setLevel(Level.SEVERE);
 		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
-		
 		ConnectionProxy cp;
 		try {
 			cp = new RemoteConnectionProxy("localhost", smc);

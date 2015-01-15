@@ -8,7 +8,12 @@ public class DiceServerLaucher {
 		// TODO Auto-generated method stub
 		Server server = new Server();
 		while(true) {
-			Thread.yield();
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}

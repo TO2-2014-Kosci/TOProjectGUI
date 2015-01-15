@@ -64,6 +64,7 @@ public class GameController extends Controller implements ServerMessageListener 
 					GameListController newController = new GameListController(model);
 					model.getServerMessageContainer().removeServerMessageListener();
 					model.setGameSettings(null);
+					model.setGameState(new GameState());
 					GameListView newView = new GameListView(model, newController);
 					newController.setView(newView);
 					newController.refreshGameList();

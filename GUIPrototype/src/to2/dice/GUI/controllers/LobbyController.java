@@ -38,6 +38,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 				GameListController newController = new GameListController(model);
 				model.getServerMessageContainer().removeServerMessageListener();
 				model.setGameSettings(null);
+				model.setGameState(new GameState());
 				GameListView newView = new GameListView(model, newController);
 				newController.setView(newView);
 				newController.refreshGameList();
@@ -79,7 +80,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 					view.refresh();
 				}
 				else{
-					view.showErrorDialog("Nie uda³o siê usi¹œæ","B³¹d siadania", false);
+					view.showErrorDialog(response.message,"B³¹d siadania", false);
 				}
 			}
 			catch(TimeoutException e){
