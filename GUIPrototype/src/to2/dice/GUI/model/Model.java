@@ -131,7 +131,7 @@ public class Model {
 			gameAnimation = new GameAnimation(this, this.gameAnimController);
 			this.gameAnimController.setGameAnimation(gameAnimation);
 		} else {
-			this.gameAnimation.reload();
+			this.gameAnimation.setReload();
 		}
 		return gameAnimation;
 	}

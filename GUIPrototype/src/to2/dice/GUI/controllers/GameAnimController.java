@@ -132,16 +132,20 @@ public class GameAnimController implements ActionListener {
 	}
 	
 	public void shakeAnotherDice(Dice dice) {
-		for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-			RollControl diceControl = gameAnimation.getAnotherDice()[i].getControl(RollControl.class);
-			diceControl.setNumberToRoll(dice.getDiceArray()[i]);
+		synchronized (model) {
+			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
+				RollControl diceControl = gameAnimation.getAnotherDice()[i].getControl(RollControl.class);
+				diceControl.setNumberToRoll(dice.getDiceArray()[i]);
+			}	
 		}
 	}
 	
 	public void putAnotherDice(Dice dice) {
-		for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-			PutControl diceControl = gameAnimation.getAnotherDice()[i].getControl(PutControl.class);
-			diceControl.setNumberToPut(dice.getDiceArray()[i]);
+		synchronized (model) {
+			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
+				PutControl diceControl = gameAnimation.getAnotherDice()[i].getControl(PutControl.class);
+				diceControl.setNumberToPut(dice.getDiceArray()[i]);
+			}
 		}
 	}
 	

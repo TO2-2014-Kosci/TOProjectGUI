@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 
 
 
+
+
 import org.lwjgl.opengl.Display;
 
 import com.bulletphysics.collision.shapes.BoxShape;
@@ -43,6 +45,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.Spatial.CullHint;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
 import com.jme3.system.JmeSystem;
@@ -60,9 +63,14 @@ public class GameAnimation extends SimpleApplication{
 	private Model model;
 	private Spatial[] userDice;
 	private Spatial[] anotherDice;
+	private BulletAppState bulletAppState;
+	private Spatial box;
+	private boolean reload = false;
 	
 	public GameAnimation(Model model, GameAnimController animController) {
 		super();
+		bulletAppState = new BulletAppState();
+		stateManager.attach(bulletAppState);
 		AppSettings settings = new AppSettings(true);
 		settings.setAudioRenderer(null);
 		this.setSettings(settings);
@@ -87,7 +95,121 @@ public class GameAnimation extends SimpleApplication{
 
 	@Override
 	public void simpleInitApp() {
-		//TODO dodaæ dodawanie 
+		setPauseOnLostFocus(false);
+	    JmeCanvasContext ctx = (JmeCanvasContext) getContext();
+	    ctx.setSystemListener(this);
+	    this.setDisplayStatView(false);
+		this.setDisplayFps(false);
+		this.settings.setBitsPerPixel(32);
+		this.flyCam.setEnabled(false);
+		this.settings.setFrameRate(60);
+		this.assetManager.registerLocator("./assets", FileLocator.class);
+		this.cam.setLocation(new Vector3f(-10, -1, 15));
+		this.cam.lookAt(new Vector3f(-3, -1, 0), Vector3f.UNIT_Z);
+//		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+		bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, 0, -10));
+		bulletAppState.getPhysicsSpace().setAccuracy(1/150f); 
+		Spatial table = this.assetManager.loadModel("Model/Table/table.j3o");
+		table.setLocalTranslation(0, 0, 0);
+		RigidBodyControl landscape = new RigidBodyControl(CollisionShapeFactory.createMeshShape((Node) table), 0);
+		table.addControl(landscape);
+		bulletAppState.getPhysicsSpace().add(landscape);
+		rootNode.attachChild(table);
+		
+		box = this.assetManager.loadModel("Model/Box/box.j3o");
+
+		box.setLocalTranslation(new Vector3f(-7, 0, 0));
+		RigidBodyControl boxShape = new RigidBodyControl(CollisionShapeFactory.createMeshShape((Node) box), 0);
+		box.addControl(boxShape);
+		bulletAppState.getPhysicsSpace().add(boxShape);
+		rootNode.attachChild(box);
+		AmbientLight ambient = new AmbientLight();
+		ambient.setColor(ColorRGBA.White);
+		DirectionalLight sun = new DirectionalLight();
+		sun.setDirection(new Vector3f(6f, 0f, -7f).normalizeLocal());
+		sun.setColor(ColorRGBA.White.mult(1.5f));
+		
+		PointLight point = new PointLight();
+		point.setPosition(new Vector3f(0, 0, 15));
+		point.setColor(ColorRGBA.White.mult(0.2f));
+		PointLight pointBack = new PointLight();
+		pointBack.setPosition(new Vector3f(15, 0, 15));
+		pointBack.setColor(ColorRGBA.White.mult(0.2f));
+		PointLight pointLeft = new PointLight();
+		pointLeft.setPosition(new Vector3f(15, 10, 15));
+		pointLeft.setColor(ColorRGBA.White.mult(0.2f));
+		PointLight pointRight = new PointLight();
+		pointRight.setPosition(new Vector3f(15, 10, 15));
+		pointRight.setColor(ColorRGBA.White.mult(0.2f));
+		rootNode.addLight(point);
+		rootNode.addLight(pointBack);
+		rootNode.addLight(pointRight);
+		rootNode.addLight(pointLeft);
+		rootNode.addLight(sun); 
+		rootNode.addLight(ambient);
+		inputManager.addMapping("Shake", (Trigger)new KeyTrigger(KeyInput.KEY_S));
+		inputManager.addMapping("Put", (Trigger)new KeyTrigger(KeyInput.KEY_P));
+		inputManager.addMapping("Select", (Trigger)new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+		inputManager.addListener(gameAnimController, new String[]{"Shake", "Put", "Select"});
+	}
+	
+    @Override
+    public void update() {
+        super.update();
+        if (reload) {
+        	synchronized (model) {
+	        	reload = false;
+	        	int diceNumber = model.getGameSettings().getDiceNumber();
+	    		if (getUserDice() == null || getUserDice().length != diceNumber) {
+	    			setUserDice(new Spatial[diceNumber]);
+	    			setAnotherDice(new Spatial[diceNumber]);
+	    			for (int i = 0; i < diceNumber; i++) {
+	    				getUserDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
+	    				getUserDice()[i].setName(Integer.toString(i));
+	    				CollisionShape diceShape = CollisionShapeFactory.createDynamicMeshShape((Node) getUserDice()[i]); //u¿ywamy Dynamic bo maj¹ byæ kolizje
+	    				RigidBodyControl diceBody = new RigidBodyControl(diceShape, 10f);
+	    				getUserDice()[i].addControl(diceBody);
+	    				rootNode.attachChild(getUserDice()[i]);
+	    				getUserDice()[i].addControl(new RollControl());
+	    				getUserDice()[i].addControl(new PutControl());
+	    				bulletAppState.getPhysicsSpace().add(diceBody);
+	    				getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, - diceNumber / 2 + i, 0.3f));
+	    				
+	    				
+	    				getAnotherDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
+	    				getAnotherDice()[i].setName(Integer.toString(i));
+	    				CollisionShape diceShapeA = CollisionShapeFactory.createDynamicMeshShape((Node) getAnotherDice()[i]); //u¿ywamy Dynamic bo maj¹ byæ kolizje
+	    				RigidBodyControl diceBodyA = new RigidBodyControl(diceShapeA, 10f);
+	    				getAnotherDice()[i].addControl(diceBodyA);
+	    				getAnotherDice()[i].addControl(new RollControl());
+	    				getAnotherDice()[i].addControl(new PutControl());
+	    				rootNode.attachChild(getAnotherDice()[i]);
+	    				bulletAppState.getPhysicsSpace().add(diceBodyA);
+	    				getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 1f));
+	    			}
+	    			box.setLocalScale(1, diceNumber, 1);
+	    		}
+	    		for (int i = 0; i < diceNumber; i++) {
+	    			getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, - diceNumber / 2 + i, 0.3f));
+	    			getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 1f));
+	    		}
+	    		if (!model.isSitting()) {
+	    			box.setCullHint(CullHint.Always);
+	    			for (Spatial dice: getUserDice()) {
+	    				dice.setCullHint(CullHint.Always);
+	    			}
+	    		} else {
+	    			box.setCullHint(CullHint.Dynamic);
+	    			for (Spatial dice: getUserDice()) {
+	    				dice.setCullHint(CullHint.Dynamic);
+	    			}
+	    		}
+        	}
+        }
+    }
+	
+	public void setReload() {
+		reload = true;
 	}
 
 	public Spatial[] getUserDice() {
@@ -128,100 +250,5 @@ public class GameAnimation extends SimpleApplication{
 			getUserDice()[i].removeLight(new PointLight());
 		}
 		getUserDice()[i].getControl(RigidBodyControl.class).activate();
-	}
-	
-    @Override
-    public void update() {
-        super.update();
-    }
-
-	public void reload() {
-		// TODO Auto-generated method stub
-		setPauseOnLostFocus(false);
-		int diceNumber = model.getGameSettings().getDiceNumber();
-		setUserDice(new Spatial[diceNumber]);
-		setAnotherDice(new Spatial[diceNumber]);
-		
-	    JmeCanvasContext ctx = (JmeCanvasContext) getContext();
-	    ctx.setSystemListener(this);
-	    
-		this.setDisplayStatView(false);
-		this.setDisplayFps(false);
-		BulletAppState bulletAppState = new BulletAppState();
-		stateManager.attach(bulletAppState);
-//		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
-		bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, 0, -10));
-		bulletAppState.getPhysicsSpace().setAccuracy(1/150f);
-		this.settings.setBitsPerPixel(32);
-		this.flyCam.setEnabled(false);
-		this.settings.setFrameRate(60);
-		this.cam.setLocation(new Vector3f(-10, -1, 15));
-		this.cam.lookAt(new Vector3f(-3, -1, 0), Vector3f.UNIT_Z);
-
-		this.assetManager.registerLocator("./assets", FileLocator.class);
-		for (int i = 0; i < diceNumber; i++) {
-			getUserDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
-			CollisionShape diceShape = CollisionShapeFactory.createDynamicMeshShape((Node) getUserDice()[i]); //u¿ywamy Dynamic bo maj¹ byæ kolizje
-			RigidBodyControl diceBody = new RigidBodyControl(diceShape, 10f);
-			getUserDice()[i].addControl(diceBody);
-			rootNode.attachChild(getUserDice()[i]);
-			bulletAppState.getPhysicsSpace().add(diceBody);
-			getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(-7, - diceNumber / 2 + i, 0.3f));
-			
-			
-			getAnotherDice()[i] = this.assetManager.loadModel("Model/Dice/dice.j3o");
-			getAnotherDice()[i].setName(Integer.toString(i));
-			CollisionShape diceShapeA = CollisionShapeFactory.createDynamicMeshShape((Node) getAnotherDice()[i]); //u¿ywamy Dynamic bo maj¹ byæ kolizje
-			RigidBodyControl diceBodyA = new RigidBodyControl(diceShapeA, 10f);
-			getAnotherDice()[i].addControl(diceBodyA);
-			getAnotherDice()[i].addControl(new RollControl());
-			getAnotherDice()[i].addControl(new PutControl());
-			rootNode.attachChild(getAnotherDice()[i]);
-			bulletAppState.getPhysicsSpace().add(diceBodyA);
-			getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new Vector3f(i, -6, 1f));
-		}
-		Spatial table = this.assetManager.loadModel("Model/Table/table.j3o");
-		table.setLocalTranslation(0, 0, 0);
-		RigidBodyControl landscape = new RigidBodyControl(CollisionShapeFactory.createMeshShape((Node) table), 0);
-		table.addControl(landscape);
-		bulletAppState.getPhysicsSpace().add(landscape);
-		rootNode.attachChild(table);
-		
-		Spatial box = this.assetManager.loadModel("Model/Box/box.j3o");
-		box.setLocalScale(1, diceNumber, 1);
-		box.setLocalTranslation(new Vector3f(-7, 0, 0));
-		RigidBodyControl boxShape = new RigidBodyControl(CollisionShapeFactory.createMeshShape((Node) box), 0);
-		box.addControl(boxShape);
-		bulletAppState.getPhysicsSpace().add(boxShape);
-		rootNode.attachChild(box);
-		
-		AmbientLight ambient = new AmbientLight();
-		ambient.setColor(ColorRGBA.White);
-		DirectionalLight sun = new DirectionalLight();
-		sun.setDirection(new Vector3f(6f, 0f, -7f).normalizeLocal());
-		sun.setColor(ColorRGBA.White.mult(1.5f));
-		
-		PointLight point = new PointLight();
-		point.setPosition(new Vector3f(0, 0, 15));
-		point.setColor(ColorRGBA.White.mult(0.2f));
-		PointLight pointBack = new PointLight();
-		pointBack.setPosition(new Vector3f(15, 0, 15));
-		pointBack.setColor(ColorRGBA.White.mult(0.2f));
-		PointLight pointLeft = new PointLight();
-		pointLeft.setPosition(new Vector3f(15, 10, 15));
-		pointLeft.setColor(ColorRGBA.White.mult(0.2f));
-		PointLight pointRight = new PointLight();
-		pointRight.setPosition(new Vector3f(15, 10, 15));
-		pointRight.setColor(ColorRGBA.White.mult(0.2f));
-		rootNode.addLight(point);
-		rootNode.addLight(pointBack);
-		rootNode.addLight(pointRight);
-		rootNode.addLight(pointLeft);
-		rootNode.addLight(sun); 
-		rootNode.addLight(ambient);
-		inputManager.addMapping("Shake", (Trigger)new KeyTrigger(KeyInput.KEY_S));
-		inputManager.addMapping("Put", (Trigger)new KeyTrigger(KeyInput.KEY_P));
-		inputManager.addMapping("Select", (Trigger)new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
-		inputManager.addListener(gameAnimController, new String[]{"Shake", "Put", "Select"});
 	}
 }

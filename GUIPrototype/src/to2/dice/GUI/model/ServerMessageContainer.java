@@ -9,9 +9,12 @@ public class ServerMessageContainer implements ServerMessageListener {
 	
 	@Override
 	public void onGameStateChange(GameState arg0) {
-		System.out.println("Dosta³em gamestate");
+		try {
 		if (this.serverMessageListener != null) {
 			this.serverMessageListener.onGameStateChange(arg0);
+		}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 	}
 	

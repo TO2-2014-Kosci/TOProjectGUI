@@ -191,12 +191,7 @@ public class GameView extends View {
 		roundLabel = new JLabel("Runda " + model.getGameState().getCurrentRound());
 		roundLabel.setFont(labelFont);
 		add(roundLabel, "cell 1 0, alignx left");
-		
-		if (model.getGameSettings().getGameType() != GameType.POKER) {
-			nGoalLabel = new JLabel("Cel: " + ((NGameState)model.getGameState()).getWinningNumber());
-		} else {
-			nGoalLabel = new JLabel("");
-		}
+		nGoalLabel = new JLabel("");
 		nGoalLabel.setFont(labelFont);
 		add(nGoalLabel, "cell 2 0, alignx center");
 		
@@ -220,7 +215,7 @@ public class GameView extends View {
 		if (model.getGameSettings().getGameType() != GameType.POKER) {
 			nGoalLabel.setText("Cel: " + ((NGameState)model.getGameState()).getWinningNumber());
 		} else {
-			nGoalLabel.setText("dsa");
+			nGoalLabel.setText("");
 		}
 //		if (lastPlayer != null && !lastPlayer.equals(model.getGameState().getCurrentPlayer())) {
 //			timerLabel.setText(Integer.toString(model.getGameSettings().getTimeForMove()));
