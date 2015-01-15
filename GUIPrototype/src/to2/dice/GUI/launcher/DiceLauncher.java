@@ -28,11 +28,9 @@ public class DiceLauncher {
 		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
 		
-//		ConnectionProxy cp = new ConnectionProxyStub();
 		ConnectionProxy cp;
 		try {
 			cp = new RemoteConnectionProxy("localhost", smc);
-	//		cp.addServerMessageListener(smc);
 			DiceApplication da = new DiceApplication();
 			Model model = new Model(cp, smc, da);
 			LoginController newController = new LoginController(model);
@@ -48,7 +46,6 @@ public class DiceLauncher {
 				}
 			});
 		} catch (ConnectException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

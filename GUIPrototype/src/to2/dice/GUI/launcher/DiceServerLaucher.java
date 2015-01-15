@@ -8,8 +8,8 @@ public class DiceServerLaucher {
 		// TODO Auto-generated method stub
 		Server server = new Server();
 		while(true) {
-			
+			Thread.yield();
 		}
+		
 	}
-
 }
