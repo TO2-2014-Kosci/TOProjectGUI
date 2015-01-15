@@ -34,7 +34,7 @@ public class DiceApplication extends JFrame {
 		 
 		        int result = JOptionPane.showConfirmDialog(
 		            frame,
-		            "Czy napewno chcesz zamkn¹æ aplikacje?",
+		            "Czy na pewno chcesz zamkn¹æ aplikacje?",
 		            "Zamykanie aplikacji",
 		            JOptionPane.YES_NO_OPTION);
 		 
