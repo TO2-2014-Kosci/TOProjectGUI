@@ -10,16 +10,16 @@ import to2.dice.game.GameState;
 import to2.dice.messaging.Response;
 import to2.dice.server.ServerMessageListener;
 
-public class LobbyController extends Controller implements ServerMessageListener{
+public class LobbyController extends Controller implements ServerMessageListener {
 	public LobbyController(Model model) {
 		super(model);
 	}
-	
-	public void onGameStateChange(GameState gameState){
+
+	public void onGameStateChange(GameState gameState) {
 		model.setGameState(gameState);
-		if(gameState.isGameStarted()){
+		if (gameState.isGameStarted()) {
 			GameAnimation anim = model.getGameAnimation();
-			GameController newController = new GameController(model,model.getGameAnimController());
+			GameController newController = new GameController(model, model.getGameAnimController());
 			GameView newView = new GameView(model, newController, anim);
 			newController.setView(newView);
 			model.getServerMessageContainer().setServerMessageListener(newController);
@@ -30,11 +30,11 @@ public class LobbyController extends Controller implements ServerMessageListener
 			model.getDiceApplication().refresh();
 		}
 	}
-	
+
 	public void clickedLeaveButton() {
-		try{
+		try {
 			Response response = model.getConnectionProxy().leaveRoom();
-			if(response.isSuccess()){
+			if (response.isSuccess()) {
 				GameListController newController = new GameListController(model);
 				model.getServerMessageContainer().removeServerMessageListener();
 				model.setGameSettings(null);
@@ -43,47 +43,40 @@ public class LobbyController extends Controller implements ServerMessageListener
 				newController.setView(newView);
 				newController.refreshGameList();
 				model.getDiceApplication().setView(newView);
-			}
-			else{
+			} else {
 				view.showErrorDialog(response.message, "B³¹d wychodzenia", false);
 			}
-		}
-		catch(TimeoutException e){
+		} catch (TimeoutException e) {
 			e.printStackTrace();
 			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 		}
 
 	}
-	
+
 	public void clickedSitDownStandUpButton() {
-		if(model.isSitting()==true){
-			try{
+		if (model.isSitting() == true) {
+			try {
 				Response response = model.getConnectionProxy().standUp();
-				if(response.isSuccess()){
+				if (response.isSuccess()) {
 					model.setSitting(false);
 					view.refresh();
+				} else {
+					view.showErrorDialog("Nie uda³o siê wstaæ", "B³¹d wstawania", false);
 				}
-				else{
-					view.showErrorDialog("Nie uda³o siê wstaæ","B³¹d wstawania", false);
-				}
-			}
-			catch(TimeoutException e){
+			} catch (TimeoutException e) {
 				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
-		}
-		else{
-			try{
+		} else {
+			try {
 				Response response = model.getConnectionProxy().sitDown();
-				if(response.isSuccess()){
+				if (response.isSuccess()) {
 					model.setSitting(true);
 					view.refresh();
+				} else {
+					view.showErrorDialog(response.message, "B³¹d siadania", false);
 				}
-				else{
-					view.showErrorDialog(response.message,"B³¹d siadania", false);
-				}
-			}
-			catch(TimeoutException e){
+			} catch (TimeoutException e) {
 				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}

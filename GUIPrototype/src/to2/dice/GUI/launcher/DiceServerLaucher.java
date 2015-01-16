@@ -7,7 +7,7 @@ public class DiceServerLaucher {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Server server = new Server();
-		while(true) {
+		while (true) {
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
@@ -15,6 +15,6 @@ public class DiceServerLaucher {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 }

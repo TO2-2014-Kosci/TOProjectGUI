@@ -14,50 +14,48 @@ import to2.dice.GUI.model.Model;
 
 public class LoginView extends View {
 	private static final long serialVersionUID = 5539852546355993063L;
-	
+
 	private JButton loginButton;
 	private JTextField loginField;
 	private JLabel loginLabel;
-	//loginLabel ?
-	
+
+	// loginLabel ?
+
 	//
 	public LoginView(Model model, LoginController controller) {
 		super(model, controller);
-		MigLayout mig = new MigLayout(
-				"al center center",
-				"",
-				"");
+		MigLayout mig = new MigLayout("al center center", "", "");
 		this.setLayout(mig);
-		loginLabel= new JLabel("Podaj login");
+		loginLabel = new JLabel("Podaj login");
 		loginButton = new JButton("Zaloguj");
-		
-		ActionListener loginListener = new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+
+		ActionListener loginListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				controller.clickedLoginButton();
 			}
 		};
-		
+
 		loginButton.addActionListener(loginListener);
 		loginField = new JTextField();
-		loginField.setPreferredSize(new Dimension(200,25));
-		loginField.addActionListener(loginListener);	
-		add(loginField,"cell 0 1, center, growy");
-		add(loginButton,"cell 0 2, right");
-		add(loginLabel,"cell 0 0, left");
+		loginField.setPreferredSize(new Dimension(200, 25));
+		loginField.addActionListener(loginListener);
+		add(loginField, "cell 0 1, center, growy");
+		add(loginButton, "cell 0 2, right");
+		add(loginLabel, "cell 0 0, left");
 		setMinimumSize(new Dimension(250, 120));
 	}
 
-	public String getLogin(){
+	public String getLogin() {
 		return loginField.getText();
 	}
-	
-	public void eraseLogin(){
+
+	public void eraseLogin() {
 		loginField.setText("");
 	}
 
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

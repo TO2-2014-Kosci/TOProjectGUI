@@ -16,8 +16,9 @@ public class CreateGameController extends Controller {
 	public CreateGameController(Model model) {
 		super(model);
 	}
-	//TODO
-	public void clickedCreateGameButton(){
+
+	// TODO
+	public void clickedCreateGameButton() {
 		CreateGameView cgv = (CreateGameView) view;
 		GameSettings gameSettings = cgv.getGameSettings();
 		if (isProper(gameSettings)) {
@@ -29,32 +30,31 @@ public class CreateGameController extends Controller {
 			newView = new LobbyView(model, (LobbyController) newController);
 			newController.setView(newView);
 			model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
-			try{
+			try {
 				Response response = model.getConnectionProxy().createRoom(gameSettings);
-				if(response.isSuccess()){
+				if (response.isSuccess()) {
 					model.setSitting(false);
 					model.getDiceApplication().setView(newView);
-				}
-				else{
+				} else {
 					model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
 					view.showErrorDialog("Nie uda³o siê utworzyæ gry", "B³¹d tworzenia gry", false);
 				}
-			}
-			catch(TimeoutException e){
+			} catch (TimeoutException e) {
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
 		} else {
 			view.showErrorDialog("Proszê wprowadziæ poprawne dane", "B³¹d tworzenia gry", false);
 		}
 	}
-	public void clickedReturnButton(){
+
+	public void clickedReturnButton() {
 		GameListController newController = new GameListController(model);
-		GameListView newView = new GameListView(model,newController);
+		GameListView newView = new GameListView(model, newController);
 		newController.setView(newView);
 		newController.refreshGameList();
 		model.getDiceApplication().setView(newView);
 	}
-	
+
 	private boolean isProper(GameSettings gameSettings) {
 		if (gameSettings.getName().equals("")) {
 			return false;
