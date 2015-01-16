@@ -27,7 +27,7 @@ public class LobbyView extends View {
 	private final int DEFAULT_WIDTH = 400;
 	private final int DEFAULT_HEIGHT = 400;
 
-	String[] columnNames = { "Name" };
+	String[] columnNames = { "Nazwa gracza" };
 
 	public LobbyView(Model model, LobbyController controller) {
 		super(model, controller);

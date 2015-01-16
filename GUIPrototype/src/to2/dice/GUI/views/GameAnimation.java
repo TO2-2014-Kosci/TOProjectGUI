@@ -14,6 +14,7 @@ import org.lwjgl.opengl.Display;
 import com.bulletphysics.collision.shapes.BoxShape;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
+import com.jme3.asset.plugins.ClasspathLocator;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
@@ -106,7 +107,7 @@ public class GameAnimation extends SimpleApplication {
 		this.settings.setBitsPerPixel(32);
 		this.flyCam.setEnabled(false);
 		this.settings.setFrameRate(60);
-		this.assetManager.registerLocator("./assets", FileLocator.class);
+		this.assetManager.registerLocator("assets", ClasspathLocator.class);
 		this.cam.setLocation(new Vector3f(-10, -1, 15));
 		this.cam.lookAt(new Vector3f(-3, -1, 0), Vector3f.UNIT_Z);
 		// bulletAppState.getPhysicsSpace().enableDebug(assetManager);

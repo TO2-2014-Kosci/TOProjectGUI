@@ -5,8 +5,6 @@ import java.net.ConnectException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.hamcrest.core.IsInstanceOf;
-
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeSystem;
 
@@ -31,36 +29,36 @@ public class DiceLauncher {
 		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
 		ConnectionProxy cp;
-		 try {
-		 cp = new RemoteConnectionProxy("localhost", smc);
-//		cp = new ConnectionProxyStub();
-//		cp.addServerMessageListener(smc);
-		DiceApplication da = new DiceApplication();
-		Model model = new Model(cp, smc, da);
-		LoginController newController = new LoginController(model);
-		View newView = new LoginView(model, newController);
-		newController.setView(newView);
-		model.getGameAnimation();
-
-		// TODO
-		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-			@Override
-			public void run() {
-				// model.getConnectionProxy().logout();
-				System.out.println("Koniec");
-			}
-
-		}));
-
-		EventQueue.invokeLater(new Runnable() {
-
-			public void run() {
-				da.setView(newView);
-				da.setVisible(true);
-			}
-		});
-		 } catch (ConnectException e) {
-		 e.printStackTrace();
-		 }
+		try {
+			cp = new RemoteConnectionProxy("localhost", smc);
+	//		cp = new ConnectionProxyStub();
+	//		cp.addServerMessageListener(smc);
+			DiceApplication da = new DiceApplication();
+			Model model = new Model(cp, smc, da);
+			LoginController newController = new LoginController(model);
+			View newView = new LoginView(model, newController);
+			newController.setView(newView);
+			model.getGameAnimation();
+	
+			// TODO
+			Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+				@Override
+				public void run() {
+					// model.getConnectionProxy().logout();
+					System.out.println("Koniec");
+				}
+	
+			}));
+	
+			EventQueue.invokeLater(new Runnable() {
+	
+				public void run() {
+					da.setView(newView);
+					da.setVisible(true);
+				}
+			});
+		} catch (ConnectException e) {
+			e.printStackTrace();
+		}
 	}
 }

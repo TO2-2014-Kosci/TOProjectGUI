@@ -49,7 +49,7 @@ public class CreateGameView extends View {
 		this.add(new JLabel("Tworzenie gry"), "cell 0 0 3 1,alignx center");
 
 		this.add(new JLabel("Nazwa gry"), "cell 0 1,alignx left");
-		nameField = new JTextField();
+		nameField = new JTextField(model.getLogin());
 		nameField.setHorizontalAlignment(JTextField.RIGHT);
 		add(nameField, "cell 1 1 2 1,growx");
 
