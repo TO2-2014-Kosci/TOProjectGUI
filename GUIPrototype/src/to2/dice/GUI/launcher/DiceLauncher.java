@@ -5,8 +5,6 @@ import java.net.ConnectException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.vecmath.GMatrix;
-
 import org.hamcrest.core.IsInstanceOf;
 
 import com.jme3.system.AppSettings;
@@ -33,10 +31,10 @@ public class DiceLauncher {
 		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
 		ConnectionProxy cp;
-		// try {
-		// cp = new RemoteConnectionProxy("localhost", smc);
-		cp = new ConnectionProxyStub();
-		cp.addServerMessageListener(smc);
+		 try {
+		 cp = new RemoteConnectionProxy("localhost", smc);
+//		cp = new ConnectionProxyStub();
+//		cp.addServerMessageListener(smc);
 		DiceApplication da = new DiceApplication();
 		Model model = new Model(cp, smc, da);
 		LoginController newController = new LoginController(model);
@@ -61,8 +59,8 @@ public class DiceLauncher {
 				da.setVisible(true);
 			}
 		});
-		// } catch (ConnectException e) {
-		// e.printStackTrace();
-		// }
+		 } catch (ConnectException e) {
+		 e.printStackTrace();
+		 }
 	}
 }

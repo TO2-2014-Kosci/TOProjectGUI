@@ -20,6 +20,8 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.HullCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
+import com.jme3.font.BitmapFont;
+import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.KeyTrigger;
@@ -49,6 +51,7 @@ import com.jme3.system.JmeSystem;
 import to2.dice.GUI.animation.AnotherPutControl;
 import to2.dice.GUI.animation.AnotherRollControl;
 import to2.dice.GUI.animation.HideControl;
+import to2.dice.GUI.animation.TextControl;
 import to2.dice.GUI.animation.UserPutDice;
 import to2.dice.GUI.animation.UserRollDice;
 import to2.dice.GUI.controllers.DiceControl;
@@ -65,7 +68,8 @@ public class GameAnimation extends SimpleApplication {
 	private BulletAppState bulletAppState;
 	private Spatial box;
 	private boolean reload = false;
-
+	private BitmapText text;
+	
 	public GameAnimation(Model model, GameAnimController animController) {
 		super();
 		bulletAppState = new BulletAppState();
@@ -150,6 +154,14 @@ public class GameAnimation extends SimpleApplication {
 		inputManager.addMapping("Put", (Trigger) new KeyTrigger(KeyInput.KEY_P));
 		inputManager.addMapping("Select", (Trigger) new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
 		inputManager.addListener(gameAnimController, new String[] { "Shake", "Put", "Select" });
+		gameAnimController.setEnabled(false);
+		
+		text = new BitmapText(guiFont);
+//		text.setCullHint(CullHint.Always);
+		text.setText("");
+		text.addControl(new TextControl(text));
+		guiNode.attachChild(text);
+//		rootNode.addControl(gameAnimController);
 	}
 
 	@Override
@@ -220,6 +232,13 @@ public class GameAnimation extends SimpleApplication {
 			}
 		}
 	}
+	
+	@Override
+	public void reshape(int w, int h) {
+		super.reshape(w, h);
+		text.setLocalTranslation((w - text.getLineWidth()) / 2, h - 25, 0);
+	}
+	
 
 	public void setReload() {
 		reload = true;
@@ -240,6 +259,10 @@ public class GameAnimation extends SimpleApplication {
 	public void setAnotherDice(Spatial[] anotherDice) {
 		this.anotherDice = anotherDice;
 	}
+	
+	public Spatial getBitmapText() {
+		return text;
+	}
 
 	public void refresh() {
 		// TODO Auto-generated method stub
@@ -257,12 +280,12 @@ public class GameAnimation extends SimpleApplication {
 		// }
 	}
 
-	public void selectDice(int i) {
-		if (model.getSelectedDice()[i]) {
-			getUserDice()[i].addLight(new PointLight());
-		} else {
-			getUserDice()[i].removeLight(new PointLight());
-		}
-		getUserDice()[i].getControl(RigidBodyControl.class).activate();
-	}
+//	public void selectDice(int i) {
+//		if (model.getSelectedDice()[i]) {
+//			getUserDice()[i].addLight(new PointLight());
+//		} else {
+//			getUserDice()[i].removeLight(new PointLight());
+//		}
+//		getUserDice()[i].getControl(RigidBodyControl.class).activate();
+//	}
 }

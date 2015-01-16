@@ -12,19 +12,23 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.RenderManager;
+import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.Spatial.CullHint;
+import com.jme3.scene.control.AbstractControl;
 
 import to2.dice.GUI.animation.AnotherPutControl;
 import to2.dice.GUI.animation.AnotherRollControl;
 import to2.dice.GUI.animation.HideControl;
+import to2.dice.GUI.animation.TextControl;
 import to2.dice.GUI.animation.UserPutDice;
 import to2.dice.GUI.animation.UserRollDice;
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameAnimation;
 import to2.dice.game.Dice;
 
-public class GameAnimController implements ActionListener {
+public class GameAnimController extends AbstractControl implements ActionListener {
 	private GameAnimation gameAnimation;
 	private Model model;
 	private Random r = new Random();
@@ -72,7 +76,6 @@ public class GameAnimController implements ActionListener {
 									results.getClosestCollision().getGeometry().getMaterial()
 											.setColor("Diffuse", ColorRGBA.Green);
 								}
-								gameAnimation.selectDice(i);
 							}
 						}
 					}
@@ -80,6 +83,18 @@ public class GameAnimController implements ActionListener {
 			}
 		}
 	}
+	
+	@Override
+	protected void controlRender(RenderManager rm, ViewPort vp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void controlUpdate(float tpf) {
+		setEnabled(false);
+	}
+
 
 	public void destroy() {
 		gameAnimation.stop();
@@ -190,9 +205,14 @@ public class GameAnimController implements ActionListener {
 				}
 			}
 			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-				System.out.println(i);
 				gameAnimation.getAnotherDice()[i].getControl(HideControl.class).setHide(false);
 			}
+		}
+	}
+	
+	public void showText(String text, int time) {
+		synchronized (model) {
+			gameAnimation.getBitmapText().getControl(TextControl.class).setText(text);
 		}
 	}
 
@@ -277,7 +297,6 @@ public class GameAnimController implements ActionListener {
 
 		return new Quaternion((float) x, (float) y, (float) w, (float) z);
 	}
-
 	// public void updateFlyingDice(FlyingDiceData fdd) {
 	// DiceThrowHandler handler = perPlayerDice.get(fdd.player);
 	// if (handler == null ) {

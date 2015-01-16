@@ -64,7 +64,6 @@ public class UserPutDice extends AbstractControl {
 		diceControl.setEnabled(false);
 		Node n = ((Node)spatial);
 		((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
-//		spatial.get.getGeometry().getMaterial().setColor("Diffuse", ColorRGBA.White);
 		this.setEnabled(false);
 
 	}

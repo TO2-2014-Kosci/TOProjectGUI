@@ -67,7 +67,7 @@ public class UserRollDice extends AbstractControl {
 			diceControl.setAngularVelocity(new Vector3f(random(), random(), random()));
 			startRoll = false;
 		}
-		// System.out.print(spatial.getName() + " ");
+//		 System.out.print(spatial.getName() + " ");
 		// System.out.println(number);
 
 		// System.out.print(currentRotate);

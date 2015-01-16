@@ -2,6 +2,9 @@ package to2.dice.GUI.controllers;
 
 import java.util.concurrent.TimeoutException;
 
+import com.jme3.font.BitmapFont;
+import com.jme3.font.BitmapText;
+
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameListView;
 import to2.dice.GUI.views.View;
@@ -27,7 +30,7 @@ public class GameController extends Controller implements ServerMessageListener 
 		try {
 			Response response = model.getConnectionProxy().reroll(model.getSelectedDice());
 			if (response.isSuccess()) {
-				// TODO
+				model.setSelectedDice(new boolean[model.getGameSettings().getDiceNumber()]);
 			} else {
 				view.showErrorDialog(response.message, "B³¹d wychodzenia", false);
 			}
@@ -126,9 +129,11 @@ public class GameController extends Controller implements ServerMessageListener 
 			if (model.isMyTurn()) {
 				// teraz jest nasza tura
 				gameAnimController.hideAnotherDice();
+				gameAnimController.showText("Twoja tura", 0);
 			} else {
 				gameAnimController.showAnotherDice();
 				gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
+				gameAnimController.showText("", 0);
 			}
 			for (Player p : gameState.getPlayers()) {
 				if (p.getName().equals(model.getLogin())) {
