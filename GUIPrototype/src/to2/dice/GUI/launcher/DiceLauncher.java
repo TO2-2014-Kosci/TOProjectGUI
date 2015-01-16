@@ -44,7 +44,7 @@ public class DiceLauncher {
 			Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 				@Override
 				public void run() {
-					// model.getConnectionProxy().logout();
+//					model.getConnectionProxy().logout();
 					System.out.println("Koniec");
 				}
 	
