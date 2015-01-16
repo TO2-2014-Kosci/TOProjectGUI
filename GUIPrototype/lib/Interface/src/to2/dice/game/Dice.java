@@ -1,6 +1,8 @@
 package to2.dice.game;
 
-public class Dice {
+import java.io.Serializable;
+
+public class Dice implements Serializable {
     private int diceNumber;
     private int[] diceArray;
 

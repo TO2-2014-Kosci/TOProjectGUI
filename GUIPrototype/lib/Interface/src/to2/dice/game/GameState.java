@@ -1,9 +1,10 @@
 package to2.dice.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameState {
+public class GameState implements Serializable {
     private List<Player> players = new ArrayList<Player>();
     private boolean gameStarted = false;
     private Player currentPlayer = null;

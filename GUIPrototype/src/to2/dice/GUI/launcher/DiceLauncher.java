@@ -5,10 +5,6 @@ import java.net.ConnectException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.vecmath.GMatrix;
-
-import org.hamcrest.core.IsInstanceOf;
-
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeSystem;
 
@@ -24,38 +20,39 @@ import to2.dice.game.NGameState;
 import to2.dice.messaging.RemoteConnectionProxy;
 import to2.dice.server.ConnectionProxy;
 
-
 // TODO odczyt ustawien z pliku
 public class DiceLauncher {
 	public static void main(String[] args) {
 		AppSettings settings = new AppSettings(true);
 		settings.setAudioRenderer(null);
-//		Logger.getLogger("com.jme3").setLevel(Level.SEVERE);
+		// Logger.getLogger("com.jme3").setLevel(Level.SEVERE);
 		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
 		ConnectionProxy cp;
 		try {
 			cp = new RemoteConnectionProxy("localhost", smc);
+	//		cp = new ConnectionProxyStub();
+	//		cp.addServerMessageListener(smc);
 			DiceApplication da = new DiceApplication();
 			Model model = new Model(cp, smc, da);
 			LoginController newController = new LoginController(model);
 			View newView = new LoginView(model, newController);
 			newController.setView(newView);
 			model.getGameAnimation();
-			
-			//TODO
-			Runtime.getRuntime().addShutdownHook(new Thread(new Runnable(){
-				   @Override
-				   public void run() {
-					   //model.getConnectionProxy().logout();
-					   System.out.println("Koniec");
-				   }
-				   
+	
+			// TODO
+			Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+				@Override
+				public void run() {
+//					model.getConnectionProxy().logout();
+					System.out.println("Koniec");
+				}
+	
 			}));
-			
-			EventQueue.invokeLater(new Runnable(){
-				
-				public void run(){
+	
+			EventQueue.invokeLater(new Runnable() {
+	
+				public void run() {
 					da.setView(newView);
 					da.setVisible(true);
 				}

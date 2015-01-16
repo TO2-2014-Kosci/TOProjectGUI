@@ -6,13 +6,13 @@ import to2.dice.GUI.views.View;
 public abstract class Controller {
 	protected Model model;
 	protected View view;
-	
-	public Controller(Model model){
-		this.model=model;
+
+	public Controller(Model model) {
+		this.model = model;
 	}
-	
+
 	public void setView(View view) {
 		this.view = view;
-		
+
 	}
 }

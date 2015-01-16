@@ -19,28 +19,27 @@ public class GameListController extends Controller {
 		super(model);
 	}
 
-	public void refreshGameList(){
-		try{
+	public void refreshGameList() {
+		try {
 			model.setRoomList(model.getConnectionProxy().getRoomList());
 			view.refresh();
-		}
-		catch(TimeoutException e){
+		} catch (TimeoutException e) {
 			e.printStackTrace();
-			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);			
+			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 		}
 	}
-	
-	public void clickedCreateGameButton(){
+
+	public void clickedCreateGameButton() {
 		CreateGameController newController = new CreateGameController(model);
 		CreateGameView newView = new CreateGameView(model, newController);
 		newController.setView(newView);
 		model.getDiceApplication().setView(newView);
 	}
-	
-	public void clickedJoinGameButton(){
+
+	public void clickedJoinGameButton() {
 		GameListView glv = (GameListView) view;
 		GameInfo selectedGame = glv.getSelectedGame();
-		if(selectedGame!=null){
+		if (selectedGame != null) {
 			model.setGameSettings(selectedGame.getSettings());
 			model.setTimer(selectedGame.getSettings().getTimeForMove());
 			Controller newController;
@@ -51,25 +50,23 @@ public class GameListController extends Controller {
 				newController = new GameController(model, gameAnimController);
 				newView = new GameView(model, (GameController) newController, gameAnimation);
 				newController.setView(newView);
-				
+
 			} else {
 				newController = new LobbyController(model);
 				newView = new LobbyView(model, (LobbyController) newController);
 				newController.setView(newView);
 			}
 			model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
-			try{
+			try {
 				Response response = model.getConnectionProxy().joinRoom(model.getGameSettings().getName());
-				if(response.isSuccess()){
+				if (response.isSuccess()) {
 					model.setSitting(false);
 					model.getDiceApplication().setView(newView);
-				}
-				else{
+				} else {
 					model.getServerMessageContainer().removeServerMessageListener();
-					view.showErrorDialog("Nie uda³o siê do³¹czyæ do gry","B³¹d do³¹czania",false);
+					view.showErrorDialog("Nie uda³o siê do³¹czyæ do gry", "B³¹d do³¹czania", false);
 				}
-			}
-			catch(TimeoutException e){
+			} catch (TimeoutException e) {
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
 		}

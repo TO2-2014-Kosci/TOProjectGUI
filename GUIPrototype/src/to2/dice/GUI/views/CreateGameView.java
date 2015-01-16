@@ -49,7 +49,7 @@ public class CreateGameView extends View {
 		this.add(new JLabel("Tworzenie gry"), "cell 0 0 3 1,alignx center");
 
 		this.add(new JLabel("Nazwa gry"), "cell 0 1,alignx left");
-		nameField = new JTextField();
+		nameField = new JTextField(model.getLogin());
 		nameField.setHorizontalAlignment(JTextField.RIGHT);
 		add(nameField, "cell 1 1 2 1,growx");
 
@@ -94,8 +94,8 @@ public class CreateGameView extends View {
 		this.add(new JLabel("Liczba botów"), "cell 0 7 3 1,alignx center");
 		int i = 0;
 		botsNumberSpinner = new JSpinner[BotLevel.values().length];
-		for (BotLevel level: BotLevel.values()) {
-			this.add(new JLabel(level.toString()), "cell 0 "+ (i + 8) +",alignx left");
+		for (BotLevel level : BotLevel.values()) {
+			this.add(new JLabel(level.toString()), "cell 0 " + (i + 8) + ",alignx left");
 			botsNumberSpinner[i] = new JSpinner(new SpinnerNumberModel(0, 0, null, 1));
 			((DefaultEditor) botsNumberSpinner[i].getEditor()).getTextField().setEditable(false);
 			add(botsNumberSpinner[i], "cell 2 " + (i + 8) + ",growx,aligny center");
@@ -128,26 +128,20 @@ public class CreateGameView extends View {
 	public GameSettings getGameSettings() {
 		Map<BotLevel, Integer> botsNumber = new HashMap<BotLevel, Integer>();
 		int i = 0;
-		for (BotLevel level: BotLevel.values()) {
-			botsNumber.put(level, (int)botsNumberSpinner[i].getValue());
+		for (BotLevel level : BotLevel.values()) {
+			botsNumber.put(level, (int) botsNumberSpinner[i].getValue());
 			i++;
 		}
 		int diceNumber = 5;
 		int maxInactiveTime = 0;
-		if ((int)timeForMoveSpinner.getValue() < 0) {
+		if ((int) timeForMoveSpinner.getValue() < 0) {
 			maxInactiveTime = -1;
 		} else {
-			maxInactiveTime = (int)timeForMoveSpinner.getValue();
+			maxInactiveTime = (int) timeForMoveSpinner.getValue();
 		}
-		return new GameSettings(
-				(GameType)gameTypeComboBox.getSelectedItem(), 
-				diceNumber, 
-				nameField.getText(), 
-				(int)maxHumanPlayersSpinner.getValue(), 
-				(int)timeForMoveSpinner.getValue(),
-				maxInactiveTime, 
-				(int)roundsToWinSpinner.getValue(), 
-				botsNumber);
+		return new GameSettings((GameType) gameTypeComboBox.getSelectedItem(), diceNumber, nameField.getText(),
+				(int) maxHumanPlayersSpinner.getValue(), (int) timeForMoveSpinner.getValue(), maxInactiveTime,
+				(int) roundsToWinSpinner.getValue(), botsNumber);
 	}
 
 	@Override

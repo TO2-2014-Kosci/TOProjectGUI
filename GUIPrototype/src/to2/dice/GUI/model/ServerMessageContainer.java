@@ -5,23 +5,22 @@ import to2.dice.server.ServerMessageListener;
 
 public class ServerMessageContainer implements ServerMessageListener {
 	private ServerMessageListener serverMessageListener;
-	
-	
+
 	@Override
 	public void onGameStateChange(GameState arg0) {
-		try {
+		// try {
 		if (this.serverMessageListener != null) {
 			this.serverMessageListener.onGameStateChange(arg0);
 		}
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
+		// } catch (NullPointerException e) {
+		// e.printStackTrace();
+		// }
 	}
-	
+
 	public void setServerMessageListener(ServerMessageListener sml) {
 		this.serverMessageListener = sml;
 	}
-	
+
 	public void removeServerMessageListener() {
 		this.serverMessageListener = null;
 	}
