@@ -106,6 +106,18 @@ public class GameController extends Controller implements ServerMessageListener 
 		// kolejny gamestate
 		if (!gameState.isGameStarted()) {
 			// koniec gry
+		} else if (gameState.getCurrentPlayer() == null) {
+			// koniec rundy
+			for (Player p : gameState.getPlayers()) {
+				if (p.equals(lastPlayer)) {
+					if (p.getName().equals(model.getLogin())) {
+						gameAnimController.shakeUserDice(p.getDice());
+					} else {
+						gameAnimController.shakeAnotherDice(p.getDice());
+					}
+				}
+			}
+			lastPlayer = gameState.getCurrentPlayer();
 		} else if (!lastPlayer.equals(gameState.getCurrentPlayer())) {
 			// ktoœ przerzuci³. Trzeba wyœwietliæ animacjê
 			for (Player p : gameState.getPlayers()) {
