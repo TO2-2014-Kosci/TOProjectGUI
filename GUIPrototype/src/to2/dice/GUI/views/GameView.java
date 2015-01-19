@@ -6,9 +6,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.security.InvalidAlgorithmParameterException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,19 +15,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
 import net.miginfocom.swing.MigLayout;
-import to2.dice.GUI.model.Model;
 import to2.dice.GUI.controllers.GameController;
+import to2.dice.GUI.model.Model;
 import to2.dice.game.GameType;
 import to2.dice.game.NGameState;
-import to2.dice.game.Player;
 
 public class GameView extends View {
 	private static final long serialVersionUID = -1998878099465780349L;
-	private GameAnimation gameAnimation;
 	private JButton rerollButton;
 	private JButton standUpLeaveButton;
 	private JTable playerTable;
@@ -48,7 +42,6 @@ public class GameView extends View {
 
 	public GameView(Model model, GameController controller, GameAnimation gameAnimation) {
 		super(model, controller);
-		this.gameAnimation = gameAnimation;
 		// setBackground(new Color(6, 35, 0));
 		setLayout(new MigLayout("", "[][][grow][]", "[][grow][][]"));
 		playerTable = new JTable(new AbstractTableModel() {
@@ -56,22 +49,27 @@ public class GameView extends View {
 
 			private static final long serialVersionUID = 1L;
 
+			@Override
 			public int getColumnCount() {
 				return columnNames.length;
 			}
 
+			@Override
 			public String getColumnName(int col) {
 				return columnNames[col];
 			}
 
+			@Override
 			public int getRowCount() {
 				return model.getGameState().getPlayersNumber();
 			}
 
+			@Override
 			public Class<?> getColumnClass(int columnIndex) {
 				return getValueAt(0, columnIndex).getClass();
 			}
 
+			@Override
 			public Object getValueAt(int arg0, int arg1) {
 				switch (arg1) {
 				case 0:
@@ -91,6 +89,7 @@ public class GameView extends View {
 				}
 			}
 
+			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;
 			}
@@ -154,6 +153,7 @@ public class GameView extends View {
 
 		rerollButton = new JButton("Przerzuæ");
 		rerollButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.rerollDice();
 			}

@@ -49,7 +49,7 @@ public class ConnectionProxyStub implements ConnectionProxy {
 	@Override
 	public Response reroll(boolean[] dice) {
 		System.out.println("Przerzuca");
-		for (boolean d: dice) {
+		for (boolean d : dice) {
 			System.out.println(d);
 		}
 		gameStateGenerator.generate = true;

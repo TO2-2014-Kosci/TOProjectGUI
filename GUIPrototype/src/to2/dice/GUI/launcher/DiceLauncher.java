@@ -6,9 +6,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import com.jme3.system.AppSettings;
-import com.jme3.system.JmeSystem;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import to2.dice.GUI.controllers.LoginController;
 import to2.dice.GUI.model.DiceApplication;
@@ -19,16 +22,25 @@ import to2.dice.GUI.views.View;
 import to2.dice.messaging.RemoteConnectionProxy;
 import to2.dice.server.ConnectionProxy;
 
+import com.jme3.system.AppSettings;
+import com.jme3.system.JmeSystem;
+
 public class DiceLauncher {
 	public static void main(String[] args) {
 		AppSettings settings = new AppSettings(true);
 		settings.setAudioRenderer(null);
-		// Logger.getLogger("com.jme3").setLevel(Level.SEVERE);
+		Logger.getLogger("com.jme3").setLevel(Level.SEVERE);
 		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
 		ConnectionProxy cp;
 		try {
-			cp = new RemoteConnectionProxy(loadIPFromFile("conf.cnf"), smc);
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+					| UnsupportedLookAndFeelException e) {
+				e.printStackTrace();
+			}
+			cp = new RemoteConnectionProxy(loadIPFromFile("conf"), smc);
 			DiceApplication da = new DiceApplication();
 			Model model = new Model(cp, smc, da);
 			LoginController newController = new LoginController(model);
@@ -48,13 +60,15 @@ public class DiceLauncher {
 
 			}));
 			EventQueue.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					da.setView(newView);
 					da.setVisible(true);
 				}
 			});
 		} catch (ConnectException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Nie mo¿na po³¹czyæ siê z serwerem. Proszê sprawdziæ plik conf", "B³¹d po³¹czenia", JOptionPane.ERROR_MESSAGE);
+			System.exit(-1);
 		}
 	}
 

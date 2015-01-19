@@ -27,9 +27,9 @@ public class AnotherPutControl extends AbstractControl {
 
 	@Override
 	protected void controlUpdate(float tpf) {
-		RigidBodyControl diceControl = this.spatial.getControl(RigidBodyControl.class);
+		RigidBodyControl diceControl = spatial.getControl(RigidBodyControl.class);
 		int numberValue = 0;
-		synchronized (this.spatial) {
+		synchronized (spatial) {
 			numberValue = number;
 		}
 		switch (numberValue) {
@@ -65,7 +65,7 @@ public class AnotherPutControl extends AbstractControl {
 	}
 
 	public void setNumberToPut(int number) {
-		synchronized (this.spatial) {
+		synchronized (spatial) {
 			this.number = number;
 			this.setEnabled(true);
 		}

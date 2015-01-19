@@ -15,6 +15,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 		super(model);
 	}
 
+	@Override
 	public void onGameStateChange(GameState gameState) {
 		model.setGameState(gameState);
 		if (gameState.isGameStarted()) {
@@ -60,8 +61,8 @@ public class LobbyController extends Controller implements ServerMessageListener
 			sitDown();
 		}
 	}
-	
-	private void standUp(){
+
+	private void standUp() {
 		try {
 			Response response = model.getConnectionProxy().standUp();
 			if (response.isSuccess()) {
@@ -75,8 +76,8 @@ public class LobbyController extends Controller implements ServerMessageListener
 			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 		}
 	}
-	
-	private void sitDown(){
+
+	private void sitDown() {
 		try {
 			Response response = model.getConnectionProxy().sitDown();
 			if (response.isSuccess()) {

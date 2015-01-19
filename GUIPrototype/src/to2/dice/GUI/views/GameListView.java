@@ -8,11 +8,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -38,6 +38,7 @@ public class GameListView extends View {
 		gameListTable = new JTable(new GameListViewTableModel());
 
 		gameListTable.addMouseListener(new MouseAdapter() {
+			@Override
 			public void mousePressed(MouseEvent me) {
 				if (me.getClickCount() == 2) {
 					controller.clickedJoinGameButton();
@@ -73,6 +74,7 @@ public class GameListView extends View {
 		refreshButton = new JButton("Odœwie¿");
 		refreshButton.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.refreshGameList();
 			}
@@ -81,7 +83,7 @@ public class GameListView extends View {
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 
-	private void initGameListTableView(){
+	private void initGameListTableView() {
 		gameListTable.getColumnModel().getColumn(1).setMaxWidth(50);
 		gameListTable.getColumnModel().getColumn(1).setMinWidth(50);
 
@@ -103,11 +105,12 @@ public class GameListView extends View {
 		gameListTable.setRowHeight(20);
 		// TODO Is it supposed to be right aligned?:>
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) gameListTable.getDefaultRenderer(Object.class);
-		renderer.setHorizontalAlignment(JLabel.CENTER);
+		renderer.setHorizontalAlignment(SwingConstants.CENTER);
 		// renderer.setHorizontalTextPosition(JLabel.CENTER);
 		// gamesTable.setPreferredScrollableViewportSize(new
 		// Dimension(500,300));
 	}
+
 	public GameInfo getSelectedGame() {
 		int rowNumber = gameListTable.getSelectedRow();
 		if (rowNumber == -1) {
@@ -122,26 +125,30 @@ public class GameListView extends View {
 		((AbstractTableModel) gameListTable.getModel()).fireTableDataChanged();
 	}
 
-	
 	private class GameListViewTableModel extends AbstractTableModel {
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public int getColumnCount() {
 			return columnNames.length;
 		}
 
+		@Override
 		public String getColumnName(int col) {
 			return columnNames[col];
 		}
 
+		@Override
 		public int getRowCount() {
 			return model.getRoomList().size();
 		}
 
+		@Override
 		public Class<?> getColumnClass(int columnIndex) {
 			return getValueAt(0, columnIndex).getClass();
 		}
 
+		@Override
 		public Object getValueAt(int arg0, int arg1) {
 			GameInfo gameInfo = model.getRoomList().get(arg0);
 			switch (arg1) {
@@ -167,6 +174,7 @@ public class GameListView extends View {
 			}
 		}
 
+		@Override
 		public boolean isCellEditable(int row, int col) {
 			return false;
 		}
