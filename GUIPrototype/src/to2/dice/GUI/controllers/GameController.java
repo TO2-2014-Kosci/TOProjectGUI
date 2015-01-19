@@ -121,7 +121,6 @@ public class GameController extends Controller implements ServerMessageListener 
 			lastRound += 1;
 			lastPlayer = gameState.getCurrentPlayer();
 			if (model.isMyTurn()) {
-				// teraz jest nasza tura
 				gameAnimController.hideAnotherDice();
 			} else {
 				gameAnimController.showAnotherDice();
