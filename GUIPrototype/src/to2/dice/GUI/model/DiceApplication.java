@@ -20,7 +20,6 @@ public class DiceApplication extends JFrame {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

@@ -14,13 +14,12 @@ public class LoginController extends Controller {
 	}
 
 	public void clickedLoginButton() {
-		LoginView lv = (LoginView) view;
-		String login = lv.getLogin();
+		LoginView loginView = (LoginView) view;
+		String login = loginView.getLogin();
 		if (isProper(login)) {
 			try {
 				Response response = model.getConnectionProxy().login(login);
 				if (response.isSuccess()) {
-					// TODO setter
 					model.setLogin(login);
 					GameListController newController = new GameListController(model);
 					GameListView newView = new GameListView(model, newController);
@@ -28,16 +27,16 @@ public class LoginController extends Controller {
 					model.getDiceApplication().setView(newView);
 					newController.refreshGameList();
 				} else {
-					lv.eraseLogin();
-					view.showErrorDialog("Nick zajêty lub niepoprawny", "B³¹d nicku", false);
+					loginView.eraseLogin();
+					loginView.showErrorDialog(response.message, "B³¹d nicku", false);
 				}
 			} catch (TimeoutException e) {
 				e.printStackTrace();
-				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
+				loginView.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
 		} else {
-			lv.eraseLogin();
-			view.showErrorDialog("Nick zajêty lub niepoprawny", "B³¹d nicku", false);
+			loginView.eraseLogin();
+			loginView.showErrorDialog("Nick zajêty lub niepoprawny", "B³¹d nicku", false);
 		}
 	}
 

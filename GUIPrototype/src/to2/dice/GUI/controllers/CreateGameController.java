@@ -17,7 +17,6 @@ public class CreateGameController extends Controller {
 		super(model);
 	}
 
-	// TODO
 	public void clickedCreateGameButton() {
 		CreateGameView cgv = (CreateGameView) view;
 		GameSettings gameSettings = cgv.getGameSettings();

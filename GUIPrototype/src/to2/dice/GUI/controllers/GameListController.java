@@ -64,7 +64,7 @@ public class GameListController extends Controller {
 					model.getDiceApplication().setView(newView);
 				} else {
 					model.getServerMessageContainer().removeServerMessageListener();
-					view.showErrorDialog("Nie uda³o siê do³¹czyæ do gry", "B³¹d do³¹czania", false);
+					view.showErrorDialog(response.message, "B³¹d do³¹czania", false);
 				}
 			} catch (TimeoutException e) {
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
