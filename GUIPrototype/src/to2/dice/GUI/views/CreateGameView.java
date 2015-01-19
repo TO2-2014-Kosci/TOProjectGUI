@@ -134,10 +134,10 @@ public class CreateGameView extends View {
 		}
 		int diceNumber = 5;
 		int maxInactiveTime = 0;
-		if ((int) timeForMoveSpinner.getValue() < 0) {
+		if ((int) maxInactiveTurnsSpinner.getValue() < 0) {
 			maxInactiveTime = -1;
 		} else {
-			maxInactiveTime = (int) timeForMoveSpinner.getValue();
+			maxInactiveTime = (int) maxInactiveTurnsSpinner.getValue();
 		}
 		return new GameSettings((GameType) gameTypeComboBox.getSelectedItem(), diceNumber, nameField.getText(),
 				(int) maxHumanPlayersSpinner.getValue(), (int) timeForMoveSpinner.getValue(), maxInactiveTime,
