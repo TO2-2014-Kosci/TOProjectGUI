@@ -30,6 +30,7 @@ public class LoginView extends View {
 		loginButton = new JButton("Zaloguj");
 
 		ActionListener loginListener = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.clickedLoginButton();
 			}

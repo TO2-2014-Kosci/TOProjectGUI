@@ -1,16 +1,11 @@
 package to2.dice.GUI.controllers;
 
-import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeoutException;
 
-import com.jme3.font.BitmapFont;
-import com.jme3.font.BitmapText;
-
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameListView;
-import to2.dice.GUI.views.View;
 import to2.dice.game.GameState;
 import to2.dice.game.Player;
 import to2.dice.messaging.Response;
@@ -18,7 +13,7 @@ import to2.dice.server.ServerMessageListener;
 
 public class GameController extends Controller implements ServerMessageListener {
 	private static final int timeForAnimInMiliseconds = 1500;
-	
+
 	private GameAnimController gameAnimController;
 	private Player lastPlayer = null;
 	private int lastRound;
@@ -26,14 +21,14 @@ public class GameController extends Controller implements ServerMessageListener 
 	public GameController(Model model, GameAnimController gameAnimController) {
 		super(model);
 		this.gameAnimController = gameAnimController;
-		this.lastRound = -1;
+		lastRound = -1;
 	}
 
 	public void rerollDice() {
 		try {
 			Response response = model.getConnectionProxy().reroll(model.getSelectedDice());
 			if (response.isSuccess()) {
-				
+
 			} else {
 				view.showErrorDialog(response.message, "B³¹d wychodzenia", false);
 			}
@@ -84,6 +79,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	}
 
 	// TODO koniec gry
+	@Override
 	public void onGameStateChange(GameState gameState) {
 		model.setGameState(gameState);
 		if (lastPlayer == null && lastRound == -1) {
@@ -108,8 +104,8 @@ public class GameController extends Controller implements ServerMessageListener 
 	}
 
 	private boolean checkKickout(GameState gameState) {
-		for (Player p: gameState.getPlayers()) {
-			if (p.getName().equals(model.getLogin()) ) {
+		for (Player p : gameState.getPlayers()) {
+			if (p.getName().equals(model.getLogin())) {
 				return false;
 			}
 		}
@@ -119,7 +115,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	private void endTourNextTour(GameState gameState) {
 		endTour(gameState);
 		new Timer().schedule(new TimerTask() {
-			
+
 			@Override
 			public void run() {
 				if (model.isMyTurn()) {
@@ -139,8 +135,7 @@ public class GameController extends Controller implements ServerMessageListener 
 						}
 					}
 				}
-				
-				
+
 			}
 		}, timeForAnimInMiliseconds);
 		model.setTimer(model.getGameSettings().getTimeForMove());
@@ -202,8 +197,8 @@ public class GameController extends Controller implements ServerMessageListener 
 
 	private void endGame(GameState gameState) {
 		gameAnimController.showText("Koniec gry", 50);
-		this.lastRound = -1;
-		this.lastPlayer = null;
+		lastRound = -1;
+		lastPlayer = null;
 		model.setSitting(false);
 	}
 

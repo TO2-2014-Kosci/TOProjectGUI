@@ -31,9 +31,9 @@ public class UserPutControl extends AbstractControl {
 
 	@Override
 	protected void controlUpdate(float tpf) {
-		RigidBodyControl diceControl = this.spatial.getControl(RigidBodyControl.class);
+		RigidBodyControl diceControl = spatial.getControl(RigidBodyControl.class);
 		int numberValue = 0;
-		synchronized (this.spatial) {
+		synchronized (spatial) {
 			numberValue = number;
 		}
 		switch (numberValue) {
@@ -62,7 +62,7 @@ public class UserPutControl extends AbstractControl {
 		diceControl.setPhysicsLocation(new Vector3f(-7, diceNumber / 2 - diceName, 0.36f));
 		diceControl.update(0);
 		diceControl.setEnabled(false);
-		Node n = ((Node)spatial);
+		Node n = ((Node) spatial);
 		((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
 		diceControl.setEnabled(true);
 		spatial.getControl(RollControl.class).setEnabled(false);
@@ -70,7 +70,7 @@ public class UserPutControl extends AbstractControl {
 	}
 
 	public void setNumberToPut(int number) {
-		synchronized (this.spatial) {
+		synchronized (spatial) {
 			this.number = number;
 			this.setEnabled(true);
 		}

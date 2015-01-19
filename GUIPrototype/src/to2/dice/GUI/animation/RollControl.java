@@ -1,12 +1,9 @@
 package to2.dice.GUI.animation;
 
 import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.collision.CollisionResults;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
-import com.jme3.math.Matrix3f;
 import com.jme3.math.Quaternion;
-import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -17,23 +14,12 @@ import com.jme3.scene.control.AbstractControl;
 public class RollControl extends AbstractControl {
 
 	private int number;
-	private int diceName;
 	private boolean startRoll;
 	private Quaternion targetRotate;
-	private Vector3f[] controlPoints = { new Vector3f(0, 1, 0), // 1
-			new Vector3f(1, 0, 0), // 2
-			new Vector3f(0, 0, 1), // 3
-			new Vector3f(0, 0, -1), // 4
-			new Vector3f(-1, 0, 0), // 5
-			new Vector3f(0, -1, 0) // 6
-	};
-
-	private int step;
 
 	public RollControl(int diceName) {
 		super();
 		super.setEnabled(false);
-		this.diceName = diceName;
 	}
 
 	@Override
@@ -45,7 +31,7 @@ public class RollControl extends AbstractControl {
 	@Override
 	protected void controlUpdate(float arg0) {
 		if (startRoll) {
-			RigidBodyControl diceControl = this.spatial.getControl(RigidBodyControl.class);
+			RigidBodyControl diceControl = spatial.getControl(RigidBodyControl.class);
 			diceControl.setEnabled(true);
 			switch (number) {
 			case 1:
@@ -69,20 +55,19 @@ public class RollControl extends AbstractControl {
 			}
 			diceControl.setPhysicsLocation(Util.randomLocation());
 			diceControl.setPhysicsRotation(targetRotate);
-			Node n = ((Node)spatial);
+			Node n = ((Node) spatial);
 			((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
-			
+
 			startRoll = false;
 			this.setEnabled(false);
 		}
 	}
 
 	public void setNumberToRoll(int number) {
-		synchronized (this.spatial) {
+		synchronized (spatial) {
 			this.number = number;
 			setEnabled(true);
 			startRoll = true;
-			step = 170;
 		}
 	}
 

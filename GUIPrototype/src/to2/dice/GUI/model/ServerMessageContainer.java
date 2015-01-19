@@ -9,8 +9,8 @@ public class ServerMessageContainer implements ServerMessageListener {
 	@Override
 	public void onGameStateChange(GameState arg0) {
 		// try {
-		if (this.serverMessageListener != null) {
-			this.serverMessageListener.onGameStateChange(arg0);
+		if (serverMessageListener != null) {
+			serverMessageListener.onGameStateChange(arg0);
 		}
 		// } catch (NullPointerException e) {
 		// e.printStackTrace();
@@ -18,10 +18,10 @@ public class ServerMessageContainer implements ServerMessageListener {
 	}
 
 	public void setServerMessageListener(ServerMessageListener sml) {
-		this.serverMessageListener = sml;
+		serverMessageListener = sml;
 	}
 
 	public void removeServerMessageListener() {
-		this.serverMessageListener = null;
+		serverMessageListener = null;
 	}
 }

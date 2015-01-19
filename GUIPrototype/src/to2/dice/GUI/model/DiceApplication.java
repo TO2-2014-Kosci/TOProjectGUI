@@ -6,8 +6,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
 
 import to2.dice.GUI.views.View;
 
@@ -16,15 +15,10 @@ public class DiceApplication extends JFrame {
 	private View view;
 
 	public DiceApplication() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		}
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				JFrame frame = (JFrame) e.getSource();
 
@@ -44,7 +38,7 @@ public class DiceApplication extends JFrame {
 	}
 
 	public void refresh() {
-		this.view.refresh();
+		view.refresh();
 		this.revalidate();
 		// TODO
 	}
