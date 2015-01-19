@@ -44,7 +44,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	}
 
 	public void clickedStandUpLeaveButton() {
-		if (model.isSitting() && model.getGameState().isGameStarted()) {
+		if (model.isSitting()) {
 			try {
 				Response response = model.getConnectionProxy().standUp();
 				if (response.isSuccess()) {
@@ -57,7 +57,7 @@ public class GameController extends Controller implements ServerMessageListener 
 				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
-		} else if (!model.isSitting() && model.getGameState().isGameStarted()) {
+		} else if (!model.isSitting()) {
 			try {
 				Response response = model.getConnectionProxy().leaveRoom();
 				if (response.isSuccess()) {
@@ -73,24 +73,12 @@ public class GameController extends Controller implements ServerMessageListener 
 					newController.refreshGameList();
 					model.getDiceApplication().setView(newView);
 				} else {
-					view.showErrorDialog("Nie uda³o siê wyjœæ", "B³¹d wstawania", false);
+					view.showErrorDialog(response.message, "B³¹d wstawania", false);
 				}
 			} catch (TimeoutException e) {
 				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
-		} else {
-			lastRound = -1;
-			lastPlayer = null;
-			model.setSitting(false);
-			GameListController newController = new GameListController(model);
-			model.getServerMessageContainer().removeServerMessageListener();
-			model.setGameSettings(null);
-			model.setGameState(new GameState());
-			GameListView newView = new GameListView(model, newController);
-			newController.setView(newView);
-			newController.refreshGameList();
-			model.getDiceApplication().setView(newView);
 		}
 
 	}
@@ -101,9 +89,9 @@ public class GameController extends Controller implements ServerMessageListener 
 		if (lastPlayer == null && lastRound == -1) {
 			startGame(gameState);
 		}
-		if (checkKickout(gameState)) {
+		if (model.isSitting() && checkKickout(gameState)) {
 			model.setSitting(false);
-			// TODO remove user dice and box
+			gameAnimController.hideBoxAndDice();
 		}
 		if (!gameState.isGameStarted()) {
 			endGame(gameState);
@@ -125,7 +113,7 @@ public class GameController extends Controller implements ServerMessageListener 
 				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	private void endTourNextTour(GameState gameState) {
@@ -151,10 +139,11 @@ public class GameController extends Controller implements ServerMessageListener 
 						}
 					}
 				}
-				model.setTimer(model.getGameSettings().getTimeForMove());
+				
 				
 			}
 		}, timeForAnimInMiliseconds);
+		model.setTimer(model.getGameSettings().getTimeForMove());
 	}
 
 	private void nextRound(GameState gameState) {
@@ -212,6 +201,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	private void endGame(GameState gameState) {
 		this.lastRound = -1;
 		this.lastPlayer = null;
+		model.setSitting(false);
 	}
 
 }

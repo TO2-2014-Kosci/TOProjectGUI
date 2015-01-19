@@ -56,6 +56,7 @@ public class CreateGameView extends View {
 		this.add(new JLabel("Typ gry"), "cell 0 2,alignx left");
 		gameTypeComboBox = new JComboBox<>();
 		gameTypeComboBox.setModel(new DefaultComboBoxModel<>(GameType.values()));
+		gameTypeComboBox.setSelectedIndex(2);
 		add(gameTypeComboBox, "cell 2 2,growx");
 
 		this.add(new JLabel("Iloœæ wygranych rund"), "cell 0 3,alignx left");

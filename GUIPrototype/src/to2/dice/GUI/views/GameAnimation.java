@@ -108,8 +108,8 @@ public class GameAnimation extends SimpleApplication {
 		this.flyCam.setEnabled(false);
 		this.settings.setFrameRate(60);
 		this.assetManager.registerLocator("assets", ClasspathLocator.class);
-		this.cam.setLocation(new Vector3f(-10, -1, 15));
-		this.cam.lookAt(new Vector3f(-3, -1, 0), Vector3f.UNIT_Z);
+		this.cam.setLocation(new Vector3f(-8, -0.5f, 13.5f));
+		this.cam.lookAt(new Vector3f(-3, -0.5f, 0), Vector3f.UNIT_Z);
 		// bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 		bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, 0, -10));
 		bulletAppState.getPhysicsSpace().setAccuracy(1 / 150f);
@@ -125,6 +125,7 @@ public class GameAnimation extends SimpleApplication {
 		box.setLocalTranslation(new Vector3f(-7, 0, 0));
 		RigidBodyControl boxShape = new RigidBodyControl(CollisionShapeFactory.createMeshShape((Node) box), 0);
 		box.addControl(boxShape);
+		box.addControl(new HideControl());
 		bulletAppState.getPhysicsSpace().add(boxShape);
 		rootNode.attachChild(box);
 		AmbientLight ambient = new AmbientLight();
@@ -219,7 +220,7 @@ public class GameAnimation extends SimpleApplication {
 							new Vector3f(-i, -6, 0.35f));
 				}
 				if (!model.isSitting()) {
-					box.setCullHint(CullHint.Always);
+					box.getControl(HideControl.class).setHide(true);
 					for (Spatial dice : getUserDice()) {
 						dice.getControl(HideControl.class).setHide(true);
 					}
@@ -264,29 +265,8 @@ public class GameAnimation extends SimpleApplication {
 	public Spatial getBitmapText() {
 		return text;
 	}
-
-	public void refresh() {
-		// TODO Auto-generated method stub
-		// Player currentPlayer = model.getGameState().getCurrentPlayer();
-		// if (currentPlayer != null) {
-		// if (currentPlayer.getName().equals(model.getLogin())) {
-		// // u¿ytkownik
-		// } else {
-		// for(int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-		// getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(new
-		// Vector3f(i, -6, -1f));
-		// }
-		// // inny gracz
-		// }
-		// }
+	
+	public Spatial getBox() {
+		return box;
 	}
-
-//	public void selectDice(int i) {
-//		if (model.getSelectedDice()[i]) {
-//			getUserDice()[i].addLight(new PointLight());
-//		} else {
-//			getUserDice()[i].removeLight(new PointLight());
-//		}
-//		getUserDice()[i].getControl(RigidBodyControl.class).activate();
-//	}
 }

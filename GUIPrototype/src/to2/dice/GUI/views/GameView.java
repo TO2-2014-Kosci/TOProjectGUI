@@ -166,7 +166,7 @@ public class GameView extends View {
 			rerollButton.setVisible(false);
 		}
 		add(gameAnimation.getCanvas(), "cell 1 1 4 2,grow");
-		timer = (new Timer());
+		timer = new Timer();
 		timer.schedule(new TimerTask() {
 
 			@Override
@@ -216,11 +216,9 @@ public class GameView extends View {
 		} else {
 			nGoalLabel.setText("");
 		}
-		// if (lastPlayer != null &&
-		// !lastPlayer.equals(model.getGameState().getCurrentPlayer())) {
-		// timerLabel.setText(Integer.toString(model.getGameSettings().getTimeForMove()));
-		// lastPlayer = model.getGameState().getCurrentPlayer();
-		// }
-		gameAnimation.refresh();
+		if (!model.getGameState().isGameStarted()) {
+			timerLabel.setText("");
+			timer.cancel();
+		}
 	}
 }
