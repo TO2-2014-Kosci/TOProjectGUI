@@ -1,22 +1,26 @@
 package to2.dice.GUI.animation;
 
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
 import com.jme3.scene.control.AbstractControl;
 
-public class AnotherPutControl extends AbstractControl {
-
+public class UserPutControl extends AbstractControl {
 	private int number;
 	private int diceName;
+	private int diceNumber;
 
-	public AnotherPutControl(int diceName) {
+	public UserPutControl(int diceName, int diceNumber) {
 		super();
 		super.setEnabled(false);
 		this.diceName = diceName;
+		this.diceNumber = diceNumber;
 	}
 
 	@Override
@@ -55,13 +59,14 @@ public class AnotherPutControl extends AbstractControl {
 		}
 		diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
 		diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
-		diceControl.setPhysicsLocation(new Vector3f(-diceName, -6, 0.35f));
+		diceControl.setPhysicsLocation(new Vector3f(-7, diceNumber / 2 - diceName, 0.36f));
 		diceControl.update(0);
 		diceControl.setEnabled(false);
-		spatial.getControl(RollControl.class).setEnabled(false);
+		Node n = ((Node) spatial);
+		((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
 		diceControl.setEnabled(true);
+		spatial.getControl(RollControl.class).setEnabled(false);
 		this.setEnabled(false);
-
 	}
 
 	public void setNumberToPut(int number) {
@@ -70,5 +75,4 @@ public class AnotherPutControl extends AbstractControl {
 			this.setEnabled(true);
 		}
 	}
-
 }

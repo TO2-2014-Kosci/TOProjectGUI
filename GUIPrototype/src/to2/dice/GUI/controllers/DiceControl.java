@@ -13,14 +13,10 @@ import com.jme3.scene.control.Control;
 
 public class DiceControl extends AbstractControl {
 
-	private Vector3f[] controlPoints;
-	private AtomicInteger finishedCounter;
 	private int result = -1;
 
 	public DiceControl(Vector3f[] controlPoints, AtomicInteger evaluatorsRunning) {
 		super();
-		this.controlPoints = controlPoints;
-		this.finishedCounter = evaluatorsRunning;
 
 	}
 
@@ -54,8 +50,6 @@ public class DiceControl extends AbstractControl {
 		Matrix3f rot = getNode().getPhysicsRotation().toRotationMatrix();
 		rot = rot.invert();
 		up = rot.mult(up).normalizeLocal();
-
-		float minDistance = 10000;
 
 		int chosenControl = -1;
 		// for ( int i =0; i < controlPoints.length; i++ ) {

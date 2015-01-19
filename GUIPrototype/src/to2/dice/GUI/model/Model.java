@@ -8,7 +8,6 @@ import to2.dice.GUI.views.GameAnimation;
 import to2.dice.game.GameInfo;
 import to2.dice.game.GameSettings;
 import to2.dice.game.GameState;
-import to2.dice.game.NGameState;
 import to2.dice.server.ConnectionProxy;
 
 public class Model {
@@ -29,9 +28,9 @@ public class Model {
 	private GameAnimation gameAnimation;
 
 	public Model(ConnectionProxy cp, ServerMessageContainer smc, DiceApplication da) {
-		this.connectionProxy = cp;
-		this.serverMessageContainer = smc;
-		this.diceApplication = da;
+		connectionProxy = cp;
+		serverMessageContainer = smc;
+		diceApplication = da;
 	}
 
 	public ConnectionProxy getConnectionProxy() {
@@ -103,23 +102,27 @@ public class Model {
 	}
 
 	public boolean isMyTurn() {
-		return gameState.getCurrentPlayer().getName().equals(login);
+		if (gameState.getCurrentPlayer() == null) {
+			return false;
+		} else {
+			return gameState.getCurrentPlayer().getName().equals(login);
+		}
 	}
 
 	public GameAnimation getGameAnimation() {
 		if (gameAnimation == null) {
-			if (this.gameAnimController == null) {
-				this.gameAnimController = new GameAnimController(this);
+			if (gameAnimController == null) {
+				gameAnimController = new GameAnimController(this);
 			}
-			gameAnimation = new GameAnimation(this, this.gameAnimController);
-			this.gameAnimController.setGameAnimation(gameAnimation);
+			gameAnimation = new GameAnimation(this, gameAnimController);
+			gameAnimController.setGameAnimation(gameAnimation);
 		} else {
-			this.gameAnimation.setReload();
+			gameAnimation.setReload();
 		}
 		return gameAnimation;
 	}
 
 	public GameAnimController getGameAnimController() {
-		return this.gameAnimController;
+		return gameAnimController;
 	}
 }

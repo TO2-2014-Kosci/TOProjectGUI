@@ -15,6 +15,7 @@ public class LobbyController extends Controller implements ServerMessageListener
 		super(model);
 	}
 
+	@Override
 	public void onGameStateChange(GameState gameState) {
 		model.setGameState(gameState);
 		if (gameState.isGameStarted()) {
@@ -55,31 +56,39 @@ public class LobbyController extends Controller implements ServerMessageListener
 
 	public void clickedSitDownStandUpButton() {
 		if (model.isSitting() == true) {
-			try {
-				Response response = model.getConnectionProxy().standUp();
-				if (response.isSuccess()) {
-					model.setSitting(false);
-					view.refresh();
-				} else {
-					view.showErrorDialog("Nie uda³o siê wstaæ", "B³¹d wstawania", false);
-				}
-			} catch (TimeoutException e) {
-				e.printStackTrace();
-				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
-			}
+			standUp();
 		} else {
-			try {
-				Response response = model.getConnectionProxy().sitDown();
-				if (response.isSuccess()) {
-					model.setSitting(true);
-					view.refresh();
-				} else {
-					view.showErrorDialog(response.message, "B³¹d siadania", false);
-				}
-			} catch (TimeoutException e) {
-				e.printStackTrace();
-				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
+			sitDown();
+		}
+	}
+
+	private void standUp() {
+		try {
+			Response response = model.getConnectionProxy().standUp();
+			if (response.isSuccess()) {
+				model.setSitting(false);
+				view.refresh();
+			} else {
+				view.showErrorDialog("Nie uda³o siê wstaæ", "B³¹d wstawania", false);
 			}
+		} catch (TimeoutException e) {
+			e.printStackTrace();
+			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
+		}
+	}
+
+	private void sitDown() {
+		try {
+			Response response = model.getConnectionProxy().sitDown();
+			if (response.isSuccess()) {
+				model.setSitting(true);
+				view.refresh();
+			} else {
+				view.showErrorDialog(response.message, "B³¹d siadania", false);
+			}
+		} catch (TimeoutException e) {
+			e.printStackTrace();
+			view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 		}
 	}
 }

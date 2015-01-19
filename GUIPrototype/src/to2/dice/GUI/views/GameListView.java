@@ -8,11 +8,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -35,92 +35,18 @@ public class GameListView extends View {
 
 	public GameListView(Model model, GameListController controller) {
 		super(model, controller);
-		gameListTable = new JTable(new AbstractTableModel() {
-			private static final long serialVersionUID = 1L;
-
-			public int getColumnCount() {
-				return columnNames.length;
-			}
-
-			public String getColumnName(int col) {
-				return columnNames[col];
-			}
-
-			public int getRowCount() {
-				return model.getRoomList().size();
-			}
-
-			public Class<?> getColumnClass(int columnIndex) {
-				return getValueAt(0, columnIndex).getClass();
-			}
-
-			public Object getValueAt(int arg0, int arg1) {
-				GameInfo gameInfo = model.getRoomList().get(arg0);
-				switch (arg1) {
-				case 0:
-					return gameInfo.getSettings().getName();
-				case 1:
-					return gameInfo.getSettings().getGameType();
-				case 2:
-					return gameInfo.getPlayersNumber();
-				case 3:
-					return gameInfo.getSettings().getMaxHumanPlayers();
-				case 4:
-					int number = 0;
-					for (int i : gameInfo.getSettings().getBotsNumbers().values()) {
-						number += i;
-					}
-					return number;
-				case 5:
-					return gameInfo.isGameStarted();
-				default:
-					return new Object();
-
-				}
-			}
-
-			public boolean isCellEditable(int row, int col) {
-				return false;
-			}
-		});
+		gameListTable = new JTable(new GameListViewTableModel());
 
 		gameListTable.addMouseListener(new MouseAdapter() {
+			@Override
 			public void mousePressed(MouseEvent me) {
 				if (me.getClickCount() == 2) {
 					controller.clickedJoinGameButton();
 				}
 			}
 		});
-
-		// TODO set width, new column - started
-		gameListTable.getColumnModel().getColumn(1).setPreferredWidth(50);
-		gameListTable.getColumnModel().getColumn(1).setMaxWidth(50);
-		gameListTable.getColumnModel().getColumn(1).setMinWidth(50);
-
-		gameListTable.getColumnModel().getColumn(2).setMaxWidth(50);
-		gameListTable.getColumnModel().getColumn(2).setMinWidth(50);
-
-		gameListTable.getColumnModel().getColumn(3).setMaxWidth(70);
-		gameListTable.getColumnModel().getColumn(3).setMinWidth(70);
-
-		gameListTable.getColumnModel().getColumn(4).setMaxWidth(70);
-		gameListTable.getColumnModel().getColumn(4).setMinWidth(70);
-
-		gameListTable.getColumnModel().getColumn(5).setMaxWidth(70);
-		gameListTable.getColumnModel().getColumn(5).setMinWidth(70);
-
-		gameListTable.setFillsViewportHeight(true);
-		gameListTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		initGameListTableView();
 		gameListTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		gameListTable.setShowVerticalLines(false);
-		gameListTable.setRowHeight(20);
-
-		// TODO Is it supposed to be right aligned?:>
-		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) gameListTable.getDefaultRenderer(Object.class);
-		renderer.setHorizontalAlignment(JLabel.CENTER);
-		// renderer.setHorizontalTextPosition(JLabel.CENTER);
-		// gamesTable.setPreferredScrollableViewportSize(new
-		// Dimension(500,300));
 
 		setLayout(new BorderLayout());
 		JScrollPane gamesScrollTable = new JScrollPane(gameListTable);
@@ -148,6 +74,7 @@ public class GameListView extends View {
 		refreshButton = new JButton("Odœwie¿");
 		refreshButton.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.refreshGameList();
 			}
@@ -156,8 +83,34 @@ public class GameListView extends View {
 		setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 
-	// TODO Controller or view method?
-	// starting from 0 or 1?
+	private void initGameListTableView() {
+		gameListTable.getColumnModel().getColumn(1).setMaxWidth(50);
+		gameListTable.getColumnModel().getColumn(1).setMinWidth(50);
+
+		gameListTable.getColumnModel().getColumn(2).setMaxWidth(50);
+		gameListTable.getColumnModel().getColumn(2).setMinWidth(50);
+
+		gameListTable.getColumnModel().getColumn(3).setMaxWidth(70);
+		gameListTable.getColumnModel().getColumn(3).setMinWidth(70);
+
+		gameListTable.getColumnModel().getColumn(4).setMaxWidth(70);
+		gameListTable.getColumnModel().getColumn(4).setMinWidth(70);
+
+		gameListTable.getColumnModel().getColumn(5).setMaxWidth(70);
+		gameListTable.getColumnModel().getColumn(5).setMinWidth(70);
+
+		gameListTable.setFillsViewportHeight(true);
+		gameListTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		gameListTable.setShowVerticalLines(false);
+		gameListTable.setRowHeight(20);
+		// TODO Is it supposed to be right aligned?:>
+		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) gameListTable.getDefaultRenderer(Object.class);
+		renderer.setHorizontalAlignment(SwingConstants.CENTER);
+		// renderer.setHorizontalTextPosition(JLabel.CENTER);
+		// gamesTable.setPreferredScrollableViewportSize(new
+		// Dimension(500,300));
+	}
+
 	public GameInfo getSelectedGame() {
 		int rowNumber = gameListTable.getSelectedRow();
 		if (rowNumber == -1) {
@@ -170,7 +123,60 @@ public class GameListView extends View {
 	@Override
 	public void refresh() {
 		((AbstractTableModel) gameListTable.getModel()).fireTableDataChanged();
-
 	}
 
+	private class GameListViewTableModel extends AbstractTableModel {
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public int getColumnCount() {
+			return columnNames.length;
+		}
+
+		@Override
+		public String getColumnName(int col) {
+			return columnNames[col];
+		}
+
+		@Override
+		public int getRowCount() {
+			return model.getRoomList().size();
+		}
+
+		@Override
+		public Class<?> getColumnClass(int columnIndex) {
+			return getValueAt(0, columnIndex).getClass();
+		}
+
+		@Override
+		public Object getValueAt(int arg0, int arg1) {
+			GameInfo gameInfo = model.getRoomList().get(arg0);
+			switch (arg1) {
+			case 0:
+				return gameInfo.getSettings().getName();
+			case 1:
+				return gameInfo.getSettings().getGameType();
+			case 2:
+				return gameInfo.getPlayersNumber();
+			case 3:
+				return gameInfo.getSettings().getMaxHumanPlayers();
+			case 4:
+				int number = 0;
+				for (int i : gameInfo.getSettings().getBotsNumbers().values()) {
+					number += i;
+				}
+				return number;
+			case 5:
+				return gameInfo.isGameStarted();
+			default:
+				return new Object();
+
+			}
+		}
+
+		@Override
+		public boolean isCellEditable(int row, int col) {
+			return false;
+		}
+	}
 }

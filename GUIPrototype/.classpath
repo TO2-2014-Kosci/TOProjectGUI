@@ -13,12 +13,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/Interface/Interfaces.jar" sourcepath="lib/Interface/src"/>
-	<classpathentry kind="lib" path="lib/Server/AI.jar"/>
-	<classpathentry kind="lib" path="lib/Server/GameControllers.jar"/>
-	<classpathentry kind="lib" path="lib/Server/Interfaces.jar"/>
-	<classpathentry kind="lib" path="lib/Server/json-20140107.jar"/>
-	<classpathentry kind="lib" path="lib/Server/rabbitmq-client.jar"/>
 	<classpathentry kind="lib" path="lib/assets.jar"/>
+	<classpathentry kind="lib" path="lib/ServerCommunication/json-20140107.jar"/>
+	<classpathentry kind="lib" path="lib/ServerCommunication/rabbitmq-client.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/ServerCommunication/Server.jar" sourcepath="lib/ServerCommunication/src"/>
 	<classpathentry kind="output" path="bin"/>

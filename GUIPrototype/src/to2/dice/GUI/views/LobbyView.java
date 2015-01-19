@@ -9,13 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import net.miginfocom.swing.MigLayout;
 import to2.dice.GUI.controllers.LobbyController;
 import to2.dice.GUI.model.Model;
-import to2.dice.game.GameType;
 
 public class LobbyView extends View {
 	private static final long serialVersionUID = -3735508074042553963L;
@@ -33,35 +33,7 @@ public class LobbyView extends View {
 		super(model, controller);
 		setLayout(new MigLayout("", "[grow][][]", "[][][][][][][][][][grow][]"));
 
-		playersTable = new JTable(new AbstractTableModel() {
-
-			private static final long serialVersionUID = 1L;
-
-			public int getColumnCount() {
-				return columnNames.length;
-			}
-
-			public String getColumnName(int col) {
-				return columnNames[col];
-			}
-
-			// TODO possible null pointer
-			public int getRowCount() {
-				if (model.getGameState() == null) {
-					return 0;
-				}
-				return model.getGameState().getPlayersNumber();
-			}
-
-			public Object getValueAt(int arg0, int arg1) {
-				return model.getGameState().getPlayers().get(arg0).getName();
-			}
-
-			public boolean isCellEditable(int row, int col) {
-				return false;
-			}
-
-		});
+		playersTable = new JTable(new LobbyViewTableModel());
 		playersTable.setFillsViewportHeight(true);
 		playersTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		playersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -70,7 +42,7 @@ public class LobbyView extends View {
 
 		// TODO Is it working?
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) playersTable.getDefaultRenderer(Object.class);
-		renderer.setHorizontalAlignment(JLabel.CENTER);
+		renderer.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JScrollPane playersScrollTable = new JScrollPane(playersTable);
 		add(playersScrollTable, "cell 0 0 1 10, push, grow");
@@ -123,6 +95,39 @@ public class LobbyView extends View {
 		}
 		playersCountLabel.setText("Iloœæ graczy: " + Integer.toString(model.getGameState().getPlayersNumber()) + "/"
 				+ Integer.toString(model.getGameSettings().getMaxPlayers()));
+	}
+
+	private class LobbyViewTableModel extends AbstractTableModel {
+
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public int getColumnCount() {
+			return columnNames.length;
+		}
+
+		@Override
+		public String getColumnName(int col) {
+			return columnNames[col];
+		}
+
+		@Override
+		public int getRowCount() {
+			if (model.getGameState() == null) {
+				return 0;
+			}
+			return model.getGameState().getPlayersNumber();
+		}
+
+		@Override
+		public Object getValueAt(int arg0, int arg1) {
+			return model.getGameState().getPlayers().get(arg0).getName();
+		}
+
+		@Override
+		public boolean isCellEditable(int row, int col) {
+			return false;
+		}
 	}
 
 }

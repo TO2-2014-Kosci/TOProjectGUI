@@ -12,9 +12,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
+import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.JSpinner.DefaultEditor;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -27,7 +28,7 @@ import to2.dice.game.GameType;
 
 public class CreateGameView extends View {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6601683176423998974L;
 	private JButton createGameButton;
@@ -50,12 +51,13 @@ public class CreateGameView extends View {
 
 		this.add(new JLabel("Nazwa gry"), "cell 0 1,alignx left");
 		nameField = new JTextField(model.getLogin());
-		nameField.setHorizontalAlignment(JTextField.RIGHT);
+		nameField.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(nameField, "cell 1 1 2 1,growx");
 
 		this.add(new JLabel("Typ gry"), "cell 0 2,alignx left");
 		gameTypeComboBox = new JComboBox<>();
 		gameTypeComboBox.setModel(new DefaultComboBoxModel<>(GameType.values()));
+		gameTypeComboBox.setSelectedIndex(2);
 		add(gameTypeComboBox, "cell 2 2,growx");
 
 		this.add(new JLabel("Iloœæ wygranych rund"), "cell 0 3,alignx left");
@@ -134,10 +136,10 @@ public class CreateGameView extends View {
 		}
 		int diceNumber = 5;
 		int maxInactiveTime = 0;
-		if ((int) timeForMoveSpinner.getValue() < 0) {
+		if ((int) maxInactiveTurnsSpinner.getValue() < 0) {
 			maxInactiveTime = -1;
 		} else {
-			maxInactiveTime = (int) timeForMoveSpinner.getValue();
+			maxInactiveTime = (int) maxInactiveTurnsSpinner.getValue();
 		}
 		return new GameSettings((GameType) gameTypeComboBox.getSelectedItem(), diceNumber, nameField.getText(),
 				(int) maxHumanPlayersSpinner.getValue(), (int) timeForMoveSpinner.getValue(), maxInactiveTime,
