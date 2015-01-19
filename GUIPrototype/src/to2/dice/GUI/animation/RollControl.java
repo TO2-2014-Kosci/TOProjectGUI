@@ -6,19 +6,20 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Matrix3f;
 import com.jme3.math.Quaternion;
+import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 
-public class UserRollControl extends AbstractControl {
+public class RollControl extends AbstractControl {
+
 	private int number;
+	private int diceName;
 	private boolean startRoll;
 	private Quaternion targetRotate;
-	private int diceName;
 	private Vector3f[] controlPoints = { new Vector3f(0, 1, 0), // 1
 			new Vector3f(1, 0, 0), // 2
 			new Vector3f(0, 0, 1), // 3
@@ -29,7 +30,7 @@ public class UserRollControl extends AbstractControl {
 
 	private int step;
 
-	public UserRollControl(int diceName) {
+	public RollControl(int diceName) {
 		super();
 		super.setEnabled(false);
 		this.diceName = diceName;
@@ -70,6 +71,7 @@ public class UserRollControl extends AbstractControl {
 			diceControl.setPhysicsRotation(targetRotate);
 			Node n = ((Node)spatial);
 			((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
+			
 			startRoll = false;
 			this.setEnabled(false);
 		}

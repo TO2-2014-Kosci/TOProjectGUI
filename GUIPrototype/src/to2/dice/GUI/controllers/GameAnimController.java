@@ -19,11 +19,10 @@ import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.control.AbstractControl;
 
 import to2.dice.GUI.animation.AnotherPutControl;
-import to2.dice.GUI.animation.AnotherRollControl;
+import to2.dice.GUI.animation.RollControl;
 import to2.dice.GUI.animation.HideControl;
 import to2.dice.GUI.animation.TextControl;
 import to2.dice.GUI.animation.UserPutControl;
-import to2.dice.GUI.animation.UserRollControl;
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameAnimation;
 import to2.dice.game.Dice;
@@ -104,7 +103,7 @@ public class GameAnimController extends AbstractControl implements ActionListene
 	public void shakeAnotherDice(Dice dice) {
 		synchronized (model) {
 			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-				AnotherRollControl diceControl = gameAnimation.getAnotherDice()[i].getControl(AnotherRollControl.class);
+				RollControl diceControl = gameAnimation.getAnotherDice()[i].getControl(RollControl.class);
 				diceControl.setNumberToRoll(dice.getDiceArray()[i]);
 			}
 		}
@@ -113,7 +112,9 @@ public class GameAnimController extends AbstractControl implements ActionListene
 	public void shakeUserDice(Dice dice) {
 		synchronized (model) {
 			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-				gameAnimation.getUserDice()[i].getControl(UserRollControl.class).setNumberToRoll(dice.getDiceArray()[i]);
+				if (model.getSelectedDice()[i]) {
+					gameAnimation.getUserDice()[i].getControl(RollControl.class).setNumberToRoll(dice.getDiceArray()[i]);
+				}
 			}
 		}
 	}
@@ -165,9 +166,10 @@ public class GameAnimController extends AbstractControl implements ActionListene
 		}
 	}
 	
-	public void showText(String text, int time) {
+	public void showText(String text, int size) {
 		synchronized (model) {
 			gameAnimation.getBitmapText().getControl(TextControl.class).setText(text);
+			gameAnimation.getBitmapText().setSize(size);
 		}
 	}
 

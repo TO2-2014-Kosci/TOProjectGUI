@@ -31,5 +31,7 @@ public class TextControl extends AbstractControl {
 		this.text = text;
 		this.setEnabled(true);
 	}
+	
+	
 
 }

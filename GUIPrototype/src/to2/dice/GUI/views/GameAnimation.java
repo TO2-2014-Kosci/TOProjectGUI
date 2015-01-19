@@ -50,11 +50,10 @@ import com.jme3.system.JmeCanvasContext;
 import com.jme3.system.JmeSystem;
 
 import to2.dice.GUI.animation.AnotherPutControl;
-import to2.dice.GUI.animation.AnotherRollControl;
+import to2.dice.GUI.animation.RollControl;
 import to2.dice.GUI.animation.HideControl;
 import to2.dice.GUI.animation.TextControl;
 import to2.dice.GUI.animation.UserPutControl;
-import to2.dice.GUI.animation.UserRollControl;
 import to2.dice.GUI.controllers.DiceControl;
 import to2.dice.GUI.controllers.GameAnimController;
 import to2.dice.GUI.model.Model;
@@ -69,7 +68,7 @@ public class GameAnimation extends SimpleApplication {
 	private BulletAppState bulletAppState;
 	private Spatial box;
 	private boolean reload = false;
-	private BitmapText text;
+	private BitmapText bitmapText;
 	
 	public GameAnimation(Model model, GameAnimController animController) {
 		super();
@@ -158,12 +157,11 @@ public class GameAnimation extends SimpleApplication {
 		inputManager.addListener(gameAnimController, new String[] { "Shake", "Put", "Select" });
 		gameAnimController.setEnabled(false);
 		
-		text = new BitmapText(guiFont);
-//		text.setCullHint(CullHint.Always);
-		text.setText("");
-		text.addControl(new TextControl(text));
-		guiNode.attachChild(text);
-//		rootNode.addControl(gameAnimController);
+		bitmapText = new BitmapText(guiFont);
+		bitmapText.setSize(25);
+		bitmapText.setText("");
+		bitmapText.addControl(new TextControl(bitmapText));
+		guiNode.attachChild(bitmapText);
 	}
 
 	@Override
@@ -189,7 +187,7 @@ public class GameAnimation extends SimpleApplication {
 						RigidBodyControl diceBody = new RigidBodyControl(diceShape, 10f);
 						getUserDice()[i].addControl(diceBody);
 						rootNode.attachChild(getUserDice()[i]);
-						getUserDice()[i].addControl(new UserRollControl(i));
+						getUserDice()[i].addControl(new RollControl(i));
 						getUserDice()[i].addControl(new UserPutControl(i, diceNumber));
 						getUserDice()[i].addControl(new HideControl());
 						bulletAppState.getPhysicsSpace().add(diceBody);
@@ -205,7 +203,7 @@ public class GameAnimation extends SimpleApplication {
 																						// kolizje
 						RigidBodyControl diceBodyA = new RigidBodyControl(diceShapeA, 10f);
 						getAnotherDice()[i].addControl(diceBodyA);
-						getAnotherDice()[i].addControl(new AnotherRollControl(i));
+						getAnotherDice()[i].addControl(new RollControl(i));
 						getAnotherDice()[i].addControl(new AnotherPutControl(i));
 						getAnotherDice()[i].addControl(new HideControl());
 						rootNode.attachChild(getAnotherDice()[i]);
@@ -238,7 +236,8 @@ public class GameAnimation extends SimpleApplication {
 	@Override
 	public void reshape(int w, int h) {
 		super.reshape(w, h);
-		text.setLocalTranslation((w - text.getLineWidth()) / 2, h - 25, 0);
+		bitmapText.setLocalTranslation((w - bitmapText.getLineWidth()) / 2, h - 25, 0);
+		
 	}
 	
 
@@ -262,8 +261,8 @@ public class GameAnimation extends SimpleApplication {
 		this.anotherDice = anotherDice;
 	}
 	
-	public Spatial getBitmapText() {
-		return text;
+	public BitmapText getBitmapText() {
+		return bitmapText;
 	}
 	
 	public Spatial getBox() {

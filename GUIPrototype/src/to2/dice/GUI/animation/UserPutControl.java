@@ -59,14 +59,14 @@ public class UserPutControl extends AbstractControl {
 		}
 		diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
 		diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
-		diceControl.setPhysicsLocation(new Vector3f(-7, diceNumber / 2 - diceName, 0.3f));
+		diceControl.setPhysicsLocation(new Vector3f(-7, diceNumber / 2 - diceName, 0.36f));
 		diceControl.update(0);
 		diceControl.setEnabled(false);
 		Node n = ((Node)spatial);
 		((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
-		spatial.getControl(UserRollControl.class).setEnabled(false);
+		diceControl.setEnabled(true);
+		spatial.getControl(RollControl.class).setEnabled(false);
 		this.setEnabled(false);
-
 	}
 
 	public void setNumberToPut(int number) {

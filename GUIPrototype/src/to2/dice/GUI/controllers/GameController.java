@@ -33,7 +33,7 @@ public class GameController extends Controller implements ServerMessageListener 
 		try {
 			Response response = model.getConnectionProxy().reroll(model.getSelectedDice());
 			if (response.isSuccess()) {
-				model.setSelectedDice(new boolean[model.getGameSettings().getDiceNumber()]);
+				
 			} else {
 				view.showErrorDialog(response.message, "B³¹d wychodzenia", false);
 			}
@@ -125,11 +125,11 @@ public class GameController extends Controller implements ServerMessageListener 
 				if (model.isMyTurn()) {
 					// teraz jest nasza tura
 					gameAnimController.hideAnotherDice();
-					gameAnimController.showText("Twoja tura", 0);
+					gameAnimController.showText("Twoja tura", 25);
 				} else {
 					gameAnimController.showAnotherDice();
 					gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
-					gameAnimController.showText("", 0);
+					gameAnimController.showText("", 25);
 				}
 				if (model.isSitting()) {
 					for (Player p : gameState.getPlayers()) {
@@ -171,6 +171,7 @@ public class GameController extends Controller implements ServerMessageListener 
 			if (p.equals(lastPlayer)) {
 				if (p.getName().equals(model.getLogin())) {
 					gameAnimController.shakeUserDice(p.getDice());
+					model.setSelectedDice(new boolean[model.getGameSettings().getDiceNumber()]);
 				} else {
 					gameAnimController.shakeAnotherDice(p.getDice());
 				}
@@ -180,6 +181,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	}
 
 	private void startGame(GameState gameState) {
+		model.setSelectedDice(new boolean[model.getGameSettings().getDiceNumber()]);
 		lastPlayer = gameState.getCurrentPlayer();
 		if (model.isMyTurn()) {
 			gameAnimController.hideAnotherDice();
@@ -199,6 +201,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	}
 
 	private void endGame(GameState gameState) {
+		gameAnimController.showText("Koniec gry", 50);
 		this.lastRound = -1;
 		this.lastPlayer = null;
 		model.setSitting(false);
