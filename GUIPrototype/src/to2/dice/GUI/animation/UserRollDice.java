@@ -1,12 +1,15 @@
 package to2.dice.GUI.animation;
 
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Matrix3f;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
 import com.jme3.scene.control.AbstractControl;
 
 public class UserRollDice extends AbstractControl {
@@ -65,6 +68,8 @@ public class UserRollDice extends AbstractControl {
 			diceControl.setPhysicsLocation(new Vector3f(-16, 2 * (-2 + diceName), 10));
 			diceControl.setLinearVelocity(new Vector3f(12, 3 * (2 - diceName), 0));
 			diceControl.setAngularVelocity(new Vector3f(random(), random(), random()));
+			Node n = ((Node)spatial);
+			((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
 			startRoll = false;
 		}
 //		 System.out.print(spatial.getName() + " ");
@@ -105,7 +110,7 @@ public class UserRollDice extends AbstractControl {
 				|| (diceControl.getLinearVelocity().length() < 0.1f || diceControl.getAngularVelocity().length() < 1f)) {
 			step = 0;
 			diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
-			// this.setEnabled(false);
+//		this.setEnabled(false);
 		}
 	}
 

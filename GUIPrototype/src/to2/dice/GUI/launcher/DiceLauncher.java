@@ -2,6 +2,7 @@ package to2.dice.GUI.launcher;
 
 import java.awt.EventQueue;
 import java.net.ConnectException;
+import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +45,12 @@ public class DiceLauncher {
 			Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 				@Override
 				public void run() {
-//					model.getConnectionProxy().logout();
+					try {
+						model.getConnectionProxy().logout();
+					} catch (TimeoutException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					System.out.println("Koniec");
 				}
 	

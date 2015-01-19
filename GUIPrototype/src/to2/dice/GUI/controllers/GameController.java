@@ -13,9 +13,6 @@ import to2.dice.game.Player;
 import to2.dice.messaging.Response;
 import to2.dice.server.ServerMessageListener;
 
-/*
- * jak sie wychodzi z tego okna trzeba ubiæ animacje
- */
 public class GameController extends Controller implements ServerMessageListener {
 	private GameAnimController gameAnimController;
 	private Player lastPlayer = null;
@@ -24,6 +21,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	public GameController(Model model, GameAnimController gameAnimController) {
 		super(model);
 		this.gameAnimController = gameAnimController;
+		this.lastRound = -1;
 	}
 
 	public void rerollDice() {
@@ -81,13 +79,10 @@ public class GameController extends Controller implements ServerMessageListener 
 	// TODO koniec gry
 	public void onGameStateChange(GameState gameState) {
 		model.setGameState(gameState);
-		if (lastPlayer == null) {
+		if (lastPlayer == null && lastRound == -1) {
 			// pierwszy gamestate
 			// pocz¹tek gry lub wbiliœmy do trwaj¹cej gry
-			lastPlayer = gameState.getCurrentPlayer(); // potencjalnie moze to
-														// byæ nasza tura. Ale
-														// tym zajmuje siê ju¿
-														// refresh od GameView
+			lastPlayer = gameState.getCurrentPlayer();
 			if (model.isMyTurn()) {
 				// teraz jest nasza tura
 				gameAnimController.hideAnotherDice();
@@ -101,13 +96,16 @@ public class GameController extends Controller implements ServerMessageListener 
 					break;
 				}
 			}
-			lastRound = 0;
+			lastRound = 1;
 		}
 		// kolejny gamestate
 		if (!gameState.isGameStarted()) {
+			this.lastRound = -1;
+			this.lastPlayer = null;
 			// koniec gry
-		} /*else if (gameState.getCurrentPlayer() == null) {
+		} else if (gameState.getCurrentPlayer() == null) {
 			// koniec rundy
+			
 			for (Player p : gameState.getPlayers()) {
 				if (p.equals(lastPlayer)) {
 					if (p.getName().equals(model.getLogin())) {
@@ -118,7 +116,24 @@ public class GameController extends Controller implements ServerMessageListener 
 				}
 			}
 			lastPlayer = gameState.getCurrentPlayer();
-		} */else if (!lastPlayer.equals(gameState.getCurrentPlayer())) {
+		} else if (lastPlayer == null) {
+			// TODO nowa runda
+			lastRound += 1;
+			lastPlayer = gameState.getCurrentPlayer();
+			if (model.isMyTurn()) {
+				// teraz jest nasza tura
+				gameAnimController.hideAnotherDice();
+			} else {
+				gameAnimController.showAnotherDice();
+				gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
+			}
+			for (Player p : gameState.getPlayers()) {
+				if (p.getName().equals(model.getLogin())) {
+					gameAnimController.putUserDice(p.getDice());
+					break;
+				}
+			}
+		} else if (!lastPlayer.equals(gameState.getCurrentPlayer())) {
 			// ktoœ przerzuci³. Trzeba wyœwietliæ animacjê
 			for (Player p : gameState.getPlayers()) {
 				if (p.equals(lastPlayer)) {

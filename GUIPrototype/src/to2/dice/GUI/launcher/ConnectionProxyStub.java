@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeoutException;
 
 import to2.dice.game.BotLevel;
 import to2.dice.game.GameInfo;
@@ -124,5 +125,11 @@ public class ConnectionProxyStub implements ConnectionProxy {
 	public void addServerMessageListener(ServerMessageListener listener) {
 		serverMessageListener = listener;
 		gameStateGenerator.serverMessageListener = serverMessageListener;
+	}
+
+	@Override
+	public Response logout() throws TimeoutException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
