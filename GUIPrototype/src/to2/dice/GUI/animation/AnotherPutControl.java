@@ -58,6 +58,7 @@ public class AnotherPutControl extends AbstractControl {
 		diceControl.setPhysicsLocation(new Vector3f(-diceName, -6, 0.35f));
 		diceControl.update(0);
 		diceControl.setEnabled(false);
+		spatial.getControl(AnotherRollControl.class).setEnabled(false);
 		this.setEnabled(false);
 
 	}

@@ -11,12 +11,12 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.control.AbstractControl;
 
-public class UserPutDice extends AbstractControl {
+public class UserPutControl extends AbstractControl {
 	private int number;
 	private int diceName;
 	private int diceNumber;
 
-	public UserPutDice(int diceName, int diceNumber) {
+	public UserPutControl(int diceName, int diceNumber) {
 		super();
 		super.setEnabled(false);
 		this.diceName = diceName;
@@ -64,6 +64,7 @@ public class UserPutDice extends AbstractControl {
 		diceControl.setEnabled(false);
 		Node n = ((Node)spatial);
 		((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
+		spatial.getControl(UserRollControl.class).setEnabled(false);
 		this.setEnabled(false);
 
 	}

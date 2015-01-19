@@ -22,8 +22,8 @@ import to2.dice.GUI.animation.AnotherPutControl;
 import to2.dice.GUI.animation.AnotherRollControl;
 import to2.dice.GUI.animation.HideControl;
 import to2.dice.GUI.animation.TextControl;
-import to2.dice.GUI.animation.UserPutDice;
-import to2.dice.GUI.animation.UserRollDice;
+import to2.dice.GUI.animation.UserPutControl;
+import to2.dice.GUI.animation.UserRollControl;
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameAnimation;
 import to2.dice.game.Dice;
@@ -158,7 +158,7 @@ public class GameAnimController extends AbstractControl implements ActionListene
 	public void shakeUserDice(Dice dice) {
 		synchronized (model) {
 			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-				gameAnimation.getUserDice()[i].getControl(UserRollDice.class).setNumberToRoll(dice.getDiceArray()[i]);
+				gameAnimation.getUserDice()[i].getControl(UserRollControl.class).setNumberToRoll(dice.getDiceArray()[i]);
 			}
 		}
 	}
@@ -175,7 +175,7 @@ public class GameAnimController extends AbstractControl implements ActionListene
 	public void putUserDice(Dice dice) {
 		synchronized (model) {
 			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-				gameAnimation.getUserDice()[i].getControl(UserPutDice.class).setNumberToPut(dice.getDiceArray()[i]);
+				gameAnimation.getUserDice()[i].getControl(UserPutControl.class).setNumberToPut(dice.getDiceArray()[i]);
 			}
 		}
 	}

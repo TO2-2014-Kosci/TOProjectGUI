@@ -53,8 +53,8 @@ import to2.dice.GUI.animation.AnotherPutControl;
 import to2.dice.GUI.animation.AnotherRollControl;
 import to2.dice.GUI.animation.HideControl;
 import to2.dice.GUI.animation.TextControl;
-import to2.dice.GUI.animation.UserPutDice;
-import to2.dice.GUI.animation.UserRollDice;
+import to2.dice.GUI.animation.UserPutControl;
+import to2.dice.GUI.animation.UserRollControl;
 import to2.dice.GUI.controllers.DiceControl;
 import to2.dice.GUI.controllers.GameAnimController;
 import to2.dice.GUI.model.Model;
@@ -188,8 +188,8 @@ public class GameAnimation extends SimpleApplication {
 						RigidBodyControl diceBody = new RigidBodyControl(diceShape, 10f);
 						getUserDice()[i].addControl(diceBody);
 						rootNode.attachChild(getUserDice()[i]);
-						getUserDice()[i].addControl(new UserRollDice(i));
-						getUserDice()[i].addControl(new UserPutDice(i, diceNumber));
+						getUserDice()[i].addControl(new UserRollControl(i));
+						getUserDice()[i].addControl(new UserPutControl(i, diceNumber));
 						getUserDice()[i].addControl(new HideControl());
 						bulletAppState.getPhysicsSpace().add(diceBody);
 

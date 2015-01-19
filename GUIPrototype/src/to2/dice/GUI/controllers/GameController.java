@@ -1,5 +1,8 @@
 package to2.dice.GUI.controllers;
 
+import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeoutException;
 
 import com.jme3.font.BitmapFont;
@@ -14,6 +17,8 @@ import to2.dice.messaging.Response;
 import to2.dice.server.ServerMessageListener;
 
 public class GameController extends Controller implements ServerMessageListener {
+	private static final int timeForAnimInMiliseconds = 1500;
+	
 	private GameAnimController gameAnimController;
 	private Player lastPlayer = null;
 	private int lastRound;
@@ -39,7 +44,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	}
 
 	public void clickedStandUpLeaveButton() {
-		if (model.isSitting()) {
+		if (model.isSitting() && model.getGameState().isGameStarted()) {
 			try {
 				Response response = model.getConnectionProxy().standUp();
 				if (response.isSuccess()) {
@@ -52,10 +57,12 @@ public class GameController extends Controller implements ServerMessageListener 
 				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
-		} else {
+		} else if (!model.isSitting() && model.getGameState().isGameStarted()) {
 			try {
 				Response response = model.getConnectionProxy().leaveRoom();
 				if (response.isSuccess()) {
+					lastRound = -1;
+					lastPlayer = null;
 					model.setSitting(false);
 					GameListController newController = new GameListController(model);
 					model.getServerMessageContainer().removeServerMessageListener();
@@ -72,6 +79,18 @@ public class GameController extends Controller implements ServerMessageListener 
 				e.printStackTrace();
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
 			}
+		} else {
+			lastRound = -1;
+			lastPlayer = null;
+			model.setSitting(false);
+			GameListController newController = new GameListController(model);
+			model.getServerMessageContainer().removeServerMessageListener();
+			model.setGameSettings(null);
+			model.setGameState(new GameState());
+			GameListView newView = new GameListView(model, newController);
+			newController.setView(newView);
+			newController.refreshGameList();
+			model.getDiceApplication().setView(newView);
 		}
 
 	}
@@ -80,102 +99,119 @@ public class GameController extends Controller implements ServerMessageListener 
 	public void onGameStateChange(GameState gameState) {
 		model.setGameState(gameState);
 		if (lastPlayer == null && lastRound == -1) {
-			// pierwszy gamestate
-			// pocz¹tek gry lub wbiliœmy do trwaj¹cej gry
-			lastPlayer = gameState.getCurrentPlayer();
-			if (model.isMyTurn()) {
-				// teraz jest nasza tura
-				gameAnimController.hideAnotherDice();
-			} else {
-				gameAnimController.showAnotherDice();
-				gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
-			}
-			for (Player p : gameState.getPlayers()) {
-				if (p.getName().equals(model.getLogin())) {
-					gameAnimController.putUserDice(p.getDice());
-					break;
-				}
-			}
-			lastRound = 1;
+			startGame(gameState);
 		}
-		// kolejny gamestate
+		if (checkKickout(gameState)) {
+			model.setSitting(false);
+			// TODO remove user dice and box
+		}
 		if (!gameState.isGameStarted()) {
-			this.lastRound = -1;
-			this.lastPlayer = null;
-			// koniec gry
+			endGame(gameState);
 		} else if (gameState.getCurrentPlayer() == null) {
-			// koniec rundy
-			
-			for (Player p : gameState.getPlayers()) {
-				if (p.equals(lastPlayer)) {
-					if (p.getName().equals(model.getLogin())) {
-						gameAnimController.shakeUserDice(p.getDice());
-					} else {
-						gameAnimController.shakeAnotherDice(p.getDice());
-					}
-				}
-			}
-			lastPlayer = gameState.getCurrentPlayer();
+			endTour(gameState);
 		} else if (lastPlayer == null) {
-			// TODO nowa runda
-			lastRound += 1;
-			lastPlayer = gameState.getCurrentPlayer();
-			if (model.isMyTurn()) {
-				gameAnimController.hideAnotherDice();
-			} else {
-				gameAnimController.showAnotherDice();
-				gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
-			}
-			for (Player p : gameState.getPlayers()) {
-				if (p.getName().equals(model.getLogin())) {
-					gameAnimController.putUserDice(p.getDice());
-					break;
-				}
-			}
+			nextRound(gameState);
 		} else if (!lastPlayer.equals(gameState.getCurrentPlayer())) {
-			// ktoœ przerzuci³. Trzeba wyœwietliæ animacjê
-			for (Player p : gameState.getPlayers()) {
-				if (p.equals(lastPlayer)) {
-					if (p.getName().equals(model.getLogin())) {
-						gameAnimController.shakeUserDice(p.getDice());
-					} else {
-						gameAnimController.shakeAnotherDice(p.getDice());
-					}
-				}
-			}
-			lastPlayer = gameState.getCurrentPlayer();
-			// TODO lepiej to rozwiazac. Aktualnie blokujemy watek odbierania
-			// wiadomosci
-//			 try {
-//			 Thread.sleep(5000);
-			// } catch (InterruptedException e) {
-			// // TODO Auto-generated catch block
-			// e.printStackTrace();
-			// }
-			if (model.isMyTurn()) {
-				// teraz jest nasza tura
-				gameAnimController.hideAnotherDice();
-				gameAnimController.showText("Twoja tura", 0);
-			} else {
-				gameAnimController.showAnotherDice();
-				gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
-				gameAnimController.showText("", 0);
-			}
-			for (Player p : gameState.getPlayers()) {
-				if (p.getName().equals(model.getLogin())) {
-					gameAnimController.putUserDice(p.getDice());
-					break;
-				}
-			}
-			model.setTimer(model.getGameSettings().getTimeForMove());
+			endTourNextTour(gameState);
 		} else {
-			// TODO ¿adna zmiana <- chyba
+			// TODO nothing is changed
 		}
 		model.getDiceApplication().refresh();
 	}
 
-	// TODO
-	private void showEndDialog() {
+	private boolean checkKickout(GameState gameState) {
+		for (Player p: gameState.getPlayers()) {
+			if (p.getName().equals(model.getLogin()) ) {
+				return false;
+			}
+		}
+		return false;
+	}
+
+	private void endTourNextTour(GameState gameState) {
+		endTour(gameState);
+		new Timer().schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				if (model.isMyTurn()) {
+					// teraz jest nasza tura
+					gameAnimController.hideAnotherDice();
+					gameAnimController.showText("Twoja tura", 0);
+				} else {
+					gameAnimController.showAnotherDice();
+					gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
+					gameAnimController.showText("", 0);
+				}
+				if (model.isSitting()) {
+					for (Player p : gameState.getPlayers()) {
+						if (p.getName().equals(model.getLogin())) {
+							gameAnimController.putUserDice(p.getDice());
+							break;
+						}
+					}
+				}
+				model.setTimer(model.getGameSettings().getTimeForMove());
+				
+			}
+		}, timeForAnimInMiliseconds);
+	}
+
+	private void nextRound(GameState gameState) {
+		// TODO pokazaæ ³adny napis na œrodku :)
+		lastRound += 1;
+		lastPlayer = gameState.getCurrentPlayer();
+		if (model.isMyTurn()) {
+			gameAnimController.hideAnotherDice();
+		} else {
+			gameAnimController.showAnotherDice();
+			gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
+		}
+		if (model.isSitting()) {
+			for (Player p : gameState.getPlayers()) {
+				if (p.getName().equals(model.getLogin())) {
+					gameAnimController.putUserDice(p.getDice());
+					break;
+				}
+			}
+		}
+	}
+
+	private void endTour(GameState gameState) {
+		for (Player p : gameState.getPlayers()) {
+			if (p.equals(lastPlayer)) {
+				if (p.getName().equals(model.getLogin())) {
+					gameAnimController.shakeUserDice(p.getDice());
+				} else {
+					gameAnimController.shakeAnotherDice(p.getDice());
+				}
+			}
+		}
+		lastPlayer = gameState.getCurrentPlayer();
+	}
+
+	private void startGame(GameState gameState) {
+		lastPlayer = gameState.getCurrentPlayer();
+		if (model.isMyTurn()) {
+			gameAnimController.hideAnotherDice();
+		} else {
+			gameAnimController.showAnotherDice();
+			gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
+		}
+		if (model.isSitting()) {
+			for (Player p : gameState.getPlayers()) {
+				if (p.getName().equals(model.getLogin())) {
+					gameAnimController.putUserDice(p.getDice());
+					break;
+				}
+			}
+		}
+		lastRound = 1;
+	}
+
+	private void endGame(GameState gameState) {
+		this.lastRound = -1;
+		this.lastPlayer = null;
 	}
 
 }

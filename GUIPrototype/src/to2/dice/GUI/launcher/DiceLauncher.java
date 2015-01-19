@@ -1,6 +1,9 @@
 package to2.dice.GUI.launcher;
 
 import java.awt.EventQueue;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.ConnectException;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
@@ -67,4 +70,11 @@ public class DiceLauncher {
 			e.printStackTrace();
 		}
 	}
+	
+	private String loadIPFromFile(String fileName) throws IOException{
+	     try(BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+	         String line = br.readLine();
+	         return line;
+	     }
+	 }
 }
