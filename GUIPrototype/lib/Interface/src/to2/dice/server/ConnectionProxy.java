@@ -15,6 +15,8 @@ public interface ConnectionProxy {
 
     public Response login(String login) throws TimeoutException;
 
+    public Response logout() throws TimeoutException;
+
     public List<GameInfo> getRoomList() throws TimeoutException;
 
     public Response createRoom(GameSettings settings) throws TimeoutException;

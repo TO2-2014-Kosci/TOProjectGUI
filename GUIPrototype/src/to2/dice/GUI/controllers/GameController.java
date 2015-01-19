@@ -106,7 +106,7 @@ public class GameController extends Controller implements ServerMessageListener 
 		// kolejny gamestate
 		if (!gameState.isGameStarted()) {
 			// koniec gry
-		} else if (gameState.getCurrentPlayer() == null) {
+		} /*else if (gameState.getCurrentPlayer() == null) {
 			// koniec rundy
 			for (Player p : gameState.getPlayers()) {
 				if (p.equals(lastPlayer)) {
@@ -118,7 +118,7 @@ public class GameController extends Controller implements ServerMessageListener 
 				}
 			}
 			lastPlayer = gameState.getCurrentPlayer();
-		} else if (!lastPlayer.equals(gameState.getCurrentPlayer())) {
+		} */else if (!lastPlayer.equals(gameState.getCurrentPlayer())) {
 			// ktoœ przerzuci³. Trzeba wyœwietliæ animacjê
 			for (Player p : gameState.getPlayers()) {
 				if (p.equals(lastPlayer)) {
