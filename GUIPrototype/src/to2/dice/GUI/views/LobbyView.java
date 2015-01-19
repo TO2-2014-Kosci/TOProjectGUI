@@ -33,35 +33,7 @@ public class LobbyView extends View {
 		super(model, controller);
 		setLayout(new MigLayout("", "[grow][][]", "[][][][][][][][][][grow][]"));
 
-		playersTable = new JTable(new AbstractTableModel() {
-
-			private static final long serialVersionUID = 1L;
-
-			public int getColumnCount() {
-				return columnNames.length;
-			}
-
-			public String getColumnName(int col) {
-				return columnNames[col];
-			}
-
-			// TODO possible null pointer
-			public int getRowCount() {
-				if (model.getGameState() == null) {
-					return 0;
-				}
-				return model.getGameState().getPlayersNumber();
-			}
-
-			public Object getValueAt(int arg0, int arg1) {
-				return model.getGameState().getPlayers().get(arg0).getName();
-			}
-
-			public boolean isCellEditable(int row, int col) {
-				return false;
-			}
-
-		});
+		playersTable = new JTable(new LobbyViewTableModel());
 		playersTable.setFillsViewportHeight(true);
 		playersTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		playersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -123,6 +95,34 @@ public class LobbyView extends View {
 		}
 		playersCountLabel.setText("Iloœæ graczy: " + Integer.toString(model.getGameState().getPlayersNumber()) + "/"
 				+ Integer.toString(model.getGameSettings().getMaxPlayers()));
+	}
+	
+	private class LobbyViewTableModel extends AbstractTableModel{
+		
+		private static final long serialVersionUID = 1L;
+
+		public int getColumnCount() {
+			return columnNames.length;
+		}
+
+		public String getColumnName(int col) {
+			return columnNames[col];
+		}
+
+		public int getRowCount() {
+			if (model.getGameState() == null) {
+				return 0;
+			}
+			return model.getGameState().getPlayersNumber();
+		}
+
+		public Object getValueAt(int arg0, int arg1) {
+			return model.getGameState().getPlayers().get(arg0).getName();
+		}
+
+		public boolean isCellEditable(int row, int col) {
+			return false;
+		}
 	}
 
 }

@@ -24,10 +24,8 @@ public class CreateGameController extends Controller {
 		if (isProper(gameSettings)) {
 			model.setGameSettings(gameSettings);
 			model.setTimer(gameSettings.getTimeForMove());
-			Controller newController;
-			View newView;
-			newController = new LobbyController(model);
-			newView = new LobbyView(model, (LobbyController) newController);
+			Controller newController = new LobbyController(model);
+			View newView = new LobbyView(model, (LobbyController) newController);
 			newController.setView(newView);
 			model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
 			try {
@@ -37,7 +35,7 @@ public class CreateGameController extends Controller {
 					model.getDiceApplication().setView(newView);
 				} else {
 					model.getServerMessageContainer().setServerMessageListener((ServerMessageListener) newController);
-					view.showErrorDialog("Nie uda³o siê utworzyæ gry", "B³¹d tworzenia gry", false);
+					view.showErrorDialog(response.message, "B³¹d tworzenia gry", false);
 				}
 			} catch (TimeoutException e) {
 				view.showErrorDialog("Utracono po³¹czenie z serwerem", "B³¹d po³¹czenia", true);
