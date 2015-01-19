@@ -103,7 +103,11 @@ public class Model {
 	}
 
 	public boolean isMyTurn() {
-		return gameState.getCurrentPlayer().getName().equals(login);
+		if (gameState.getCurrentPlayer() == null) {
+			return false;
+		} else {
+			return gameState.getCurrentPlayer().getName().equals(login);
+		}
 	}
 
 	public GameAnimation getGameAnimation() {
