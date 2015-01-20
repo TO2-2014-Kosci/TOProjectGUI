@@ -44,6 +44,7 @@ public class GameController extends Controller implements ServerMessageListener 
 				Response response = model.getConnectionProxy().standUp();
 				if (response.isSuccess()) {
 					model.setSitting(false);
+					gameAnimController.hideBoxAndDice();
 					view.refresh();
 				} else {
 					view.showErrorDialog("Nie uda³o siê wstaæ", "B³¹d wstawania", false);
@@ -56,6 +57,7 @@ public class GameController extends Controller implements ServerMessageListener 
 			try {
 				Response response = model.getConnectionProxy().leaveRoom();
 				if (response.isSuccess()) {
+					
 					lastRound = -1;
 					lastPlayer = null;
 					model.setSitting(false);
@@ -119,13 +121,12 @@ public class GameController extends Controller implements ServerMessageListener 
 			@Override
 			public void run() {
 				if (model.isMyTurn()) {
-					// teraz jest nasza tura
 					gameAnimController.hideAnotherDice();
 					gameAnimController.showText("Twoja tura", 25);
 				} else {
 					gameAnimController.showAnotherDice();
 					gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
-					gameAnimController.showText("", 25);
+					gameAnimController.hideText();
 				}
 				if (model.isSitting()) {
 					for (Player p : gameState.getPlayers()) {
@@ -172,6 +173,7 @@ public class GameController extends Controller implements ServerMessageListener 
 				}
 			}
 		}
+		gameAnimController.hideText();
 		lastPlayer = gameState.getCurrentPlayer();
 	}
 
@@ -196,7 +198,15 @@ public class GameController extends Controller implements ServerMessageListener 
 	}
 
 	private void endGame(GameState gameState) {
-		gameAnimController.showText("Koniec gry", 50);
+		Player winner = gameState.getPlayers().get(0);
+		for (Player p:gameState.getPlayers()) {
+			if (p.getScore() == model.getGameSettings().getRoundsToWin()) {
+				winner = p;
+				break;
+			}
+		}
+		String endGameString = "Koniec gry\n  Wygral  \n" + winner.getName();
+		gameAnimController.showText(endGameString, 50);
 		lastRound = -1;
 		lastPlayer = null;
 		model.setSitting(false);

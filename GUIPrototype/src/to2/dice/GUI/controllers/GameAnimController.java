@@ -165,6 +165,10 @@ public class GameAnimController extends AbstractControl implements ActionListene
 			gameAnimation.getBitmapText().setSize(size);
 		}
 	}
+	
+	public void hideText() {
+		showText("", 25);
+	}
 
 	public void hideBoxAndDice() {
 		synchronized (model) {
