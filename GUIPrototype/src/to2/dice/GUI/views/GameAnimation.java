@@ -138,6 +138,7 @@ public class GameAnimation extends SimpleApplication {
 		bitmapText = new BitmapText(guiFont);
 		bitmapText.setSize(25);
 		bitmapText.setText("");
+		bitmapText.setColor(ColorRGBA.Black);
 		bitmapText.addControl(new TextControl(bitmapText));
 		guiNode.attachChild(bitmapText);
 	}
@@ -197,13 +198,13 @@ public class GameAnimation extends SimpleApplication {
 				model.notifyAll();
 			}
 		}
-		bitmapText.setLocalTranslation((canvas.getWidth() - bitmapText.getLineWidth()) / 2, canvas.getHeight() - 25, 0);
+		bitmapText.setLocalTranslation((canvas.getWidth() - bitmapText.getLineWidth()) / 2, canvas.getHeight() - 50, 0);
 	}
 
 	@Override
 	public void reshape(int w, int h) {
 		super.reshape(w, h);
-		bitmapText.setLocalTranslation((w - bitmapText.getLineWidth()) / 2, h - 25, 0);
+		bitmapText.setLocalTranslation((w - bitmapText.getLineWidth()) / 2, h - 50, 0);
 
 	}
 

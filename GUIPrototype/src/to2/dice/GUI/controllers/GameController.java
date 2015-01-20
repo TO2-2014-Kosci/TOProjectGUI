@@ -206,7 +206,7 @@ public class GameController extends Controller implements ServerMessageListener 
 			}
 		}
 		String endGameString = "Koniec gry\n  Wygral  \n" + winner.getName();
-		gameAnimController.showText(endGameString, 50);
+		gameAnimController.showText(endGameString, 25);
 		lastRound = -1;
 		lastPlayer = null;
 		model.setSitting(false);
