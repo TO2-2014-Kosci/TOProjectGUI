@@ -26,6 +26,9 @@ public class GameController extends Controller implements ServerMessageListener 
 
 	public void rerollDice() {
 		try {
+			for (boolean b: model.getSelectedDice()) {
+				System.out.println(b);
+			}
 			Response response = model.getConnectionProxy().reroll(model.getSelectedDice());
 			if (response.isSuccess()) {
 

@@ -138,7 +138,7 @@ public class GameAnimation extends SimpleApplication {
 		bitmapText = new BitmapText(guiFont);
 		bitmapText.setSize(25);
 		bitmapText.setText("");
-		bitmapText.setColor(ColorRGBA.Black);
+//		bitmapText.setColor(ColorRGBA.Black);
 		bitmapText.addControl(new TextControl(bitmapText));
 		guiNode.attachChild(bitmapText);
 	}
