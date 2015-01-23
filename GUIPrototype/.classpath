@@ -7,15 +7,42 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/GUIPrototype/miglayout-4.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/JME/jMonkeyEngine3.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/GUIPrototype/lib/JME/javadoc.zip!/javadoc"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="lib/Interface/Interfaces.jar" sourcepath="lib/Interface/src"/>
 	<classpathentry kind="lib" path="lib/assets.jar"/>
 	<classpathentry kind="lib" path="lib/ServerCommunication/json-20140107.jar"/>
 	<classpathentry kind="lib" path="lib/ServerCommunication/rabbitmq-client.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/eventbus.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/j-ogg-oggd.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/j-ogg-vorbisd.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jbullet.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jglfont-core.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jinput.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-blender.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-core.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-desktop.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-effects.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-jbullet.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-jogg.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-lwjgl-natives.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-lwjgl.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-networking.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-niftygui.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-openal-soft-natives-android.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-plugins.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-terrain.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jME3-testdata.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/joal.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/jogl-all.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/lwjgl.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/nifty-default-controls.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/nifty-examples.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/nifty-style-black.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/nifty.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/stack-alloc.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/vecmath.jar"/>
+	<classpathentry kind="lib" path="lib/JME/lib/xmlpull-xpp3.jar"/>
+	<classpathentry kind="lib" path="lib/JME/jMonkeyEngine3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/ServerCommunication/Server.jar" sourcepath="lib/ServerCommunication/src"/>
 	<classpathentry kind="output" path="bin"/>
