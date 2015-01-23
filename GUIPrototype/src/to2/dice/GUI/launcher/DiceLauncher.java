@@ -32,7 +32,7 @@ public class DiceLauncher {
 		Logger.getLogger("com.jme3").setLevel(Level.SEVERE);
 		JmeSystem.initialize(settings);
 		ServerMessageContainer smc = new ServerMessageContainer();
-		ConnectionProxy cp;
+//		ConnectionProxy cp;
 		try {
 			try {
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
