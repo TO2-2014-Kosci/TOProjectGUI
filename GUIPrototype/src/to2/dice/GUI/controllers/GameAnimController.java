@@ -105,6 +105,7 @@ public class GameAnimController extends AbstractControl implements ActionListene
 		synchronized (model) {
 			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
 				if (model.getSelectedDice()[i]) {
+					System.out.println(dice.getDiceArray()[i]);
 					gameAnimation.getUserDice()[i].getControl(RollControl.class)
 							.setNumberToRoll(dice.getDiceArray()[i]);
 				}
@@ -164,6 +165,10 @@ public class GameAnimController extends AbstractControl implements ActionListene
 			gameAnimation.getBitmapText().getControl(TextControl.class).setText(text);
 			gameAnimation.getBitmapText().setSize(size);
 		}
+	}
+	
+	public void hideText() {
+		showText("", 25);
 	}
 
 	public void hideBoxAndDice() {
