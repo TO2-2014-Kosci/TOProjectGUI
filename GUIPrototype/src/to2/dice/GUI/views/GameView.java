@@ -1,5 +1,6 @@
 package to2.dice.GUI.views;
 
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -22,6 +23,7 @@ import to2.dice.GUI.controllers.GameController;
 import to2.dice.GUI.model.Model;
 import to2.dice.game.GameType;
 import to2.dice.game.NGameState;
+import to2.dice.game.Player;
 
 public class GameView extends View {
 	private static final long serialVersionUID = -1998878099465780349L;
@@ -33,6 +35,7 @@ public class GameView extends View {
 	private JLabel nGoalLabel;
 	private JLabel targetLabel;
 	private Font labelFont = new Font("Tahoma", Font.PLAIN, 25);
+	private Component gameAnimation;
 
 	// private Player lastPlayer;
 
@@ -165,7 +168,8 @@ public class GameView extends View {
 		} else {
 			rerollButton.setVisible(false);
 		}
-		add(gameAnimation.getCanvas(), "cell 1 1 4 2,grow");
+		this.gameAnimation = gameAnimation.getCanvas();
+		add(this.gameAnimation, "cell 1 1 4 2,grow");
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
 
@@ -212,13 +216,28 @@ public class GameView extends View {
 		((AbstractTableModel) playerTable.getModel()).fireTableDataChanged();
 		roundLabel.setText("Runda " + model.getGameState().getCurrentRound());
 		if (model.getGameSettings().getGameType() != GameType.POKER) {
-			nGoalLabel.setText("Cel: " + ((NGameState) model.getGameState()).getWinningNumber());
+			if (model.getGameSettings().getGameType() != GameType.NMUL) {
+				nGoalLabel.setText("Cel N*: " + ((NGameState) model.getGameState()).getWinningNumber());
+			} else {
+				nGoalLabel.setText("Cel N+: " + ((NGameState) model.getGameState()).getWinningNumber());
+			}
+			
 		} else {
-			nGoalLabel.setText("");
+			nGoalLabel.setText("Poker");
 		}
 		if (!model.getGameState().isGameStarted()) {
+//			Player winner = model.getGameState().getPlayers().get(0);
+//			for (Player p:model.getGameState().getPlayers()) {
+//				if (p.getScore() == model.getGameSettings().getRoundsToWin()) {
+//					winner = p;
+//					break;
+//				}
+//			}
+//			String endGameString = "Koniec gry\n  Wygral  \n" + winner.getName();
 			timerLabel.setText("");
 			timer.cancel();
+//			JLabel endGameLabel = new JLabel(endGameString);
+//			add(endGameLabel, "cell 1 1 4 2,grow, center");
 		}
 	}
 }
