@@ -15,14 +15,12 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 
-public class RollControl extends AbstractControl {
+public class SimpleRollControl extends AbstractRollControl {
 
-	private int number;
-	private boolean startRoll;
 	private Quaternion targetRotate;
 	private Spatial[] dices;
 	
-	public RollControl(int diceName, Spatial[] dices) {
+	public SimpleRollControl(int diceName, Spatial[] dices) {
 		super();
 		super.setEnabled(false);
 		this.dices = dices;
@@ -62,8 +60,8 @@ public class RollControl extends AbstractControl {
 			diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
 			diceControl.setPhysicsLocation(Utils.randomLocation());
 			diceControl.setPhysicsRotation(targetRotate);
-			Node n = ((Node) spatial);
-			((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
+			Geometry d6 = (Geometry) spatial;
+			d6.getMaterial().setColor("Diffuse", ColorRGBA.White);
 //			CollisionResults col = new CollisionResults();
 //			for (Spatial d: dices) {
 //				if (!d.equals(spatial)) {
@@ -90,13 +88,5 @@ public class RollControl extends AbstractControl {
 			}
 		}
 		return false;
-	}
-
-	public void setNumberToRoll(int number) {
-		synchronized (spatial) {
-			this.number = number;
-			setEnabled(true);
-			startRoll = true;
-		}
 	}
 }

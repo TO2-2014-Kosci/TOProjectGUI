@@ -51,7 +51,9 @@ public class DiceLauncher {
 				@Override
 				public void run() {
 					try {
-						model.getConnectionProxy().logout();
+						if (model.getLogin() != null) {
+							model.getConnectionProxy().logout();
+						}
 					} catch (TimeoutException e) {
 						e.printStackTrace();
 					}

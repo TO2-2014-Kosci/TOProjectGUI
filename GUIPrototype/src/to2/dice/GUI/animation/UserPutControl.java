@@ -62,9 +62,9 @@ public class UserPutControl extends AbstractControl {
 			diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
 			diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
 			diceControl.setPhysicsLocation(new Vector3f(-7, diceNumber / 2 - diceName, 0.4f));
-			spatial.getControl(RollControl.class).setEnabled(false);
-			Node n = ((Node) spatial);
-			((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
+			spatial.getControl(AbstractRollControl.class).setEnabled(false);
+			Geometry d6 = ((Geometry) spatial);
+			d6.getMaterial().setColor("Diffuse", ColorRGBA.White);
 			number = 0;
 		} else {
 			diceControl.setEnabled(false);
