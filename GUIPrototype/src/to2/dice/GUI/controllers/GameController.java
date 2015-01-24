@@ -26,9 +26,6 @@ public class GameController extends Controller implements ServerMessageListener 
 
 	public void rerollDice() {
 		try {
-			for (boolean b: model.getSelectedDice()) {
-				System.out.println(b);
-			}
 			Response response = model.getConnectionProxy().reroll(model.getSelectedDice());
 			if (response.isSuccess()) {
 
@@ -60,7 +57,6 @@ public class GameController extends Controller implements ServerMessageListener 
 			try {
 				Response response = model.getConnectionProxy().leaveRoom();
 				if (response.isSuccess()) {
-					
 					lastRound = -1;
 					lastPlayer = null;
 					model.setSitting(false);
@@ -128,9 +124,9 @@ public class GameController extends Controller implements ServerMessageListener 
 					gameAnimController.showText("Twoja tura", 25);
 				} else {
 					gameAnimController.showAnotherDice();
-					gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
 					gameAnimController.hideText();
 				}
+				gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
 				if (model.isSitting()) {
 					for (Player p : gameState.getPlayers()) {
 						if (p.getName().equals(model.getLogin())) {
@@ -153,8 +149,8 @@ public class GameController extends Controller implements ServerMessageListener 
 			gameAnimController.hideAnotherDice();
 		} else {
 			gameAnimController.showAnotherDice();
-			gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
 		}
+		gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
 		if (model.isSitting()) {
 			for (Player p : gameState.getPlayers()) {
 				if (p.getName().equals(model.getLogin())) {
@@ -163,6 +159,7 @@ public class GameController extends Controller implements ServerMessageListener 
 				}
 			}
 		}
+		model.setTimer(model.getGameSettings().getTimeForMove());
 	}
 
 	private void endTour(GameState gameState) {
@@ -187,8 +184,8 @@ public class GameController extends Controller implements ServerMessageListener 
 			gameAnimController.hideAnotherDice();
 		} else {
 			gameAnimController.showAnotherDice();
-			gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
 		}
+		gameAnimController.putAnotherDice(gameState.getCurrentPlayer().getDice());
 		if (model.isSitting()) {
 			for (Player p : gameState.getPlayers()) {
 				if (p.getName().equals(model.getLogin())) {

@@ -4,7 +4,9 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 
 import to2.dice.GUI.animation.AnotherPutControl;
+import to2.dice.GUI.animation.CollisionListener;
 import to2.dice.GUI.animation.HideControl;
+import to2.dice.GUI.animation.MyRigidBodyControl;
 import to2.dice.GUI.animation.RollControl;
 import to2.dice.GUI.animation.TextControl;
 import to2.dice.GUI.animation.UserPutControl;
@@ -14,6 +16,10 @@ import to2.dice.GUI.model.Model;
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.ClasspathLocator;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.PhysicsCollisionEvent;
+import com.jme3.bullet.collision.PhysicsCollisionGroupListener;
+import com.jme3.bullet.collision.PhysicsCollisionListener;
+import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
@@ -36,7 +42,7 @@ import com.jme3.scene.Spatial.CullHint;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
 
-public class GameAnimation extends SimpleApplication {
+public class GameAnimation extends SimpleApplication implements PhysicsCollisionListener {
 	private GameAnimController gameAnimController;
 	private Model model;
 	private Spatial[] userDice;
@@ -59,7 +65,6 @@ public class GameAnimation extends SimpleApplication {
 		fpp.addFilter(bloom);
 		viewPort = new ViewPort("Cam", cam);
 		viewPort.addProcessor(fpp);
-
 		createCanvas();
 		startCanvas(true);
 		gameAnimController = animController;
@@ -76,6 +81,7 @@ public class GameAnimation extends SimpleApplication {
 
 	@Override
 	public void simpleInitApp() {
+		bulletAppState.getPhysicsSpace().addCollisionListener(this);
 		setPauseOnLostFocus(false);
 		JmeCanvasContext ctx = (JmeCanvasContext) getContext();
 		ctx.setSystemListener(this);
@@ -87,7 +93,7 @@ public class GameAnimation extends SimpleApplication {
 		assetManager.registerLocator("assets", ClasspathLocator.class);
 		cam.setLocation(new Vector3f(-8, -0.5f, 13.5f));
 		cam.lookAt(new Vector3f(-3, -0.5f, 0), Vector3f.UNIT_Z);
-		// bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+		 bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 		bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, 0, -10));
 		bulletAppState.getPhysicsSpace().setAccuracy(1 / 150f);
 		Spatial table = assetManager.loadModel("Model/Table/table.j3o");
@@ -134,13 +140,14 @@ public class GameAnimation extends SimpleApplication {
 		inputManager.addMapping("Select", (Trigger) new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
 		inputManager.addListener(gameAnimController, new String[] { "Shake", "Put", "Select" });
 		gameAnimController.setEnabled(false);
-
 		bitmapText = new BitmapText(guiFont);
 		bitmapText.setSize(25);
 		bitmapText.setText("");
 //		bitmapText.setColor(ColorRGBA.Black);
 		bitmapText.addControl(new TextControl(bitmapText));
 		guiNode.attachChild(bitmapText);
+		rootNode.addControl(new CollisionListener());
+		bulletAppState.getPhysicsSpace().addCollisionListener(rootNode.getControl(CollisionListener.class));
 	}
 
 	@Override
@@ -160,7 +167,7 @@ public class GameAnimation extends SimpleApplication {
 						RigidBodyControl diceBody = new RigidBodyControl(diceShape, 10f);
 						getUserDice()[i].addControl(diceBody);
 						rootNode.attachChild(getUserDice()[i]);
-						getUserDice()[i].addControl(new RollControl(i));
+						getUserDice()[i].addControl(new RollControl(i, getUserDice()));
 						getUserDice()[i].addControl(new UserPutControl(i, diceNumber));
 						getUserDice()[i].addControl(new HideControl());
 						bulletAppState.getPhysicsSpace().add(diceBody);
@@ -170,19 +177,26 @@ public class GameAnimation extends SimpleApplication {
 						CollisionShape diceShapeA = CollisionShapeFactory.createDynamicMeshShape(getAnotherDice()[i]);
 						RigidBodyControl diceBodyA = new RigidBodyControl(diceShapeA, 10f);
 						getAnotherDice()[i].addControl(diceBodyA);
-						getAnotherDice()[i].addControl(new RollControl(i));
+						getAnotherDice()[i].addControl(new RollControl(i, getAnotherDice()));
 						getAnotherDice()[i].addControl(new AnotherPutControl(i));
 						getAnotherDice()[i].addControl(new HideControl());
 						rootNode.attachChild(getAnotherDice()[i]);
 						bulletAppState.getPhysicsSpace().add(diceBodyA);
 					}
 					box.setLocalScale(1, diceNumber, 1);
+					bulletAppState.getPhysicsSpace().remove(box.getControl(RigidBodyControl.class));
+					box.removeControl(RigidBodyControl.class);
+					RigidBodyControl boxShape = new RigidBodyControl(CollisionShapeFactory.createMeshShape(box), 0);
+					box.addControl(boxShape);
+					box.addControl(new HideControl());
+					bulletAppState.getPhysicsSpace().add(boxShape);
+					
 				}
 				for (int i = 0; i < diceNumber; i++) {
 					getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(
 							new Vector3f(-7, -diceNumber / 2 + i, 0.35f));
 					getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(
-							new Vector3f(-i, -6, 0.35f));
+							new Vector3f(-i, -6, 0.3501f));
 				}
 				if (!model.isSitting()) {
 					box.getControl(HideControl.class).setHide(true);
@@ -235,4 +249,14 @@ public class GameAnimation extends SimpleApplication {
 	public Spatial getBox() {
 		return box;
 	}
+
+	@Override
+    public void collision(PhysicsCollisionEvent event) {
+    	System.out.println("dsa");
+        if ("Box".equals(event.getNodeA().getName()) || "Box".equals(event.getNodeB().getName())) {
+            if ("bullet".equals(event.getNodeA().getName()) || "bullet".equals(event.getNodeB().getName())) {
+                fpsText.setText("You hit the box!");
+            }
+        }
+    }
 }

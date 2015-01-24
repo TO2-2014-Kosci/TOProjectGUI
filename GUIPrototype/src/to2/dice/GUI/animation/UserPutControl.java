@@ -32,41 +32,44 @@ public class UserPutControl extends AbstractControl {
 	@Override
 	protected void controlUpdate(float tpf) {
 		RigidBodyControl diceControl = spatial.getControl(RigidBodyControl.class);
-		int numberValue = 0;
-		synchronized (spatial) {
-			numberValue = number;
+		if (number != 0) {
+			diceControl.setEnabled(true);
+			int numberValue = 0;
+			synchronized (spatial) {
+				numberValue = number;
+			}
+			switch (numberValue) {
+			case 1:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1, 0, 0)));
+				break;
+			case 2:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(0, 1, 0)));
+				break;
+			case 3:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.ZERO_TOLERANCE,
+						new Vector3f(1, 0, 0)));
+				break;
+			case 4:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.PI, new Vector3f(1, 0, 0)));
+				break;
+			case 5:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(0, 1, 0)));
+				break;
+			case 6:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(1, 0, 0)));
+				break;
+			}
+			diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
+			diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
+			diceControl.setPhysicsLocation(new Vector3f(-7, diceNumber / 2 - diceName, 0.4f));
+			spatial.getControl(RollControl.class).setEnabled(false);
+			Node n = ((Node) spatial);
+			((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
+			number = 0;
+		} else {
+			diceControl.setEnabled(false);
+			this.setEnabled(false);
 		}
-		switch (numberValue) {
-		case 1:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1, 0, 0)));
-			break;
-		case 2:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(0, 1, 0)));
-			break;
-		case 3:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.ZERO_TOLERANCE,
-					new Vector3f(1, 0, 0)));
-			break;
-		case 4:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.PI, new Vector3f(1, 0, 0)));
-			break;
-		case 5:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(0, 1, 0)));
-			break;
-		case 6:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(1, 0, 0)));
-			break;
-		}
-		diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
-		diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
-		diceControl.setPhysicsLocation(new Vector3f(-7, diceNumber / 2 - diceName, 0.36f));
-		diceControl.update(0);
-		diceControl.setEnabled(false);
-		Node n = ((Node) spatial);
-		((Geometry) n.getChild("Cube1")).getMaterial().setColor("Diffuse", ColorRGBA.White);
-		diceControl.setEnabled(true);
-		spatial.getControl(RollControl.class).setEnabled(false);
-		this.setEnabled(false);
 	}
 
 	public void setNumberToPut(int number) {
