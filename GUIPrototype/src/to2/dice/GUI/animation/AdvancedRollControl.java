@@ -100,10 +100,6 @@ public class AdvancedRollControl extends AbstractRollControl {
 			if (location.z < -1) {
 				diceControl.setPhysicsLocation(new Vector3f(-3, 5 / 2 - diceName, 0.5f));
 			}
-			System.out.print("x ");
-			System.out.println(location.x);
-			System.out.print("y ");
-			System.out.println(location.y);
 			if (location.x > 4.0) {
 				diceControl.applyCentralForce(new Vector3f(-5, 0, 0));
 			} else if (location.x < -2.0) {
