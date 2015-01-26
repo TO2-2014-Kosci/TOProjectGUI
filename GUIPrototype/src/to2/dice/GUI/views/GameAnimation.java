@@ -98,7 +98,7 @@ public class GameAnimation extends SimpleApplication implements PhysicsCollision
 		assetManager.registerLocator("assets", ClasspathLocator.class);
 		cam.setLocation(new Vector3f(-8, -0.5f, 13.5f));
 		cam.lookAt(new Vector3f(-3, -0.5f, 0), Vector3f.UNIT_Z);
-		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+//		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 		bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, 0, -10));
 		bulletAppState.getPhysicsSpace().setAccuracy(1 / 80f);
 		Spatial table = assetManager.loadModel("Model/Table/table.j3o");
