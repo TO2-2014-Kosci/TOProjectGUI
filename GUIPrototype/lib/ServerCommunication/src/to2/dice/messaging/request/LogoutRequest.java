@@ -15,7 +15,7 @@ public class LogoutRequest extends LoginRequest {
 
     @Override
     public JSONObject toJson() {
-        return new JSONObject().put("logout_request", new JSONObject().put("logout", login));
+        return new JSONObject().put("logout_request", new JSONObject().put("login", login));
     }
 
     @Override

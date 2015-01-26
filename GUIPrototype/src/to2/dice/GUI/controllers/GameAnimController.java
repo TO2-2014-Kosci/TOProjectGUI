@@ -1,8 +1,9 @@
 package to2.dice.GUI.controllers;
 
+import to2.dice.GUI.animation.AbstractRollControl;
 import to2.dice.GUI.animation.AnotherPutControl;
 import to2.dice.GUI.animation.HideControl;
-import to2.dice.GUI.animation.RollControl;
+import to2.dice.GUI.animation.SimpleRollControl;
 import to2.dice.GUI.animation.TextControl;
 import to2.dice.GUI.animation.UserPutControl;
 import to2.dice.GUI.model.Model;
@@ -55,7 +56,7 @@ public class GameAnimController extends AbstractControl implements ActionListene
 				gameAnimation.getRootNode().collideWith(ray, results);
 				if (results.size() > 0) {
 
-					Spatial target = results.getClosestCollision().getGeometry().getParent().getParent();
+					Spatial target = results.getClosestCollision().getGeometry();
 					if (target.getName().equals("dice")) {
 						for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
 							if (gameAnimation.getUserDice()[i].equals(target)) {
@@ -95,7 +96,7 @@ public class GameAnimController extends AbstractControl implements ActionListene
 	public void shakeAnotherDice(Dice dice) {
 		synchronized (model) {
 			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
-				RollControl diceControl = gameAnimation.getAnotherDice()[i].getControl(RollControl.class);
+				AbstractRollControl diceControl = gameAnimation.getAnotherDice()[i].getControl(AbstractRollControl.class);
 				diceControl.setNumberToRoll(dice.getDiceArray()[i]);
 			}
 		}
@@ -105,8 +106,7 @@ public class GameAnimController extends AbstractControl implements ActionListene
 		synchronized (model) {
 			for (int i = 0; i < model.getGameSettings().getDiceNumber(); i++) {
 				if (model.getSelectedDice()[i]) {
-					System.out.println(dice.getDiceArray()[i]);
-					gameAnimation.getUserDice()[i].getControl(RollControl.class)
+					gameAnimation.getUserDice()[i].getControl(AbstractRollControl.class)
 							.setNumberToRoll(dice.getDiceArray()[i]);
 				}
 			}

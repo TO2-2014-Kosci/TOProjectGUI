@@ -3,9 +3,12 @@ package to2.dice.GUI.views;
 import java.awt.Canvas;
 import java.awt.Dimension;
 
+import to2.dice.GUI.animation.AdvancedRollControl;
 import to2.dice.GUI.animation.AnotherPutControl;
+import to2.dice.GUI.animation.CollisionListener;
 import to2.dice.GUI.animation.HideControl;
-import to2.dice.GUI.animation.RollControl;
+import to2.dice.GUI.animation.MyRigidBodyControl;
+import to2.dice.GUI.animation.SimpleRollControl;
 import to2.dice.GUI.animation.TextControl;
 import to2.dice.GUI.animation.UserPutControl;
 import to2.dice.GUI.controllers.GameAnimController;
@@ -14,6 +17,10 @@ import to2.dice.GUI.model.Model;
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.ClasspathLocator;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.PhysicsCollisionEvent;
+import com.jme3.bullet.collision.PhysicsCollisionGroupListener;
+import com.jme3.bullet.collision.PhysicsCollisionListener;
+import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
@@ -31,21 +38,25 @@ import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
 import com.jme3.renderer.ViewPort;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.Spatial.CullHint;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
 
-public class GameAnimation extends SimpleApplication {
+public class GameAnimation extends SimpleApplication implements PhysicsCollisionListener {
 	private GameAnimController gameAnimController;
 	private Model model;
-	private Spatial[] userDice;
-	private Spatial[] anotherDice;
+	private Geometry[] userDice;
+	private Geometry[] anotherDice;
 	private BulletAppState bulletAppState;
 	private Spatial box;
 	private boolean reload = false;
 	private BitmapText bitmapText;
 	private Canvas canvas;
+	
+	private Geometry d6;
 
 	public GameAnimation(Model model, GameAnimController animController) {
 		super();
@@ -59,7 +70,6 @@ public class GameAnimation extends SimpleApplication {
 		fpp.addFilter(bloom);
 		viewPort = new ViewPort("Cam", cam);
 		viewPort.addProcessor(fpp);
-
 		createCanvas();
 		startCanvas(true);
 		gameAnimController = animController;
@@ -76,6 +86,7 @@ public class GameAnimation extends SimpleApplication {
 
 	@Override
 	public void simpleInitApp() {
+		bulletAppState.getPhysicsSpace().addCollisionListener(this);
 		setPauseOnLostFocus(false);
 		JmeCanvasContext ctx = (JmeCanvasContext) getContext();
 		ctx.setSystemListener(this);
@@ -87,12 +98,13 @@ public class GameAnimation extends SimpleApplication {
 		assetManager.registerLocator("assets", ClasspathLocator.class);
 		cam.setLocation(new Vector3f(-8, -0.5f, 13.5f));
 		cam.lookAt(new Vector3f(-3, -0.5f, 0), Vector3f.UNIT_Z);
-		// bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+//		bulletAppState.getPhysicsSpace().enableDebug(assetManager);
 		bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, 0, -10));
-		bulletAppState.getPhysicsSpace().setAccuracy(1 / 150f);
+		bulletAppState.getPhysicsSpace().setAccuracy(1 / 80f);
 		Spatial table = assetManager.loadModel("Model/Table/table.j3o");
 		table.setLocalTranslation(0, 0, 0);
 		RigidBodyControl landscape = new RigidBodyControl(CollisionShapeFactory.createMeshShape(table), 0);
+		landscape.setFriction(1);
 		table.addControl(landscape);
 		bulletAppState.getPhysicsSpace().add(landscape);
 		rootNode.attachChild(table);
@@ -134,13 +146,14 @@ public class GameAnimation extends SimpleApplication {
 		inputManager.addMapping("Select", (Trigger) new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
 		inputManager.addListener(gameAnimController, new String[] { "Shake", "Put", "Select" });
 		gameAnimController.setEnabled(false);
-
 		bitmapText = new BitmapText(guiFont);
 		bitmapText.setSize(25);
 		bitmapText.setText("");
 //		bitmapText.setColor(ColorRGBA.Black);
 		bitmapText.addControl(new TextControl(bitmapText));
 		guiNode.attachChild(bitmapText);
+		Spatial d6spatial = assetManager.loadModel("Model/Dice/dice.j3o");
+		d6 = (Geometry) ((Node)d6spatial).getChild("Cube1"); 
 	}
 
 	@Override
@@ -151,38 +164,49 @@ public class GameAnimation extends SimpleApplication {
 				reload = false;
 				int diceNumber = model.getGameSettings().getDiceNumber();
 				if (getUserDice() == null || getUserDice().length != diceNumber) {
-					setUserDice(new Spatial[diceNumber]);
-					setAnotherDice(new Spatial[diceNumber]);
+					setUserDice(new Geometry[diceNumber]);
+					setAnotherDice(new Geometry[diceNumber]);
 					for (int i = 0; i < diceNumber; i++) {
-						getUserDice()[i] = assetManager.loadModel("Model/Dice/dice.j3o");
+						getUserDice()[i] = d6.deepClone();
+						getUserDice()[i].scale(0.5f);
 						getUserDice()[i].setName("dice");
 						CollisionShape diceShape = CollisionShapeFactory.createDynamicMeshShape(getUserDice()[i]);
 						RigidBodyControl diceBody = new RigidBodyControl(diceShape, 10f);
 						getUserDice()[i].addControl(diceBody);
 						rootNode.attachChild(getUserDice()[i]);
-						getUserDice()[i].addControl(new RollControl(i));
+//						getUserDice()[i].addControl(new SimpleRollControl(i, getUserDice()));
+						getUserDice()[i].addControl(new AdvancedRollControl(i, getUserDice()));
 						getUserDice()[i].addControl(new UserPutControl(i, diceNumber));
 						getUserDice()[i].addControl(new HideControl());
 						bulletAppState.getPhysicsSpace().add(diceBody);
 
-						getAnotherDice()[i] = assetManager.loadModel("Model/Dice/dice.j3o");
+						getAnotherDice()[i] = d6.deepClone();
+						getAnotherDice()[i].scale(0.5f);
 						getAnotherDice()[i].setName("dice");
 						CollisionShape diceShapeA = CollisionShapeFactory.createDynamicMeshShape(getAnotherDice()[i]);
 						RigidBodyControl diceBodyA = new RigidBodyControl(diceShapeA, 10f);
 						getAnotherDice()[i].addControl(diceBodyA);
-						getAnotherDice()[i].addControl(new RollControl(i));
+//						getAnotherDice()[i].addControl(new SimpleRollControl(i, getAnotherDice()));
+						getAnotherDice()[i].addControl(new AdvancedRollControl(i, getAnotherDice()));
 						getAnotherDice()[i].addControl(new AnotherPutControl(i));
 						getAnotherDice()[i].addControl(new HideControl());
 						rootNode.attachChild(getAnotherDice()[i]);
 						bulletAppState.getPhysicsSpace().add(diceBodyA);
 					}
 					box.setLocalScale(1, diceNumber, 1);
+					bulletAppState.getPhysicsSpace().remove(box.getControl(RigidBodyControl.class));
+					box.removeControl(RigidBodyControl.class);
+					RigidBodyControl boxShape = new RigidBodyControl(CollisionShapeFactory.createMeshShape(box), 0);
+					box.addControl(boxShape);
+					box.addControl(new HideControl());
+					bulletAppState.getPhysicsSpace().add(boxShape);
+					
 				}
 				for (int i = 0; i < diceNumber; i++) {
 					getUserDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(
 							new Vector3f(-7, -diceNumber / 2 + i, 0.35f));
 					getAnotherDice()[i].getControl(RigidBodyControl.class).setPhysicsLocation(
-							new Vector3f(-i, -6, 0.35f));
+							new Vector3f(-i, -6, 0.3501f));
 				}
 				if (!model.isSitting()) {
 					box.getControl(HideControl.class).setHide(true);
@@ -216,7 +240,7 @@ public class GameAnimation extends SimpleApplication {
 		return userDice;
 	}
 
-	public void setUserDice(Spatial[] dice) {
+	public void setUserDice(Geometry[] dice) {
 		userDice = dice;
 	}
 
@@ -224,7 +248,7 @@ public class GameAnimation extends SimpleApplication {
 		return anotherDice;
 	}
 
-	public void setAnotherDice(Spatial[] anotherDice) {
+	public void setAnotherDice(Geometry[] anotherDice) {
 		this.anotherDice = anotherDice;
 	}
 
@@ -235,4 +259,14 @@ public class GameAnimation extends SimpleApplication {
 	public Spatial getBox() {
 		return box;
 	}
+
+	@Override
+    public void collision(PhysicsCollisionEvent event) {
+    	System.out.println("dsa");
+        if ("Box".equals(event.getNodeA().getName()) || "Box".equals(event.getNodeB().getName())) {
+            if ("bullet".equals(event.getNodeA().getName()) || "bullet".equals(event.getNodeB().getName())) {
+                fpsText.setText("You hit the box!");
+            }
+        }
+    }
 }

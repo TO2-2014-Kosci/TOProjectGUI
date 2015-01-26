@@ -10,7 +10,7 @@ import com.jme3.scene.control.AbstractControl;
 
 public class AnotherPutControl extends AbstractControl {
 
-	private int number;
+	private int number = 0;
 	private int diceName;
 
 	public AnotherPutControl(int diceName) {
@@ -28,39 +28,42 @@ public class AnotherPutControl extends AbstractControl {
 	@Override
 	protected void controlUpdate(float tpf) {
 		RigidBodyControl diceControl = spatial.getControl(RigidBodyControl.class);
-		int numberValue = 0;
-		synchronized (spatial) {
-			numberValue = number;
+		if (number != 0) {
+			diceControl.setEnabled(true);
+			int numberValue = 0;
+			synchronized (spatial) {
+				numberValue = number;
+			}
+			switch (numberValue) {
+			case 1:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1, 0, 0)));
+				break;
+			case 2:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(0, 1, 0)));
+				break;
+			case 3:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.ZERO_TOLERANCE,
+						new Vector3f(1, 0, 0)));
+				break;
+			case 4:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.PI, new Vector3f(1, 0, 0)));
+				break;
+			case 5:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(0, 1, 0)));
+				break;
+			case 6:
+				diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(1, 0, 0)));
+				break;
+			}
+			diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
+			diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
+			diceControl.setPhysicsLocation(new Vector3f(-diceName, -6, 0.35f));
+			spatial.getControl(AbstractRollControl.class).setEnabled(false);
+			number = 0;
+		} else {
+			diceControl.setEnabled(false);
+			this.setEnabled(false);
 		}
-		switch (numberValue) {
-		case 1:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(1, 0, 0)));
-			break;
-		case 2:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(0, 1, 0)));
-			break;
-		case 3:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.ZERO_TOLERANCE,
-					new Vector3f(1, 0, 0)));
-			break;
-		case 4:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.PI, new Vector3f(1, 0, 0)));
-			break;
-		case 5:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(FastMath.HALF_PI, new Vector3f(0, 1, 0)));
-			break;
-		case 6:
-			diceControl.setPhysicsRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, new Vector3f(1, 0, 0)));
-			break;
-		}
-		diceControl.setLinearVelocity(new Vector3f(0, 0, 0));
-		diceControl.setAngularVelocity(new Vector3f(0, 0, 0));
-		diceControl.setPhysicsLocation(new Vector3f(-diceName, -6, 0.35f));
-		diceControl.update(0);
-		diceControl.setEnabled(false);
-		spatial.getControl(RollControl.class).setEnabled(false);
-		diceControl.setEnabled(true);
-		this.setEnabled(false);
 
 	}
 

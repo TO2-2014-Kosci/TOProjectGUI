@@ -16,7 +16,7 @@ public class Model {
 	private ConnectionProxy connectionProxy;
 	private ServerMessageContainer serverMessageContainer;
 	private DiceApplication diceApplication;
-	private String login = "";
+	private String login = null;
 	private List<GameInfo> roomList = new ArrayList<GameInfo>();
 	private GameSettings gameSettings = null;
 	private boolean sitting = false;
