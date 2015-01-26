@@ -116,6 +116,7 @@ public class Model {
 			}
 			gameAnimation = new GameAnimation(this, gameAnimController);
 			gameAnimController.setGameAnimation(gameAnimation);
+			gameAnimation.getCanvas();
 		} else {
 			gameAnimation.setReload();
 		}
