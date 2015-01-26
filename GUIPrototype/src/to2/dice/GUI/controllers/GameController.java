@@ -12,7 +12,7 @@ import to2.dice.messaging.Response;
 import to2.dice.server.ServerMessageListener;
 
 public class GameController extends Controller implements ServerMessageListener {
-	private static final int timeForAnimInMiliseconds = 1500;
+	private static final int timeForAnimInMiliseconds = 3000;
 
 	private GameAnimController gameAnimController;
 	private Player lastPlayer = null;
