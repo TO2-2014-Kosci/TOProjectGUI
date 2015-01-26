@@ -74,13 +74,14 @@ public class GameAnimation extends SimpleApplication implements PhysicsCollision
 		startCanvas(true);
 		gameAnimController = animController;
 		this.model = model;
-		getCanvas();
 	}
 
 	public Canvas getCanvas() {
-		canvas = ((JmeCanvasContext) this.getContext()).getCanvas();
+		if (canvas == null) {
+			canvas = ((JmeCanvasContext) this.getContext()).getCanvas();
+			canvas.setMinimumSize(new Dimension(16, 16));
+		}
 		// HACK: Without this canvas doesn't shrink when window is reduced
-		canvas.setMinimumSize(new Dimension(16, 16));
 		return canvas;
 	}
 
