@@ -83,7 +83,7 @@ public class AdvancedRollControl extends AbstractRollControl {
 					steps = 25;
 				}
 				if (location.z > 0) {
-					diceControl.applyCentralForce(new Vector3f(5, 5, 0));
+					diceControl.applyImpulse(new Vector3f(5, 5, 0), diceControl.getPhysicsLocation());
 				}
 			} else if (steps > 0) {
 				steps--;
@@ -99,14 +99,14 @@ public class AdvancedRollControl extends AbstractRollControl {
 				diceControl.setPhysicsLocation(new Vector3f(-3, 5 / 2 - diceName, 0.5f));
 			}
 			if (location.x > 4.0) {
-				diceControl.applyCentralForce(new Vector3f(-5, 0, 0));
+				diceControl.applyImpulse(new Vector3f(-5, 0, 0), diceControl.getPhysicsLocation());
 			} else if (location.x < -2.0) {
-				diceControl.applyCentralForce(new Vector3f(5, 0, 0));
+				diceControl.applyImpulse(new Vector3f(5, 0, 0), diceControl.getPhysicsLocation());
 			}
 			if (location.y > 4.0) {
-				diceControl.applyCentralForce(new Vector3f(0, -5, 0));
+				diceControl.applyImpulse(new Vector3f(0, -5, 0), diceControl.getPhysicsLocation());
 			} else if (location.y < -4.0) {
-				diceControl.applyCentralForce(new Vector3f(0, 5, 0));
+				diceControl.applyImpulse(new Vector3f(0, 5, 0), diceControl.getPhysicsLocation());
 			}
 		}
 		
