@@ -83,7 +83,7 @@ public class GameController extends Controller implements ServerMessageListener 
 	@Override
 	public void onGameStateChange(GameState gameState) {
 		model.setGameState(gameState);
-		if (lastPlayer == null && lastRound == -1) {
+		if (lastPlayer == null && lastRound == -1 && gameState.isGameStarted()) {
 			startGame(gameState);
 		}
 		if (model.isSitting() && checkKickout(gameState)) {
@@ -210,6 +210,8 @@ public class GameController extends Controller implements ServerMessageListener 
 		lastRound = -1;
 		lastPlayer = null;
 		model.setSitting(false);
+		gameAnimController.hideAnotherDice();
+		gameAnimController.hideBoxAndDice();
 	}
 
 }

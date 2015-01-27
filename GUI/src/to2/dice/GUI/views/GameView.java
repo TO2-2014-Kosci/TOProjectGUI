@@ -216,7 +216,7 @@ public class GameView extends View {
 		((AbstractTableModel) playerTable.getModel()).fireTableDataChanged();
 		roundLabel.setText("Runda " + model.getGameState().getCurrentRound());
 		if (model.getGameSettings().getGameType() != GameType.POKER) {
-			if (model.getGameSettings().getGameType() != GameType.NMUL) {
+			if (model.getGameSettings().getGameType() == GameType.NMUL) {
 				nGoalLabel.setText("Cel N*: " + ((NGameState) model.getGameState()).getWinningNumber());
 			} else {
 				nGoalLabel.setText("Cel N+: " + ((NGameState) model.getGameState()).getWinningNumber());
