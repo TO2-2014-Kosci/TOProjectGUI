@@ -1,6 +1,5 @@
 package to2.dice.GUI.views;
 
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -23,7 +22,6 @@ import to2.dice.GUI.controllers.GameController;
 import to2.dice.GUI.model.Model;
 import to2.dice.game.GameType;
 import to2.dice.game.NGameState;
-import to2.dice.game.Player;
 
 public class GameView extends View {
 	private static final long serialVersionUID = -1998878099465780349L;
@@ -78,7 +76,6 @@ public class GameView extends View {
 				case 0:
 					return model.getGameState().getPlayers().get(arg0).getName();
 				case 1:
-					// TODO change to image, maybe
 					int[] dice = model.getGameState().getPlayers().get(arg0).getDice().getDiceArray();
 					String result = "";
 					for (int i : dice) {
@@ -201,7 +198,6 @@ public class GameView extends View {
 
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
 		if (model.isSitting()) {
 			standUpLeaveButton.setText("Wstañ");
 		} else {
@@ -226,18 +222,8 @@ public class GameView extends View {
 			nGoalLabel.setText("Poker");
 		}
 		if (!model.getGameState().isGameStarted()) {
-//			Player winner = model.getGameState().getPlayers().get(0);
-//			for (Player p:model.getGameState().getPlayers()) {
-//				if (p.getScore() == model.getGameSettings().getRoundsToWin()) {
-//					winner = p;
-//					break;
-//				}
-//			}
-//			String endGameString = "Koniec gry\n  Wygral  \n" + winner.getName();
 			timerLabel.setText("");
 			timer.cancel();
-//			JLabel endGameLabel = new JLabel(endGameString);
-//			add(endGameLabel, "cell 1 1 4 2,grow, center");
 		}
 	}
 }

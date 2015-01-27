@@ -5,10 +5,7 @@ import java.awt.Dimension;
 
 import to2.dice.GUI.animation.AdvancedRollControl;
 import to2.dice.GUI.animation.AnotherPutControl;
-import to2.dice.GUI.animation.CollisionListener;
 import to2.dice.GUI.animation.HideControl;
-import to2.dice.GUI.animation.MyRigidBodyControl;
-import to2.dice.GUI.animation.SimpleRollControl;
 import to2.dice.GUI.animation.TextControl;
 import to2.dice.GUI.animation.UserPutControl;
 import to2.dice.GUI.controllers.GameAnimController;
@@ -17,10 +14,6 @@ import to2.dice.GUI.model.Model;
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.ClasspathLocator;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.PhysicsCollisionEvent;
-import com.jme3.bullet.collision.PhysicsCollisionGroupListener;
-import com.jme3.bullet.collision.PhysicsCollisionListener;
-import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
@@ -45,7 +38,7 @@ import com.jme3.scene.Spatial.CullHint;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
 
-public class GameAnimation extends SimpleApplication implements PhysicsCollisionListener {
+public class GameAnimation extends SimpleApplication {
 	private GameAnimController gameAnimController;
 	private Model model;
 	private Geometry[] userDice;
@@ -87,7 +80,6 @@ public class GameAnimation extends SimpleApplication implements PhysicsCollision
 
 	@Override
 	public void simpleInitApp() {
-		bulletAppState.getPhysicsSpace().addCollisionListener(this);
 		setPauseOnLostFocus(false);
 		JmeCanvasContext ctx = (JmeCanvasContext) getContext();
 		ctx.setSystemListener(this);
@@ -260,14 +252,4 @@ public class GameAnimation extends SimpleApplication implements PhysicsCollision
 	public Spatial getBox() {
 		return box;
 	}
-
-	@Override
-    public void collision(PhysicsCollisionEvent event) {
-    	System.out.println("dsa");
-        if ("Box".equals(event.getNodeA().getName()) || "Box".equals(event.getNodeB().getName())) {
-            if ("bullet".equals(event.getNodeA().getName()) || "bullet".equals(event.getNodeB().getName())) {
-                fpsText.setText("You hit the box!");
-            }
-        }
-    }
 }

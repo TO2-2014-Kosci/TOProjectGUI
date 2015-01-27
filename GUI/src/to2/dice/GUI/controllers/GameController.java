@@ -78,8 +78,7 @@ public class GameController extends Controller implements ServerMessageListener 
 		}
 
 	}
-
-	// TODO koniec gry
+	
 	@Override
 	public void onGameStateChange(GameState gameState) {
 		model.setGameState(gameState);
@@ -99,7 +98,6 @@ public class GameController extends Controller implements ServerMessageListener 
 		} else if (!lastPlayer.equals(gameState.getCurrentPlayer())) {
 			endTourNextTour(gameState);
 		} else {
-			// TODO nothing is changed
 		}
 		model.getDiceApplication().refresh();
 	}
@@ -142,7 +140,6 @@ public class GameController extends Controller implements ServerMessageListener 
 	}
 
 	private void nextRound(GameState gameState) {
-		// TODO pokazaæ ³adny napis na œrodku :)
 		lastRound += 1;
 		lastPlayer = gameState.getCurrentPlayer();
 		if (model.isMyTurn()) {

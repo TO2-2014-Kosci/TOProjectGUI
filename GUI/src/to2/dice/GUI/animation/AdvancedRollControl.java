@@ -33,8 +33,6 @@ public class AdvancedRollControl extends AbstractRollControl {
 
 	@Override
 	protected void controlRender(RenderManager arg0, ViewPort arg1) {
-		// TODO Auto-generated method stub
-
 	}
 	
 

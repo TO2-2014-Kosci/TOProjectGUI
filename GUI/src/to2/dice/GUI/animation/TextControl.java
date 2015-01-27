@@ -16,8 +16,6 @@ public class TextControl extends AbstractControl {
 
 	@Override
 	protected void controlRender(RenderManager rm, ViewPort vp) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

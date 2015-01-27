@@ -2,11 +2,8 @@ package to2.dice.GUI.controllers;
 
 import to2.dice.GUI.animation.AbstractPutControl;
 import to2.dice.GUI.animation.AbstractRollControl;
-import to2.dice.GUI.animation.AnotherPutControl;
 import to2.dice.GUI.animation.HideControl;
-import to2.dice.GUI.animation.SimpleRollControl;
 import to2.dice.GUI.animation.TextControl;
-import to2.dice.GUI.animation.UserPutControl;
 import to2.dice.GUI.model.Model;
 import to2.dice.GUI.views.GameAnimation;
 import to2.dice.game.Dice;
@@ -30,7 +27,6 @@ public class GameAnimController extends AbstractControl implements ActionListene
 		this.model = model;
 	}
 
-	// TODO
 	public boolean[] getSelectedDice() {
 		return model.getSelectedDice();
 	}
@@ -80,8 +76,6 @@ public class GameAnimController extends AbstractControl implements ActionListene
 
 	@Override
 	protected void controlRender(RenderManager rm, ViewPort vp) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
